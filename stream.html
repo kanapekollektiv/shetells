@@ -6,7 +6,6 @@
   <title>sea shells — stream</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ── Stream page overrides ── */
     body {
       background-image: url('blueshell.png');
       background-size: cover;
@@ -31,183 +30,146 @@
       z-index: 0;
     }
 
-    /* ── Player container ── */
     .stream-page {
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      align-items: flex-start;
       width: 100%;
       min-height: 100vh;
-      padding: 48px 24px 32px;
-      gap: 32px;
+      padding: 36px 48px;
+      gap: 24px;
     }
 
     /* Back link */
     .back-link {
-      align-self: flex-start;
       font-family: 'Celescript', cursive;
       font-size: 14pt;
-      color: #ff6ef7;   /* inverted from the deep blue of blueshell */
+      color: #ff6ef7;
       text-decoration: none;
-      padding: 6px 0;
+      padding-bottom: 4px;
       border-bottom: 1.5px solid #ff6ef7;
       mix-blend-mode: difference;
       transition: opacity 0.2s;
     }
-
     .back-link:hover { opacity: 0.7; }
 
-    /* ── Custom audio player ── */
+    /* ── Player: single pill row ── */
     .player-wrapper {
       position: relative;
-      width: 100%;
-      max-width: 560px;
+      /* width fits content */
+      display: inline-flex;
     }
 
-    /* Inverted-colour canvas sits behind the player UI */
     #playerCanvas {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      border-radius: 24px;
+      border-radius: 999px;
       display: block;
       z-index: 0;
     }
 
+    /* One flex row: play · label · vol label · slider · status */
     .player {
       position: relative;
       z-index: 1;
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 36px 40px 32px;
-      border-radius: 24px;
-    }
-
-    /* Title row */
-    .player-title {
-      font-family: 'Celescript', cursive;
-      font-size: 22pt;
-      color: #ffffff;
-      line-height: 1.1;
-      text-align: center;
-    }
-
-    .player-subtitle {
-      font-family: 'Celescript', cursive;
-      font-size: 12pt;
-      color: rgba(255,255,255,0.75);
-      text-align: center;
-      margin-top: -14px;
-    }
-
-    /* Controls row: play + volume */
-    .player-controls {
-      display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      gap: 16px;
+      padding: 10px 24px;
+      border-radius: 999px;
+      white-space: nowrap;
     }
 
-    /* Play / pause button */
+    /* Play/pause button — just the icon, no background */
     .play-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .play-icon { width: 14px; height: 14px; fill: #ffffff; display: block; }
+
+    /* "stream" label */
+    .player-label {
       font-family: 'Celescript', cursive;
       font-size: 13pt;
       color: #ffffff;
-      background: rgba(255,255,255,0.15);
-      border: 1.5px solid rgba(255,255,255,0.5);
-      border-radius: 999px;
-      padding: 10px 28px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.2s;
-      white-space: nowrap;
     }
 
-    .play-btn:hover { background: rgba(255,255,255,0.28); }
-
-    /* Play icon (SVG inline) */
-    .play-icon { width: 16px; height: 16px; fill: #ffffff; flex-shrink: 0; }
-
-    /* Volume row */
-    .volume-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 10px;
+    /* Divider */
+    .player-divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.35);
+      flex-shrink: 0;
     }
 
+    /* Volume */
     .volume-label {
       font-family: 'Celescript', cursive;
       font-size: 11pt;
-      color: rgba(255,255,255,0.8);
-      white-space: nowrap;
+      color: rgba(255,255,255,0.75);
     }
 
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
-      width: 120px;
-      height: 3px;
+      width: 80px;
+      height: 2px;
       border-radius: 999px;
       background: rgba(255,255,255,0.4);
       outline: none;
       cursor: pointer;
+      flex-shrink: 0;
     }
-
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: #ffffff;
       cursor: pointer;
     }
-
     input[type="range"]::-moz-range-thumb {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: #ffffff;
       border: none;
       cursor: pointer;
     }
 
-    /* Status indicator */
-    .player-status {
-      font-family: 'Celescript', cursive;
-      font-size: 11pt;
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      min-height: 1.4em;
-    }
-
+    /* Status dot */
     .status-dot {
-      display: inline-block;
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.4);
-      margin-right: 6px;
-      vertical-align: middle;
+      background: rgba(255,255,255,0.35);
+      flex-shrink: 0;
       transition: background 0.3s;
     }
-
     .status-dot.live { background: #7fff7f; }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .player { padding: 28px 24px 24px; }
-      .player-title { font-size: 18pt; }
-      input[type="range"] { width: 90px; }
+    /* Status text */
+    .status-text {
+      font-family: 'Celescript', cursive;
+      font-size: 11pt;
+      color: rgba(255,255,255,0.65);
+    }
+
+    @media (max-width: 600px) {
+      .stream-page { padding: 24px 20px; }
+      input[type="range"] { width: 60px; }
     }
   </style>
 </head>
@@ -215,38 +177,32 @@
   <div class="stream-bg"></div>
 
   <div class="stream-page">
-
     <a href="index.html" class="back-link">← sea shells</a>
 
     <div class="player-wrapper" id="playerWrapper">
       <canvas id="playerCanvas"></canvas>
-
       <div class="player">
-        <div class="player-title">stream</div>
-        <div class="player-subtitle">live audio</div>
 
-        <div class="player-controls">
-          <button class="play-btn" id="playBtn" aria-label="Play">
-            <!-- play icon -->
-            <svg class="play-icon" id="playIcon" viewBox="0 0 16 16">
-              <polygon points="3,1 15,8 3,15" />
-            </svg>
-            <span id="playLabel">play</span>
-          </button>
+        <button class="play-btn" id="playBtn" aria-label="Play / Pause">
+          <svg class="play-icon" id="playIcon" viewBox="0 0 14 14">
+            <polygon points="2,1 13,7 2,13" />
+          </svg>
+        </button>
 
-          <div class="volume-row">
-            <span class="volume-label">vol</span>
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
-          </div>
-        </div>
+        <span class="player-label">stream</span>
 
-        <div class="player-status">
-          <span class="status-dot" id="statusDot"></span>
-          <span id="statusText">press play to connect</span>
-        </div>
+        <div class="player-divider"></div>
+
+        <span class="volume-label">vol</span>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
+
+        <div class="player-divider"></div>
+
+        <div class="status-dot" id="statusDot"></div>
+        <span class="status-text" id="statusText">offline</span>
+
       </div>
     </div>
-
   </div>
 
   <script>
@@ -299,17 +255,15 @@
     window.addEventListener('resize', refreshCanvas);
 
     /* ── Audio player ── */
-    const STREAM_URL  = 'https://shell.kokott.art/streams/debug/stream';
-    const playBtn     = document.getElementById('playBtn');
-    const playIcon    = document.getElementById('playIcon');
-    const playLabel   = document.getElementById('playLabel');
+    const STREAM_URL   = 'https://shell.kokott.art/streams/debug/stream';
+    const playBtn      = document.getElementById('playBtn');
+    const playIcon     = document.getElementById('playIcon');
     const volumeSlider = document.getElementById('volumeSlider');
-    const statusDot   = document.getElementById('statusDot');
-    const statusText  = document.getElementById('statusText');
+    const statusDot    = document.getElementById('statusDot');
+    const statusText   = document.getElementById('statusText');
 
-    // SVG paths for play / pause
-    const PLAY_PATH  = '<polygon points="3,1 15,8 3,15" />';
-    const PAUSE_PATH = '<rect x="2" y="1" width="4" height="14"/><rect x="10" y="1" width="4" height="14"/>';
+    const PLAY_PATH  = '<polygon points="2,1 13,7 2,13"/>';
+    const PAUSE_PATH = '<rect x="1" y="1" width="4" height="12"/><rect x="9" y="1" width="4" height="12"/>';
 
     let audio   = null;
     let playing = false;
@@ -322,38 +276,37 @@
     function setPlayState(isPlaying) {
       playing = isPlaying;
       playIcon.innerHTML = isPlaying ? PAUSE_PATH : PLAY_PATH;
-      playLabel.textContent = isPlaying ? 'pause' : 'play';
     }
 
     playBtn.addEventListener('click', () => {
       if (!audio) {
-        // First press — create the audio element fresh each time
-        // so the live stream always starts from "now"
         audio = new Audio();
         audio.crossOrigin = 'anonymous';
         audio.volume = parseFloat(volumeSlider.value);
 
         audio.addEventListener('waiting', () => setStatus('connecting…', false));
         audio.addEventListener('playing', () => setStatus('live', true));
-        audio.addEventListener('error',   () => { setStatus('connection error', false); setPlayState(false); audio = null; });
         audio.addEventListener('stalled', () => setStatus('buffering…', false));
+        audio.addEventListener('error',   () => {
+          setStatus('error', false);
+          setPlayState(false);
+          audio = null;
+        });
 
         setStatus('connecting…', false);
         audio.src = STREAM_URL;
         audio.play().catch(() => {
-          setStatus('could not connect', false);
+          setStatus('offline', false);
           setPlayState(false);
           audio = null;
         });
         setPlayState(true);
-
-      } else if (playing) {
-        // Pause: destroy the audio so we don't keep buffering
+      } else {
         audio.pause();
         audio.src = '';
         audio = null;
         setPlayState(false);
-        setStatus('press play to connect', false);
+        setStatus('offline', false);
       }
     });
 
