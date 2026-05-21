@@ -51,6 +51,7 @@
       min-height: 100vh;
     }
 
+    /* ── Top bar ── */
     .top-bar {
       display: flex;
       align-items: flex-start;
@@ -80,6 +81,7 @@
       display: inline-block;
     }
 
+    /* ── Nav buttons ── */
     .nav {
       display: flex;
       flex-direction: row;
@@ -101,18 +103,42 @@
       white-space: nowrap;
     }
 
-    .btn-memories {
-      background-color: #000000;
-      color: #ffffff;
-      mix-blend-mode: difference;
+    /* "stream" — same as info: white bg, purple text */
+    .btn-stream {
+      background-color: #ffffff;
+      color: #6e00b0;
     }
 
+    /* "tell us your memories!" — canvas inverted pill */
+    .btn-memories {
+      position: relative;
+      color: #ffffff;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .btn-memories canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      z-index: 0;
+      display: block;
+    }
+
+    .btn-memories span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* "info" — white bg, purple text */
     .btn-info {
       background-color: #ffffff;
       color: #6e00b0;
-      border: none;
     }
 
+    /* ── Bottom ── */
     .bottom { width: 100%; position: relative; }
 
     .toolkit { padding: 0 48px 20px 48px; }
@@ -141,17 +167,17 @@
       z-index: 100;
       align-items: center;
       justify-content: center;
+      padding: 24px;
     }
 
     .overlay.active { display: flex; }
 
     .overlay-wrapper {
       position: relative;
-      max-width: 560px;
-      width: 90%;
+      max-width: 620px;
+      width: 100%;
     }
 
-    /* Canvas: fills the box shape, draws inverted background pixels */
     #overlayCanvas {
       position: absolute;
       inset: 0;
@@ -162,20 +188,22 @@
       z-index: 0;
     }
 
-    /* Text on top of canvas */
     .overlay-box {
       position: relative;
       z-index: 1;
-      padding: 48px 56px;
+      padding: 52px 60px 52px 60px;
     }
 
     .overlay-box p {
       font-family: 'NaNTresorM', serif;
       font-weight: 400;
-      font-size: 18pt;
+      font-size: 15pt;
       color: #ffffff;
-      line-height: 1.5;
+      line-height: 1.8;
     }
+
+    .overlay-box strong { font-weight: 700; }
+    .overlay-box em { font-style: italic; }
 
     .overlay-close {
       position: absolute;
@@ -206,10 +234,11 @@
         padding-top: 0;
         width: 100%;
       }
-      .btn-info { align-self: flex-end; }
+      .btn-stream { align-self: flex-end; }
+      .btn-info   { align-self: flex-end; }
       .toolkit { padding: 0 24px 16px 24px; }
-      .overlay-box { padding: 32px 28px; }
-      .overlay-box p { font-size: 14pt; }
+      .overlay-box { padding: 40px 28px; }
+      .overlay-box p { font-size: 12pt; }
     }
   </style>
 </head>
@@ -222,8 +251,18 @@
         <div class="title">sea shells</div>
         <div class="subtitle">we have lots to tell</div>
       </div>
+
       <nav class="nav">
-        <a href="#" class="btn btn-memories">tell us your memories!</a>
+        <!-- 1. Stream button — opens external page in new tab -->
+        <a href="https://shell.kokott.art" target="_blank" rel="noopener" class="btn btn-stream">stream</a>
+
+        <!-- 2. Memories button — canvas-inverted pill background -->
+        <a href="#" class="btn btn-memories" id="memoriesBtn">
+          <canvas id="memoriesCanvas"></canvas>
+          <span>tell us your memories!</span>
+        </a>
+
+        <!-- Info button -->
         <a href="#" class="btn btn-info" id="infoBtn">info</a>
       </nav>
     </div>
@@ -246,78 +285,108 @@ for listening
       <canvas id="overlayCanvas"></canvas>
       <div class="overlay-box">
         <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
-        <p>this is the info, hello</p>
+        <p>
+          Let me tell you, baby, how it all started<br>
+          The ocean looked at herself and one day thought: <strong>I could be more</strong>. So she built a <em>bubble</em>.<br>
+          Soft. Ridiculous, barely there. Just a little membrane holding a pocket of herself away from herself.<br>
+          <br>
+          And then she went everywhere<br>
+          <br>
+          The bubble is YOU, Sweetheart. Still carrying the ocean inside. Your blood, your tears, the fluid in your spine. Ancient seawater in a soft container, walking around, acting all unbothered.<br>
+          <br>
+          You did not leave the ocean. You wore her.<br>
+          <br>
+          When you stand on the beach, and something in your chest recognises the salt in the air...<br>
+          That is not nostalgia, baby..<br>
+          That is ocean checking on her investment.<br>
+          <br>
+          Join the stream now with your own water memories!
+        </p>
       </div>
     </div>
   </div>
 
   <script>
-    const infoBtn    = document.getElementById('infoBtn');
-    const overlay    = document.getElementById('infoOverlay');
-    const closeBtn   = document.getElementById('overlayClose');
-    const wrapper    = document.getElementById('overlayWrapper');
-    const canvas     = document.getElementById('overlayCanvas');
-    const ctx        = canvas.getContext('2d');
-
-    // The background image used in .bg
+    // Pre-load the background image so canvas can read its pixels
     const bgImg = new Image();
+    bgImg.crossOrigin = 'anonymous';
     bgImg.src = 'shell.png';
 
-    function drawInvertedBackground() {
-      const rect = wrapper.getBoundingClientRect();
-      const W = rect.width;
-      const H = rect.height;
+    // Draw the slice of the background behind `rect`, inverted, onto `canvas`
+    function drawInverted(canvas, rect) {
+      const W = Math.round(rect.width);
+      const H = Math.round(rect.height);
+      if (W === 0 || H === 0) return;
 
       canvas.width  = W;
       canvas.height = H;
 
-      // Work out how the background-size:cover image maps to the viewport
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const iw = bgImg.naturalWidth  || bgImg.width;
-      const ih = bgImg.naturalHeight || bgImg.height;
+      const ctx = canvas.getContext('2d');
+      const vw  = window.innerWidth;
+      const vh  = window.innerHeight;
+      const iw  = bgImg.naturalWidth  || 1;
+      const ih  = bgImg.naturalHeight || 1;
 
-      const scale = Math.max(vw / iw, vh / ih);
-      const scaledW = iw * scale;
-      const scaledH = ih * scale;
-      const offsetX = (vw - scaledW) / 2;
-      const offsetY = 0; // background-position: center top
+      // Replicate background-size: cover, background-position: center top
+      const scale   = Math.max(vw / iw, vh / ih);
+      const offsetX = (vw - iw * scale) / 2;
+      const offsetY = 0;
 
-      // Draw just the slice of the background that sits behind this box
-      ctx.drawImage(
-        bgImg,
-        // source rect in image coords
-        (rect.left - offsetX) / scale,
-        (rect.top  - offsetY) / scale,
-        W / scale,
-        H / scale,
-        // destination: fill the whole canvas
-        0, 0, W, H
-      );
+      // Source rect in image coordinates
+      const sx = (rect.left - offsetX) / scale;
+      const sy = (rect.top  - offsetY) / scale;
+      const sw = W / scale;
+      const sh = H / scale;
 
-      // Invert every pixel (difference blend = 255 - value)
-      const imageData = ctx.getImageData(0, 0, W, H);
-      const d = imageData.data;
+      ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, W, H);
+
+      // Pixel-level inversion (= difference blend with white)
+      const id = ctx.getImageData(0, 0, W, H);
+      const d  = id.data;
       for (let i = 0; i < d.length; i += 4) {
-        d[i]     = 255 - d[i];     // R
-        d[i + 1] = 255 - d[i + 1]; // G
-        d[i + 2] = 255 - d[i + 2]; // B
-        // alpha unchanged
+        d[i]     = 255 - d[i];
+        d[i + 1] = 255 - d[i + 1];
+        d[i + 2] = 255 - d[i + 2];
       }
-      ctx.putImageData(imageData, 0, 0);
+      ctx.putImageData(id, 0, 0);
+    }
+
+    // ── Memories button ──
+    const memoriesBtn    = document.getElementById('memoriesBtn');
+    const memoriesCanvas = document.getElementById('memoriesCanvas');
+
+    function refreshMemoriesBtn() {
+      drawInverted(memoriesCanvas, memoriesBtn.getBoundingClientRect());
+    }
+
+    if (bgImg.complete && bgImg.naturalWidth) {
+      refreshMemoriesBtn();
+    } else {
+      bgImg.addEventListener('load', refreshMemoriesBtn);
+    }
+    window.addEventListener('resize', refreshMemoriesBtn);
+
+    // ── Info overlay ──
+    const infoBtn        = document.getElementById('infoBtn');
+    const overlay        = document.getElementById('infoOverlay');
+    const overlayWrapper = document.getElementById('overlayWrapper');
+    const overlayCanvas  = document.getElementById('overlayCanvas');
+    const closeBtn       = document.getElementById('overlayClose');
+
+    function refreshOverlay() {
+      requestAnimationFrame(() => {
+        drawInverted(overlayCanvas, overlayWrapper.getBoundingClientRect());
+      });
     }
 
     function openOverlay(e) {
       e.preventDefault();
       overlay.classList.add('active');
-      // Wait one frame so the wrapper has its final size/position
-      requestAnimationFrame(() => {
-        if (bgImg.complete && bgImg.naturalWidth) {
-          drawInvertedBackground();
-        } else {
-          bgImg.onload = drawInvertedBackground;
-        }
-      });
+      if (bgImg.complete && bgImg.naturalWidth) {
+        refreshOverlay();
+      } else {
+        bgImg.addEventListener('load', refreshOverlay);
+      }
     }
 
     function closeOverlay() { overlay.classList.remove('active'); }
@@ -326,7 +395,7 @@ for listening
     closeBtn.addEventListener('click', closeOverlay);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
-    window.addEventListener('resize', () => { if (overlay.classList.contains('active')) drawInvertedBackground(); });
+    window.addEventListener('resize', () => { if (overlay.classList.contains('active')) refreshOverlay(); });
   </script>
 </body>
 </html>
