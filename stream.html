@@ -15,8 +15,6 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       overflow: hidden;
     }
 
@@ -30,16 +28,17 @@
       z-index: 0;
     }
 
+    /* Full-screen flex column, fills viewport */
     .stream-page {
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      justify-content: space-between;
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
       padding: 36px 48px;
-      gap: 24px;
     }
 
     /* Back link */
@@ -55,14 +54,22 @@
     }
     .back-link:hover { opacity: 0.7; }
 
-    /* ── Player: single pill row ── */
+    /* ── Player pill shared styles ── */
     .player-wrapper {
       position: relative;
-      /* width fits content */
       display: inline-flex;
     }
 
-    #playerCanvas {
+    /* Centre player: override position to be centred */
+    .player-wrapper-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* The canvas fills the pill shape */
+    .player-wrapper canvas {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -72,7 +79,7 @@
       z-index: 0;
     }
 
-    /* One flex row: play · label · vol label · slider · status */
+    /* One flex row inside the pill */
     .player {
       position: relative;
       z-index: 1;
@@ -85,7 +92,6 @@
       white-space: nowrap;
     }
 
-    /* Play/pause button — just the icon, no background */
     .play-btn {
       background: none;
       border: none;
@@ -99,14 +105,12 @@
 
     .play-icon { width: 14px; height: 14px; fill: #ffffff; display: block; }
 
-    /* "stream" label */
     .player-label {
       font-family: 'Celescript', cursive;
       font-size: 13pt;
       color: #ffffff;
     }
 
-    /* Divider */
     .player-divider {
       width: 1px;
       height: 14px;
@@ -114,7 +118,6 @@
       flex-shrink: 0;
     }
 
-    /* Volume */
     .volume-label {
       font-family: 'Celescript', cursive;
       font-size: 11pt;
@@ -149,7 +152,6 @@
       cursor: pointer;
     }
 
-    /* Status dot */
     .status-dot {
       width: 7px;
       height: 7px;
@@ -160,7 +162,6 @@
     }
     .status-dot.live { background: #7fff7f; }
 
-    /* Status text */
     .status-text {
       font-family: 'Celescript', cursive;
       font-size: 11pt;
@@ -177,36 +178,52 @@
   <div class="stream-bg"></div>
 
   <div class="stream-page">
-    <a href="index.html" class="back-link">← sea shells</a>
 
-    <div class="player-wrapper" id="playerWrapper">
-      <canvas id="playerCanvas"></canvas>
+    <!-- Top-left pill -->
+    <div class="player-wrapper" id="playerWrapperTop">
+      <canvas id="playerCanvasTop"></canvas>
       <div class="player">
-
-        <button class="play-btn" id="playBtn" aria-label="Play / Pause">
-          <svg class="play-icon" id="playIcon" viewBox="0 0 14 14">
+        <button class="play-btn" id="playBtnTop" aria-label="Play / Pause">
+          <svg class="play-icon" id="playIconTop" viewBox="0 0 14 14">
             <polygon points="2,1 13,7 2,13" />
           </svg>
         </button>
-
         <span class="player-label">stream</span>
-
         <div class="player-divider"></div>
-
         <span class="volume-label">vol</span>
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
-
+        <input type="range" id="volumeSliderTop" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
         <div class="player-divider"></div>
-
-        <div class="status-dot" id="statusDot"></div>
-        <span class="status-text" id="statusText">offline</span>
-
+        <div class="status-dot" id="statusDotTop"></div>
+        <span class="status-text" id="statusTextTop">offline</span>
       </div>
     </div>
+
+    <!-- Back link bottom-left -->
+    <a href="index.html" class="back-link">← sea shells</a>
+
+    <!-- Centre pill — absolutely centred in the page -->
+    <div class="player-wrapper player-wrapper-center" id="playerWrapperCenter">
+      <canvas id="playerCanvasCenter"></canvas>
+      <div class="player">
+        <button class="play-btn" id="playBtnCenter" aria-label="Play / Pause">
+          <svg class="play-icon" id="playIconCenter" viewBox="0 0 14 14">
+            <polygon points="2,1 13,7 2,13" />
+          </svg>
+        </button>
+        <span class="player-label">stream</span>
+        <div class="player-divider"></div>
+        <span class="volume-label">vol</span>
+        <input type="range" id="volumeSliderCenter" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
+        <div class="player-divider"></div>
+        <div class="status-dot" id="statusDotCenter"></div>
+        <span class="status-text" id="statusTextCenter">offline</span>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    /* ── Inverted canvas background ── */
+    /* ── Shared inverted-canvas draw ── */
     const bgImg = new Image();
     bgImg.crossOrigin = 'anonymous';
     bgImg.src = 'blueshell.png';
@@ -238,51 +255,73 @@
       ctx.putImageData(id, 0, 0);
     }
 
-    const playerWrapper = document.getElementById('playerWrapper');
-    const playerCanvas  = document.getElementById('playerCanvas');
-
-    function refreshCanvas() {
+    function refreshAllCanvases() {
       requestAnimationFrame(() => {
-        drawInverted(playerCanvas, playerWrapper.getBoundingClientRect());
+        drawInverted(
+          document.getElementById('playerCanvasTop'),
+          document.getElementById('playerWrapperTop').getBoundingClientRect()
+        );
+        drawInverted(
+          document.getElementById('playerCanvasCenter'),
+          document.getElementById('playerWrapperCenter').getBoundingClientRect()
+        );
       });
     }
 
     if (bgImg.complete && bgImg.naturalWidth) {
-      refreshCanvas();
+      refreshAllCanvases();
     } else {
-      bgImg.addEventListener('load', refreshCanvas);
+      bgImg.addEventListener('load', refreshAllCanvases);
     }
-    window.addEventListener('resize', refreshCanvas);
+    window.addEventListener('resize', refreshAllCanvases);
 
-    /* ── Audio player ── */
-    const STREAM_URL   = 'https://shell.kokott.art/streams/debug/stream';
-    const playBtn      = document.getElementById('playBtn');
-    const playIcon     = document.getElementById('playIcon');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const statusDot    = document.getElementById('statusDot');
-    const statusText   = document.getElementById('statusText');
-
+    /* ── Single shared audio instance ── */
+    const STREAM_URL = 'https://shell.kokott.art/streams/debug/stream';
     const PLAY_PATH  = '<polygon points="2,1 13,7 2,13"/>';
     const PAUSE_PATH = '<rect x="1" y="1" width="4" height="12"/><rect x="9" y="1" width="4" height="12"/>';
 
     let audio   = null;
     let playing = false;
 
+    // All player UI elements (top + center)
+    const players = [
+      {
+        btn:    document.getElementById('playBtnTop'),
+        icon:   document.getElementById('playIconTop'),
+        vol:    document.getElementById('volumeSliderTop'),
+        dot:    document.getElementById('statusDotTop'),
+        status: document.getElementById('statusTextTop'),
+      },
+      {
+        btn:    document.getElementById('playBtnCenter'),
+        icon:   document.getElementById('playIconCenter'),
+        vol:    document.getElementById('volumeSliderCenter'),
+        dot:    document.getElementById('statusDotCenter'),
+        status: document.getElementById('statusTextCenter'),
+      },
+    ];
+
+    // Sync all UIs at once
     function setStatus(text, live) {
-      statusText.textContent = text;
-      statusDot.classList.toggle('live', live);
+      players.forEach(p => {
+        p.status.textContent = text;
+        p.dot.classList.toggle('live', live);
+      });
     }
 
     function setPlayState(isPlaying) {
       playing = isPlaying;
-      playIcon.innerHTML = isPlaying ? PAUSE_PATH : PLAY_PATH;
+      players.forEach(p => {
+        p.icon.innerHTML = isPlaying ? PAUSE_PATH : PLAY_PATH;
+      });
     }
 
-    playBtn.addEventListener('click', () => {
+    function togglePlay() {
       if (!audio) {
         audio = new Audio();
         audio.crossOrigin = 'anonymous';
-        audio.volume = parseFloat(volumeSlider.value);
+        // Use the average of both volume sliders, or just top's value
+        audio.volume = parseFloat(players[0].vol.value);
 
         audio.addEventListener('waiting', () => setStatus('connecting…', false));
         audio.addEventListener('playing', () => setStatus('live', true));
@@ -308,10 +347,17 @@
         setPlayState(false);
         setStatus('offline', false);
       }
-    });
+    }
 
-    volumeSlider.addEventListener('input', () => {
-      if (audio) audio.volume = parseFloat(volumeSlider.value);
+    // Both play buttons trigger the same audio
+    players.forEach(p => {
+      p.btn.addEventListener('click', togglePlay);
+      // Volume sliders both control the same audio
+      p.vol.addEventListener('input', () => {
+        if (audio) audio.volume = parseFloat(p.vol.value);
+        // Keep sliders in sync with each other
+        players.forEach(q => { q.vol.value = p.vol.value; });
+      });
     });
   </script>
 </body>
