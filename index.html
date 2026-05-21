@@ -20,16 +20,8 @@
       src: url('Celescript.ttf') format('truetype');
     }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
 
     body {
       min-height: 100vh;
@@ -39,7 +31,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Background ── */
     .bg {
       position: fixed;
       inset: 0;
@@ -52,7 +43,6 @@
       z-index: 0;
     }
 
-    /* ── Main content layer ── */
     .page {
       position: relative;
       z-index: 1;
@@ -61,7 +51,6 @@
       min-height: 100vh;
     }
 
-    /* ── Top bar: header left + nav right ── */
     .top-bar {
       display: flex;
       align-items: flex-start;
@@ -70,13 +59,8 @@
       flex: 1;
     }
 
-    /* Top-left text block */
-    .header {
-      display: flex;
-      flex-direction: column;
-    }
+    .header { display: flex; flex-direction: column; }
 
-    /* 5. Regular weight instead of bold */
     .title {
       font-family: 'NaNTresorM', serif;
       font-weight: 400;
@@ -96,7 +80,6 @@
       display: inline-block;
     }
 
-    /* ── Top-right nav buttons ── */
     .nav {
       display: flex;
       flex-direction: row;
@@ -105,7 +88,6 @@
       padding-top: 10px;
     }
 
-    /* 1. Rounded corners on all buttons */
     .btn {
       font-family: 'Celescript', cursive;
       font-size: 12pt;
@@ -119,29 +101,21 @@
       white-space: nowrap;
     }
 
-    /* 3. "tell us your memories!" — difference blend, white text */
     .btn-memories {
       background-color: #000000;
       color: #ffffff;
       mix-blend-mode: difference;
     }
 
-    /* 2. "info" — no outline, white bg, purple text */
     .btn-info {
       background-color: #ffffff;
       color: #6e00b0;
       border: none;
     }
 
-    /* ── Bottom section ── */
-    .bottom {
-      width: 100%;
-      position: relative;
-    }
+    .bottom { width: 100%; position: relative; }
 
-    .toolkit {
-      padding: 0 48px 20px 48px;
-    }
+    .toolkit { padding: 0 48px 20px 48px; }
 
     .toolkit p {
       font-family: 'Celescript', cursive;
@@ -151,10 +125,7 @@
       white-space: pre-line;
     }
 
-    .text-wrap {
-      width: 100%;
-      line-height: 0;
-    }
+    .text-wrap { width: 100%; line-height: 0; }
 
     .text-wrap img {
       width: 100%;
@@ -162,9 +133,7 @@
       mix-blend-mode: screen;
     }
 
-    /* ────────────────────────────────────────────
-       6. Info overlay modal
-    ──────────────────────────────────────────── */
+    /* ── Info overlay ── */
     .overlay {
       display: none;
       position: fixed;
@@ -174,32 +143,29 @@
       justify-content: center;
     }
 
-    .overlay.active {
-      display: flex;
-    }
+    .overlay.active { display: flex; }
 
-    /* Wrapper: positions the blend layer and text independently */
     .overlay-wrapper {
       position: relative;
       max-width: 560px;
       width: 90%;
     }
 
-    /* White box in difference mode → inverted background colours show through */
-    .overlay-blend {
+    /* Canvas: fills the box shape, draws inverted background pixels */
+    #overlayCanvas {
       position: absolute;
       inset: 0;
-      background: #ffffff;
-      mix-blend-mode: difference;
+      width: 100%;
+      height: 100%;
       border-radius: 24px;
+      display: block;
       z-index: 0;
     }
 
-    /* Text layer sits above the blend, unaffected, in true white */
+    /* Text on top of canvas */
     .overlay-box {
       position: relative;
       z-index: 1;
-      border-radius: 24px;
       padding: 48px 56px;
     }
 
@@ -224,23 +190,15 @@
       font-family: 'NaNTresorM', serif;
     }
 
-    /* ────────────────────────────────────────────
-       4. Mobile layout (≤ 600px)
-    ──────────────────────────────────────────── */
+    /* ── Mobile ── */
     @media (max-width: 600px) {
-
       .top-bar {
         flex-direction: column;
         align-items: flex-start;
         padding: 24px 20px 0 24px;
         gap: 20px;
       }
-
-      .title {
-        font-size: 38pt;
-      }
-
-      /* On mobile nav goes full-width, stacked, left-aligned */
+      .title { font-size: 38pt; }
       .nav {
         flex-direction: column;
         align-items: flex-start;
@@ -248,23 +206,10 @@
         padding-top: 0;
         width: 100%;
       }
-
-      /* On mobile "info" aligns to the right */
-      .btn-info {
-        align-self: flex-end;
-      }
-
-      .toolkit {
-        padding: 0 24px 16px 24px;
-      }
-
-      .overlay-box {
-        padding: 32px 28px;
-      }
-
-      .overlay-box p {
-        font-size: 14pt;
-      }
+      .btn-info { align-self: flex-end; }
+      .toolkit { padding: 0 24px 16px 24px; }
+      .overlay-box { padding: 32px 28px; }
+      .overlay-box p { font-size: 14pt; }
     }
   </style>
 </head>
@@ -272,21 +217,17 @@
   <div class="bg"></div>
 
   <div class="page">
-
-    <!-- Top bar -->
     <div class="top-bar">
       <div class="header">
         <div class="title">sea shells</div>
         <div class="subtitle">we have lots to tell</div>
       </div>
-
       <nav class="nav">
         <a href="#" class="btn btn-memories">tell us your memories!</a>
         <a href="#" class="btn btn-info" id="infoBtn">info</a>
       </nav>
     </div>
 
-    <!-- Bottom -->
     <div class="bottom">
       <div class="toolkit">
         <p>a critical toolkit
@@ -297,15 +238,12 @@ for listening
         <img src="shetells_purple_text.png" alt="she tells" />
       </div>
     </div>
-
   </div>
 
-  <!-- 6. Info overlay -->
+  <!-- Info overlay -->
   <div class="overlay" id="infoOverlay">
-    <div class="overlay-wrapper">
-      <!-- blend layer: white + difference = inverted background colours -->
-      <div class="overlay-blend"></div>
-      <!-- text layer: sits above the blend, true white, unaffected -->
+    <div class="overlay-wrapper" id="overlayWrapper">
+      <canvas id="overlayCanvas"></canvas>
       <div class="overlay-box">
         <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
         <p>this is the info, hello</p>
@@ -314,28 +252,81 @@ for listening
   </div>
 
   <script>
-    const infoBtn     = document.getElementById('infoBtn');
-    const overlay     = document.getElementById('infoOverlay');
-    const closeBtn    = document.getElementById('overlayClose');
+    const infoBtn    = document.getElementById('infoBtn');
+    const overlay    = document.getElementById('infoOverlay');
+    const closeBtn   = document.getElementById('overlayClose');
+    const wrapper    = document.getElementById('overlayWrapper');
+    const canvas     = document.getElementById('overlayCanvas');
+    const ctx        = canvas.getContext('2d');
 
-    infoBtn.addEventListener('click', function(e) {
+    // The background image used in .bg
+    const bgImg = new Image();
+    bgImg.src = 'shell.png';
+
+    function drawInvertedBackground() {
+      const rect = wrapper.getBoundingClientRect();
+      const W = rect.width;
+      const H = rect.height;
+
+      canvas.width  = W;
+      canvas.height = H;
+
+      // Work out how the background-size:cover image maps to the viewport
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const iw = bgImg.naturalWidth  || bgImg.width;
+      const ih = bgImg.naturalHeight || bgImg.height;
+
+      const scale = Math.max(vw / iw, vh / ih);
+      const scaledW = iw * scale;
+      const scaledH = ih * scale;
+      const offsetX = (vw - scaledW) / 2;
+      const offsetY = 0; // background-position: center top
+
+      // Draw just the slice of the background that sits behind this box
+      ctx.drawImage(
+        bgImg,
+        // source rect in image coords
+        (rect.left - offsetX) / scale,
+        (rect.top  - offsetY) / scale,
+        W / scale,
+        H / scale,
+        // destination: fill the whole canvas
+        0, 0, W, H
+      );
+
+      // Invert every pixel (difference blend = 255 - value)
+      const imageData = ctx.getImageData(0, 0, W, H);
+      const d = imageData.data;
+      for (let i = 0; i < d.length; i += 4) {
+        d[i]     = 255 - d[i];     // R
+        d[i + 1] = 255 - d[i + 1]; // G
+        d[i + 2] = 255 - d[i + 2]; // B
+        // alpha unchanged
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    function openOverlay(e) {
       e.preventDefault();
       overlay.classList.add('active');
-    });
+      // Wait one frame so the wrapper has its final size/position
+      requestAnimationFrame(() => {
+        if (bgImg.complete && bgImg.naturalWidth) {
+          drawInvertedBackground();
+        } else {
+          bgImg.onload = drawInvertedBackground;
+        }
+      });
+    }
 
-    closeBtn.addEventListener('click', function() {
-      overlay.classList.remove('active');
-    });
+    function closeOverlay() { overlay.classList.remove('active'); }
 
-    // Click outside the box to close
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) overlay.classList.remove('active');
-    });
-
-    // Escape key to close
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') overlay.classList.remove('active');
-    });
+    infoBtn.addEventListener('click', openOverlay);
+    closeBtn.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+    window.addEventListener('resize', () => { if (overlay.classList.contains('active')) drawInvertedBackground(); });
   </script>
 </body>
 </html>
