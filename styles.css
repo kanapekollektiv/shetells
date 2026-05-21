@@ -1,4 +1,6 @@
-/* ── Fonts ── */
+/* ════════════════════════════════════════════
+   FONTS
+════════════════════════════════════════════ */
 @font-face {
   font-family: 'NaNTresorM';
   src: url('NaNTresorM-Bold.ttf') format('truetype');
@@ -14,25 +16,39 @@
   src: url('Celescript.ttf') format('truetype');
 }
 
-/* ── Reset ── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: 100%; height: 100%; }
+/* ════════════════════════════════════════════
+   RESET
+════════════════════════════════════════════ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* ── Body: carries background texture for scrolled overflow ── */
+html {
+  height: 100%;
+}
+
+/* ════════════════════════════════════════════
+   BODY — flex column, full height, bg fallback
+   for content that scrolls beyond the viewport
+════════════════════════════════════════════ */
 body {
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
+  /* Fallback bg for overflowed/scrolled area */
   background-image: url('shell.png');
   background-size: cover;
   background-position: center top;
   background-repeat: repeat-y;
-  background-attachment: scroll;
 }
 
-/* ── Fixed background layer (mix-blend-mode target for she-tells image) ── */
+/* ════════════════════════════════════════════
+   FIXED BG — what mix-blend-mode: screen blends against
+════════════════════════════════════════════ */
 .bg {
   position: fixed;
   inset: 0;
@@ -45,67 +61,97 @@ body {
   z-index: 0;
 }
 
-/* ── Page wrapper ── */
+/* ════════════════════════════════════════════
+   PAGE — flex column, fills viewport, stacks
+   top-bar / middle / bottom vertically
+════════════════════════════════════════════ */
 .page {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
-/* ── Top bar ── */
+/* ════════════════════════════════════════════
+   TOP BAR — flex row, header left / nav right
+════════════════════════════════════════════ */
 .top-bar {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 24px;
   padding: 36px 30px 0 48px;
+  width: 100%;
+  /* does not grow — takes only what it needs */
+  flex-shrink: 0;
 }
 
-.header { display: flex; flex-direction: column; }
+/* ── Header (title + subtitle stacked) ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  /* allow it to shrink if viewport is narrow */
+  min-width: 0;
+}
 
 .title {
   font-family: 'NaNTresorM', serif;
   font-weight: 400;
-  font-size: 62pt;
+  /* fluid: scales between 32pt and 62pt */
+  font-size: clamp(32pt, 6vw, 62pt);
   color: #6e00b0;
   line-height: 1;
   letter-spacing: -0.01em;
+  /* allow long words to wrap rather than overflow */
+  overflow-wrap: break-word;
 }
 
 .subtitle {
   font-family: 'Celescript', cursive;
-  font-size: 16pt;
+  font-size: clamp(12pt, 1.4vw, 16pt);
   color: #6e00b0;
   margin-top: 8px;
   padding-bottom: 6px;
   border-bottom: 3px solid #6e00b0;
-  display: inline-block;
+  /* inline-flex keeps the underline tight to the text width */
+  display: inline-flex;
+  align-self: flex-start;
 }
 
-/* ── Nav buttons ── */
+/* ── Nav (stream / memories / info) ── */
 .nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 30px;
+  flex-wrap: wrap;           /* wraps if viewport is too narrow */
+  gap: 16px;
   padding-top: 10px;
+  /* don't shrink smaller than its content */
+  flex-shrink: 0;
 }
 
+/* ── Shared button base ── */
 .btn {
   font-family: 'Celescript', cursive;
-  font-size: 12pt;
+  font-size: clamp(10pt, 1.1vw, 12pt);
   line-height: 1;
   padding: 8px 18px;
   border-radius: 999px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  display: inline-block;
+  /* inline-flex centres text vertically in the pill */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
 }
 
-/* stream — white bg, purple text */
 .btn-stream {
   background-color: #ffffff;
   color: #6e00b0;
@@ -125,8 +171,8 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 999px;
-  z-index: 0;
   display: block;
+  z-index: 0;
 }
 
 .btn-memories span {
@@ -134,26 +180,36 @@ body {
   z-index: 1;
 }
 
-/* info — white bg, purple text */
 .btn-info {
   background-color: #ffffff;
   color: #6e00b0;
 }
 
-/* ── Middle area (info panel lives here) ── */
+/* ════════════════════════════════════════════
+   MIDDLE — flex: 1 so it expands to push
+   bottom down; holds the info panel
+════════════════════════════════════════════ */
 .middle {
   flex: 1;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* small breathing room below top-bar */
+  padding-top: 16px;
 }
 
-/* Info panel — in page flow, not a modal */
+/* ── Info panel — block in normal flow ── */
 .info-panel {
   display: none;
   position: relative;
-  margin: 20px 48px 0 48px;
+  margin: 0 48px;
+  /* auto bottom margin so it doesn't hug the bottom section */
+  margin-bottom: 24px;
 }
 
-.info-panel.active { display: block; }
+.info-panel.active {
+  display: block;
+}
 
 #overlayCanvas {
   position: absolute;
@@ -174,13 +230,13 @@ body {
 .info-content p {
   font-family: 'NaNTresorM', serif;
   font-weight: 400;
-  font-size: 15pt;
+  font-size: clamp(11pt, 1.2vw, 15pt);
   color: #ffffff;
   line-height: 0.9;
 }
 
 .info-content strong { font-weight: 700; }
-.info-content em { font-style: italic; }
+.info-content em     { font-style: italic; }
 
 .info-close {
   position: absolute;
@@ -196,20 +252,35 @@ body {
   z-index: 2;
 }
 
-/* ── Bottom ── */
-.bottom { width: 100%; position: relative; }
+/* ════════════════════════════════════════════
+   BOTTOM — flex column: toolkit then image
+   always last, never grows
+════════════════════════════════════════════ */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-shrink: 0;
+}
 
-.toolkit { padding: 0 48px 20px 48px; }
+.toolkit {
+  padding: 0 48px 20px 48px;
+}
 
 .toolkit p {
   font-family: 'Celescript', cursive;
-  font-size: 16pt;
+  font-size: clamp(12pt, 1.4vw, 16pt);
   color: #6e00b0;
   line-height: 1.5;
   white-space: pre-line;
 }
 
-.text-wrap { width: 100%; line-height: 0; }
+/* she-tells image: always full-width, blends over bg */
+.text-wrap {
+  width: 100%;
+  line-height: 0;
+  flex-shrink: 0;
+}
 
 .text-wrap img {
   width: 100%;
@@ -217,7 +288,31 @@ body {
   mix-blend-mode: screen;
 }
 
-/* ── Mobile (≤ 600px) ── */
+/* ════════════════════════════════════════════
+   TABLET (≤ 900px) — nav wraps below header
+════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .top-bar {
+    padding: 28px 24px 0 32px;
+    gap: 16px;
+  }
+
+  .nav {
+    gap: 12px;
+  }
+
+  .info-panel {
+    margin: 0 32px 24px 32px;
+  }
+
+  .toolkit {
+    padding: 0 32px 16px 32px;
+  }
+}
+
+/* ════════════════════════════════════════════
+   MOBILE (≤ 600px) — everything stacks
+════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .top-bar {
     flex-direction: column;
@@ -226,8 +321,8 @@ body {
     gap: 20px;
   }
 
-  .title { font-size: 38pt; }
-
+  /* Nav stacks vertically on mobile:
+     stream + memories left, info right */
   .nav {
     flex-direction: column;
     align-items: flex-start;
@@ -236,14 +331,19 @@ body {
     width: 100%;
   }
 
-  .btn-stream { align-self: flex-end; }
-  .btn-info   { align-self: flex-end; }
+  .btn-stream  { align-self: flex-start; }
+  .btn-memories { align-self: flex-start; }
+  .btn-info    { align-self: flex-end; }
 
-  .toolkit { padding: 0 24px 16px 24px; }
+  .info-panel {
+    margin: 0 20px 16px 20px;
+  }
 
-  .info-panel { margin: 16px 20px 0 20px; }
+  .info-content {
+    padding: 36px 24px;
+  }
 
-  .info-content { padding: 36px 24px; }
-
-  .info-content p { font-size: 12pt; }
+  .toolkit {
+    padding: 0 20px 16px 20px;
+  }
 }
