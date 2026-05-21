@@ -31,15 +31,16 @@
       overflow-x: hidden;
     }
 
+    /* Background — always covers full page height, even if page scrolls */
     .bg {
-      position: fixed;
+      position: absolute;
       inset: 0;
+      min-height: 100%;
       width: 100%;
-      height: 100%;
       background-image: url('shell.png');
       background-size: cover;
       background-position: center top;
-      background-repeat: no-repeat;
+      background-repeat: repeat-y;
       z-index: 0;
     }
 
@@ -57,7 +58,6 @@
       align-items: flex-start;
       justify-content: space-between;
       padding: 36px 30px 0 48px;
-      flex: 1;
     }
 
     .header { display: flex; flex-direction: column; }
@@ -103,13 +103,11 @@
       white-space: nowrap;
     }
 
-    /* "stream" — same as info: white bg, purple text */
     .btn-stream {
       background-color: #ffffff;
       color: #6e00b0;
     }
 
-    /* "tell us your memories!" — canvas inverted pill */
     .btn-memories {
       position: relative;
       color: #ffffff;
@@ -132,10 +130,66 @@
       z-index: 1;
     }
 
-    /* "info" — white bg, purple text */
     .btn-info {
       background-color: #ffffff;
       color: #6e00b0;
+    }
+
+    /* ── Middle area: where the info box lives when open ── */
+    .middle {
+      flex: 1;
+      position: relative;
+      /* padding-top is set by JS to match the subtitle bottom */
+    }
+
+    /* Info box: not a modal — sits in the page flow inside .middle */
+    .info-panel {
+      display: none;
+      position: relative;
+      margin: 20px 48px 0 48px;
+    }
+
+    .info-panel.active { display: block; }
+
+    #overlayCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      display: block;
+      z-index: 0;
+    }
+
+    .info-content {
+      position: relative;
+      z-index: 1;
+      padding: 48px 56px 48px 56px;
+    }
+
+    .info-content p {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 400;
+      font-size: 15pt;
+      color: #ffffff;
+      line-height: 0.9;   /* half of previous 1.8 */
+    }
+
+    .info-content strong { font-weight: 700; }
+    .info-content em { font-style: italic; }
+
+    .info-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      font-family: 'NaNTresorM', serif;
+      z-index: 2;
     }
 
     /* ── Bottom ── */
@@ -159,65 +213,6 @@
       mix-blend-mode: screen;
     }
 
-    /* ── Info overlay ── */
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .overlay.active { display: flex; }
-
-    .overlay-wrapper {
-      position: relative;
-      max-width: 620px;
-      width: 100%;
-    }
-
-    #overlayCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 24px;
-      display: block;
-      z-index: 0;
-    }
-
-    .overlay-box {
-      position: relative;
-      z-index: 1;
-      padding: 52px 60px 52px 60px;
-    }
-
-    .overlay-box p {
-      font-family: 'NaNTresorM', serif;
-      font-weight: 400;
-      font-size: 15pt;
-      color: #ffffff;
-      line-height: 1.8;
-    }
-
-    .overlay-box strong { font-weight: 700; }
-    .overlay-box em { font-style: italic; }
-
-    .overlay-close {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 22px;
-      cursor: pointer;
-      line-height: 1;
-      font-family: 'NaNTresorM', serif;
-    }
-
     /* ── Mobile ── */
     @media (max-width: 600px) {
       .top-bar {
@@ -237,8 +232,9 @@
       .btn-stream { align-self: flex-end; }
       .btn-info   { align-self: flex-end; }
       .toolkit { padding: 0 24px 16px 24px; }
-      .overlay-box { padding: 40px 28px; }
-      .overlay-box p { font-size: 12pt; }
+      .info-panel { margin: 16px 20px 0 20px; }
+      .info-content { padding: 36px 24px; }
+      .info-content p { font-size: 12pt; }
     }
   </style>
 </head>
@@ -246,27 +242,54 @@
   <div class="bg"></div>
 
   <div class="page">
-    <div class="top-bar">
+
+    <!-- Top bar -->
+    <div class="top-bar" id="topBar">
       <div class="header">
         <div class="title">sea shells</div>
-        <div class="subtitle">we have lots to tell</div>
+        <div class="subtitle" id="subtitleEl">we have lots to tell</div>
       </div>
 
       <nav class="nav">
-        <!-- 1. Stream button — opens external page in new tab -->
         <a href="https://shell.kokott.art" target="_blank" rel="noopener" class="btn btn-stream">stream</a>
 
-        <!-- 2. Memories button — canvas-inverted pill background -->
         <a href="#" class="btn btn-memories" id="memoriesBtn">
           <canvas id="memoriesCanvas"></canvas>
           <span>tell us your memories!</span>
         </a>
 
-        <!-- Info button -->
         <a href="#" class="btn btn-info" id="infoBtn">info</a>
       </nav>
     </div>
 
+    <!-- Middle: info panel lives here -->
+    <div class="middle" id="middleArea">
+      <div class="info-panel" id="infoPanel">
+        <canvas id="overlayCanvas"></canvas>
+        <div class="info-content">
+          <button class="info-close" id="infoClose" aria-label="Close">✕</button>
+          <p>
+            Let me tell you, baby, how it all started<br>
+            The ocean looked at herself and one day thought: <strong>I could be more</strong>. So she built a <em>bubble</em>.<br>
+            Soft. Ridiculous, barely there. Just a little membrane holding a pocket of herself away from herself.<br>
+            <br>
+            And then she went everywhere<br>
+            <br>
+            The bubble is YOU, Sweetheart. Still carrying the ocean inside. Your blood, your tears, the fluid in your spine. Ancient seawater in a soft container, walking around, acting all unbothered.<br>
+            <br>
+            You did not leave the ocean. You wore her.<br>
+            <br>
+            When you stand on the beach, and something in your chest recognises the salt in the air...<br>
+            That is not nostalgia, baby..<br>
+            That is ocean checking on her investment.<br>
+            <br>
+            Join the stream now with your own water memories!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom: toolkit + she tells image always last -->
     <div class="bottom">
       <div class="toolkit">
         <p>a critical toolkit
@@ -277,42 +300,14 @@ for listening
         <img src="shetells_purple_text.png" alt="she tells" />
       </div>
     </div>
-  </div>
 
-  <!-- Info overlay -->
-  <div class="overlay" id="infoOverlay">
-    <div class="overlay-wrapper" id="overlayWrapper">
-      <canvas id="overlayCanvas"></canvas>
-      <div class="overlay-box">
-        <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
-        <p>
-          Let me tell you, baby, how it all started<br>
-          The ocean looked at herself and one day thought: <strong>I could be more</strong>. So she built a <em>bubble</em>.<br>
-          Soft. Ridiculous, barely there. Just a little membrane holding a pocket of herself away from herself.<br>
-          <br>
-          And then she went everywhere<br>
-          <br>
-          The bubble is YOU, Sweetheart. Still carrying the ocean inside. Your blood, your tears, the fluid in your spine. Ancient seawater in a soft container, walking around, acting all unbothered.<br>
-          <br>
-          You did not leave the ocean. You wore her.<br>
-          <br>
-          When you stand on the beach, and something in your chest recognises the salt in the air...<br>
-          That is not nostalgia, baby..<br>
-          That is ocean checking on her investment.<br>
-          <br>
-          Join the stream now with your own water memories!
-        </p>
-      </div>
-    </div>
   </div>
 
   <script>
-    // Pre-load the background image so canvas can read its pixels
     const bgImg = new Image();
     bgImg.crossOrigin = 'anonymous';
     bgImg.src = 'shell.png';
 
-    // Draw the slice of the background behind `rect`, inverted, onto `canvas`
     function drawInverted(canvas, rect) {
       const W = Math.round(rect.width);
       const H = Math.round(rect.height);
@@ -327,12 +322,10 @@ for listening
       const iw  = bgImg.naturalWidth  || 1;
       const ih  = bgImg.naturalHeight || 1;
 
-      // Replicate background-size: cover, background-position: center top
       const scale   = Math.max(vw / iw, vh / ih);
       const offsetX = (vw - iw * scale) / 2;
       const offsetY = 0;
 
-      // Source rect in image coordinates
       const sx = (rect.left - offsetX) / scale;
       const sy = (rect.top  - offsetY) / scale;
       const sw = W / scale;
@@ -340,7 +333,6 @@ for listening
 
       ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, W, H);
 
-      // Pixel-level inversion (= difference blend with white)
       const id = ctx.getImageData(0, 0, W, H);
       const d  = id.data;
       for (let i = 0; i < d.length; i += 4) {
@@ -366,36 +358,40 @@ for listening
     }
     window.addEventListener('resize', refreshMemoriesBtn);
 
-    // ── Info overlay ──
-    const infoBtn        = document.getElementById('infoBtn');
-    const overlay        = document.getElementById('infoOverlay');
-    const overlayWrapper = document.getElementById('overlayWrapper');
-    const overlayCanvas  = document.getElementById('overlayCanvas');
-    const closeBtn       = document.getElementById('overlayClose');
+    // ── Info panel ──
+    const infoBtn      = document.getElementById('infoBtn');
+    const infoPanel    = document.getElementById('infoPanel');
+    const overlayCanvas = document.getElementById('overlayCanvas');
+    const infoClose    = document.getElementById('infoClose');
 
-    function refreshOverlay() {
+    function refreshInfoCanvas() {
       requestAnimationFrame(() => {
-        drawInverted(overlayCanvas, overlayWrapper.getBoundingClientRect());
+        const rect = infoPanel.getBoundingClientRect();
+        drawInverted(overlayCanvas, rect);
       });
     }
 
-    function openOverlay(e) {
+    function openInfo(e) {
       e.preventDefault();
-      overlay.classList.add('active');
+      infoPanel.classList.add('active');
       if (bgImg.complete && bgImg.naturalWidth) {
-        refreshOverlay();
+        refreshInfoCanvas();
       } else {
-        bgImg.addEventListener('load', refreshOverlay);
+        bgImg.addEventListener('load', refreshInfoCanvas);
       }
     }
 
-    function closeOverlay() { overlay.classList.remove('active'); }
+    function closeInfo() {
+      infoPanel.classList.remove('active');
+    }
 
-    infoBtn.addEventListener('click', openOverlay);
-    closeBtn.addEventListener('click', closeOverlay);
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
-    window.addEventListener('resize', () => { if (overlay.classList.contains('active')) refreshOverlay(); });
+    infoBtn.addEventListener('click', openInfo);
+    infoClose.addEventListener('click', closeInfo);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfo(); });
+    window.addEventListener('resize', () => {
+      if (infoPanel.classList.contains('active')) refreshInfoCanvas();
+      refreshMemoriesBtn();
+    });
   </script>
 </body>
 </html>
