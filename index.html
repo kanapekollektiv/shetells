@@ -39,7 +39,7 @@
       overflow-x: hidden;
     }
 
-    /* Background */
+    /* ── Background ── */
     .bg {
       position: fixed;
       inset: 0;
@@ -52,7 +52,7 @@
       z-index: 0;
     }
 
-    /* Main content layer */
+    /* ── Main content layer ── */
     .page {
       position: relative;
       z-index: 1;
@@ -76,9 +76,10 @@
       flex-direction: column;
     }
 
+    /* 5. Regular weight instead of bold */
     .title {
       font-family: 'NaNTresorM', serif;
-      font-weight: 700;
+      font-weight: 400;
       font-size: 62pt;
       color: #6e00b0;
       line-height: 1;
@@ -101,33 +102,35 @@
       flex-direction: row;
       align-items: center;
       gap: 30px;
-      padding-top: 10px; /* slight optical alignment with title cap-height */
+      padding-top: 10px;
     }
 
+    /* 1. Rounded corners on all buttons */
     .btn {
       font-family: 'Celescript', cursive;
       font-size: 12pt;
       line-height: 1;
-      padding: 8px 16px;
-      border: 1.5px solid #6e00b0;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: none;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       white-space: nowrap;
     }
 
-    /* "tell us your memories!" — purple box, white text */
+    /* 3. "tell us your memories!" — difference blend, white text */
     .btn-memories {
-      background-color: #6e00b0;
+      background-color: #000000;
       color: #ffffff;
-      border-color: #6e00b0;
+      mix-blend-mode: difference;
     }
 
-    /* "info" — white box, purple text */
+    /* 2. "info" — no outline, white bg, purple text */
     .btn-info {
       background-color: #ffffff;
       color: #6e00b0;
-      border-color: #6e00b0;
+      border: none;
     }
 
     /* ── Bottom section ── */
@@ -148,7 +151,6 @@
       white-space: pre-line;
     }
 
-    /* "she tells" text image: full width, overlaying on background, pinned to bottom */
     .text-wrap {
       width: 100%;
       line-height: 0;
@@ -157,8 +159,99 @@
     .text-wrap img {
       width: 100%;
       display: block;
-      /* black areas in the PNG act as transparent — mix-blend-mode removes them */
       mix-blend-mode: screen;
+    }
+
+    /* ────────────────────────────────────────────
+       6. Info overlay modal
+    ──────────────────────────────────────────── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      /* semi-transparent backdrop */
+      background: rgba(0, 0, 0, 0.35);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay.active {
+      display: flex;
+    }
+
+    .overlay-box {
+      background: #000000;
+      mix-blend-mode: difference;
+      border-radius: 24px;
+      padding: 48px 56px;
+      max-width: 560px;
+      width: 90%;
+      position: relative;
+    }
+
+    .overlay-box p {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 400;
+      font-size: 18pt;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      font-family: 'NaNTresorM', serif;
+    }
+
+    /* ────────────────────────────────────────────
+       4. Mobile layout (≤ 600px)
+    ──────────────────────────────────────────── */
+    @media (max-width: 600px) {
+
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 20px 0 24px;
+        gap: 20px;
+      }
+
+      .title {
+        font-size: 38pt;
+      }
+
+      /* On mobile nav goes full-width, stacked, left-aligned */
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-top: 0;
+        width: 100%;
+      }
+
+      /* On mobile "info" aligns to the right */
+      .btn-info {
+        align-self: flex-end;
+      }
+
+      .toolkit {
+        padding: 0 24px 16px 24px;
+      }
+
+      .overlay-box {
+        padding: 32px 28px;
+      }
+
+      .overlay-box p {
+        font-size: 14pt;
+      }
     }
   </style>
 </head>
@@ -167,7 +260,7 @@
 
   <div class="page">
 
-    <!-- Top bar: title left, buttons right -->
+    <!-- Top bar -->
     <div class="top-bar">
       <div class="header">
         <div class="title">sea shells</div>
@@ -176,11 +269,11 @@
 
       <nav class="nav">
         <a href="#" class="btn btn-memories">tell us your memories!</a>
-        <a href="#" class="btn btn-info">info</a>
+        <a href="#" class="btn btn-info" id="infoBtn">info</a>
       </nav>
     </div>
 
-    <!-- Bottom: toolkit label + she tells text image -->
+    <!-- Bottom -->
     <div class="bottom">
       <div class="toolkit">
         <p>a critical toolkit
@@ -193,5 +286,38 @@ for listening
     </div>
 
   </div>
+
+  <!-- 6. Info overlay -->
+  <div class="overlay" id="infoOverlay">
+    <div class="overlay-box">
+      <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
+      <p>this is the info, hello</p>
+    </div>
+  </div>
+
+  <script>
+    const infoBtn     = document.getElementById('infoBtn');
+    const overlay     = document.getElementById('infoOverlay');
+    const closeBtn    = document.getElementById('overlayClose');
+
+    infoBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      overlay.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', function() {
+      overlay.classList.remove('active');
+    });
+
+    // Click outside the box to close
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.classList.remove('active');
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') overlay.classList.remove('active');
+    });
+  </script>
 </body>
 </html>
