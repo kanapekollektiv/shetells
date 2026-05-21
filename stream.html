@@ -179,26 +179,7 @@
 
   <div class="stream-page">
 
-    <!-- Top-left pill -->
-    <div class="player-wrapper" id="playerWrapperTop">
-      <canvas id="playerCanvasTop"></canvas>
-      <div class="player">
-        <button class="play-btn" id="playBtnTop" aria-label="Play / Pause">
-          <svg class="play-icon" id="playIconTop" viewBox="0 0 14 14">
-            <polygon points="2,1 13,7 2,13" />
-          </svg>
-        </button>
-        <span class="player-label">stream</span>
-        <div class="player-divider"></div>
-        <span class="volume-label">vol</span>
-        <input type="range" id="volumeSliderTop" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
-        <div class="player-divider"></div>
-        <div class="status-dot" id="statusDotTop"></div>
-        <span class="status-text" id="statusTextTop">offline</span>
-      </div>
-    </div>
-
-    <!-- Back link bottom-left -->
+    <!-- Back link top-left -->
     <a href="index.html" class="back-link">← sea shells</a>
 
     <!-- Centre pill — absolutely centred in the page -->
@@ -255,27 +236,23 @@
       ctx.putImageData(id, 0, 0);
     }
 
-    function refreshAllCanvases() {
+    const playerWrapperCenter = document.getElementById('playerWrapperCenter');
+    const playerCanvasCenter  = document.getElementById('playerCanvasCenter');
+
+    function refreshCanvas() {
       requestAnimationFrame(() => {
-        drawInverted(
-          document.getElementById('playerCanvasTop'),
-          document.getElementById('playerWrapperTop').getBoundingClientRect()
-        );
-        drawInverted(
-          document.getElementById('playerCanvasCenter'),
-          document.getElementById('playerWrapperCenter').getBoundingClientRect()
-        );
+        drawInverted(playerCanvasCenter, playerWrapperCenter.getBoundingClientRect());
       });
     }
 
     if (bgImg.complete && bgImg.naturalWidth) {
-      refreshAllCanvases();
+      refreshCanvas();
     } else {
-      bgImg.addEventListener('load', refreshAllCanvases);
+      bgImg.addEventListener('load', refreshCanvas);
     }
-    window.addEventListener('resize', refreshAllCanvases);
+    window.addEventListener('resize', refreshCanvas);
 
-    /* ── Single shared audio instance ── */
+    /* ── Audio player ── */
     const STREAM_URL = 'https://shell.kokott.art/streams/debug/stream';
     const PLAY_PATH  = '<polygon points="2,1 13,7 2,13"/>';
     const PAUSE_PATH = '<rect x="1" y="1" width="4" height="12"/><rect x="9" y="1" width="4" height="12"/>';
@@ -283,46 +260,27 @@
     let audio   = null;
     let playing = false;
 
-    // All player UI elements (top + center)
-    const players = [
-      {
-        btn:    document.getElementById('playBtnTop'),
-        icon:   document.getElementById('playIconTop'),
-        vol:    document.getElementById('volumeSliderTop'),
-        dot:    document.getElementById('statusDotTop'),
-        status: document.getElementById('statusTextTop'),
-      },
-      {
-        btn:    document.getElementById('playBtnCenter'),
-        icon:   document.getElementById('playIconCenter'),
-        vol:    document.getElementById('volumeSliderCenter'),
-        dot:    document.getElementById('statusDotCenter'),
-        status: document.getElementById('statusTextCenter'),
-      },
-    ];
+    const playBtn      = document.getElementById('playBtnCenter');
+    const playIcon     = document.getElementById('playIconCenter');
+    const volumeSlider = document.getElementById('volumeSliderCenter');
+    const statusDot    = document.getElementById('statusDotCenter');
+    const statusText   = document.getElementById('statusTextCenter');
 
-    // Sync all UIs at once
     function setStatus(text, live) {
-      players.forEach(p => {
-        p.status.textContent = text;
-        p.dot.classList.toggle('live', live);
-      });
+      statusText.textContent = text;
+      statusDot.classList.toggle('live', live);
     }
 
     function setPlayState(isPlaying) {
       playing = isPlaying;
-      players.forEach(p => {
-        p.icon.innerHTML = isPlaying ? PAUSE_PATH : PLAY_PATH;
-      });
+      playIcon.innerHTML = isPlaying ? PAUSE_PATH : PLAY_PATH;
     }
 
-    function togglePlay() {
+    playBtn.addEventListener('click', () => {
       if (!audio) {
         audio = new Audio();
         audio.crossOrigin = 'anonymous';
-        // Use the average of both volume sliders, or just top's value
-        audio.volume = parseFloat(players[0].vol.value);
-
+        audio.volume = parseFloat(volumeSlider.value);
         audio.addEventListener('waiting', () => setStatus('connecting…', false));
         audio.addEventListener('playing', () => setStatus('live', true));
         audio.addEventListener('stalled', () => setStatus('buffering…', false));
@@ -331,7 +289,6 @@
           setPlayState(false);
           audio = null;
         });
-
         setStatus('connecting…', false);
         audio.src = STREAM_URL;
         audio.play().catch(() => {
@@ -347,17 +304,10 @@
         setPlayState(false);
         setStatus('offline', false);
       }
-    }
+    });
 
-    // Both play buttons trigger the same audio
-    players.forEach(p => {
-      p.btn.addEventListener('click', togglePlay);
-      // Volume sliders both control the same audio
-      p.vol.addEventListener('input', () => {
-        if (audio) audio.volume = parseFloat(p.vol.value);
-        // Keep sliders in sync with each other
-        players.forEach(q => { q.vol.value = p.vol.value; });
-      });
+    volumeSlider.addEventListener('input', () => {
+      if (audio) audio.volume = parseFloat(volumeSlider.value);
     });
   </script>
 </body>
