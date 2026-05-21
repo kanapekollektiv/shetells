@@ -92,7 +92,7 @@
       color: #6e00b0;
       margin-top: 8px;
       padding-bottom: 6px;
-      border-bottom: 1.5px solid #6e00b0;
+      border-bottom: 3px solid #6e00b0;
       display: inline-block;
     }
 
@@ -181,7 +181,7 @@
     }
 
     .overlay-box {
-      background: #000000;
+      background: #ffffff;
       mix-blend-mode: difference;
       border-radius: 24px;
       padding: 48px 56px;
@@ -190,11 +190,15 @@
       position: relative;
     }
 
+    /* Text & close sit inside the blended box — colour #ffffff here
+       becomes black visually after the difference inversion, so we keep
+       everything inside white so it inverts to dark on the light areas
+       and light on the dark areas of the background. */
     .overlay-box p {
       font-family: 'NaNTresorM', serif;
       font-weight: 400;
       font-size: 18pt;
-      color: #ffffff;
+      color: #000000;
       line-height: 1.5;
     }
 
@@ -204,7 +208,7 @@
       right: 22px;
       background: none;
       border: none;
-      color: #ffffff;
+      color: #000000;
       font-size: 22px;
       cursor: pointer;
       line-height: 1;
