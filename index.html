@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sea shells — she tells</title>
+  <style>
+    @font-face {
+      font-family: 'NaNTresorM';
+      src: url('NaNTresorM-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'NaNTresorM';
+      src: url('NaNTresorM-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Celescript';
+      src: url('Celescript.ttf') format('truetype');
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background */
+    .bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('shell.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* Main content layer */
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Top bar: header left + nav right ── */
+    .top-bar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 36px 30px 0 48px;
+      flex: 1;
+    }
+
+    /* Top-left text block */
+    .header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 700;
+      font-size: 62pt;
+      color: #6e00b0;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      font-family: 'Celescript', cursive;
+      font-size: 16pt;
+      color: #6e00b0;
+      margin-top: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #6e00b0;
+      display: inline-block;
+    }
+
+    /* ── Top-right nav buttons ── */
+    .nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+      padding-top: 10px; /* slight optical alignment with title cap-height */
+    }
+
+    .btn {
+      font-family: 'Celescript', cursive;
+      font-size: 12pt;
+      line-height: 1;
+      padding: 8px 16px;
+      border: 1.5px solid #6e00b0;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* "tell us your memories!" — purple box, white text */
+    .btn-memories {
+      background-color: #6e00b0;
+      color: #ffffff;
+      border-color: #6e00b0;
+    }
+
+    /* "info" — white box, purple text */
+    .btn-info {
+      background-color: #ffffff;
+      color: #6e00b0;
+      border-color: #6e00b0;
+    }
+
+    /* ── Bottom section ── */
+    .bottom {
+      width: 100%;
+      position: relative;
+    }
+
+    .toolkit {
+      padding: 0 48px 20px 48px;
+    }
+
+    .toolkit p {
+      font-family: 'Celescript', cursive;
+      font-size: 16pt;
+      color: #6e00b0;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+    /* "she tells" text image: full width, overlaying on background, pinned to bottom */
+    .text-wrap {
+      width: 100%;
+      line-height: 0;
+    }
+
+    .text-wrap img {
+      width: 100%;
+      display: block;
+      /* black areas in the PNG act as transparent — mix-blend-mode removes them */
+      mix-blend-mode: screen;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="page">
+
+    <!-- Top bar: title left, buttons right -->
+    <div class="top-bar">
+      <div class="header">
+        <div class="title">sea shells</div>
+        <div class="subtitle">we have lots to tell</div>
+      </div>
+
+      <nav class="nav">
+        <a href="#" class="btn btn-memories">tell us your memories!</a>
+        <a href="#" class="btn btn-info">info</a>
+      </nav>
+    </div>
+
+    <!-- Bottom: toolkit label + she tells text image -->
+    <div class="bottom">
+      <div class="toolkit">
+        <p>a critical toolkit
+for listening
+&amp; remembering</p>
+      </div>
+      <div class="text-wrap">
+        <img src="shetells_purple_text.png" alt="she tells" />
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
