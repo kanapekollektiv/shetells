@@ -170,8 +170,6 @@
       position: fixed;
       inset: 0;
       z-index: 100;
-      /* semi-transparent backdrop */
-      background: rgba(0, 0, 0, 0.35);
       align-items: center;
       justify-content: center;
     }
@@ -180,25 +178,36 @@
       display: flex;
     }
 
-    .overlay-box {
+    /* Wrapper: positions the blend layer and text independently */
+    .overlay-wrapper {
+      position: relative;
+      max-width: 560px;
+      width: 90%;
+    }
+
+    /* White box in difference mode → inverted background colours show through */
+    .overlay-blend {
+      position: absolute;
+      inset: 0;
       background: #ffffff;
       mix-blend-mode: difference;
       border-radius: 24px;
-      padding: 48px 56px;
-      max-width: 560px;
-      width: 90%;
-      position: relative;
+      z-index: 0;
     }
 
-    /* Text & close sit inside the blended box — colour #ffffff here
-       becomes black visually after the difference inversion, so we keep
-       everything inside white so it inverts to dark on the light areas
-       and light on the dark areas of the background. */
+    /* Text layer sits above the blend, unaffected, in true white */
+    .overlay-box {
+      position: relative;
+      z-index: 1;
+      border-radius: 24px;
+      padding: 48px 56px;
+    }
+
     .overlay-box p {
       font-family: 'NaNTresorM', serif;
       font-weight: 400;
       font-size: 18pt;
-      color: #000000;
+      color: #ffffff;
       line-height: 1.5;
     }
 
@@ -208,7 +217,7 @@
       right: 22px;
       background: none;
       border: none;
-      color: #000000;
+      color: #ffffff;
       font-size: 22px;
       cursor: pointer;
       line-height: 1;
@@ -293,9 +302,14 @@ for listening
 
   <!-- 6. Info overlay -->
   <div class="overlay" id="infoOverlay">
-    <div class="overlay-box">
-      <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
-      <p>this is the info, hello</p>
+    <div class="overlay-wrapper">
+      <!-- blend layer: white + difference = inverted background colours -->
+      <div class="overlay-blend"></div>
+      <!-- text layer: sits above the blend, true white, unaffected -->
+      <div class="overlay-box">
+        <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
+        <p>this is the info, hello</p>
+      </div>
     </div>
   </div>
 
