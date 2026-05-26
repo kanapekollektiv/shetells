@@ -1,6 +1,5 @@
 /* ════════════════════════════════════════════
    MEMORIES — quiz page styles
-   Fonts are loaded via styles.css (linked first)
 ════════════════════════════════════════════ */
 
 /* ── Base: white background ── */
@@ -11,10 +10,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Hide the shell.png fixed bg div from styles.css */
 .bg { display: none; }
 
-/* ── Fixed white background layer ── */
 .mem-bg {
   position: fixed;
   inset: 0;
@@ -36,28 +33,45 @@ body {
 .mem-topbar {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 48px;
   flex-shrink: 0;
 }
 
-.mem-back {
-  font-family: 'Celescript', cursive;
-  font-size: 14pt;
-  color: #0046FF;
-  text-decoration: none;
-  padding-bottom: 4px;
-  border-bottom: 2px solid #0046FF;
-  transition: opacity 0.2s;
+/* ── Consistent site header ── */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.mem-back:hover { opacity: 0.6; }
+
+.site-title {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 400;
+  font-size: clamp(24pt, 4vw, 42pt);
+  color: #0046FF;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.site-subtitle {
+  font-family: 'Celescript', cursive;
+  font-size: clamp(10pt, 1.2vw, 14pt);
+  color: #0046FF;
+  margin-top: 6px;
+  padding-bottom: 4px;
+  border-bottom: 3px solid #0046FF;
+  display: inline-flex;
+  align-self: flex-start;
+}
 
 .mem-step {
   font-family: 'Celescript', cursive;
   font-size: 12pt;
   color: #0046FF;
   opacity: 0.7;
+  padding-top: 8px;
 }
 
 /* ── Progress bar ── */
@@ -99,28 +113,29 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Question text — NaNTresorM Regular, blue ── */
+/* ── Question text ── */
 .mem-question {
   font-family: 'NaNTresorM', serif;
   font-weight: 400;
-  font-size: clamp(18pt, 3vw, 32pt);
+  font-size: clamp(16pt, 2.5vw, 28pt);
   color: #0046FF;
-  line-height: 1.2;
+  line-height: 1.3;
   max-width: 800px;
   white-space: pre-line;
 }
 
-/* ── Transition screen text — same style ── */
+/* ── Transition screen text — fades between two messages ── */
 .mem-transition {
   font-family: 'NaNTresorM', serif;
   font-weight: 400;
-  font-size: clamp(18pt, 3vw, 32pt);
+  font-size: clamp(16pt, 2.5vw, 28pt);
   color: #0046FF;
-  line-height: 1.2;
+  line-height: 1.3;
   max-width: 800px;
+  transition: opacity 0.5s ease;
 }
 
-/* ── Answer buttons row ── */
+/* ── Answer buttons ── */
 .mem-answers {
   display: flex;
   flex-direction: row;
@@ -129,7 +144,6 @@ body {
   align-items: flex-start;
 }
 
-/* ── Answer pill buttons ── */
 .mem-btn {
   font-family: 'Celescript', cursive;
   font-size: 13pt;
@@ -145,12 +159,15 @@ body {
   transition: background 0.2s, transform 0.15s;
 }
 
-.mem-btn:hover {
-  background: #51420A;
-  transform: scale(1.03);
-}
-
+.mem-btn:hover  { background: #51420A; transform: scale(1.03); }
 .mem-btn:active { transform: scale(0.97); }
+
+/* Record button — slightly larger */
+.mem-btn-record {
+  font-size: 15pt;
+  padding: 16px 36px;
+  margin-top: 8px;
+}
 
 /* ── Final page: voice upload ── */
 .mem-upload-area {
@@ -192,7 +209,7 @@ body {
 }
 
 /* ════════════════════════════════════════════
-   BUBBLES — "blub" and "blubblub" floating up
+   BUBBLES
 ════════════════════════════════════════════ */
 .bubble-word {
   position: fixed;
@@ -202,18 +219,16 @@ body {
   pointer-events: none;
   z-index: 999;
   opacity: 0;
-  animation: bubbleRise var(--duration) ease-in forwards;
   font-size: var(--size);
-  /* slight horizontal wobble */
-  animation-name: bubbleRise;
+  animation: bubbleRise var(--duration) ease-in forwards;
 }
 
 @keyframes bubbleRise {
-  0%   { transform: translateY(0)      translateX(0)     ; opacity: 0;   }
+  0%   { transform: translateY(0)      translateX(0);             opacity: 0; }
   10%  { opacity: 1; }
   50%  { transform: translateY(-45vh)  translateX(var(--wobble)); opacity: 1; }
   90%  { opacity: 0.6; }
-  100% { transform: translateY(-105vh) translateX(0);      opacity: 0;   }
+  100% { transform: translateY(-105vh) translateX(0);             opacity: 0; }
 }
 
 /* ── Mobile ── */
@@ -222,7 +237,9 @@ body {
   .mem-topbar         { margin-bottom: 28px; }
   .mem-progress-wrap  { margin-bottom: 36px; }
   .mem-question,
-  .mem-transition     { font-size: 16pt; }
+  .mem-transition     { font-size: 14pt; }
   .mem-btn            { font-size: 11pt; padding: 10px 20px; }
+  .mem-btn-record     { font-size: 13pt; padding: 12px 24px; }
   .mem-answers        { gap: 10px; }
+  .site-title         { font-size: 22pt; }
 }

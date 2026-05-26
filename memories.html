@@ -12,21 +12,27 @@
 
   <div class="mem-page">
 
+    <!-- Consistent site header -->
     <div class="mem-topbar">
-      <a href="index.html" class="mem-back">← sea shells</a>
-      <span class="mem-step" id="stepLabel">1 / 3</span>
+      <div class="site-header">
+        <div class="site-title">sea shells</div>
+        <div class="site-subtitle">we have lots to tell</div>
+      </div>
+      <span class="mem-step" id="stepLabel">1 / 2</span>
     </div>
 
     <div class="mem-progress-wrap">
-      <div class="mem-progress-bar" id="progressBar" style="width: 25%"></div>
+      <div class="mem-progress-bar" id="progressBar" style="width: 20%"></div>
     </div>
 
     <div class="mem-content">
 
       <!-- ── Screen 1 ── -->
       <div class="mem-screen active" id="screen-1">
-        <div class="mem-question">We are all water in some way. Let's collect our shared memories.
-How are you feeling now?</div>
+        <div class="mem-question">We are all water in some way.
+Let's collect our shared memories.
+
+As an easy warm up: how are you feeling now?</div>
         <div class="mem-answers">
           <button class="mem-btn" onclick="goTo(2)">sunny</button>
           <button class="mem-btn" onclick="goTo(2)">cloudy</button>
@@ -54,19 +60,39 @@ And what type of water do you feel the closest to now?</div>
           <button class="mem-btn" onclick="goTo(3)">drop</button>
           <button class="mem-btn" onclick="goTo(3)">sweat</button>
           <button class="mem-btn" onclick="goTo(3)">tear</button>
+          <button class="mem-btn" onclick="goTo(3)">pond</button>
+          <button class="mem-btn" onclick="goTo(3)">stream</button>
+          <button class="mem-btn" onclick="goTo(3)">fjord</button>
+          <button class="mem-btn" onclick="goTo(3)">swamp</button>
+          <button class="mem-btn" onclick="goTo(3)">wetland</button>
+          <button class="mem-btn" onclick="goTo(3)">spring</button>
+          <button class="mem-btn" onclick="goTo(3)">glacier</button>
+          <button class="mem-btn" onclick="goTo(3)">iceberg</button>
+          <button class="mem-btn" onclick="goTo(3)">fog</button>
+          <button class="mem-btn" onclick="goTo(3)">steam</button>
+          <button class="mem-btn" onclick="goTo(3)">vapor</button>
+          <button class="mem-btn" onclick="goTo(3)">saliva</button>
+          <button class="mem-btn" onclick="goTo(3)">flood</button>
+          <button class="mem-btn" onclick="goTo(3)">geyser</button>
+          <button class="mem-btn" onclick="goTo(3)">tsunami</button>
           <button class="mem-btn" onclick="goTo(3)">something else</button>
         </div>
       </div>
 
-      <!-- ── Screen 3: transition — auto-advances after 2.5s ── -->
+      <!-- ── Screen 3a: first transition text ── -->
       <div class="mem-screen" id="screen-3">
-        <div class="mem-transition">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
+        <div class="mem-transition" id="transition-text">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
       </div>
 
-      <!-- ── Screen 4: final page ── -->
+      <!-- ── Screen 4: final page with record button ── -->
       <div class="mem-screen" id="screen-4">
-        <div class="mem-question">Thank you. Now share your memory.</div>
-        <div class="mem-upload-area">
+        <div class="mem-question">Now try to remember a water memory of yours. Where you felt that special bond with other water beings. But not from your usual human point of view. More as if you were... you know... water... which you already are in ca. 60 %... just add that extra 40 %, honey! Feel the flow! And tell us your memory, so it can float with the others! We want to hear your voice!</div>
+
+        <div class="mem-answers">
+          <button class="mem-btn mem-btn-record" onclick="openRecorder()">record your water memory!</button>
+        </div>
+
+        <div class="mem-upload-area" id="recorderArea" style="display:none;">
           <div class="mem-upload-inner">
             <div class="mem-upload-label">leave us a voice message</div>
             <!-- ↓↓↓ PASTE VOICE UPLOAD CODE HERE ↓↓↓ -->
@@ -89,27 +115,63 @@ And what type of water do you feel the closest to now?</div>
     const stepLabel   = document.getElementById('stepLabel');
     const progressBar = document.getElementById('progressBar');
     let transitionTimer = null;
+    let transitionPhase = 0;
+
+    // The two texts that play in sequence on screen 3
+    const TRANSITION_TEXTS = [
+      'Oh, wow. Interesting choice, I'm a bit surprised, but ok.',
+      'You have been thinking way too much from your human perspective already. How about trying something more fluid, for a change?'
+    ];
 
     function goTo(n) {
       if (transitionTimer) { clearTimeout(transitionTimer); transitionTimer = null; }
+      transitionPhase = 0;
 
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
 
-      stepLabel.textContent = (n === TOTAL) ? '✓' : n + ' / ' + (TOTAL - 1);
-      progressBar.style.width = (n / TOTAL * 100) + '%';
+      // Step label: screens 1+2 are the "questions", screen 4 is final
+      if (n <= 2) {
+        stepLabel.textContent = n + ' / 2';
+      } else if (n === 4) {
+        stepLabel.textContent = '✓';
+      } else {
+        stepLabel.textContent = '';
+      }
 
+      progressBar.style.width = (n / TOTAL * 100) + '%';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Screen 3 is a transition — auto-advance to 4 after 2.5s
+      // Screen 3 plays two texts in sequence, then auto-advances
       if (n === 3) {
-        transitionTimer = setTimeout(() => goTo(4), 2500);
+        runTransition();
       }
+    }
+
+    function runTransition() {
+      const el = document.getElementById('transition-text');
+      // Show first text
+      el.textContent = TRANSITION_TEXTS[0];
+      el.style.opacity = '1';
+
+      // After 5s fade out, then show second text
+      transitionTimer = setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => {
+          el.textContent = TRANSITION_TEXTS[1];
+          el.style.opacity = '1';
+          // After another 5s advance to screen 4
+          transitionTimer = setTimeout(() => goTo(4), 5000);
+        }, 500); // short crossfade gap
+      }, 5000);
+    }
+
+    function openRecorder() {
+      document.getElementById('recorderArea').style.display = 'block';
     }
 
     /* ══════════════════════════════════════════
        BUBBLE WORDS
-       "blub" and "blubblub" float up randomly
     ══════════════════════════════════════════ */
     const BUBBLE_WORDS = ['blub', 'blubblub'];
 
@@ -117,33 +179,21 @@ And what type of water do you feel the closest to now?</div>
       const el = document.createElement('span');
       el.className = 'bubble-word';
       el.textContent = BUBBLE_WORDS[Math.floor(Math.random() * BUBBLE_WORDS.length)];
-
-      // Random horizontal position (5%–90% of viewport width)
-      const x = 5 + Math.random() * 85;
-      // Random font size (12pt–22pt)
-      const size = (12 + Math.random() * 10).toFixed(1) + 'pt';
-      // Random duration (5s–10s)
+      const x        = 5 + Math.random() * 85;
+      const size     = (12 + Math.random() * 10).toFixed(1) + 'pt';
       const duration = (5 + Math.random() * 5).toFixed(1) + 's';
-      // Random horizontal wobble (-30px to +30px)
-      const wobble = (Math.random() * 60 - 30).toFixed(0) + 'px';
-
+      const wobble   = (Math.random() * 60 - 30).toFixed(0) + 'px';
       el.style.setProperty('--duration', duration);
       el.style.setProperty('--size', size);
       el.style.setProperty('--wobble', wobble);
       el.style.left = x + 'vw';
-
       document.body.appendChild(el);
-
-      // Remove from DOM after animation completes
-      const durationMs = parseFloat(duration) * 1000;
-      setTimeout(() => el.remove(), durationMs + 100);
+      setTimeout(() => el.remove(), parseFloat(duration) * 1000 + 100);
     }
 
-    // Spawn a bubble every 1.2–2.8 seconds
     function scheduleBubble() {
       spawnBubble();
-      const delay = 1200 + Math.random() * 1600;
-      setTimeout(scheduleBubble, delay);
+      setTimeout(scheduleBubble, 1200 + Math.random() * 1600);
     }
 
     scheduleBubble();

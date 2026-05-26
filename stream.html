@@ -41,6 +41,35 @@
       padding: 36px 48px;
     }
 
+    /* ── Site header on stream page — inverted colour ── */
+    .site-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .site-title {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 400;
+      font-size: clamp(24pt, 4vw, 42pt);
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      mix-blend-mode: difference;
+    }
+
+    .site-subtitle {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(10pt, 1.2vw, 14pt);
+      color: #ffffff;
+      margin-top: 6px;
+      padding-bottom: 4px;
+      border-bottom: 3px solid #ffffff;
+      display: inline-flex;
+      align-self: flex-start;
+      mix-blend-mode: difference;
+    }
+
     /* Back link */
     .back-link {
       font-family: 'Celescript', cursive;
@@ -180,7 +209,13 @@
   <div class="stream-page">
 
     <!-- Back link top-left -->
-    <a href="index.html" class="back-link">← sea shells</a>
+    <!-- Top-left: site header -->
+    <div class="site-header">
+      <a href="index.html" style="text-decoration:none;">
+        <div class="site-title">sea shells</div>
+        <div class="site-subtitle">we have lots to tell</div>
+      </a>
+    </div>
 
     <!-- Centre pill — absolutely centred in the page -->
     <div class="player-wrapper player-wrapper-center" id="playerWrapperCenter">
