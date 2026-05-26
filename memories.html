@@ -81,42 +81,38 @@ And what type of water do you feel the closest to now?</div>
         </div>
       </div>
 
-      <!-- ── Screen 3: two-phase transition ── -->
+      <!-- ── Screen 3: auto-advances after 5s ── -->
       <div class="mem-screen" id="screen-3">
-        <!-- Phase 1: auto-advances after 5s, then shows phase 2 -->
-        <div class="mem-transition" id="transition-phase1">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
-
-        <!-- Phase 2: revealed after 5s, has two buttons -->
-        <div id="transition-phase2" style="display:none; flex-direction:column; gap:32px;">
-          <div class="mem-transition">You have been thinking way too much from your human perspective already. How about trying something more fluid, for a change?</div>
-          <div class="mem-answers">
-            <button class="mem-btn" onclick="goTo(4)">Sure, let's go with the flow</button>
-            <button class="mem-btn" onclick="goTo(4)">Can I take a rain check?</button>
-          </div>
-        </div>
+        <div class="mem-transition">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
       </div>
 
-      <!-- ── Screen 4: new intermediate page ── -->
+      <!-- ── Screen 4 ── -->
       <div class="mem-screen" id="screen-4">
-        <div class="mem-question">Now try to remember a water memory of yours.<br>
-Where you felt that special bond with other water beings.<br>
-<br>
-Did you meet a stunning creature at a surprising spot? Did you rescue another being from their misery? Have you learnt something special? Were you anxious and you found peace somehow? We have so many stories where water is the main character.</div>
+        <div class="mem-question">Now try to remember a water memory of yours.
+Where you felt that special bond with other water beings.
 
+Did you meet a stunning creature at a surprising spot? Did you rescue another being from their misery? Have you learnt something special? Were you anxious and you found peace somehow? We have so many stories where water is the main character.</div>
         <div class="mem-answers">
           <button class="mem-btn" onclick="goTo(5)">I just remembered a story</button>
         </div>
       </div>
 
-      <!-- ── Screen 5: final page ── -->
+      <!-- ── Screen 5 ── -->
       <div class="mem-screen" id="screen-5">
-        <div class="mem-question">I like your attitude!<br>
-<br>
-But not from your usual human point of view.<br>
-<br>
-More as if you were... you know... <strong>water</strong>...<br>
-which you already are in ca. 60 %... just add that extra 40 %, honey!<br>
-<br>
+        <div class="mem-question">You have been thinking way too much from your human perspective already. How about trying something more fluid, for a change?</div>
+        <div class="mem-answers">
+          <button class="mem-btn" onclick="goTo(6)">Sure, let's go with the flow</button>
+          <button class="mem-btn" onclick="goTo(6)">Can I take a rain check?</button>
+        </div>
+      </div>
+
+      <!-- ── Screen 6: final page ── -->
+      <div class="mem-screen" id="screen-6">
+        <div class="mem-question">I like your attitude!
+
+More as if you were... you know... <strong>water</strong>...
+which you already are in ca. 60 %... just add that extra 40 %, honey!
+
 Feel the flow! And tell us your memory, so it can float with the others! We want to hear your voice!</div>
 
         <div class="mem-answers">
@@ -142,7 +138,7 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
     /* ══════════════════════════════════════════
        NAVIGATION
     ══════════════════════════════════════════ */
-    const TOTAL       = 5;
+    const TOTAL       = 6;
     const stepLabel   = document.getElementById('stepLabel');
     const progressBar = document.getElementById('progressBar');
     let transitionTimer = null;
@@ -152,14 +148,6 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
 
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
-
-      // Reset screen 3 phases whenever we leave it
-      if (n !== 3) {
-        const p1 = document.getElementById('transition-phase1');
-        const p2 = document.getElementById('transition-phase2');
-        if (p1) { p1.style.opacity = '1'; p1.style.display = ''; }
-        if (p2) { p2.style.display = 'none'; }
-      }
 
       if (n <= 2) {
         stepLabel.textContent = n + ' / 2';
@@ -172,26 +160,10 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
       progressBar.style.width = (n / TOTAL * 100) + '%';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      if (n === 3) runTransition();
-    }
-
-    function runTransition() {
-      const phase1 = document.getElementById('transition-phase1');
-      const phase2 = document.getElementById('transition-phase2');
-
-      // Show phase 1
-      phase1.style.opacity = '1';
-      phase2.style.display = 'none';
-
-      // After 5s: fade out phase 1, reveal phase 2 with buttons
-      transitionTimer = setTimeout(() => {
-        phase1.style.opacity = '0';
-        setTimeout(() => {
-          phase1.style.display = 'none';
-          phase2.style.display = 'flex';
-          phase2.style.animation = 'fadeIn 0.5s ease';
-        }, 500);
-      }, 5000);
+      // Screen 3 auto-advances after 5s
+      if (n === 3) {
+        transitionTimer = setTimeout(() => goTo(4), 5000);
+      }
     }
 
     function openRecorder() {
