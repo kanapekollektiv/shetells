@@ -1,0 +1,228 @@
+/* ════════════════════════════════════════════
+   MEMORIES — quiz page styles
+   Fonts are loaded via styles.css (linked first)
+════════════════════════════════════════════ */
+
+/* ── Base: white background ── */
+body {
+  background: #ffffff;
+  background-image: none;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Hide the shell.png fixed bg div from styles.css */
+.bg { display: none; }
+
+/* ── Fixed white background layer ── */
+.mem-bg {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 0;
+}
+
+/* ── Outer page layout ── */
+.mem-page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 36px 48px 48px;
+}
+
+/* ── Top bar ── */
+.mem-topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  flex-shrink: 0;
+}
+
+.mem-back {
+  font-family: 'Celescript', cursive;
+  font-size: 14pt;
+  color: #0046FF;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #0046FF;
+  transition: opacity 0.2s;
+}
+.mem-back:hover { opacity: 0.6; }
+
+.mem-step {
+  font-family: 'Celescript', cursive;
+  font-size: 12pt;
+  color: #0046FF;
+  opacity: 0.7;
+}
+
+/* ── Progress bar ── */
+.mem-progress-wrap {
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 70, 255, 0.12);
+  border-radius: 999px;
+  margin-bottom: 56px;
+  flex-shrink: 0;
+}
+
+.mem-progress-bar {
+  height: 100%;
+  background: #0046FF;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+/* ── Content area ── */
+.mem-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Screens ── */
+.mem-screen {
+  display: none;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeIn 0.5s ease;
+}
+
+.mem-screen.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Question text — NaNTresorM Regular, blue ── */
+.mem-question {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 400;
+  font-size: clamp(18pt, 3vw, 32pt);
+  color: #0046FF;
+  line-height: 1.2;
+  max-width: 800px;
+  white-space: pre-line;
+}
+
+/* ── Transition screen text — same style ── */
+.mem-transition {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 400;
+  font-size: clamp(18pt, 3vw, 32pt);
+  color: #0046FF;
+  line-height: 1.2;
+  max-width: 800px;
+}
+
+/* ── Answer buttons row ── */
+.mem-answers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* ── Answer pill buttons ── */
+.mem-btn {
+  font-family: 'Celescript', cursive;
+  font-size: 13pt;
+  color: #ffffff;
+  background: #0046FF;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.mem-btn:hover {
+  background: #51420A;
+  transform: scale(1.03);
+}
+
+.mem-btn:active { transform: scale(0.97); }
+
+/* ── Final page: voice upload ── */
+.mem-upload-area {
+  border-radius: 24px;
+  overflow: hidden;
+  max-width: 560px;
+  background: #0046FF;
+}
+
+.mem-upload-inner {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.mem-upload-label {
+  font-family: 'Celescript', cursive;
+  font-size: 16pt;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.mem-upload-slot {
+  width: 100%;
+  min-height: 60px;
+  border: 2px dashed rgba(255,255,255,0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mem-upload-slot p {
+  font-family: 'Celescript', cursive;
+  font-size: 12pt;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ════════════════════════════════════════════
+   BUBBLES — "blub" and "blubblub" floating up
+════════════════════════════════════════════ */
+.bubble-word {
+  position: fixed;
+  bottom: -60px;
+  font-family: 'Celescript', cursive;
+  color: #F5DE0A;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  animation: bubbleRise var(--duration) ease-in forwards;
+  font-size: var(--size);
+  /* slight horizontal wobble */
+  animation-name: bubbleRise;
+}
+
+@keyframes bubbleRise {
+  0%   { transform: translateY(0)      translateX(0)     ; opacity: 0;   }
+  10%  { opacity: 1; }
+  50%  { transform: translateY(-45vh)  translateX(var(--wobble)); opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-105vh) translateX(0);      opacity: 0;   }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .mem-page           { padding: 24px 20px 36px; }
+  .mem-topbar         { margin-bottom: 28px; }
+  .mem-progress-wrap  { margin-bottom: 36px; }
+  .mem-question,
+  .mem-transition     { font-size: 16pt; }
+  .mem-btn            { font-size: 11pt; padding: 10px 20px; }
+  .mem-answers        { gap: 10px; }
+}
