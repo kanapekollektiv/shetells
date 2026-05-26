@@ -79,14 +79,31 @@ And what type of water do you feel the closest to now?</div>
         </div>
       </div>
 
-      <!-- ── Screen 3a: first transition text ── -->
+      <!-- ── Screen 3: two-phase transition ── -->
       <div class="mem-screen" id="screen-3">
-        <div class="mem-transition" id="transition-text">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
+        <!-- Phase 1: auto-advances after 5s, then shows phase 2 -->
+        <div class="mem-transition" id="transition-phase1">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
+
+        <!-- Phase 2: revealed after 5s, has two buttons -->
+        <div id="transition-phase2" style="display:none; flex-direction:column; gap:32px;">
+          <div class="mem-transition">You have been thinking way too much from your human perspective already. How about trying something more fluid, for a change?</div>
+          <div class="mem-answers">
+            <button class="mem-btn" onclick="goTo(4)">Sure, let's go with the flow</button>
+            <button class="mem-btn" onclick="goTo(4)">Can I take a rain check?</button>
+          </div>
+        </div>
       </div>
 
-      <!-- ── Screen 4: final page with record button ── -->
+      <!-- ── Screen 4: final page ── -->
       <div class="mem-screen" id="screen-4">
-        <div class="mem-question">Now try to remember a water memory of yours. Where you felt that special bond with other water beings. But not from your usual human point of view. More as if you were... you know... water... which you already are in ca. 60 %... just add that extra 40 %, honey! Feel the flow! And tell us your memory, so it can float with the others! We want to hear your voice!</div>
+        <div class="mem-question">Now try to remember a water memory of yours.<br>
+Where you felt that special bond with other water beings.<br>
+But not from your usual human point of view.<br>
+<br>
+More as if you were... you know... <strong>water</strong>...<br>
+which you already are in ca. 60 %... just add that extra 40 %, honey!<br>
+<br>
+Feel the flow! And tell us your memory, so it can float with the others! We want to hear your voice!</div>
 
         <div class="mem-answers">
           <button class="mem-btn mem-btn-record" onclick="openRecorder()">record your water memory!</button>
@@ -115,22 +132,21 @@ And what type of water do you feel the closest to now?</div>
     const stepLabel   = document.getElementById('stepLabel');
     const progressBar = document.getElementById('progressBar');
     let transitionTimer = null;
-    let transitionPhase = 0;
-
-    // The two texts that play in sequence on screen 3
-    const TRANSITION_TEXTS = [
-      "Oh, wow. Interesting choice, I'm a bit surprised, but ok.",
-      "You have been thinking way too much from your human perspective already. How about trying something more fluid, for a change?"
-    ];
 
     function goTo(n) {
       if (transitionTimer) { clearTimeout(transitionTimer); transitionTimer = null; }
-      transitionPhase = 0;
 
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
 
-      // Step label: screens 1+2 are the "questions", screen 4 is final
+      // Reset screen 3 phases whenever we navigate away and back
+      if (n !== 3) {
+        const p1 = document.getElementById('transition-phase1');
+        const p2 = document.getElementById('transition-phase2');
+        if (p1) { p1.style.opacity = '1'; p1.style.display = ''; }
+        if (p2) { p2.style.display = 'none'; }
+      }
+
       if (n <= 2) {
         stepLabel.textContent = n + ' / 2';
       } else if (n === 4) {
@@ -142,27 +158,25 @@ And what type of water do you feel the closest to now?</div>
       progressBar.style.width = (n / TOTAL * 100) + '%';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Screen 3 plays two texts in sequence, then auto-advances
-      if (n === 3) {
-        runTransition();
-      }
+      if (n === 3) runTransition();
     }
 
     function runTransition() {
-      const el = document.getElementById('transition-text');
-      // Show first text
-      el.textContent = TRANSITION_TEXTS[0];
-      el.style.opacity = '1';
+      const phase1 = document.getElementById('transition-phase1');
+      const phase2 = document.getElementById('transition-phase2');
 
-      // After 5s fade out, then show second text
+      // Show phase 1
+      phase1.style.opacity = '1';
+      phase2.style.display = 'none';
+
+      // After 5s: fade out phase 1, reveal phase 2 with buttons
       transitionTimer = setTimeout(() => {
-        el.style.opacity = '0';
+        phase1.style.opacity = '0';
         setTimeout(() => {
-          el.textContent = TRANSITION_TEXTS[1];
-          el.style.opacity = '1';
-          // After another 5s advance to screen 4
-          transitionTimer = setTimeout(() => goTo(4), 5000);
-        }, 500); // short crossfade gap
+          phase1.style.display = 'none';
+          phase2.style.display = 'flex';
+          phase2.style.animation = 'fadeIn 0.5s ease';
+        }, 500);
       }, 5000);
     }
 
