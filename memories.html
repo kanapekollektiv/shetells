@@ -96,12 +96,22 @@ And what type of water do you feel the closest to now?</div>
         </div>
       </div>
 
-      <!-- ── Screen 4: final page ── -->
+      <!-- ── Screen 4: new intermediate page ── -->
       <div class="mem-screen" id="screen-4">
+        <div class="mem-question">Now try to remember a water memory of yours.<br>
+Where you felt that special bond with other water beings.<br>
+<br>
+Did you meet a stunning creature at a surprising spot? Did you rescue another being from their misery? Have you learnt something special? Were you anxious and you found peace somehow? We have so many stories where water is the main character.</div>
+
+        <div class="mem-answers">
+          <button class="mem-btn" onclick="goTo(5)">I just remembered a story</button>
+        </div>
+      </div>
+
+      <!-- ── Screen 5: final page ── -->
+      <div class="mem-screen" id="screen-5">
         <div class="mem-question">I like your attitude!<br>
 <br>
-Now try to remember a water memory of yours.<br>
-Where you felt that special bond with other water beings.<br>
 But not from your usual human point of view.<br>
 <br>
 More as if you were... you know... <strong>water</strong>...<br>
@@ -132,7 +142,7 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
     /* ══════════════════════════════════════════
        NAVIGATION
     ══════════════════════════════════════════ */
-    const TOTAL       = 4;
+    const TOTAL       = 5;
     const stepLabel   = document.getElementById('stepLabel');
     const progressBar = document.getElementById('progressBar');
     let transitionTimer = null;
@@ -143,7 +153,7 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
 
-      // Reset screen 3 phases whenever we navigate away and back
+      // Reset screen 3 phases whenever we leave it
       if (n !== 3) {
         const p1 = document.getElementById('transition-phase1');
         const p2 = document.getElementById('transition-phase2');
@@ -153,7 +163,7 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
 
       if (n <= 2) {
         stepLabel.textContent = n + ' / 2';
-      } else if (n === 4) {
+      } else if (n === TOTAL) {
         stepLabel.textContent = '✓';
       } else {
         stepLabel.textContent = '';
