@@ -6,7 +6,6 @@
   <title>sea shells — tell us your memories</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ── Page background (will be swapped for a different image later) ── */
     body {
       background-image: url('shell.png');
       background-size: cover;
@@ -17,17 +16,17 @@
       overflow-x: hidden;
     }
 
+    /* Per-screen background — JS swaps this on each transition */
     .mem-bg {
       position: fixed;
       inset: 0;
-      background-image: url('shell.png');
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
       z-index: 0;
+      transition: background-image 0.6s ease;
     }
 
-    /* ── Outer page layout ── */
     .mem-page {
       position: relative;
       z-index: 1;
@@ -35,10 +34,9 @@
       flex-direction: column;
       min-height: 100vh;
       padding: 36px 48px 48px;
-      gap: 0;
     }
 
-    /* ── Top bar: back link left, step counter right ── */
+    /* ── Top bar ── */
     .mem-topbar {
       display: flex;
       flex-direction: row;
@@ -83,28 +81,24 @@
       transition: width 0.5s ease;
     }
 
-    /* ── Content area: question + answers ── */
+    /* ── Screens ── */
     .mem-content {
       display: flex;
       flex-direction: column;
       flex: 1;
-      gap: 40px;
     }
 
-    /* Each "screen" — only one visible at a time */
     .mem-screen {
       display: none;
       flex-direction: column;
       gap: 40px;
-      animation: fadeIn 0.4s ease;
+      animation: fadeIn 0.5s ease;
     }
 
-    .mem-screen.active {
-      display: flex;
-    }
+    .mem-screen.active { display: flex; }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -113,11 +107,12 @@
       font-family: 'Celescript', cursive;
       font-size: clamp(18pt, 3vw, 28pt);
       color: #6e00b0;
-      line-height: 1.2;
+      line-height: 1.3;
       max-width: 720px;
+      white-space: pre-line;
     }
 
-    /* Answer buttons grid — wraps responsively */
+    /* Answer buttons */
     .mem-answers {
       display: flex;
       flex-direction: row;
@@ -126,7 +121,6 @@
       align-items: flex-start;
     }
 
-    /* Each answer pill — same inverted canvas style */
     .mem-btn {
       position: relative;
       font-family: 'Celescript', cursive;
@@ -144,7 +138,7 @@
       transition: transform 0.15s;
     }
 
-    .mem-btn:hover { transform: scale(1.03); }
+    .mem-btn:hover  { transform: scale(1.03); }
     .mem-btn:active { transform: scale(0.97); }
 
     .mem-btn canvas {
@@ -162,7 +156,16 @@
       z-index: 1;
     }
 
-    /* ── Final page: voice upload placeholder ── */
+    /* ── Transition screen (screen 3 — no buttons, auto-advances) ── */
+    .mem-transition {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(18pt, 3vw, 28pt);
+      color: #6e00b0;
+      line-height: 1.3;
+      max-width: 720px;
+    }
+
+    /* ── Final page: voice upload ── */
     .mem-upload-area {
       position: relative;
       border-radius: 24px;
@@ -197,7 +200,6 @@
       line-height: 1.3;
     }
 
-    /* ← This comment marks where the voice upload code goes */
     .mem-upload-slot {
       width: 100%;
       min-height: 60px;
@@ -216,118 +218,85 @@
 
     /* ── Mobile ── */
     @media (max-width: 600px) {
-      .mem-page { padding: 24px 20px 36px; }
-      .mem-topbar { margin-bottom: 28px; }
+      .mem-page    { padding: 24px 20px 36px; }
+      .mem-topbar  { margin-bottom: 28px; }
       .mem-progress-wrap { margin-bottom: 36px; }
-      .mem-question { font-size: 16pt; }
-      .mem-btn { font-size: 11pt; padding: 10px 20px; }
+      .mem-question, .mem-transition { font-size: 16pt; }
+      .mem-btn     { font-size: 11pt; padding: 10px 20px; }
       .mem-answers { gap: 12px; }
     }
   </style>
 </head>
 <body>
-  <div class="mem-bg"></div>
+  <div class="mem-bg" id="memBg"></div>
 
   <div class="mem-page">
 
-    <!-- Top bar -->
     <div class="mem-topbar">
       <a href="index.html" class="mem-back">← sea shells</a>
-      <span class="mem-step" id="stepLabel">1 / 4</span>
+      <span class="mem-step" id="stepLabel">1 / 3</span>
     </div>
 
-    <!-- Progress bar -->
     <div class="mem-progress-wrap">
       <div class="mem-progress-bar" id="progressBar" style="width: 25%"></div>
     </div>
 
-    <!-- ════════════════════════════════════════
-         SCREENS
-    ════════════════════════════════════════ -->
     <div class="mem-content">
 
-      <!-- Screen 1 -->
+      <!-- ── Screen 1 ── -->
       <div class="mem-screen active" id="screen-1">
-        <div class="mem-question">
-          Question one goes here — replace this with your real question.
-        </div>
+        <div class="mem-question">We are all water in some way. Let's collect our shared memories.
+How are you feeling now?</div>
         <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(2)">
-            <canvas></canvas><span>Option A</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(2)">
-            <canvas></canvas><span>Option B</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(2)">
-            <canvas></canvas><span>Option C</span>
-          </button>
+          <button class="mem-btn" onclick="goTo(2)"><canvas></canvas><span>sunny</span></button>
+          <button class="mem-btn" onclick="goTo(2)"><canvas></canvas><span>cloudy</span></button>
+          <button class="mem-btn" onclick="goTo(2)"><canvas></canvas><span>stormy</span></button>
+          <button class="mem-btn" onclick="goTo(2)"><canvas></canvas><span>normy</span></button>
         </div>
       </div>
 
-      <!-- Screen 2 -->
+      <!-- ── Screen 2 ── -->
       <div class="mem-screen" id="screen-2">
-        <div class="mem-question">
-          Question two goes here — replace this with your real question.
-        </div>
+        <div class="mem-question">Oh darling, I feel this too.
+
+And what type of water do you feel the closest to now?</div>
         <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(3)">
-            <canvas></canvas><span>Option A</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(3)">
-            <canvas></canvas><span>Option B</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(3)">
-            <canvas></canvas><span>Option C</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(3)">
-            <canvas></canvas><span>Option D</span>
-          </button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>ocean</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>sea</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>river</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>lake</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>cloud</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>rain</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>paddle</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>groundwater</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>tap</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>drink</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>drop</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>sweat</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>tear</span></button>
+          <button class="mem-btn" onclick="goTo(3)"><canvas></canvas><span>something else</span></button>
         </div>
       </div>
 
-      <!-- Screen 3 -->
+      <!-- ── Screen 3: transition — auto-advances after 2.5s ── -->
       <div class="mem-screen" id="screen-3">
-        <div class="mem-question">
-          Question three goes here — replace this with your real question.
-        </div>
-        <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(4)">
-            <canvas></canvas><span>Option A</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(4)">
-            <canvas></canvas><span>Option B</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(4)">
-            <canvas></canvas><span>Option C</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(4)">
-            <canvas></canvas><span>Option D</span>
-          </button>
-          <button class="mem-btn" onclick="goTo(4)">
-            <canvas></canvas><span>Option E</span>
-          </button>
-        </div>
+        <div class="mem-transition">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
       </div>
 
-      <!-- Screen 4: Final page -->
+      <!-- ── Screen 4: final page ── -->
       <div class="mem-screen" id="screen-4">
-        <div class="mem-question">
-          Thank you. Now share your memory.
-        </div>
+        <div class="mem-question">Thank you. Now share your memory.</div>
 
-        <!-- Voice upload area — slot in your friend's code here -->
         <div class="mem-upload-area">
           <canvas id="uploadCanvas"></canvas>
           <div class="mem-upload-inner">
-            <div class="mem-upload-label">
-              leave us a voice message
-            </div>
+            <div class="mem-upload-label">leave us a voice message</div>
 
-            <!-- ↓↓↓ PASTE YOUR FRIEND'S VOICE UPLOAD CODE HERE ↓↓↓ -->
+            <!-- ↓↓↓ PASTE VOICE UPLOAD CODE HERE ↓↓↓ -->
             <div class="mem-upload-slot">
               <p>voice upload coming soon</p>
             </div>
-            <!-- ↑↑↑ END OF VOICE UPLOAD SLOT ↑↑↑ -->
+            <!-- ↑↑↑ END VOICE UPLOAD SLOT ↑↑↑ -->
 
           </div>
         </div>
@@ -337,28 +306,50 @@
   </div>
 
   <script>
-    /* ── Background image for canvas inversion ── */
-    const bgImg = new Image();
-    bgImg.crossOrigin = 'anonymous';
-    bgImg.src = 'shell.png'; // swap for your memories page bg when ready
+    /* ══════════════════════════════════════════
+       BACKGROUNDS — one image per screen.
+       Upload your images and set the filenames here.
+    ══════════════════════════════════════════ */
+    const BACKGROUNDS = {
+      1: 'shell.png',       // ← swap for your screen 1 background
+      2: 'shell.png',       // ← swap for your screen 2 background
+      3: 'shell.png',       // ← swap for your screen 3 background
+      4: 'shell.png',       // ← swap for your screen 4 background
+    };
 
-    function drawInverted(canvas, rect) {
+    /* ══════════════════════════════════════════
+       CANVAS INVERSION
+    ══════════════════════════════════════════ */
+    // One Image object per screen background
+    const bgImages = {};
+    Object.entries(BACKGROUNDS).forEach(([screen, src]) => {
+      if (!bgImages[src]) {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = src;
+        bgImages[src] = img;
+      }
+    });
+
+    let currentScreen = 1;
+
+    function drawInverted(canvas, rect, img) {
       const W = Math.round(rect.width);
       const H = Math.round(rect.height);
-      if (W === 0 || H === 0) return;
+      if (W === 0 || H === 0 || !img || !img.naturalWidth) return;
       canvas.width  = W;
       canvas.height = H;
       const ctx = canvas.getContext('2d');
       const vw  = window.innerWidth;
       const vh  = window.innerHeight;
-      const iw  = bgImg.naturalWidth  || 1;
-      const ih  = bgImg.naturalHeight || 1;
+      const iw  = img.naturalWidth;
+      const ih  = img.naturalHeight;
       const scale   = Math.max(vw / iw, vh / ih);
       const offsetX = (vw - iw * scale) / 2;
       const offsetY = 0;
       const sx = (rect.left - offsetX) / scale;
       const sy = (rect.top  - offsetY) / scale;
-      ctx.drawImage(bgImg, sx, sy, W / scale, H / scale, 0, 0, W, H);
+      ctx.drawImage(img, sx, sy, W / scale, H / scale, 0, 0, W, H);
       const id = ctx.getImageData(0, 0, W, H);
       const d  = id.data;
       for (let i = 0; i < d.length; i += 4) {
@@ -369,54 +360,81 @@
       ctx.putImageData(id, 0, 0);
     }
 
-    /* Draw inverted canvas on all visible buttons + upload box */
-    function refreshAllCanvases() {
+    function refreshCanvases() {
       requestAnimationFrame(() => {
-        // All answer buttons
-        document.querySelectorAll('.mem-btn canvas').forEach(canvas => {
-          const btn = canvas.closest('.mem-btn');
-          drawInverted(canvas, btn.getBoundingClientRect());
-        });
-        // Upload box on final page
+        const src = BACKGROUNDS[currentScreen];
+        const img = bgImages[src];
+        // Answer buttons on active screen
+        const activeScreen = document.getElementById('screen-' + currentScreen);
+        if (activeScreen) {
+          activeScreen.querySelectorAll('.mem-btn canvas').forEach(canvas => {
+            drawInverted(canvas, canvas.closest('.mem-btn').getBoundingClientRect(), img);
+          });
+        }
+        // Upload box
         const uploadCanvas = document.getElementById('uploadCanvas');
-        if (uploadCanvas) {
-          const box = uploadCanvas.closest('.mem-upload-area');
-          drawInverted(uploadCanvas, box.getBoundingClientRect());
+        if (uploadCanvas && currentScreen === 4) {
+          drawInverted(uploadCanvas, uploadCanvas.closest('.mem-upload-area').getBoundingClientRect(), img);
         }
       });
     }
 
-    if (bgImg.complete && bgImg.naturalWidth) {
-      refreshAllCanvases();
-    } else {
-      bgImg.addEventListener('load', refreshAllCanvases);
-    }
-    window.addEventListener('resize', refreshAllCanvases);
+    // Refresh when any bg image loads
+    Object.values(bgImages).forEach(img => {
+      img.addEventListener('load', refreshCanvases);
+      if (img.complete && img.naturalWidth) refreshCanvases();
+    });
+    window.addEventListener('resize', refreshCanvases);
 
-    /* ── Navigation ── */
-    const TOTAL = 4;
-
+    /* ══════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════ */
+    const TOTAL       = 4;
     const stepLabel   = document.getElementById('stepLabel');
     const progressBar = document.getElementById('progressBar');
+    const memBg       = document.getElementById('memBg');
+
+    let transitionTimer = null;
 
     function goTo(n) {
-      // Hide all screens
+      // Cancel any pending auto-advance
+      if (transitionTimer) { clearTimeout(transitionTimer); transitionTimer = null; }
+
+      // Hide all, show target
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
-      // Show target
       document.getElementById('screen-' + n).classList.add('active');
+
+      currentScreen = n;
+
+      // Swap background
+      memBg.style.backgroundImage = "url('" + BACKGROUNDS[n] + "')";
+      // Also update body fallback
+      document.body.style.backgroundImage = "url('" + BACKGROUNDS[n] + "')";
+
       // Update step label
-      if (n < TOTAL) {
-        stepLabel.textContent = n + ' / ' + (TOTAL - 1);
-      } else {
+      if (n === TOTAL) {
         stepLabel.textContent = '✓';
+      } else {
+        stepLabel.textContent = n + ' / ' + (TOTAL - 1);
       }
+
       // Update progress bar
       progressBar.style.width = (n / TOTAL * 100) + '%';
-      // Redraw canvases for newly visible buttons
-      refreshAllCanvases();
+
+      // Redraw canvases
+      refreshCanvases();
+
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Screen 3 is a transition — auto-advance to screen 4 after 2.5s
+      if (n === 3) {
+        transitionTimer = setTimeout(() => goTo(4), 2500);
+      }
     }
+
+    // Set initial background
+    memBg.style.backgroundImage = "url('" + BACKGROUNDS[1] + "')";
   </script>
 </body>
 </html>
