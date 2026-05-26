@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sea shells — tell us your memories</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Page background (will be swapped for a different image later) ── */
+    body {
+      background-image: url('shell.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .mem-bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('shell.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* ── Outer page layout ── */
+    .mem-page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 36px 48px 48px;
+      gap: 0;
+    }
+
+    /* ── Top bar: back link left, step counter right ── */
+    .mem-topbar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      flex-shrink: 0;
+    }
+
+    .mem-back {
+      font-family: 'Celescript', cursive;
+      font-size: 14pt;
+      color: #6e00b0;
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #6e00b0;
+      transition: opacity 0.2s;
+    }
+    .mem-back:hover { opacity: 0.6; }
+
+    .mem-step {
+      font-family: 'Celescript', cursive;
+      font-size: 12pt;
+      color: #6e00b0;
+      opacity: 0.7;
+    }
+
+    /* ── Progress bar ── */
+    .mem-progress-wrap {
+      width: 100%;
+      height: 3px;
+      background: rgba(110, 0, 176, 0.15);
+      border-radius: 999px;
+      margin-bottom: 56px;
+      flex-shrink: 0;
+    }
+
+    .mem-progress-bar {
+      height: 100%;
+      background: #6e00b0;
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+
+    /* ── Content area: question + answers ── */
+    .mem-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 40px;
+    }
+
+    /* Each "screen" — only one visible at a time */
+    .mem-screen {
+      display: none;
+      flex-direction: column;
+      gap: 40px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .mem-screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Question text */
+    .mem-question {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(18pt, 3vw, 28pt);
+      color: #6e00b0;
+      line-height: 1.2;
+      max-width: 720px;
+    }
+
+    /* Answer buttons grid — wraps responsively */
+    .mem-answers {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    /* Each answer pill — same inverted canvas style */
+    .mem-btn {
+      position: relative;
+      font-family: 'Celescript', cursive;
+      font-size: 13pt;
+      color: #ffffff;
+      background: transparent;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 28px;
+      cursor: pointer;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      transition: transform 0.15s;
+    }
+
+    .mem-btn:hover { transform: scale(1.03); }
+    .mem-btn:active { transform: scale(0.97); }
+
+    .mem-btn canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      display: block;
+      z-index: 0;
+    }
+
+    .mem-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Final page: voice upload placeholder ── */
+    .mem-upload-area {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      max-width: 560px;
+    }
+
+    #uploadCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      display: block;
+      z-index: 0;
+    }
+
+    .mem-upload-inner {
+      position: relative;
+      z-index: 1;
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .mem-upload-label {
+      font-family: 'Celescript', cursive;
+      font-size: 16pt;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    /* ← This comment marks where the voice upload code goes */
+    .mem-upload-slot {
+      width: 100%;
+      min-height: 60px;
+      border: 2px dashed rgba(255,255,255,0.4);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mem-upload-slot p {
+      font-family: 'Celescript', cursive;
+      font-size: 12pt;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .mem-page { padding: 24px 20px 36px; }
+      .mem-topbar { margin-bottom: 28px; }
+      .mem-progress-wrap { margin-bottom: 36px; }
+      .mem-question { font-size: 16pt; }
+      .mem-btn { font-size: 11pt; padding: 10px 20px; }
+      .mem-answers { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mem-bg"></div>
+
+  <div class="mem-page">
+
+    <!-- Top bar -->
+    <div class="mem-topbar">
+      <a href="index.html" class="mem-back">← sea shells</a>
+      <span class="mem-step" id="stepLabel">1 / 4</span>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="mem-progress-wrap">
+      <div class="mem-progress-bar" id="progressBar" style="width: 25%"></div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         SCREENS
+    ════════════════════════════════════════ -->
+    <div class="mem-content">
+
+      <!-- Screen 1 -->
+      <div class="mem-screen active" id="screen-1">
+        <div class="mem-question">
+          Question one goes here — replace this with your real question.
+        </div>
+        <div class="mem-answers">
+          <button class="mem-btn" onclick="goTo(2)">
+            <canvas></canvas><span>Option A</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(2)">
+            <canvas></canvas><span>Option B</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(2)">
+            <canvas></canvas><span>Option C</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Screen 2 -->
+      <div class="mem-screen" id="screen-2">
+        <div class="mem-question">
+          Question two goes here — replace this with your real question.
+        </div>
+        <div class="mem-answers">
+          <button class="mem-btn" onclick="goTo(3)">
+            <canvas></canvas><span>Option A</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(3)">
+            <canvas></canvas><span>Option B</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(3)">
+            <canvas></canvas><span>Option C</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(3)">
+            <canvas></canvas><span>Option D</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Screen 3 -->
+      <div class="mem-screen" id="screen-3">
+        <div class="mem-question">
+          Question three goes here — replace this with your real question.
+        </div>
+        <div class="mem-answers">
+          <button class="mem-btn" onclick="goTo(4)">
+            <canvas></canvas><span>Option A</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(4)">
+            <canvas></canvas><span>Option B</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(4)">
+            <canvas></canvas><span>Option C</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(4)">
+            <canvas></canvas><span>Option D</span>
+          </button>
+          <button class="mem-btn" onclick="goTo(4)">
+            <canvas></canvas><span>Option E</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Screen 4: Final page -->
+      <div class="mem-screen" id="screen-4">
+        <div class="mem-question">
+          Thank you. Now share your memory.
+        </div>
+
+        <!-- Voice upload area — slot in your friend's code here -->
+        <div class="mem-upload-area">
+          <canvas id="uploadCanvas"></canvas>
+          <div class="mem-upload-inner">
+            <div class="mem-upload-label">
+              leave us a voice message
+            </div>
+
+            <!-- ↓↓↓ PASTE YOUR FRIEND'S VOICE UPLOAD CODE HERE ↓↓↓ -->
+            <div class="mem-upload-slot">
+              <p>voice upload coming soon</p>
+            </div>
+            <!-- ↑↑↑ END OF VOICE UPLOAD SLOT ↑↑↑ -->
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* ── Background image for canvas inversion ── */
+    const bgImg = new Image();
+    bgImg.crossOrigin = 'anonymous';
+    bgImg.src = 'shell.png'; // swap for your memories page bg when ready
+
+    function drawInverted(canvas, rect) {
+      const W = Math.round(rect.width);
+      const H = Math.round(rect.height);
+      if (W === 0 || H === 0) return;
+      canvas.width  = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      const vw  = window.innerWidth;
+      const vh  = window.innerHeight;
+      const iw  = bgImg.naturalWidth  || 1;
+      const ih  = bgImg.naturalHeight || 1;
+      const scale   = Math.max(vw / iw, vh / ih);
+      const offsetX = (vw - iw * scale) / 2;
+      const offsetY = 0;
+      const sx = (rect.left - offsetX) / scale;
+      const sy = (rect.top  - offsetY) / scale;
+      ctx.drawImage(bgImg, sx, sy, W / scale, H / scale, 0, 0, W, H);
+      const id = ctx.getImageData(0, 0, W, H);
+      const d  = id.data;
+      for (let i = 0; i < d.length; i += 4) {
+        d[i]     = 255 - d[i];
+        d[i + 1] = 255 - d[i + 1];
+        d[i + 2] = 255 - d[i + 2];
+      }
+      ctx.putImageData(id, 0, 0);
+    }
+
+    /* Draw inverted canvas on all visible buttons + upload box */
+    function refreshAllCanvases() {
+      requestAnimationFrame(() => {
+        // All answer buttons
+        document.querySelectorAll('.mem-btn canvas').forEach(canvas => {
+          const btn = canvas.closest('.mem-btn');
+          drawInverted(canvas, btn.getBoundingClientRect());
+        });
+        // Upload box on final page
+        const uploadCanvas = document.getElementById('uploadCanvas');
+        if (uploadCanvas) {
+          const box = uploadCanvas.closest('.mem-upload-area');
+          drawInverted(uploadCanvas, box.getBoundingClientRect());
+        }
+      });
+    }
+
+    if (bgImg.complete && bgImg.naturalWidth) {
+      refreshAllCanvases();
+    } else {
+      bgImg.addEventListener('load', refreshAllCanvases);
+    }
+    window.addEventListener('resize', refreshAllCanvases);
+
+    /* ── Navigation ── */
+    const TOTAL = 4;
+
+    const stepLabel   = document.getElementById('stepLabel');
+    const progressBar = document.getElementById('progressBar');
+
+    function goTo(n) {
+      // Hide all screens
+      document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
+      // Show target
+      document.getElementById('screen-' + n).classList.add('active');
+      // Update step label
+      if (n < TOTAL) {
+        stepLabel.textContent = n + ' / ' + (TOTAL - 1);
+      } else {
+        stepLabel.textContent = '✓';
+      }
+      // Update progress bar
+      progressBar.style.width = (n / TOTAL * 100) + '%';
+      // Redraw canvases for newly visible buttons
+      refreshAllCanvases();
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
