@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sea shells — record your memory</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="memories.css" />
+  <style>
+    /* ── Recorder-specific styles ── */
+
+    .rec-status {
+      font-family: 'Celescript', cursive;
+      font-size: 13pt;
+      color: #0046FF;
+      min-height: 1.6em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rec-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 70, 255, 0.25);
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+
+    .rec-dot.recording {
+      background: #ff3b3b;
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    .rec-dot.done { background: #0046FF; animation: none; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* Timer */
+    .rec-timer {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 400;
+      font-size: 36pt;
+      color: #0046FF;
+      letter-spacing: 0.04em;
+      min-height: 1.2em;
+    }
+
+    /* Waveform visualiser */
+    #waveform {
+      width: 100%;
+      max-width: 480px;
+      height: 64px;
+      border-radius: 12px;
+      background: rgba(0, 70, 255, 0.06);
+      display: block;
+    }
+
+    /* Audio playback preview */
+    .rec-preview {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .rec-preview.visible { display: flex; }
+
+    .rec-preview audio {
+      width: 100%;
+      max-width: 480px;
+      accent-color: #0046FF;
+    }
+
+    /* Tag question */
+    .rec-tag-section {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .rec-tag-section.visible { display: flex; }
+
+    /* Send section */
+    .rec-send-section {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .rec-send-section.visible { display: flex; }
+
+    .rec-feedback {
+      font-family: 'Celescript', cursive;
+      font-size: 13pt;
+      color: #0046FF;
+      min-height: 1.4em;
+    }
+
+    /* Divider */
+    .rec-divider {
+      width: 100%;
+      max-width: 480px;
+      height: 2px;
+      background: rgba(0, 70, 255, 0.12);
+      border-radius: 999px;
+    }
+
+    /* Selected tag highlight */
+    .mem-btn.selected {
+      background: #51420A;
+    }
+  </style>
+</head>
+<body>
+  <div class="mem-bg"></div>
+
+  <div class="mem-page">
+
+    <!-- Header -->
+    <div class="mem-topbar">
+      <a href="index.html" style="text-decoration:none;">
+        <div class="site-header">
+          <div class="site-title">sea shells</div>
+          <div class="site-subtitle">we have lots to tell</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="mem-content" style="gap: 32px;">
+
+      <!-- Title -->
+      <div class="mem-question">your water memory</div>
+
+      <!-- Status + timer -->
+      <div class="rec-status">
+        <div class="rec-dot" id="recDot"></div>
+        <span id="recStatusText">ready to record</span>
+      </div>
+
+      <div class="rec-timer" id="recTimer">0:00</div>
+
+      <!-- Waveform canvas -->
+      <canvas id="waveform"></canvas>
+
+      <!-- Control buttons -->
+      <div class="mem-answers" id="controlButtons">
+        <button class="mem-btn" id="startBtn" onclick="startRecording()">start recording</button>
+        <button class="mem-btn" id="stopBtn" onclick="stopRecording()" style="display:none;">stop recording</button>
+      </div>
+
+      <div class="rec-divider" id="divider1" style="display:none;"></div>
+
+      <!-- Playback preview -->
+      <div class="rec-preview" id="previewSection">
+        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">listen back</div>
+        <audio id="audioPreview" controls></audio>
+      </div>
+
+      <div class="rec-divider" id="divider2" style="display:none;"></div>
+
+      <!-- Tag question -->
+      <div class="rec-tag-section" id="tagSection">
+        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">How would you describe your memory?</div>
+        <div class="mem-answers" id="tagButtons">
+          <button class="mem-btn" onclick="selectTag('sunny',   this)">sunny</button>
+          <button class="mem-btn" onclick="selectTag('cloudy',  this)">cloudy</button>
+          <button class="mem-btn" onclick="selectTag('stormy',  this)">stormy</button>
+          <button class="mem-btn" onclick="selectTag('normy',   this)">normy</button>
+        </div>
+      </div>
+
+      <div class="rec-divider" id="divider3" style="display:none;"></div>
+
+      <!-- Send section -->
+      <div class="rec-send-section" id="sendSection">
+        <button class="mem-btn mem-btn-record" onclick="sendMemory()">send my memory to the stream</button>
+        <div class="rec-feedback" id="recFeedback"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bubbles -->
+  <script>
+    /* ══════════════════════════════════════════
+       BUBBLES
+    ══════════════════════════════════════════ */
+    const BUBBLE_WORDS = ['blub', 'blubblub'];
+    function spawnBubble() {
+      const el = document.createElement('span');
+      el.className = 'bubble-word';
+      el.textContent = BUBBLE_WORDS[Math.floor(Math.random() * BUBBLE_WORDS.length)];
+      const x = 5 + Math.random() * 85;
+      const size = (12 + Math.random() * 10).toFixed(1) + 'pt';
+      const duration = (5 + Math.random() * 5).toFixed(1) + 's';
+      const wobble = (Math.random() * 60 - 30).toFixed(0) + 'px';
+      el.style.setProperty('--duration', duration);
+      el.style.setProperty('--size', size);
+      el.style.setProperty('--wobble', wobble);
+      el.style.left = x + 'vw';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), parseFloat(duration) * 1000 + 100);
+    }
+    function scheduleBubble() {
+      spawnBubble();
+      setTimeout(scheduleBubble, 1200 + Math.random() * 1600);
+    }
+    scheduleBubble();
+
+    /* ══════════════════════════════════════════
+       RECORDER
+    ══════════════════════════════════════════ */
+    const UPLOAD_URL = 'https://shell.kokott.art/upload'; // ← confirm endpoint with your friend
+
+    let mediaRecorder = null;
+    let audioChunks   = [];
+    let audioBlob     = null;
+    let selectedTag   = null;
+    let timerInterval = null;
+    let seconds       = 0;
+    let animFrame     = null;
+    let analyser      = null;
+    let dataArray     = null;
+
+    const recDot        = document.getElementById('recDot');
+    const recStatusText = document.getElementById('recStatusText');
+    const recTimer      = document.getElementById('recTimer');
+    const startBtn      = document.getElementById('startBtn');
+    const stopBtn       = document.getElementById('stopBtn');
+    const waveform      = document.getElementById('waveform');
+    const waveCtx       = waveform.getContext('2d');
+
+    function formatTime(s) {
+      return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    }
+
+    function setStatus(text, state) {
+      recStatusText.textContent = text;
+      recDot.className = 'rec-dot' + (state ? ' ' + state : '');
+    }
+
+    /* ── Waveform drawing ── */
+    function drawWaveform() {
+      if (!analyser) return;
+      animFrame = requestAnimationFrame(drawWaveform);
+
+      const W = waveform.width  = waveform.offsetWidth;
+      const H = waveform.height = waveform.offsetHeight;
+
+      analyser.getByteTimeDomainData(dataArray);
+      waveCtx.clearRect(0, 0, W, H);
+      waveCtx.strokeStyle = '#0046FF';
+      waveCtx.lineWidth   = 2;
+      waveCtx.beginPath();
+
+      const sliceWidth = W / dataArray.length;
+      let x = 0;
+      for (let i = 0; i < dataArray.length; i++) {
+        const v = dataArray[i] / 128.0;
+        const y = (v * H) / 2;
+        i === 0 ? waveCtx.moveTo(x, y) : waveCtx.lineTo(x, y);
+        x += sliceWidth;
+      }
+      waveCtx.lineTo(W, H / 2);
+      waveCtx.stroke();
+    }
+
+    /* ── Start recording ── */
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+        // Set up Web Audio analyser for waveform
+        const audioCtx = new AudioContext();
+        const source   = audioCtx.createMediaStreamSource(stream);
+        analyser        = audioCtx.createAnalyser();
+        analyser.fftSize = 2048;
+        dataArray        = new Uint8Array(analyser.frequencyBinCount);
+        source.connect(analyser);
+
+        // Set up MediaRecorder — prefer wav-friendly formats
+        const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=pcm')
+          ? 'audio/webm;codecs=pcm'
+          : MediaRecorder.isTypeSupported('audio/webm')
+          ? 'audio/webm'
+          : 'audio/ogg';
+
+        mediaRecorder = new MediaRecorder(stream, { mimeType });
+        audioChunks   = [];
+
+        mediaRecorder.addEventListener('dataavailable', e => {
+          if (e.data.size > 0) audioChunks.push(e.data);
+        });
+
+        mediaRecorder.addEventListener('stop', () => {
+          stream.getTracks().forEach(t => t.stop());
+          audioCtx.close();
+          cancelAnimationFrame(animFrame);
+          analyser = null;
+
+          audioBlob = new Blob(audioChunks, { type: mimeType });
+          const url = URL.createObjectURL(audioBlob);
+          document.getElementById('audioPreview').src = url;
+
+          // Show playback + tag + send sections
+          show('divider1');
+          show('previewSection', true);
+          show('divider2');
+          show('tagSection', true);
+        });
+
+        mediaRecorder.start(100);
+
+        // UI
+        startBtn.style.display = 'none';
+        stopBtn.style.display  = 'inline-flex';
+        setStatus('recording...', 'recording');
+
+        // Timer
+        seconds = 0;
+        recTimer.textContent = formatTime(0);
+        timerInterval = setInterval(() => {
+          seconds++;
+          recTimer.textContent = formatTime(seconds);
+        }, 1000);
+
+        drawWaveform();
+
+      } catch (err) {
+        setStatus('microphone access denied', '');
+        console.error(err);
+      }
+    }
+
+    /* ── Stop recording ── */
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+      }
+      clearInterval(timerInterval);
+      stopBtn.style.display = 'none';
+      setStatus('recorded — ' + formatTime(seconds), 'done');
+
+      // Clear waveform
+      const W = waveform.width  = waveform.offsetWidth;
+      const H = waveform.height = waveform.offsetHeight;
+      waveCtx.clearRect(0, 0, W, H);
+    }
+
+    /* ── Tag selection ── */
+    function selectTag(tag, btn) {
+      selectedTag = tag;
+      document.querySelectorAll('#tagButtons .mem-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      show('divider3');
+      show('sendSection', true);
+    }
+
+    /* ── Send to shell.kokott.art ── */
+    async function sendMemory() {
+      if (!audioBlob) {
+        setFeedback('no recording found — please record first');
+        return;
+      }
+      if (!selectedTag) {
+        setFeedback('please choose a tag first');
+        return;
+      }
+
+      setFeedback('sending...');
+
+      // Convert to wav-compatible blob with .wav extension for the server
+      const filename = 'memory-' + selectedTag + '-' + Date.now() + '.wav';
+      const formData = new FormData();
+      formData.append('tag',  selectedTag);
+      formData.append('file', audioBlob, filename); // ← field name may need adjusting
+
+      try {
+        const res = await fetch(UPLOAD_URL, {
+          method: 'POST',
+          body:   formData,
+        });
+
+        if (res.ok) {
+          setFeedback('your memory is now floating in the stream. thank you.');
+          document.getElementById('sendSection').querySelector('.mem-btn').disabled = true;
+        } else {
+          const text = await res.text();
+          setFeedback('something went wrong (' + res.status + '). please try again.');
+          console.error(text);
+        }
+      } catch (err) {
+        setFeedback('could not reach the stream. check your connection.');
+        console.error(err);
+      }
+    }
+
+    function setFeedback(msg) {
+      document.getElementById('recFeedback').textContent = msg;
+    }
+
+    function show(id, flex) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.display = flex ? 'flex' : 'block';
+      if (flex) el.classList.add('visible');
+    }
+  </script>
+</body>
+</html>

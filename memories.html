@@ -117,18 +117,7 @@ which you already are in ca. 60 %... just add that extra 40 %, babe!
 Feel the flow! And tell us your memory, so it can float with the others! We want to hear your voice!</div>
 
         <div class="mem-answers">
-          <button class="mem-btn mem-btn-record" onclick="openRecorder()">record your water memory!</button>
-        </div>
-
-        <div class="mem-upload-area" id="recorderArea" style="display:none;">
-          <div class="mem-upload-inner">
-            <div class="mem-upload-label">leave us a voice message</div>
-            <!-- ↓↓↓ PASTE VOICE UPLOAD CODE HERE ↓↓↓ -->
-            <div class="mem-upload-slot">
-              <p>voice upload coming soon</p>
-            </div>
-            <!-- ↑↑↑ END VOICE UPLOAD SLOT ↑↑↑ -->
-          </div>
+          <button class="mem-btn mem-btn-record" onclick="window.location.href='recorder.html'">record your water memory!</button>
         </div>
       </div>
 
@@ -165,10 +154,6 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
       if (n === 3) {
         transitionTimer = setTimeout(() => goTo(4), 5000);
       }
-    }
-
-    function openRecorder() {
-      document.getElementById('recorderArea').style.display = 'block';
     }
 
     /* ══════════════════════════════════════════
