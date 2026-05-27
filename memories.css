@@ -243,3 +243,53 @@ body {
   .mem-answers        { gap: 10px; }
   .site-title         { font-size: 22pt; }
 }
+
+/* ════════════════════════════════════════════
+   TEAM PAGE
+════════════════════════════════════════════ */
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 640px;
+}
+
+.team-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1.5px solid rgba(0, 70, 255, 0.15);
+}
+
+.team-row:first-child {
+  border-top: 1.5px solid rgba(0, 70, 255, 0.15);
+}
+
+.team-role {
+  font-family: 'Celescript', cursive;
+  font-size: 12pt;
+  color: #0046FF;
+  opacity: 0.6;
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.team-names {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 400;
+  font-size: 16pt;
+  color: #0046FF;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .team-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .team-role  { min-width: unset; font-size: 10pt; }
+  .team-names { font-size: 14pt; }
+}
