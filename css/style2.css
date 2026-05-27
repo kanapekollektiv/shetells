@@ -7,19 +7,19 @@
 
 @font-face {
   font-family: 'NaNTresor';
-  src: url('../Fonts/NaNTresor/ttf/NaNTresorM-ExtraLight.ttf') format('truetype');
+  src: url('../Fonts/NaNTresor/NaNTresorM-ExtraLight.ttf') format('truetype');
   font-weight: 200;
 }
 
 @font-face {
   font-family: 'NaNTresor';
-  src: url('../Fonts/NaNTresor/ttf/NaNTresorM-Regular.ttf') format('truetype');
+  src: url('../Fonts/NaNTresor/NaNTresorM-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'NaNTresor';
-  src: url('../Fonts/NaNTresor/ttf/NaNTresorM-Bold.ttf') format('truetype');
+  src: url('../Fonts/NaNTresor/NaNTresorM-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 
