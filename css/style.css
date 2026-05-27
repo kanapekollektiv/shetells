@@ -1,0 +1,268 @@
+@font-face {
+  font-family: 'CeleScript';
+  src: url('../Fonts/Celescript (2).ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NaNTresor';
+  src: url('../Fonts/NaNTresor/ttf/NaNTresorM-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NaNTresor';
+  src: url('../Fonts/NaNTresor/ttf/NaNTresorM-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NaNTresor';
+  src: url('../Fonts/NaNTresor/ttf/NaNTresorM-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --crimson: #9C113F;
+  --white: #ffffff;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Page layout ── */
+.page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Background image ── */
+.bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../Background/Frame 4.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   KEY FIX: mix-blend-mode goes on the CONTAINER, not children.
+   Child elements inside a z-index stacking context blend within
+   that context (against white). Moving blend mode to the context
+   itself makes it blend against .bg in the page stacking context.
+───────────────────────────────────────────────────────────────*/
+
+/* ── Brand — difference blend, sits directly in page stacking context ── */
+.nav-brand {
+  position: absolute;
+  top: 2.4rem;
+  left: 2.8rem;
+  z-index: 10;
+  mix-blend-mode: difference;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+/* ── Buttons — full colours, no blend ── */
+.nav-actions {
+  position: absolute;
+  top: 2.4rem;
+  right: 2.8rem;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-title {
+  font-family: 'NaNTresor', serif;
+  font-weight: 400;
+  font-size: 62pt;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  font-family: 'CeleScript', cursive;
+  font-size: 16pt;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-block;   /* shrinks to text width so border-top starts at W */
+  border-top: 1.5px solid var(--white);
+  padding-top: 0.2rem;
+  margin-top: 0.1rem;
+  /* margin-left set by JS to align W with 'l' of "shells" */
+}
+
+/* ── Buttons ── */
+.btn {
+  font-family: 'CeleScript', cursive;
+  font-size: 16pt;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  letter-spacing: 0.04em;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--crimson);
+  color: var(--white);
+  padding: 0.55rem 1.4rem 0.55rem 1.6rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-primary .arrow {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--crimson);
+  padding: 0.55rem 1.5rem;
+  border-radius: 2rem;
+  border: 1.5px solid var(--crimson);
+}
+
+.btn-primary:hover {
+  background: #7a0d31;
+}
+
+.btn-secondary:hover {
+  background: var(--crimson);
+  color: var(--white);
+  border-color: var(--crimson);
+}
+
+/* ── Mid content — JS positions it to align with top of 'h' in "she tells" ── */
+.mid {
+  position: absolute;
+  z-index: 10;
+  mix-blend-mode: difference;
+  /* top / left set by JS */
+}
+
+.mid-text {
+  font-family: 'CeleScript', cursive;
+  font-size: 16pt;
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-top: 1.5px solid var(--white);
+  padding-top: 0.4rem;
+}
+
+/* ── "she tells" bottom strip ── */
+.she-tells {
+  position: absolute;
+  bottom: -8vh;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  mix-blend-mode: difference;
+  line-height: 0.85;
+}
+
+.she-tells-text {
+  font-family: 'NaNTresor', serif;
+  font-weight: 400;
+  color: var(--white);
+  white-space: nowrap;
+  display: block;
+  /* font-size set by JS to fill exactly 100vw */
+  letter-spacing: -0.02em;
+  padding: 0;
+}
+
+/* ── Overlay backdrop ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(156, 17, 63, 0.18);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Overlay box — no blend mode, renders on top cleanly ── */
+.overlay-box {
+  background: var(--white);
+  color: var(--crimson);
+  border-radius: 1.2rem;
+  padding: 2.8rem 3.2rem;
+  max-width: 520px;
+  width: 90%;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s;
+  box-shadow: 0 8px 40px rgba(156, 17, 63, 0.22);
+}
+
+.overlay.active .overlay-box {
+  transform: translateY(0);
+}
+
+.overlay-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.4rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--crimson);
+  cursor: pointer;
+  line-height: 1;
+  font-family: 'NaNTresor', serif;
+}
+
+.overlay-title {
+  font-family: 'NaNTresor', serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.overlay-body {
+  font-family: 'CeleScript', cursive;
+  font-size: 16pt;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
