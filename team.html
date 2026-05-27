@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sea shells — our team</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-image: url('shell.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    .team-bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('shell.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    .team-page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 36px 48px 64px;
+      gap: 48px;
+    }
+
+    /* Header */
+    .team-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .team-header a {
+      text-decoration: none;
+    }
+
+    .team-title-site {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 400;
+      font-size: clamp(24pt, 4vw, 42pt);
+      color: #6e00b0;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .team-subtitle-site {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(10pt, 1.2vw, 14pt);
+      color: #6e00b0;
+      margin-top: 6px;
+      padding-bottom: 4px;
+      border-bottom: 3px solid #6e00b0;
+      display: inline-flex;
+    }
+
+    /* Page heading */
+    .team-heading {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 400;
+      font-size: clamp(28pt, 5vw, 56pt);
+      color: #6e00b0;
+      line-height: 1;
+    }
+
+    /* Team members grid */
+    .team-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    /* Individual member card */
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 280px;
+    }
+
+    .member-name {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 400;
+      font-size: 22pt;
+      color: #6e00b0;
+      line-height: 1.1;
+    }
+
+    .member-role {
+      font-family: 'Celescript', cursive;
+      font-size: 13pt;
+      color: #6e00b0;
+      opacity: 0.75;
+    }
+
+    .member-bio {
+      font-family: 'Celescript', cursive;
+      font-size: 12pt;
+      color: #6e00b0;
+      line-height: 1.5;
+    }
+
+    /* Placeholder notice */
+    .team-placeholder {
+      font-family: 'Celescript', cursive;
+      font-size: 14pt;
+      color: #6e00b0;
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      .team-page { padding: 24px 20px 48px; }
+      .team-grid { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="team-bg"></div>
+
+  <div class="team-page">
+
+    <!-- Site header links back to landing -->
+    <div class="team-header">
+      <a href="index.html">
+        <div class="team-title-site">sea shells</div>
+        <div class="team-subtitle-site">we have lots to tell</div>
+      </a>
+    </div>
+
+    <div class="team-heading">our team</div>
+
+    <!-- Team members — fill in your details here -->
+    <div class="team-grid">
+
+      <!-- Member 1 — replace with real info -->
+      <div class="team-member">
+        <div class="member-name">Name Surname</div>
+        <div class="member-role">role / discipline</div>
+        <div class="member-bio">A short bio about this person goes here. What they do, what drives them, their connection to water.</div>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="team-member">
+        <div class="member-name">Name Surname</div>
+        <div class="member-role">role / discipline</div>
+        <div class="member-bio">A short bio about this person goes here. What they do, what drives them, their connection to water.</div>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="team-member">
+        <div class="member-name">Name Surname</div>
+        <div class="member-role">role / discipline</div>
+        <div class="member-bio">A short bio about this person goes here. What they do, what drives them, their connection to water.</div>
+      </div>
+
+    </div>
+
+    <div class="team-placeholder">← fill in your team members above</div>
+
+  </div>
+</body>
+</html>
