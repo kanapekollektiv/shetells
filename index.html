@@ -3,156 +3,267 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sea shells — she tells</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>She Tells — Sea Shells</title>
+  <link rel="stylesheet" href="css/style2.css" />
 </head>
 <body>
-  <div class="bg"></div>
 
-  <div class="page">
+<div class="page">
 
-    <!-- Top bar -->
-    <div class="top-bar" id="topBar">
-      <div class="header">
-        <div class="title">sea shells</div>
-        <div class="subtitle" id="subtitleEl">we have lots to tell</div>
-      </div>
+  <!-- Background image — fades in when spiral is clicked -->
+  <div class="page-bg"></div>
 
-      <nav class="nav">
-        <a href="stream.html" class="btn btn-stream">stream</a>
-
-        <a href="memories.html" class="btn btn-memories" id="memoriesBtn">
-          <canvas id="memoriesCanvas"></canvas>
-          <span>tell us your memories!</span>
-        </a>
-
-        <a href="#" class="btn btn-info" id="infoBtn">info</a>
-      </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-title">she tells</span>
+      <span class="brand-sub">——— sea shells</span>
     </div>
 
-    <!-- Middle: info panel lives here -->
-    <div class="middle" id="middleArea">
-      <div class="info-panel" id="infoPanel">
-        <canvas id="overlayCanvas"></canvas>
-        <div class="info-content">
-          <button class="info-close" id="infoClose" aria-label="Close">✕</button>
-          <p>
-            Hi!<br>
-            Lovely to see you here.<br>
-            <br>
-            Our project is called She Tells, Sea Shells (as you could have guessed already), and we want you to get closer to water, because it's important to pay more attention to your environment, there is the climate change, sustainability, AI using a lot of water, a big part of you is water, seafood is delicious and it's more and more full of plastic, swimming is nice, but there is plastic here too... well, we have tonnes of reasons, but mainly because <strong>we care about water, and we want you to care more.</strong><br>
-            <br>
-            We are part of <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener" style="color:#ffffff;text-decoration:underline;">S+T+ARTS Aquamotion</a> artist residency, so this project is funded by the EU, and we work together with <a href="https://rioneiva.com/" target="_blank" rel="noopener" style="color:#ffffff;text-decoration:underline;">Rio Neiva</a>. We are very happy about all these collaborations! By the way, by we, we mean our <a href="team.html" style="color:#ffffff;text-decoration:underline;">team</a>.<br>
-            <br>
-            Please take your time to surf around on this site! There is no rush.
-          </p>
-        </div>
-      </div>
+    <nav class="nav-buttons">
+      <button class="btn btn-circle" id="btn-info" aria-haspopup="dialog">?</button>
+      <a href="memories.html" class="btn btn-filled">Send your memories today!</a>
+      <a href="stream.html" class="btn btn-outline">tune in to the stream</a>
+    </nav>
+  </header>
+
+  <!-- Tagline — typewriter text -->
+  <p class="tagline"><span class="tagline-dash">— </span><span class="tagline-text"></span><span class="tagline-cursor"></span></p>
+
+  <!-- Illustrations -->
+  <div class="illustrations">
+
+    <div class="illus"
+         style="--size:19vw; --rot-start:-6deg; --rot-end:-3deg; --delay:0s; --duration:2.6s; --y-rest:-10vh;">
+      <img src="drawings/Asset 7.svg" alt="" />
     </div>
 
-    <!-- Bottom: toolkit + she tells image always last -->
-    <div class="bottom">
-      <div class="toolkit">
-        <p>a critical toolkit
-for listening
-&amp; remembering</p>
-      </div>
-      <div class="text-wrap">
-        <img src="shetells_purple_text.png" alt="she tells" />
-      </div>
+    <div class="illus illus-spiral" id="spiral-illus"
+         style="--size:17vw; --rot-start:4deg; --rot-end:3deg; --delay:0.3s; --duration:2.5s; --y-rest:-3vh;">
+      <img src="drawings/Asset 8.svg" alt="" />
+    </div>
+
+    <div class="illus"
+         style="--size:12vw; --rot-start:-3deg; --rot-end:1deg; --delay:0.55s; --duration:2.4s; --y-rest:-16vh;">
+      <img src="drawings/Asset 11.svg" alt="" />
+    </div>
+
+    <div class="illus"
+         style="--size:22vw; --rot-start:5deg; --rot-end:2deg; --delay:0.2s; --duration:2.7s; --y-rest:0px;">
+      <img src="drawings/Asset 14.svg" alt="" />
+    </div>
+
+    <div class="illus"
+         style="--size:16vw; --rot-start:-4deg; --rot-end:-2deg; --delay:0.4s; --duration:2.5s; --y-rest:-7vh;">
+      <img src="drawings/Asset 9.svg" alt="" />
     </div>
 
   </div>
 
-  <script>
-    const bgImg = new Image();
-    bgImg.crossOrigin = 'anonymous';
-    bgImg.src = 'shell.png';
+  <!-- Spiral click panel -->
+  <div id="spiral-panel">
+    <p class="spiral-title">sexy dunes</p>
+    <p class="spiral-body">
+      Research shows that<br>
+      dunes which look sexy<br>
+      have a 25% less chance<br>
+      of getting littered.
+    </p>
+    <p class="spiral-bold">We got you covered.</p>
+  </div>
 
-    function drawInverted(canvas, rect) {
-      const W = Math.round(rect.width);
-      const H = Math.round(rect.height);
-      if (W === 0 || H === 0) return;
+  <!-- Spiral floating CTA -->
+  <button id="spiral-cta" aria-haspopup="dialog">
+    <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
+    <span class="cta-pill-text">Send your memories today!</span>
+  </button>
 
-      canvas.width  = W;
-      canvas.height = H;
+  <!-- Disclaimer -->
+  <p class="page-disclaimer">
+    <strong>Disclaimer:</strong> Terms and conditions apply.
+    The numbers stated are all predictions based on data
+    from the She Tells Research Centre. Check the terms
+    and conditions on our website.
+  </p>
 
-      const ctx = canvas.getContext('2d');
-      const vw  = window.innerWidth;
-      const vh  = window.innerHeight;
-      const iw  = bgImg.naturalWidth  || 1;
-      const ih  = bgImg.naturalHeight || 1;
+</div>
 
-      const scale   = Math.max(vw / iw, vh / ih);
-      const offsetX = (vw - iw * scale) / 2;
-      const offsetY = 0;
+<!-- Info overlay -->
+<div class="overlay" id="overlay-info" role="dialog" aria-modal="true">
+  <div class="overlay-box">
+    <button class="overlay-close" id="close-info" aria-label="Close">✕</button>
+    <h2 class="overlay-title">sea shells</h2>
+    <div class="overlay-body">
+      <p>
+        Hi!<br>
+        Lovely to see you here.<br>
+        <br>
+        Our project is called She Tells, Sea Shells (as you could have guessed already), and we want you to get closer to water, because it's important to pay more attention to your environment, there is the climate change, sustainability, AI using a lot of water, a big part of you is water, seafood is delicious and it's more and more full of plastic, swimming is nice, but there is plastic here too... well, we have tonnes of reasons, but mainly because <strong>we care about water, and we want you to care more.</strong><br>
+        <br>
+        We are part of <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener" style="color:inherit;">S+T+ARTS Aquamotion</a> artist residency, so this project is funded by the EU, and we work together with <a href="https://rioneiva.com/" target="_blank" rel="noopener" style="color:inherit;">Rio Neiva</a>. We are very happy about all these collaborations! By the way, by we, we mean our <a href="team.html" style="color:inherit;">team</a>.<br>
+        <br>
+        Please take your time to surf around on this site! There is no rush.
+      </p>
+    </div>
+  </div>
+</div>
 
-      const sx = (rect.left - offsetX) / scale;
-      const sy = (rect.top  - offsetY) / scale;
-      const sw = W / scale;
-      const sh = H / scale;
+<script>
+  /* ── Info overlay ── */
+  const openOverlay  = id => { document.getElementById(id).classList.add('active');    document.body.style.overflow = 'hidden'; };
+  const closeOverlay = id => { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; };
 
-      ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, W, H);
+  document.getElementById('btn-info').addEventListener('click',   () => openOverlay('overlay-info'));
+  document.getElementById('close-info').addEventListener('click', () => closeOverlay('overlay-info'));
 
-      const id = ctx.getImageData(0, 0, W, H);
-      const d  = id.data;
-      for (let i = 0; i < d.length; i += 4) {
-        d[i]     = 255 - d[i];
-        d[i + 1] = 255 - d[i + 1];
-        d[i + 2] = 255 - d[i + 2];
+  document.querySelectorAll('.overlay').forEach(el => {
+    el.addEventListener('click', e => { if (e.target === el) closeOverlay(el.id); });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape')
+      document.querySelectorAll('.overlay.active').forEach(el => closeOverlay(el.id));
+  });
+
+  /* ── Typewriter ── */
+  const phrases = [
+    "I have… lots to tell you.., honey.",
+    "While you are waiting, we have lots to tell.",
+    "Yeah, I have things to tell.",
+    "We have lots to tell.",
+    "We have things to tell, honey.",
+    "We are telling you so you better listen, honey.",
+    "Baby! We have things to tell.",
+    "Do tell, tell we shell?",
+    "stay salty"
+  ];
+
+  const taglineText = document.querySelector('.tagline-text');
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+
+  function typeStep() {
+    const phrase = phrases[phraseIdx];
+    if (!deleting) {
+      charIdx++;
+      taglineText.textContent = phrase.slice(0, charIdx);
+      if (charIdx === phrase.length) {
+        deleting = true;
+        setTimeout(typeStep, 2200);
+        return;
       }
-      ctx.putImageData(id, 0, 0);
-    }
-
-    // ── Memories button ──
-    const memoriesBtn    = document.getElementById('memoriesBtn');
-    const memoriesCanvas = document.getElementById('memoriesCanvas');
-
-    function refreshMemoriesBtn() {
-      drawInverted(memoriesCanvas, memoriesBtn.getBoundingClientRect());
-    }
-
-    if (bgImg.complete && bgImg.naturalWidth) {
-      refreshMemoriesBtn();
+      const ch = phrase[charIdx - 1];
+      const speed = (ch === '.' || ch === ',' || ch === '…') ? 180 : 62;
+      setTimeout(typeStep, speed);
     } else {
-      bgImg.addEventListener('load', refreshMemoriesBtn);
-    }
-    window.addEventListener('resize', refreshMemoriesBtn);
-
-    // ── Info panel ──
-    const infoBtn       = document.getElementById('infoBtn');
-    const infoPanel     = document.getElementById('infoPanel');
-    const overlayCanvas = document.getElementById('overlayCanvas');
-    const infoClose     = document.getElementById('infoClose');
-
-    function refreshInfoCanvas() {
-      requestAnimationFrame(() => {
-        const rect = infoPanel.getBoundingClientRect();
-        drawInverted(overlayCanvas, rect);
-      });
-    }
-
-    function openInfo(e) {
-      e.preventDefault();
-      infoPanel.classList.add('active');
-      if (bgImg.complete && bgImg.naturalWidth) {
-        refreshInfoCanvas();
-      } else {
-        bgImg.addEventListener('load', refreshInfoCanvas);
+      charIdx--;
+      taglineText.textContent = phrase.slice(0, charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        setTimeout(typeStep, 420);
+        return;
       }
+      setTimeout(typeStep, 28);
     }
+  }
 
-    function closeInfo() {
-      infoPanel.classList.remove('active');
-    }
+  /* ── Spiral interaction ── */
+  const spiralIllus = document.getElementById('spiral-illus');
+  const spiralPanel = document.getElementById('spiral-panel');
+  const spiralCta   = document.getElementById('spiral-cta');
+  const disclaimer  = document.querySelector('.page-disclaimer');
+  const pageEl      = document.querySelector('.page');
+  let spiralOpen    = false;
 
-    infoBtn.addEventListener('click', openInfo);
-    infoClose.addEventListener('click', closeInfo);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfo(); });
-    window.addEventListener('resize', () => {
-      if (infoPanel.classList.contains('active')) refreshInfoCanvas();
-      refreshMemoriesBtn();
+  function positionSpiralContent() {
+    const rect = spiralIllus.getBoundingClientRect();
+    const cx   = rect.left + rect.width / 2;
+    const cy   = rect.top  + rect.height / 2;
+    spiralPanel.style.left      = Math.max(16, cx - rect.width * 1.9) + 'px';
+    spiralPanel.style.top       = (cy - rect.height * 0.3) + 'px';
+    spiralPanel.style.transform = 'none';
+    const ctaW = spiralCta.offsetWidth;
+    spiralCta.style.left  = (cx - ctaW / 2 + rect.width * 0.4) + 'px';
+    spiralCta.style.top   = (rect.top - 60) + 'px';
+    spiralCta.style.right = 'auto';
+  }
+
+  function openSpiral() {
+    spiralOpen = true;
+    positionSpiralContent();
+    spiralPanel.classList.add('active');
+    spiralCta.classList.add('active');
+    disclaimer.classList.add('active');
+    pageEl.classList.add('spiral-open');
+  }
+
+  function closeSpiral() {
+    spiralOpen = false;
+    spiralPanel.classList.remove('active');
+    spiralCta.classList.remove('active');
+    disclaimer.classList.remove('active');
+    pageEl.classList.remove('spiral-open');
+  }
+
+  spiralIllus.addEventListener('click', e => {
+    e.stopPropagation();
+    spiralOpen ? closeSpiral() : openSpiral();
+  });
+
+  // Spiral CTA goes to memories page
+  spiralCta.addEventListener('click', e => {
+    e.stopPropagation();
+    window.location.href = 'memories.html';
+  });
+
+  document.addEventListener('click', () => { if (spiralOpen) closeSpiral(); });
+
+  /* ── Tagline positioning ── */
+  function positionTagline() {
+    const btn     = document.getElementById('btn-info');
+    const tagline = document.querySelector('.tagline');
+    const btnRect = btn.getBoundingClientRect();
+    tagline.style.left  = btnRect.left + 'px';
+    tagline.style.right = 'auto';
+    tagline.style.top   = (btnRect.bottom + window.innerHeight * 0.14) + 'px';
+  }
+
+  /* ── Mobile layout ── */
+  function applyMobileLayout() {
+    const isMobile = window.innerWidth <= 768;
+    document.querySelectorAll('.illus').forEach(el => {
+      if (isMobile) {
+        el.style.setProperty('--y-rest', '0px');
+      } else {
+        const orig = el.dataset.yrest;
+        if (orig) el.style.setProperty('--y-rest', orig);
+      }
     });
-  </script>
+  }
+
+  document.querySelectorAll('.illus').forEach(el => {
+    el.dataset.yrest = el.style.getPropertyValue('--y-rest') || '0px';
+  });
+
+  applyMobileLayout();
+  window.addEventListener('resize', applyMobileLayout);
+  positionTagline();
+  window.addEventListener('resize', positionTagline);
+
+  /* ── Kick animations ── */
+  async function kickAnimations() {
+    await document.fonts.ready;
+    const imgs = [...document.querySelectorAll('.illus img')];
+    await Promise.all(imgs.map(img =>
+      img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
+    ));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.querySelectorAll('.illus').forEach(el => el.classList.add('animate'));
+    }));
+    setTimeout(typeStep, 2950 + 350);
+  }
+
+  kickAnimations();
+</script>
+
 </body>
 </html>
