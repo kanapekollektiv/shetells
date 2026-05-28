@@ -3,124 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sea shells — stream</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>she tells — stream</title>
+  <link rel="stylesheet" href="css/style2.css" />
   <style>
-    body {
-      background-image: url('blueshell.png');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+
+    /* ── Background layers ── */
+    .stream-bg-white {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 0;
+      transition: opacity 0.9s ease;
     }
 
-    .stream-bg {
+    .stream-bg-image {
       position: fixed;
       inset: 0;
       background-image: url('blueshell.png');
       background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
+      background-position: center;
       z-index: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
     }
 
-    /* Full-screen flex column, fills viewport */
+    body.is-playing .stream-bg-white { opacity: 0; }
+    body.is-playing .stream-bg-image { opacity: 1; }
+
+    /* ── Page wrapper ── */
     .stream-page {
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: space-between;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
-      padding: 36px 48px;
-    }
-
-    /* ── Site header on stream page — inverted colour ── */
-    .site-header {
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
     }
 
-    .site-title {
-      font-family: 'NaNTresorM', serif;
-      font-weight: 400;
-      font-size: clamp(24pt, 4vw, 42pt);
-      color: #ffffff;
-      line-height: 1;
-      letter-spacing: -0.01em;
-      mix-blend-mode: difference;
-    }
+    /* ── Header colour flips when playing ── */
+    body.is-playing .brand-title,
+    body.is-playing .brand-sub       { color: var(--white); }
+    body.is-playing .btn-circle      { border-color: var(--white); background: rgba(255,255,255,0.12); color: var(--white); }
+    body.is-playing .btn-circle:hover{ background: var(--white); color: var(--black); }
+    body.is-playing .btn-filled      { background: var(--brown); }
+    body.is-playing .btn-filled:hover{ background: #7a3620; }
 
-    .site-subtitle {
-      font-family: 'Celescript', cursive;
-      font-size: clamp(10pt, 1.2vw, 14pt);
-      color: #ffffff;
-      margin-top: 6px;
-      padding-bottom: 4px;
-      border-bottom: 3px solid #ffffff;
-      display: inline-flex;
-      align-self: flex-start;
-      mix-blend-mode: difference;
-    }
-
-    /* Back link */
-    .back-link {
-      font-family: 'Celescript', cursive;
-      font-size: 14pt;
-      color: #ff6ef7;
-      text-decoration: none;
-      padding-bottom: 4px;
-      border-bottom: 1.5px solid #ff6ef7;
-      mix-blend-mode: difference;
-      transition: opacity 0.2s;
-    }
-    .back-link:hover { opacity: 0.7; }
-
-    /* ── Player pill shared styles ── */
-    .player-wrapper {
-      position: relative;
-      display: inline-flex;
-    }
-
-    /* Centre player: override position to be centred */
-    .player-wrapper-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    /* The canvas fills the pill shape */
-    .player-wrapper canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 999px;
-      display: block;
-      z-index: 0;
-    }
-
-    /* One flex row inside the pill */
-    .player {
-      position: relative;
-      z-index: 1;
+    /* ── Centred player area ── */
+    .stream-center {
+      flex: 1;
       display: flex;
-      flex-direction: row;
       align-items: center;
-      gap: 16px;
-      padding: 10px 24px;
-      border-radius: 999px;
-      white-space: nowrap;
+      justify-content: center;
     }
 
+    /* ── Player pill — outlined like btn-outline ── */
+    .stream-player {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.65rem 1.6rem;
+      border-radius: 2rem;
+      border: 1.5px solid var(--black);
+      background: transparent;
+      transition: border-color 0.35s, background 0.35s;
+      cursor: default;
+    }
+
+    body.is-playing .stream-player {
+      border-color: var(--white);
+    }
+
+    /* ── Play / pause button ── */
     .play-btn {
       background: none;
       border: none;
@@ -132,193 +86,248 @@
       flex-shrink: 0;
     }
 
-    .play-icon { width: 14px; height: 14px; fill: #ffffff; display: block; }
-
-    .player-label {
-      font-family: 'Celescript', cursive;
-      font-size: 13pt;
-      color: #ffffff;
+    .play-icon {
+      width: 14px;
+      height: 14px;
+      fill: var(--black);
+      display: block;
+      transition: fill 0.35s;
     }
+
+    body.is-playing .play-icon { fill: var(--white); }
+
+    /* ── Player text elements ── */
+    .player-label {
+      font-family: 'CeleScript', cursive;
+      font-size: clamp(12px, 1.4vw, 18px);
+      letter-spacing: 0.06em;
+      color: var(--black);
+      transition: color 0.35s;
+    }
+
+    body.is-playing .player-label { color: var(--white); }
 
     .player-divider {
       width: 1px;
       height: 14px;
-      background: rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.2);
       flex-shrink: 0;
+      transition: background 0.35s;
     }
+
+    body.is-playing .player-divider { background: rgba(255,255,255,0.3); }
 
     .volume-label {
-      font-family: 'Celescript', cursive;
-      font-size: 11pt;
-      color: rgba(255,255,255,0.75);
+      font-family: 'CeleScript', cursive;
+      font-size: clamp(10px, 1.1vw, 14px);
+      color: rgba(0,0,0,0.5);
+      letter-spacing: 0.04em;
+      transition: color 0.35s;
     }
 
+    body.is-playing .volume-label { color: rgba(255,255,255,0.65); }
+
+    /* ── Volume slider ── */
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
       width: 80px;
       height: 2px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.4);
+      background: rgba(0,0,0,0.18);
       outline: none;
       cursor: pointer;
       flex-shrink: 0;
+      transition: background 0.35s;
     }
+    body.is-playing input[type="range"] { background: rgba(255,255,255,0.3); }
+
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 12px;
-      height: 12px;
+      width: 12px; height: 12px;
       border-radius: 50%;
-      background: #ffffff;
+      background: var(--black);
       cursor: pointer;
+      transition: background 0.35s;
     }
+    body.is-playing input[type="range"]::-webkit-slider-thumb { background: var(--white); }
+
     input[type="range"]::-moz-range-thumb {
-      width: 12px;
-      height: 12px;
+      width: 12px; height: 12px;
       border-radius: 50%;
-      background: #ffffff;
+      background: var(--black);
       border: none;
       cursor: pointer;
     }
+    body.is-playing input[type="range"]::-moz-range-thumb { background: var(--white); }
 
+    /* ── Status indicator ── */
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.18);
       flex-shrink: 0;
       transition: background 0.3s;
     }
     .status-dot.live { background: #7fff7f; }
 
     .status-text {
-      font-family: 'Celescript', cursive;
-      font-size: 11pt;
+      font-family: 'CeleScript', cursive;
+      font-size: clamp(10px, 1.1vw, 14px);
+      letter-spacing: 0.04em;
+      color: rgba(0,0,0,0.45);
+      transition: color 0.35s;
+    }
+    body.is-playing .status-text { color: rgba(255,255,255,0.65); }
+
+    /* ── Bubbles — only visible when playing ── */
+    .bubble-word {
+      position: fixed;
+      bottom: -60px;
+      font-family: 'CeleScript', cursive;
       color: rgba(255,255,255,0.65);
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      font-size: var(--size);
+      letter-spacing: 0.08em;
+      animation: bubbleRise var(--duration) ease-in forwards;
     }
 
-    @media (max-width: 600px) {
-      .stream-page { padding: 24px 20px; }
+    @keyframes bubbleRise {
+      0%   { transform: translateY(0)      translateX(0);             opacity: 0; }
+      10%  { opacity: 1; }
+      50%  { transform: translateY(-45vh)  translateX(var(--wobble)); opacity: 0.75; }
+      90%  { opacity: 0.35; }
+      100% { transform: translateY(-105vh) translateX(0);             opacity: 0; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .stream-player {
+        flex-wrap: wrap;
+        max-width: calc(100vw - 3rem);
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.6rem 1.2rem;
+      }
       input[type="range"] { width: 60px; }
     }
+
   </style>
 </head>
 <body>
-  <div class="stream-bg"></div>
+
+  <!-- Background layers -->
+  <div class="stream-bg-white"></div>
+  <div class="stream-bg-image"></div>
 
   <div class="stream-page">
 
-    <!-- Back link top-left -->
-    <!-- Top-left: site header -->
-    <div class="site-header">
+    <!-- Header — same structure as landing page -->
+    <header class="header">
       <a href="index.html" style="text-decoration:none;">
-        <div class="site-title">sea shells</div>
-        <div class="site-subtitle">we have lots to tell</div>
+        <div class="brand">
+          <span class="brand-title">she tells</span>
+          <span class="brand-sub">——— sea shells</span>
+        </div>
       </a>
-    </div>
+      <nav class="nav-buttons">
+        <a href="memories.html" class="btn btn-filled">Send your memories today!</a>
+      </nav>
+    </header>
 
-    <!-- Centre pill — absolutely centred in the page -->
-    <div class="player-wrapper player-wrapper-center" id="playerWrapperCenter">
-      <canvas id="playerCanvasCenter"></canvas>
-      <div class="player">
-        <button class="play-btn" id="playBtnCenter" aria-label="Play / Pause">
-          <svg class="play-icon" id="playIconCenter" viewBox="0 0 14 14">
+    <!-- Centred stream player -->
+    <div class="stream-center">
+      <div class="stream-player">
+        <button class="play-btn" id="playBtn" aria-label="Play / Pause">
+          <svg class="play-icon" id="playIcon" viewBox="0 0 14 14">
             <polygon points="2,1 13,7 2,13" />
           </svg>
         </button>
         <span class="player-label">stream</span>
         <div class="player-divider"></div>
         <span class="volume-label">vol</span>
-        <input type="range" id="volumeSliderCenter" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
         <div class="player-divider"></div>
-        <div class="status-dot" id="statusDotCenter"></div>
-        <span class="status-text" id="statusTextCenter">offline</span>
+        <div class="status-dot" id="statusDot"></div>
+        <span class="status-text" id="statusText">offline</span>
       </div>
     </div>
 
   </div>
 
   <script>
-    /* ── Shared inverted-canvas draw ── */
-    const bgImg = new Image();
-    bgImg.crossOrigin = 'anonymous';
-    bgImg.src = 'blueshell.png';
-
-    function drawInverted(canvas, rect) {
-      const W = Math.round(rect.width);
-      const H = Math.round(rect.height);
-      if (W === 0 || H === 0) return;
-      canvas.width  = W;
-      canvas.height = H;
-      const ctx = canvas.getContext('2d');
-      const vw  = window.innerWidth;
-      const vh  = window.innerHeight;
-      const iw  = bgImg.naturalWidth  || 1;
-      const ih  = bgImg.naturalHeight || 1;
-      const scale   = Math.max(vw / iw, vh / ih);
-      const offsetX = (vw - iw * scale) / 2;
-      const offsetY = (vh - ih * scale) / 2;
-      const sx = (rect.left - offsetX) / scale;
-      const sy = (rect.top  - offsetY) / scale;
-      ctx.drawImage(bgImg, sx, sy, W / scale, H / scale, 0, 0, W, H);
-      const id = ctx.getImageData(0, 0, W, H);
-      const d  = id.data;
-      for (let i = 0; i < d.length; i += 4) {
-        d[i]     = 255 - d[i];
-        d[i + 1] = 255 - d[i + 1];
-        d[i + 2] = 255 - d[i + 2];
-      }
-      ctx.putImageData(id, 0, 0);
-    }
-
-    const playerWrapperCenter = document.getElementById('playerWrapperCenter');
-    const playerCanvasCenter  = document.getElementById('playerCanvasCenter');
-
-    function refreshCanvas() {
-      requestAnimationFrame(() => {
-        drawInverted(playerCanvasCenter, playerWrapperCenter.getBoundingClientRect());
-      });
-    }
-
-    if (bgImg.complete && bgImg.naturalWidth) {
-      refreshCanvas();
-    } else {
-      bgImg.addEventListener('load', refreshCanvas);
-    }
-    window.addEventListener('resize', refreshCanvas);
-
-    /* ── Audio player ── */
     const STREAM_URL = 'https://shell.kokott.art/streams/debug/stream';
     const PLAY_PATH  = '<polygon points="2,1 13,7 2,13"/>';
     const PAUSE_PATH = '<rect x="1" y="1" width="4" height="12"/><rect x="9" y="1" width="4" height="12"/>';
 
-    let audio   = null;
-    let playing = false;
+    const playBtn    = document.getElementById('playBtn');
+    const playIcon   = document.getElementById('playIcon');
+    const volSlider  = document.getElementById('volumeSlider');
+    const statusDot  = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
 
-    const playBtn      = document.getElementById('playBtnCenter');
-    const playIcon     = document.getElementById('playIconCenter');
-    const volumeSlider = document.getElementById('volumeSliderCenter');
-    const statusDot    = document.getElementById('statusDotCenter');
-    const statusText   = document.getElementById('statusTextCenter');
+    let audio      = null;
+    let playing    = false;
+    let bubbleTimer = null;
 
+    /* ── Status ── */
     function setStatus(text, live) {
       statusText.textContent = text;
       statusDot.classList.toggle('live', live);
     }
 
+    /* ── Play state ── */
     function setPlayState(isPlaying) {
       playing = isPlaying;
       playIcon.innerHTML = isPlaying ? PAUSE_PATH : PLAY_PATH;
+      document.body.classList.toggle('is-playing', isPlaying);
+      isPlaying ? startBubbles() : stopBubbles();
     }
 
+    /* ── Bubble words ── */
+    const BUBBLE_WORDS = ['stream', 'stream', 'shhh', '~', 'stream'];
+
+    function spawnBubble() {
+      const el       = document.createElement('span');
+      el.className   = 'bubble-word';
+      el.textContent = BUBBLE_WORDS[Math.floor(Math.random() * BUBBLE_WORDS.length)];
+      const x        = 5 + Math.random() * 85;
+      const size     = (11 + Math.random() * 10).toFixed(1) + 'pt';
+      const duration = (5  + Math.random() * 5).toFixed(1)  + 's';
+      const wobble   = (Math.random() * 60 - 30).toFixed(0) + 'px';
+      el.style.setProperty('--duration', duration);
+      el.style.setProperty('--size',     size);
+      el.style.setProperty('--wobble',   wobble);
+      el.style.left = x + 'vw';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), parseFloat(duration) * 1000 + 100);
+    }
+
+    function startBubbles() {
+      function schedule() {
+        if (!playing) return;
+        spawnBubble();
+        bubbleTimer = setTimeout(schedule, 1200 + Math.random() * 1600);
+      }
+      schedule();
+    }
+
+    function stopBubbles() {
+      clearTimeout(bubbleTimer);
+      bubbleTimer = null;
+    }
+
+    /* ── Audio player ── */
     playBtn.addEventListener('click', () => {
       if (!audio) {
         audio = new Audio();
         audio.crossOrigin = 'anonymous';
-        audio.volume = parseFloat(volumeSlider.value);
+        audio.volume = parseFloat(volSlider.value);
         audio.addEventListener('waiting', () => setStatus('connecting…', false));
-        audio.addEventListener('playing', () => setStatus('live', true));
-        audio.addEventListener('stalled', () => setStatus('buffering…', false));
+        audio.addEventListener('playing', () => setStatus('live',        true));
+        audio.addEventListener('stalled', () => setStatus('buffering…',  false));
         audio.addEventListener('error',   () => {
           setStatus('error', false);
           setPlayState(false);
@@ -341,9 +350,10 @@
       }
     });
 
-    volumeSlider.addEventListener('input', () => {
-      if (audio) audio.volume = parseFloat(volumeSlider.value);
+    volSlider.addEventListener('input', () => {
+      if (audio) audio.volume = parseFloat(volSlider.value);
     });
   </script>
+
 </body>
 </html>
