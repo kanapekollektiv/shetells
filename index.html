@@ -33,7 +33,7 @@
   <!-- Illustrations -->
   <div class="illustrations">
 
-    <div class="illus"
+    <div class="illus illus-shell" id="shell-illus"
          style="--size:19vw; --rot-start:-6deg; --rot-end:-3deg; --delay:0s; --duration:2.6s; --y-rest:-10vh;">
       <img src="drawings/Asset 7.svg" alt="" />
     </div>
@@ -43,17 +43,17 @@
       <img src="drawings/Asset 8.svg" alt="" />
     </div>
 
-    <div class="illus"
+    <div class="illus illus-acid" id="acid-illus"
          style="--size:12vw; --rot-start:-3deg; --rot-end:1deg; --delay:0.55s; --duration:2.4s; --y-rest:-16vh;">
       <img src="drawings/Asset 11.svg" alt="" />
     </div>
 
-    <div class="illus"
+    <div class="illus illus-sargassum" id="sargassum-illus"
          style="--size:22vw; --rot-start:5deg; --rot-end:2deg; --delay:0.2s; --duration:2.7s; --y-rest:0px;">
       <img src="drawings/Asset 14.svg" alt="" />
     </div>
 
-    <div class="illus"
+    <div class="illus illus-o2" id="o2-illus"
          style="--size:16vw; --rot-start:-4deg; --rot-end:-2deg; --delay:0.4s; --duration:2.5s; --y-rest:-7vh;">
       <img src="drawings/Asset 9.svg" alt="" />
     </div>
@@ -78,12 +78,103 @@
     <span class="cta-pill-text">Send your memories today!</span>
   </button>
 
-  <!-- Disclaimer -->
-  <p class="page-disclaimer">
+  <!-- Spiral disclaimer -->
+  <p class="page-disclaimer" id="spiral-disclaimer">
     <strong>Disclaimer:</strong> Terms and conditions apply.
     The numbers stated are all predictions based on data
     from the She Tells Research Centre. Check the terms
     and conditions on our website.
+  </p>
+
+  <!-- Shell Cream corner button -->
+  <button id="shell-corner-btn">Outlast the acid era...</button>
+
+  <!-- Shell Cream text panel -->
+  <div id="shell-panel">
+    <p class="shell-title">Shell Cream</p>
+    <p class="shell-body">The ocean<br>doesn't care about<br>your insides</p>
+    <p class="shell-bold">But we do.</p>
+  </div>
+
+  <!-- Shell Cream floating CTA -->
+  <button id="shell-cta" aria-haspopup="dialog">
+    <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
+    <span class="cta-pill-text">Send your memories today!</span>
+  </button>
+
+  <!-- Shell Cream disclaimer -->
+  <p class="page-disclaimer" id="shell-disclaimer">
+    <strong>Disclaimer:</strong> She Tells Shell Cream is a cosmetic supplement and not
+    a solution to ocean acidification. Individual carbonate saturation levels
+    may vary. She Tells Corp assumes no liability for planetary pH.
+  </p>
+
+  <!-- Deluxe O₂ corner button -->
+  <button id="o2-corner-btn">You will oooh too...</button>
+
+  <!-- Deluxe O₂ text panel -->
+  <div id="o2-panel">
+    <p class="o2-title">deluxe o<sub>2</sub></p>
+    <p class="o2-body">Are you bored of your old, landy oxygen,<br>coming from those ugly green trees?</p>
+    <p class="o2-bold">Breathe better, darling!</p>
+  </div>
+
+  <!-- Deluxe O₂ floating CTA -->
+  <button id="o2-cta" aria-haspopup="dialog">
+    <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
+    <span class="cta-pill-text">Send your memories today!</span>
+  </button>
+
+  <!-- Deluxe O₂ disclaimer -->
+  <p class="page-disclaimer" id="o2-disclaimer">
+    <strong>Disclaimer:</strong> Please only consume our premium oxygen if evolution
+    has equipped you with the proper organs to process it.
+  </p>
+
+  <!-- Sargassum City corner button -->
+  <button id="sargassum-corner-btn">@ The Big Sea-ty Life</button>
+
+  <!-- Sargassum City text panel -->
+  <div id="sargassum-panel">
+    <p class="sargassum-title">sargassum city</p>
+    <p class="sargassum-body">Take me down to Sargassum City.<br>Where the grass is green<br>and the fish are pretty.</p>
+    <p class="sargassum-bold">Get your prime location now.</p>
+  </div>
+
+  <!-- Sargassum City floating CTA -->
+  <button id="sargassum-cta" aria-haspopup="dialog">
+    <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
+    <span class="cta-pill-text">Send your memories today!</span>
+  </button>
+
+  <!-- Sargassum City disclaimer -->
+  <p class="page-disclaimer" id="sargassum-disclaimer">
+    <strong>Disclaimer:</strong> At Sargassum City, we do not take responsibility for climate change,
+    carbon emissions, or the plastic in your body. If any of these symptoms occur in your area,
+    please ask your doctor or pharmacist whether this is right for you.
+  </p>
+
+  <!-- Acid Tabs corner button -->
+  <button id="acid-corner-btn">DISSOLVE WITH DIGNITY.</button>
+
+  <!-- Acid Tabs text panel -->
+  <div id="acid-panel">
+    <p class="acid-title">acid tabs</p>
+    <p class="acid-body">Keep your ACID UNDER control.<br>Now in Dimethyl SULFIDE Flavour!</p>
+    <p class="acid-bold">The ocean will never leave you now.</p>
+  </div>
+
+  <!-- Acid Tabs floating CTA -->
+  <button id="acid-cta" aria-haspopup="dialog">
+    <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
+    <span class="cta-pill-text">Send your memories today!</span>
+  </button>
+
+  <!-- Acid Tabs disclaimer -->
+  <p class="page-disclaimer" id="acid-disclaimer">
+    <strong>Disclaimer:</strong> She Tells Acid Tabs are a food supplement and not a substitute
+    for medical advice, ocean governance, or carbonate chemistry. Results may vary depending on
+    your personal pH levels and the current aragonite saturation of your local waters.
   </p>
 
 </div>
@@ -166,13 +257,23 @@
     }
   }
 
+  /* ── Shared state ── */
+  const pageEl = document.querySelector('.page');
+  let spiralOpen = false, shellOpen = false, o2Open = false, sargassumOpen = false, acidOpen = false;
+
+  function closeAll() {
+    if (spiralOpen)    closeSpiral();
+    if (shellOpen)     closeShell();
+    if (o2Open)        closeO2();
+    if (sargassumOpen) closeSargassum();
+    if (acidOpen)      closeAcid();
+  }
+
   /* ── Spiral interaction ── */
-  const spiralIllus = document.getElementById('spiral-illus');
-  const spiralPanel = document.getElementById('spiral-panel');
-  const spiralCta   = document.getElementById('spiral-cta');
-  const disclaimer  = document.querySelector('.page-disclaimer');
-  const pageEl      = document.querySelector('.page');
-  let spiralOpen    = false;
+  const spiralIllus    = document.getElementById('spiral-illus');
+  const spiralPanel    = document.getElementById('spiral-panel');
+  const spiralCta      = document.getElementById('spiral-cta');
+  const spiralDisclaimer = document.getElementById('spiral-disclaimer');
 
   function positionSpiralContent() {
     const rect = spiralIllus.getBoundingClientRect();
@@ -188,11 +289,12 @@
   }
 
   function openSpiral() {
+    closeAll();
     spiralOpen = true;
     positionSpiralContent();
     spiralPanel.classList.add('active');
     spiralCta.classList.add('active');
-    disclaimer.classList.add('active');
+    spiralDisclaimer.classList.add('active');
     pageEl.classList.add('spiral-open');
   }
 
@@ -200,22 +302,193 @@
     spiralOpen = false;
     spiralPanel.classList.remove('active');
     spiralCta.classList.remove('active');
-    disclaimer.classList.remove('active');
+    spiralDisclaimer.classList.remove('active');
     pageEl.classList.remove('spiral-open');
   }
 
-  spiralIllus.addEventListener('click', e => {
-    e.stopPropagation();
-    spiralOpen ? closeSpiral() : openSpiral();
-  });
+  spiralIllus.addEventListener('click', e => { e.stopPropagation(); spiralOpen ? closeSpiral() : openSpiral(); });
+  spiralCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
 
-  // Spiral CTA goes to memories page
-  spiralCta.addEventListener('click', e => {
-    e.stopPropagation();
-    window.location.href = 'memories.html';
-  });
+  /* ── Shell Cream (Asset 7) ── */
+  const shellIllus      = document.getElementById('shell-illus');
+  const shellPanel      = document.getElementById('shell-panel');
+  const shellCta        = document.getElementById('shell-cta');
+  const shellDisclaimer = document.getElementById('shell-disclaimer');
+  const shellCornerBtn  = document.getElementById('shell-corner-btn');
 
-  document.addEventListener('click', () => { if (spiralOpen) closeSpiral(); });
+  function positionShellContent() {
+    const rect = shellIllus.getBoundingClientRect();
+    const cx   = rect.left + rect.width / 2;
+    const cy   = rect.top  + rect.height / 2;
+    const panelLeft = rect.right + rect.width * 0.3;
+    shellPanel.style.left  = Math.min(panelLeft, window.innerWidth * 0.38) + 'px';
+    shellPanel.style.top   = (cy - rect.height * 0.3) + 'px';
+    shellPanel.style.transform = 'none';
+    const ctaW = shellCta.offsetWidth;
+    shellCta.style.left  = (cx - ctaW / 2 + rect.width * 0.1) + 'px';
+    shellCta.style.top   = (rect.top - 60) + 'px';
+    shellCta.style.right = 'auto';
+  }
+
+  function openShell() {
+    closeAll();
+    shellOpen = true;
+    positionShellContent();
+    shellPanel.classList.add('active');
+    shellCta.classList.add('active');
+    shellDisclaimer.classList.add('active');
+    shellCornerBtn.classList.add('active');
+    pageEl.classList.add('shell-open');
+  }
+
+  function closeShell() {
+    shellOpen = false;
+    shellPanel.classList.remove('active');
+    shellCta.classList.remove('active');
+    shellDisclaimer.classList.remove('active');
+    shellCornerBtn.classList.remove('active');
+    pageEl.classList.remove('shell-open');
+  }
+
+  shellIllus.addEventListener('click', e => { e.stopPropagation(); shellOpen ? closeShell() : openShell(); });
+  shellCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
+  shellCornerBtn.addEventListener('click', e => { e.stopPropagation(); closeShell(); });
+
+  /* ── Deluxe O₂ (Asset 9) ── */
+  const o2Illus      = document.getElementById('o2-illus');
+  const o2Panel      = document.getElementById('o2-panel');
+  const o2Cta        = document.getElementById('o2-cta');
+  const o2Disclaimer = document.getElementById('o2-disclaimer');
+  const o2CornerBtn  = document.getElementById('o2-corner-btn');
+
+  function positionO2Content() {
+    const rect = o2Illus.getBoundingClientRect();
+    const cx   = rect.left + rect.width / 2;
+    const cy   = rect.top  + rect.height / 2;
+    const panelW = o2Panel.offsetWidth;
+    o2Panel.style.left      = Math.max(16, cx - rect.width * 1.8 - panelW * 0.3) + 'px';
+    o2Panel.style.top       = (cy - rect.height * 0.3) + 'px';
+    o2Panel.style.transform = 'none';
+    const ctaW = o2Cta.offsetWidth;
+    const ctaLeft = Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 16);
+    o2Cta.style.left  = Math.max(16, ctaLeft) + 'px';
+    o2Cta.style.top   = (rect.top - 60) + 'px';
+    o2Cta.style.right = 'auto';
+  }
+
+  function openO2() {
+    closeAll();
+    o2Open = true;
+    positionO2Content();
+    o2Panel.classList.add('active');
+    o2Cta.classList.add('active');
+    o2Disclaimer.classList.add('active');
+    o2CornerBtn.classList.add('active');
+    pageEl.classList.add('o2-open');
+  }
+
+  function closeO2() {
+    o2Open = false;
+    o2Panel.classList.remove('active');
+    o2Cta.classList.remove('active');
+    o2Disclaimer.classList.remove('active');
+    o2CornerBtn.classList.remove('active');
+    pageEl.classList.remove('o2-open');
+  }
+
+  o2Illus.addEventListener('click', e => { e.stopPropagation(); o2Open ? closeO2() : openO2(); });
+  o2Cta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
+  o2CornerBtn.addEventListener('click', e => { e.stopPropagation(); closeO2(); });
+
+  /* ── Sargassum City (Asset 14) ── */
+  const sargassumIllus      = document.getElementById('sargassum-illus');
+  const sargassumPanel      = document.getElementById('sargassum-panel');
+  const sargassumCta        = document.getElementById('sargassum-cta');
+  const sargassumDisclaimer = document.getElementById('sargassum-disclaimer');
+  const sargassumCornerBtn  = document.getElementById('sargassum-corner-btn');
+
+  function positionSargassumContent() {
+    const rect = sargassumIllus.getBoundingClientRect();
+    const cx   = rect.left + rect.width / 2;
+    const panelW = sargassumPanel.offsetWidth;
+    sargassumPanel.style.left      = Math.max(16, cx - rect.width * 1.6 - panelW * 0.2) + 'px';
+    sargassumPanel.style.transform = 'none';
+    const ctaW = sargassumCta.offsetWidth;
+    sargassumCta.style.left  = (cx - ctaW / 2) + 'px';
+    sargassumCta.style.top   = (rect.top - 60) + 'px';
+    sargassumCta.style.right = 'auto';
+  }
+
+  function openSargassum() {
+    closeAll();
+    sargassumOpen = true;
+    positionSargassumContent();
+    sargassumPanel.classList.add('active');
+    sargassumCta.classList.add('active');
+    sargassumDisclaimer.classList.add('active');
+    sargassumCornerBtn.classList.add('active');
+    pageEl.classList.add('sargassum-open');
+  }
+
+  function closeSargassum() {
+    sargassumOpen = false;
+    sargassumPanel.classList.remove('active');
+    sargassumCta.classList.remove('active');
+    sargassumDisclaimer.classList.remove('active');
+    sargassumCornerBtn.classList.remove('active');
+    pageEl.classList.remove('sargassum-open');
+  }
+
+  sargassumIllus.addEventListener('click', e => { e.stopPropagation(); sargassumOpen ? closeSargassum() : openSargassum(); });
+  sargassumCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
+  sargassumCornerBtn.addEventListener('click', e => { e.stopPropagation(); closeSargassum(); });
+
+  /* ── Acid Tabs (Asset 11) ── */
+  const acidIllus      = document.getElementById('acid-illus');
+  const acidPanel      = document.getElementById('acid-panel');
+  const acidCta        = document.getElementById('acid-cta');
+  const acidDisclaimer = document.getElementById('acid-disclaimer');
+  const acidCornerBtn  = document.getElementById('acid-corner-btn');
+
+  function positionAcidContent() {
+    const rect = acidIllus.getBoundingClientRect();
+    const cx   = rect.left + rect.width / 2;
+    const cy   = rect.top  + rect.height / 2;
+    const panelW = acidPanel.offsetWidth;
+    acidPanel.style.left      = Math.max(16, cx - rect.width * 1.6 - panelW * 0.2) + 'px';
+    acidPanel.style.top       = (cy - rect.height * 0.3) + 'px';
+    acidPanel.style.transform = 'none';
+    const ctaW = acidCta.offsetWidth;
+    acidCta.style.left  = (cx - ctaW / 2) + 'px';
+    acidCta.style.top   = (rect.top - 60) + 'px';
+    acidCta.style.right = 'auto';
+  }
+
+  function openAcid() {
+    closeAll();
+    acidOpen = true;
+    positionAcidContent();
+    acidPanel.classList.add('active');
+    acidCta.classList.add('active');
+    acidDisclaimer.classList.add('active');
+    acidCornerBtn.classList.add('active');
+    pageEl.classList.add('acid-open');
+  }
+
+  function closeAcid() {
+    acidOpen = false;
+    acidPanel.classList.remove('active');
+    acidCta.classList.remove('active');
+    acidDisclaimer.classList.remove('active');
+    acidCornerBtn.classList.remove('active');
+    pageEl.classList.remove('acid-open');
+  }
+
+  acidIllus.addEventListener('click', e => { e.stopPropagation(); acidOpen ? closeAcid() : openAcid(); });
+  acidCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
+  acidCornerBtn.addEventListener('click', e => { e.stopPropagation(); closeAcid(); });
+
+  document.addEventListener('click', closeAll);
 
   /* ── Tagline positioning ── */
   function positionTagline() {
