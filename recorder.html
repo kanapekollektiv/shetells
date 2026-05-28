@@ -111,10 +111,44 @@
 
     .rec-preview.visible { display: flex; }
 
-    .rec-preview audio {
-      width: 100%;
+    /* Custom audio player */
+    .rec-player {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       max-width: 480px;
-      accent-color: #0046FF;
+    }
+
+    .rec-player-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .rec-progress-wrap {
+      flex: 1;
+      height: 3px;
+      background: rgba(0, 70, 255, 0.15);
+      border-radius: 999px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .rec-progress-bar {
+      height: 100%;
+      background: #0046FF;
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    .rec-time {
+      font-family: 'Celescript', cursive;
+      font-size: 11pt;
+      color: rgba(0, 70, 255, 0.6);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* Tag question */
@@ -201,7 +235,16 @@
       <!-- Playback preview -->
       <div class="rec-preview" id="previewSection">
         <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">listen back</div>
-        <audio id="audioPreview" controls></audio>
+        <audio id="audioPreview"></audio>
+        <div class="rec-player">
+          <div class="rec-player-controls">
+            <button class="mem-btn" id="previewPlayBtn" onclick="togglePreview()">▶ play</button>
+            <div class="rec-progress-wrap" id="progressWrap" onclick="seekPreview(event)">
+              <div class="rec-progress-bar" id="progressBar"></div>
+            </div>
+            <span class="rec-time" id="previewTime">0:00</span>
+          </div>
+        </div>
       </div>
 
       <div class="rec-divider" id="divider2" style="display:none;"></div>
@@ -452,6 +495,42 @@
       if (!el) return;
       el.style.display = flex ? 'flex' : 'block';
       if (flex) el.classList.add('visible');
+    }
+
+    /* ── Custom audio preview player ── */
+    const audioPreview   = document.getElementById('audioPreview');
+    const previewPlayBtn = document.getElementById('previewPlayBtn');
+    const progressBar    = document.getElementById('progressBar');
+    const previewTime    = document.getElementById('previewTime');
+
+    function togglePreview() {
+      if (audioPreview.paused) {
+        audioPreview.play();
+        previewPlayBtn.textContent = '⏸ pause';
+      } else {
+        audioPreview.pause();
+        previewPlayBtn.textContent = '▶ play';
+      }
+    }
+
+    audioPreview.addEventListener('timeupdate', () => {
+      if (!audioPreview.duration) return;
+      const pct = (audioPreview.currentTime / audioPreview.duration) * 100;
+      progressBar.style.width = pct + '%';
+      previewTime.textContent = formatTime(Math.floor(audioPreview.currentTime));
+    });
+
+    audioPreview.addEventListener('ended', () => {
+      previewPlayBtn.textContent = '▶ play';
+      progressBar.style.width = '0%';
+      previewTime.textContent = '0:00';
+    });
+
+    function seekPreview(e) {
+      if (!audioPreview.duration) return;
+      const rect = document.getElementById('progressWrap').getBoundingClientRect();
+      const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      audioPreview.currentTime = pct * audioPreview.duration;
     }
   </script>
 </body>
