@@ -7,6 +7,38 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="memories.css" />
   <style>
+    /* ── ExtraLight weight for brand title ── */
+    @font-face {
+      font-family: 'NaNTresorM';
+      src: url('Fonts/NaNTresor/NaNTresorM-ExtraLight.ttf') format('truetype');
+      font-weight: 200;
+    }
+
+    /* ── Brand header (matches all other pages) ── */
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+    }
+
+    .brand-title {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 200;
+      font-size: clamp(40px, 5.5vw, 80px);
+      line-height: 1;
+      color: #0046FF;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(11px, 1.2vw, 16px);
+      color: #0046FF;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
     /* ── Recorder-specific styles ── */
 
     .rec-status {
@@ -123,9 +155,9 @@
     <!-- Header -->
     <div class="mem-topbar">
       <a href="index.html" style="text-decoration:none;">
-        <div class="site-header">
-          <div class="site-title">sea shells</div>
-          <div class="site-subtitle">we have lots to tell</div>
+        <div class="brand">
+          <span class="brand-title">she tells</span>
+          <span class="brand-sub">——— sea shells</span>
         </div>
       </a>
     </div>
