@@ -643,16 +643,14 @@ html, body {
     transform: none !important;
   }
 
-  /* ── All CTA buttons: centred in the gap between text and illustrations ── */
+  /* ── All CTA buttons: JS positions them above the illustration ── */
   #spiral-cta,
   #shell-cta,
   #o2-cta,
   #sargassum-cta,
   #acid-cta {
-    left: 50% !important;
     right: auto !important;
-    top: 42% !important;
-    transform: translateX(-50%);
+    transform: none !important;
   }
 
   /* ── Disclaimer ── */

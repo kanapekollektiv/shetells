@@ -283,8 +283,15 @@
     spiralPanel.style.top       = (cy - rect.height * 0.3) + 'px';
     spiralPanel.style.transform = 'none';
     const ctaW = spiralCta.offsetWidth;
-    spiralCta.style.left  = (cx - ctaW / 2 + rect.width * 0.4) + 'px';
-    spiralCta.style.top   = (rect.top - 60) + 'px';
+    const ctaH = spiralCta.offsetHeight || 80;
+    if (window.innerWidth <= 768) {
+      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
+      spiralCta.style.left  = left + 'px';
+      spiralCta.style.top   = Math.max(80, rect.top - ctaH - 8) + 'px';
+    } else {
+      spiralCta.style.left  = (cx - ctaW / 2 + rect.width * 0.4) + 'px';
+      spiralCta.style.top   = (rect.top - 60) + 'px';
+    }
     spiralCta.style.right = 'auto';
   }
 
@@ -325,8 +332,15 @@
     shellPanel.style.top   = (cy - rect.height * 0.3) + 'px';
     shellPanel.style.transform = 'none';
     const ctaW = shellCta.offsetWidth;
-    shellCta.style.left  = (cx - ctaW / 2 + rect.width * 0.1) + 'px';
-    shellCta.style.top   = (rect.top - 60) + 'px';
+    const ctaH = shellCta.offsetHeight || 80;
+    if (window.innerWidth <= 768) {
+      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
+      shellCta.style.left  = left + 'px';
+      shellCta.style.top   = Math.max(80, rect.top - ctaH - 8) + 'px';
+    } else {
+      shellCta.style.left  = (cx - ctaW / 2 + rect.width * 0.1) + 'px';
+      shellCta.style.top   = (rect.top - 60) + 'px';
+    }
     shellCta.style.right = 'auto';
   }
 
@@ -370,9 +384,16 @@
     o2Panel.style.top       = (cy - rect.height * 0.3) + 'px';
     o2Panel.style.transform = 'none';
     const ctaW = o2Cta.offsetWidth;
-    const ctaLeft = Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 16);
-    o2Cta.style.left  = Math.max(16, ctaLeft) + 'px';
-    o2Cta.style.top   = (rect.top - 60) + 'px';
+    const ctaH = o2Cta.offsetHeight || 80;
+    if (window.innerWidth <= 768) {
+      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
+      o2Cta.style.left  = left + 'px';
+      o2Cta.style.top   = Math.max(80, rect.top - ctaH - 8) + 'px';
+    } else {
+      const ctaLeft = Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 16);
+      o2Cta.style.left  = Math.max(16, ctaLeft) + 'px';
+      o2Cta.style.top   = (rect.top - 60) + 'px';
+    }
     o2Cta.style.right = 'auto';
   }
 
@@ -414,8 +435,15 @@
     sargassumPanel.style.left      = Math.max(16, cx - rect.width * 1.6 - panelW * 0.2) + 'px';
     sargassumPanel.style.transform = 'none';
     const ctaW = sargassumCta.offsetWidth;
-    sargassumCta.style.left  = (cx - ctaW / 2) + 'px';
-    sargassumCta.style.top   = (rect.top - 60) + 'px';
+    const ctaH = sargassumCta.offsetHeight || 80;
+    if (window.innerWidth <= 768) {
+      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
+      sargassumCta.style.left  = left + 'px';
+      sargassumCta.style.top   = Math.max(80, rect.top - ctaH - 8) + 'px';
+    } else {
+      sargassumCta.style.left  = (cx - ctaW / 2) + 'px';
+      sargassumCta.style.top   = (rect.top - 60) + 'px';
+    }
     sargassumCta.style.right = 'auto';
   }
 
@@ -459,8 +487,15 @@
     acidPanel.style.top       = (cy - rect.height * 0.3) + 'px';
     acidPanel.style.transform = 'none';
     const ctaW = acidCta.offsetWidth;
-    acidCta.style.left  = (cx - ctaW / 2) + 'px';
-    acidCta.style.top   = (rect.top - 60) + 'px';
+    const ctaH = acidCta.offsetHeight || 80;
+    if (window.innerWidth <= 768) {
+      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
+      acidCta.style.left  = left + 'px';
+      acidCta.style.top   = Math.max(80, rect.top - ctaH - 8) + 'px';
+    } else {
+      acidCta.style.left  = (cx - ctaW / 2) + 'px';
+      acidCta.style.top   = (rect.top - 60) + 'px';
+    }
     acidCta.style.right = 'auto';
   }
 
