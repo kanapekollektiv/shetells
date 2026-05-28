@@ -114,8 +114,18 @@ html, body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
 }
 .spiral-open .brand-sub { color: var(--white); }
+
+.brand-line {
+  width: clamp(36px, 3.5vw, 55px);
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
 
 /* ── Nav buttons ── */
 .nav-buttons {

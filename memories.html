@@ -37,6 +37,16 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .brand-line {
+      width: clamp(36px, 3.5vw, 55px);
+      height: auto;
+      display: block;
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -50,7 +60,7 @@
       <a href="index.html" style="text-decoration:none;">
         <div class="brand">
           <span class="brand-title">she tells</span>
-          <span class="brand-sub">——— sea shells</span>
+          <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
         </div>
       </a>
       <span class="mem-step" id="stepLabel">1 / 2</span>
