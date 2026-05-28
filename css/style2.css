@@ -564,7 +564,7 @@ html, body {
   .tagline {
     width: calc(100vw - 1.5rem) !important;
     left: 0.75rem !important;
-    top: 30% !important;      /* overrides JS inline style */
+    top: 26% !important;      /* overrides JS inline style */
     bottom: auto;
     font-size: clamp(12px, 3.8vw, 18px);
   }
@@ -591,45 +591,44 @@ html, body {
      but also set here as a fallback for browsers that respect it. */
   .illus { --y-rest: 0px; }
 
-  /* ── Individual placement — all in the bottom 45% so text panels
-     have clear space above them when a section is opened ── */
+  /* ── Individual placement — staggered scatter across lower 55% ── */
 
-  /* 1: Asset 7 (Shell) — bottom-left */
+  /* 1: Asset 7 (Shell) — mid-right */
   .illustrations .illus:nth-child(1) {
-    top: 58%;
-    left: 2vw;
-  }
-  .illustrations .illus:nth-child(1) img { width: 36vw; max-height: none; }
-
-  /* 2: Spiral — bottom-centre */
-  .illus-spiral {
-    top: 55%;
-    left: 30vw;
-  }
-  .illus-spiral img { width: 32vw !important; max-height: none; }
-
-  /* 3: Asset 11 (Acid) — bottom-right, above the others */
-  .illustrations .illus:nth-child(3) {
-    top: 55%;
-    right: 4vw;
+    top: 56%;
+    right: 3vw;
     left: auto;
   }
-  .illustrations .illus:nth-child(3) img { width: 20vw; max-height: none; }
+  .illustrations .illus:nth-child(1) img { width: 42vw; max-height: none; }
 
-  /* 4: Asset 14 (Sargassum) — lower-left */
-  .illustrations .illus:nth-child(4) {
-    top: 72%;
+  /* 2: Spiral — lower-left */
+  .illus-spiral {
+    top: 73%;
     left: 6vw;
   }
-  .illustrations .illus:nth-child(4) img { width: 42vw; max-height: none; }
+  .illus-spiral img { width: 40vw !important; max-height: none; }
 
-  /* 5: Asset 9 (O₂) — lower-right */
-  .illustrations .illus:nth-child(5) {
-    top: 68%;
-    right: 6vw;
+  /* 3: Asset 11 (Acid seaweed) — lower-right */
+  .illustrations .illus:nth-child(3) {
+    top: 70%;
+    right: 3vw;
     left: auto;
   }
-  .illustrations .illus:nth-child(5) img { width: 28vw; max-height: none; }
+  .illustrations .illus:nth-child(3) img { width: 30vw; max-height: none; }
+
+  /* 4: Asset 14 (Sargassum submarine) — upper-centre, highest illustration */
+  .illustrations .illus:nth-child(4) {
+    top: 42%;
+    left: 16vw;
+  }
+  .illustrations .illus:nth-child(4) img { width: 56vw; max-height: none; }
+
+  /* 5: Asset 9 (O₂) — mid-left */
+  .illustrations .illus:nth-child(5) {
+    top: 62%;
+    left: 2vw;
+  }
+  .illustrations .illus:nth-child(5) img { width: 30vw; max-height: none; }
 
   /* ── All text panels: appear just below the header ── */
   #spiral-panel,
