@@ -601,10 +601,10 @@ html, body {
   }
   .illustrations .illus:nth-child(1) img { width: 42vw; max-height: none; }
 
-  /* 2: Spiral — lower-left */
+  /* 2: Spiral — lower, shifted right so it clears the O₂ */
   .illus-spiral {
-    top: 73%;
-    left: 6vw;
+    top: 76%;
+    left: 22vw;
   }
   .illus-spiral img { width: 40vw !important; max-height: none; }
 
@@ -623,12 +623,12 @@ html, body {
   }
   .illustrations .illus:nth-child(4) img { width: 56vw; max-height: none; }
 
-  /* 5: Asset 9 (O₂) — mid-left */
+  /* 5: Asset 9 (O₂) — mid-left, well above the spiral */
   .illustrations .illus:nth-child(5) {
-    top: 62%;
+    top: 60%;
     left: 2vw;
   }
-  .illustrations .illus:nth-child(5) img { width: 30vw; max-height: none; }
+  .illustrations .illus:nth-child(5) img { width: 28vw; max-height: none; }
 
   /* ── All text panels: appear just below the header ── */
   #spiral-panel,
