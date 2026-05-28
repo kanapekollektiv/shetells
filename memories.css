@@ -147,9 +147,9 @@ body {
 .mem-btn {
   font-family: 'Celescript', cursive;
   font-size: 13pt;
-  color: #111111;
+  color: #0046FF;
   background: transparent;
-  border: 1.5px solid #111111;
+  border: 1.5px solid #0046FF;
   border-radius: 999px;
   padding: 12px 28px;
   cursor: pointer;
@@ -159,20 +159,20 @@ body {
   transition: background 0.18s, color 0.18s, transform 0.12s;
 }
 
-.mem-btn:hover  { background: #111111; color: #ffffff; }
+.mem-btn:hover  { background: #0046FF; color: #ffffff; }
 .mem-btn:active { transform: scale(0.97); }
 
-/* Record button — filled black, slightly larger */
+/* Record button — filled blue, slightly larger */
 .mem-btn-record {
   font-size: 15pt;
   padding: 16px 36px;
   margin-top: 8px;
-  background: #111111;
+  background: #0046FF;
   color: #ffffff;
-  border-color: #111111;
+  border-color: #0046FF;
 }
 
-.mem-btn-record:hover { background: #333333; color: #ffffff; }
+.mem-btn-record:hover { background: #0035cc; color: #ffffff; }
 
 /* ── Final page: voice upload ── */
 .mem-upload-area {
@@ -244,7 +244,7 @@ body {
   .mem-question,
   .mem-transition     { font-size: 14pt; }
   .mem-btn            { font-size: 11pt; padding: 10px 20px; }
-  .mem-btn-record     { font-size: 13pt; padding: 12px 24px; background: #111111; color: #ffffff; }
+  .mem-btn-record     { font-size: 13pt; padding: 12px 24px; background: #0046FF; color: #ffffff; }
   .mem-answers        { gap: 10px; }
   .site-title         { font-size: 22pt; }
 }
