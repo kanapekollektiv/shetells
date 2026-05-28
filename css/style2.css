@@ -591,60 +591,67 @@ html, body {
      but also set here as a fallback for browsers that respect it. */
   .illus { --y-rest: 0px; }
 
-  /* ── Individual placement — spread across full page width & height ── */
+  /* ── Individual placement — all in the bottom 45% so text panels
+     have clear space above them when a section is opened ── */
 
-  /* ── All illustrations cluster toward the bottom 45% of the page ── */
-
-  /* 1: Asset 7 — left, no bleed */
+  /* 1: Asset 7 (Shell) — bottom-left */
   .illustrations .illus:nth-child(1) {
-    top: 52%;
+    top: 58%;
     left: 2vw;
   }
-  .illustrations .illus:nth-child(1) img { width: 38vw; max-height: none; }
+  .illustrations .illus:nth-child(1) img { width: 36vw; max-height: none; }
 
-  /* 2: Spiral — centre */
+  /* 2: Spiral — bottom-centre */
   .illus-spiral {
-    top: 58%;
+    top: 55%;
     left: 30vw;
   }
-  .illus-spiral img { width: 36vw !important; max-height: none; }
+  .illus-spiral img { width: 32vw !important; max-height: none; }
 
-  /* 3: Asset 11 — pulled left and slightly higher */
+  /* 3: Asset 11 (Acid) — bottom-right, above the others */
   .illustrations .illus:nth-child(3) {
-    top: 43%;
-    right: 12vw;
+    top: 55%;
+    right: 4vw;
     left: auto;
   }
-  .illustrations .illus:nth-child(3) img { width: 18vw; max-height: none; }
+  .illustrations .illus:nth-child(3) img { width: 20vw; max-height: none; }
 
-  /* 4: Asset 14 — lower and shifted right so it doesn't bleed left */
+  /* 4: Asset 14 (Sargassum) — lower-left */
   .illustrations .illus:nth-child(4) {
-    top: 76%;
-    left: 8vw;
+    top: 72%;
+    left: 6vw;
   }
-  .illustrations .illus:nth-child(4) img { width: 44vw; max-height: none; }
+  .illustrations .illus:nth-child(4) img { width: 42vw; max-height: none; }
 
-  /* 5: Asset 9 — lower and pulled left */
+  /* 5: Asset 9 (O₂) — lower-right */
   .illustrations .illus:nth-child(5) {
-    top: 70%;
-    right: 14vw;
+    top: 68%;
+    right: 6vw;
     left: auto;
   }
-  .illustrations .illus:nth-child(5) img { width: 26vw; max-height: none; }
+  .illustrations .illus:nth-child(5) img { width: 28vw; max-height: none; }
 
-  /* ── Spiral click panel ── */
-  #spiral-panel {
+  /* ── All text panels: appear just below the header ── */
+  #spiral-panel,
+  #shell-panel,
+  #o2-panel,
+  #sargassum-panel,
+  #acid-panel {
     left: 1rem !important;
-    top: 44% !important;
+    top: 18% !important;
     width: calc(100vw - 2rem);
     transform: none !important;
   }
 
-  /* ── Spiral CTA button — horizontally centred ── */
-  #spiral-cta {
+  /* ── All CTA buttons: centred in the gap between text and illustrations ── */
+  #spiral-cta,
+  #shell-cta,
+  #o2-cta,
+  #sargassum-cta,
+  #acid-cta {
     left: 50% !important;
     right: auto !important;
-    top: 36% !important;
+    top: 42% !important;
     transform: translateX(-50%);
   }
 
@@ -661,41 +668,28 @@ html, body {
     padding: 2rem 1.6rem;
   }
 
-  /* ── Shell Cream mobile ── */
-  #shell-panel {
-    left: 1rem !important; top: 44% !important;
-    width: calc(100vw - 2rem); transform: none !important;
-  }
-  #shell-cta {
-    left: 50% !important; right: auto !important;
-    top: 36% !important; transform: translateX(-50%);
-  }
-
-  /* ── O₂ + Sargassum mobile ── */
-  #o2-panel, #sargassum-panel {
-    left: 1rem !important; top: 44% !important;
-    width: calc(100vw - 2rem); transform: none !important;
-  }
-  #o2-cta, #sargassum-cta {
-    left: 50% !important; right: auto !important;
-    top: 36% !important; transform: translateX(-50%);
-  }
-
-  /* ── Acid Tabs mobile ── */
-  #acid-panel {
-    left: 1rem !important; top: 44% !important;
-    width: calc(100vw - 2rem); transform: none !important;
-  }
-  #acid-cta {
-    left: 50% !important; right: auto !important;
-    top: 36% !important; transform: translateX(-50%);
-  }
-
   /* ── Hide corner buttons on mobile ── */
   #shell-corner-btn,
   #o2-corner-btn,
   #sargassum-corner-btn,
   #acid-corner-btn { display: none !important; }
+
+  /* ── Panel text: boost sizes and allow titles to wrap ── */
+  .spiral-title, .shell-title, .o2-title,
+  .sargassum-title, .acid-title {
+    font-size: clamp(26px, 7vw, 40px);
+    white-space: normal;
+  }
+
+  .spiral-body, .shell-body, .o2-body,
+  .sargassum-body, .acid-body {
+    font-size: 13px;
+  }
+
+  .spiral-bold, .shell-bold, .o2-bold,
+  .sargassum-bold, .acid-bold {
+    font-size: 14px;
+  }
 }
 
 /* ══════════════════════════════════════════════════════
