@@ -6,6 +6,47 @@
   <title>sea shells — our team</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="memories.css" />
+  <style>
+    @font-face {
+      font-family: 'NaNTresorM';
+      src: url('Fonts/NaNTresor/NaNTresorM-ExtraLight.ttf') format('truetype');
+      font-weight: 200;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+    }
+
+    .brand-title {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 200;
+      font-size: clamp(40px, 5.5vw, 80px);
+      line-height: 1;
+      color: #0046FF;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(11px, 1.2vw, 16px);
+      color: #0046FF;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .brand-line {
+      width: clamp(36px, 3.5vw, 55px);
+      height: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
 <body>
   <div class="mem-bg"></div>
@@ -14,9 +55,9 @@
 
     <div class="mem-topbar">
       <a href="index.html" style="text-decoration:none;">
-        <div class="site-header">
-          <div class="site-title">sea shells</div>
-          <div class="site-subtitle">we have lots to tell</div>
+        <div class="brand">
+          <span class="brand-title">she tells</span>
+          <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
         </div>
       </a>
     </div>
@@ -29,27 +70,32 @@
 
         <div class="team-row">
           <div class="team-role">Main artists</div>
-          <div class="team-names">Helin Ulas and Rita Eperjesi</div>
+          <div class="team-names">Helin Ulas, Rita Eperjesi</div>
         </div>
 
         <div class="team-row">
           <div class="team-role">Rio Neiva</div>
-          <div class="team-names">Rui and Rui Pedro, Cristina</div>
+          <div class="team-names">Rui Monteiro, Rui Pedro Almeida, Cristina Nava</div>
         </div>
 
         <div class="team-row">
           <div class="team-role">Mentors</div>
-          <div class="team-names"></div>
+          <div class="team-names">Fátima São Simão, João Pedro Rosa, Luís Fernandes, Marina Dolbeth, Rodrigo Carvalho, Vasco Ferreira</div>
         </div>
 
         <div class="team-row">
-          <div class="team-role">Technical development</div>
-          <div class="team-names">Christian Kokott and Mario Guzman</div>
+          <div class="team-role">Technical Development</div>
+          <div class="team-names">Christian Kokott</div>
         </div>
 
         <div class="team-row">
-          <div class="team-role">Sound artist</div>
-          <div class="team-names">Sevki Argaioglu</div>
+          <div class="team-role">Creative Technologist</div>
+          <div class="team-names">Mario Guzman</div>
+        </div>
+
+        <div class="team-row">
+          <div class="team-role">Sound Artist</div>
+          <div class="team-names">Sevki Argalioglu</div>
         </div>
 
         <div class="team-row">
@@ -58,23 +104,18 @@
         </div>
 
         <div class="team-row">
-          <div class="team-role">Voice Actors</div>
-          <div class="team-names">Pauline and André</div>
+          <div class="team-role">Voice Actor</div>
+          <div class="team-names">Pauline Payen, André Correia</div>
         </div>
 
         <div class="team-row">
-          <div class="team-role">Portugese Translation</div>
-          <div class="team-names">André</div>
+          <div class="team-role">3D production</div>
+          <div class="team-names">Alan Horsley</div>
         </div>
 
         <div class="team-row">
-          <div class="team-role">3D scanning and printing</div>
-          <div class="team-names">Alan</div>
-        </div>
-
-        <div class="team-row">
-          <div class="team-role">Glass work</div>
-          <div class="team-names">Nadania</div>
+          <div class="team-role">Glass</div>
+          <div class="team-names">BG Glassworks, Nadania Idriss</div>
         </div>
 
       </div>
