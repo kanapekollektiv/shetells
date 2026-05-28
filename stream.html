@@ -66,12 +66,7 @@
       border-radius: 2rem;
       border: 1.5px solid var(--black);
       background: transparent;
-      transition: border-color 0.35s, background 0.35s;
       cursor: default;
-    }
-
-    body.is-playing .stream-player {
-      border-color: var(--white);
     }
 
     /* ── Play / pause button ── */
@@ -94,8 +89,6 @@
       transition: fill 0.35s;
     }
 
-    body.is-playing .play-icon { fill: var(--white); }
-
     /* ── Player text elements ── */
     .player-label {
       font-family: 'CeleScript', cursive;
@@ -105,8 +98,6 @@
       transition: color 0.35s;
     }
 
-    body.is-playing .player-label { color: var(--white); }
-
     .player-divider {
       width: 1px;
       height: 14px;
@@ -115,8 +106,6 @@
       transition: background 0.35s;
     }
 
-    body.is-playing .player-divider { background: rgba(255,255,255,0.3); }
-
     .volume-label {
       font-family: 'CeleScript', cursive;
       font-size: clamp(10px, 1.1vw, 14px);
@@ -124,8 +113,6 @@
       letter-spacing: 0.04em;
       transition: color 0.35s;
     }
-
-    body.is-playing .volume-label { color: rgba(255,255,255,0.65); }
 
     /* ── Volume slider ── */
     input[type="range"] {
@@ -150,8 +137,6 @@
       cursor: pointer;
       transition: background 0.35s;
     }
-    body.is-playing input[type="range"]::-webkit-slider-thumb { background: var(--white); }
-
     input[type="range"]::-moz-range-thumb {
       width: 12px; height: 12px;
       border-radius: 50%;
@@ -159,7 +144,6 @@
       border: none;
       cursor: pointer;
     }
-    body.is-playing input[type="range"]::-moz-range-thumb { background: var(--white); }
 
     /* ── Status indicator ── */
     .status-dot {
@@ -178,8 +162,6 @@
       color: rgba(0,0,0,0.45);
       transition: color 0.35s;
     }
-    body.is-playing .status-text { color: rgba(255,255,255,0.65); }
-
     /* ── Bubbles — only visible when playing ── */
     .bubble-word {
       position: fixed;
