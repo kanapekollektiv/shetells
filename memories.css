@@ -253,7 +253,7 @@ body {
   .mem-question,
   .mem-transition     { font-size: 14pt; }
   .mem-btn            { font-size: 11pt; padding: 10px 20px; }
-  .mem-btn-record     { font-size: 13pt; padding: 12px 24px; background: #0046FF; color: #ffffff; }
+  .mem-btn-record     { font-size: 11pt; padding: 12px 24px; background: #0046FF; color: #ffffff; }
   .mem-answers        { gap: 10px; }
   .site-title         { font-size: 22pt; }
 }
