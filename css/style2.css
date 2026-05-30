@@ -123,8 +123,8 @@ html, body {
 /* Wave line — inline SVG uses currentColor, inherits from brand-sub */
 .brand-line {
   display: inline-block;
-  height: clamp(10px, 1.2vw, 16px);
-  width: auto;
+  height: clamp(8px, 1vw, 12px);
+  width: clamp(40px, 4vw, 60px);
   flex-shrink: 0;
 }
 /* currentColor flips automatically with brand-sub colour transitions — no filter needed */
