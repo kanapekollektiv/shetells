@@ -699,11 +699,11 @@ html, body {
     width: calc(100vw - 2rem);
     transform: none !important;
   }
-  /* ── Shell CTA — left-aligned, lower behind illustration ── */
+  /* ── Shell CTA — below the illustration ── */
   #shell-cta {
     left: 1rem !important;
     right: auto !important;
-    top: 62% !important;
+    top: 72% !important;
     transform: none !important;
   }
   /* Corner buttons hidden on mobile — btn-outline in nav handles close */
@@ -875,8 +875,8 @@ html, body {
   font-size: clamp(11px, 1.1vw, 16px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.4;           /* tighter — matches spiral body */
+  text-transform: lowercase;
+  line-height: 1.4;
   margin-bottom: 0.9rem;
 }
 
