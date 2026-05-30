@@ -510,7 +510,7 @@ html, body {
   border: 1.5px solid var(--black);
   border-radius: 1.2rem;
   padding: 2.8rem 3.2rem;
-  max-width: 520px;
+  max-width: 760px;
   width: 90%;
   position: relative;
   transform: translateY(20px);
@@ -541,7 +541,7 @@ html, body {
 
 .overlay-body {
   font-family: sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.6;
 }
 
