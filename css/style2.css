@@ -489,6 +489,9 @@ html, body {
              cubic-bezier(0.4, 0, 1, 1) both;
 }
 
+/* ── Disclaimer "!" button — hidden on desktop, shown mobile-only via media query ── */
+.disclaimer-btn { display: none; }
+
 /* ── Overlay (shared) ── */
 .overlay {
   position: fixed;
