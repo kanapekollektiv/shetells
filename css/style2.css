@@ -540,9 +540,14 @@ html, body {
 }
 
 .overlay-body {
-  font-family: 'CeleScript', cursive;
-  font-size: 15pt;
+  font-family: sans-serif;
+  font-size: 13px;
   line-height: 1.6;
+}
+
+/* Hyperlinks keep CeleScript */
+.overlay-body a {
+  font-family: 'CeleScript', cursive;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -715,9 +720,8 @@ html, body {
   .cta-pill-text       { font-size: 12px !important; }
   #spiral-cta, #shell-cta, #o2-cta, #sargassum-cta, #acid-cta { width: 260px !important; }
 
-  /* Overlay body: sans-serif on mobile, hyperlinks keep CeleScript */
-  .overlay-body        { font-family: sans-serif !important; font-size: 12px !important; }
-  .overlay-body a      { font-family: 'CeleScript', cursive !important; font-size: 12px !important; }
+  /* Overlay body: 12px on mobile */
+  .overlay-body        { font-size: 12px !important; }
 }
 
 /* ══════════════════════════════════════════════════════
