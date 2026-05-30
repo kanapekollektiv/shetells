@@ -116,7 +116,7 @@ body {
 /* ── Question text ── */
 .mem-question {
   font-family: 'NaNTresorM', serif;
-  font-weight: 400;
+  font-weight: 200;
   font-size: clamp(16pt, 2.5vw, 28pt);
   color: #0046FF;
   line-height: 1.3;
