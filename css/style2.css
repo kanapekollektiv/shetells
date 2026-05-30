@@ -650,17 +650,12 @@ html, body {
   }
   .illustrations .illus:nth-child(3) img { width: 28vw; max-height: 23vh; }
 
-  /* 4: Asset 14 (Sargassum) — upper centre, no animation on mobile */
+  /* 4: Asset 14 (Sargassum) — upper centre */
   .illustrations .illus:nth-child(4) {
     top: 50%;
     left: 16vw;
   }
   .illustrations .illus:nth-child(4) img { width: 56vw; max-height: 23vh; }
-  #sargassum-illus,
-  #sargassum-illus.animate {
-    animation: none !important;
-    transform: translateY(4px) rotate(2deg) !important;
-  }
 
   /* 5: Asset 9 (O₂) — mid left */
   .illustrations .illus:nth-child(5) {
@@ -1049,16 +1044,10 @@ html, body {
 ══════════════════════════════════════════════════════ */
 :root { --sargassum: #5fc821; }
 
-.illus-sargassum { pointer-events: auto; cursor: pointer; transition: transform 0.45s ease; }
+.illus-sargassum { pointer-events: auto; cursor: pointer; }
 .illus-sargassum img { transition: filter 0.3s ease, opacity 0.3s ease; }
 .illus-sargassum:hover img { filter: drop-shadow(0 0 10px rgba(95,200,33,0.4)); opacity: 0.85; }
 
-/* Sargassum illustration moves lower when its panel is open (mobile) */
-@media (max-width: 768px) {
-  .sargassum-open .illus-sargassum {
-    transform: translateY(80px) rotate(var(--rot-end, 2deg));
-  }
-}
 
 .sargassum-open .illus:not(.illus-sargassum) { opacity: 0; pointer-events: none; }
 .sargassum-open .illus-sargassum img { filter: invert(1) brightness(10); }
