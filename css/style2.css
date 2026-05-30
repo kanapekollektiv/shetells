@@ -29,6 +29,15 @@
   --black:  #111111;
   --white:  #ffffff;
   --brown:  #5B2915;   /* brand accent — buttons, underlines */
+
+  /* ── Type scale ── */
+  --fs-display:     clamp(52px, 7.5vw, 108px);   /* NaNTresor — brand title */
+  --fs-panel-title: clamp(22px, 2.8vw, 38px);    /* NaNTresor — panel headings */
+  --fs-body:        clamp(12px, 1.2vw, 17px);     /* NaNTresor 200 — panel body/bold, privacy */
+  --fs-fine:        clamp(9px, 0.8vw, 11px);      /* NaNTresor — disclaimers */
+  --fs-ui-lg:       clamp(13px, 1.6vw, 22px);     /* CeleScript — brand-sub */
+  --fs-ui:          clamp(11px, 1.2vw, 16px);     /* CeleScript — buttons, labels */
+  --fs-ui-sm:       clamp(10px, 1vw, 13px);       /* CeleScript — secondary labels */
 }
 
 html, body {
@@ -105,7 +114,7 @@ html, body {
 .brand-title {
   font-family: 'NaNTresor', serif;
   font-weight: 200;          /* ExtraLight */
-  font-size: clamp(52px, 7.5vw, 108px);
+  font-size: var(--fs-display);
   line-height: 1;
   color: var(--black);
   letter-spacing: -0.02em;
@@ -115,7 +124,7 @@ html, body {
 
 .brand-sub {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(13px, 1.6vw, 22px);
+  font-size: var(--fs-ui-lg);
   color: var(--black);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -146,7 +155,7 @@ html, body {
 
 .btn {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   cursor: pointer;
   border: none;
   transition: background 0.18s, color 0.18s, transform 0.12s;
@@ -212,7 +221,7 @@ html, body {
   top: 28%;
   right: 1rem;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(15px, 1.8vw, 26px);
+  font-size: var(--fs-ui-lg);
   color: var(--black);
   letter-spacing: 0.08em;
   line-height: 1.55;
@@ -284,7 +293,7 @@ html, body {
 .spiral-title {
   font-family: 'NaNTresor', serif;
   font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
+  font-size: var(--fs-panel-title);
   color: var(--white);
   letter-spacing: -0.01em;
   margin-bottom: 0.7rem;
@@ -293,7 +302,7 @@ html, body {
 
 .spiral-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -304,7 +313,7 @@ html, body {
 .spiral-bold {
   font-family: 'NaNTresor', serif;
   font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: var(--fs-body);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--brown);
@@ -368,7 +377,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
@@ -384,7 +393,7 @@ html, body {
   bottom: 1.4rem;
   right: 1.6rem;
   font-family: 'NaNTresor', serif;
-  font-size: clamp(8px, 0.75vw, 11px);
+  font-size: var(--fs-fine);
   color: rgba(255,255,255,0.6);
   max-width: 220px;
   line-height: 1.55;
@@ -519,14 +528,31 @@ html, body {
   color: var(--black);
   border: 1.5px solid var(--black);
   border-radius: 1.2rem;
-  padding: 2.8rem 3.2rem;
+  padding: 0;
   max-width: 760px;
   width: 90%;
+  max-height: 75vh;
+  overflow: hidden;              /* border-radius clips cleanly */
   position: relative;
   transform: translateY(20px);
   transition: transform 0.3s;
   box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
 }
+
+/* Inner scroll area — no border-radius so scrollbar renders fully */
+.overlay-scroll {
+  overflow-y: scroll;
+  flex: 1;
+  padding: 2.8rem 3.2rem;
+  scrollbar-width: auto;
+  scrollbar-color: var(--black) rgba(0,0,0,0.08);
+}
+
+.overlay-scroll::-webkit-scrollbar       { width: 8px; }
+.overlay-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.08); }
+.overlay-scroll::-webkit-scrollbar-thumb { background: var(--black); border-radius: 0; min-height: 40px; }
 
 .overlay.active .overlay-box { transform: translateY(0); }
 
@@ -551,7 +577,7 @@ html, body {
 
 .overlay-body {
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 12pt;
   line-height: 1.6;
 }
 
@@ -571,8 +597,8 @@ html, body {
   .header {
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: 0.4rem;
-    padding: 0.75rem 0.75rem 0;
+    gap: 0.75rem;
+    padding: 1rem 1rem 0;
   }
 
   .brand { gap: 0.6rem; }
@@ -580,17 +606,18 @@ html, body {
   .brand-title { white-space: nowrap; }
   .brand-line   { width: 28px !important; height: auto !important; }
 
-  .brand-sub { font-size: clamp(12px, 3.8vw, 18px); }
+  .brand-sub { font-size: var(--fs-ui-lg); }
 
   .nav-buttons {
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.7rem;
     align-self: flex-start;
+    margin-top: 0.5rem;
   }
 
-  .btn         { font-size: clamp(9px, 2.6vw, 13px); }
+  .btn         { font-size: var(--fs-ui-sm); }
   .btn-circle  { width: 2rem; height: 2rem; font-size: 0.85rem; }
   .btn-filled,
   .btn-outline { padding: 0.4rem 0.9rem; }
@@ -601,7 +628,7 @@ html, body {
     left: 0.75rem !important;
     top: 30% !important;      /* overrides JS inline style */
     bottom: auto;
-    font-size: clamp(12px, 3.8vw, 18px);
+    font-size: var(--fs-ui-lg);
   }
 
   /* ── Illustration container: full viewport, block layout ── */
@@ -694,8 +721,23 @@ html, body {
 
   /* ── Overlay box ── */
   .overlay-box {
-    padding: 2rem 1.6rem;
+    width: calc(100vw - 2.4rem);
+    max-height: 80vh;
   }
+
+  .overlay-scroll {
+    padding: 3rem 1.2rem 1.6rem;
+  }
+
+  .overlay-close {
+    top: 0.7rem;
+    right: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .overlay-body  { font-size: 12pt !important; line-height: 1.7; }
+  #info-machine-note { font-size: 12px !important; }
+  .overlay-title { font-size: var(--fs-panel-title) !important; }
 
   /* ── Shell Cream mobile ── */
   #shell-panel {
@@ -744,7 +786,7 @@ html, body {
     background: transparent;
     color: var(--white);
     font-family: 'CeleScript', cursive;
-    font-size: 14px;
+    font-size: var(--fs-ui-sm);
     cursor: pointer;
     z-index: 20;
     opacity: 0;
@@ -759,17 +801,17 @@ html, body {
   .sargassum-open #sargassum-disclaimer-btn,
   .acid-open      #acid-disclaimer-btn { opacity: 1; pointer-events: auto; }
 
-  /* ── Mobile-only: font sizes, CTA width, overlay — desktop unchanged ── */
-  .btn                 { font-size: 12px !important; }
-  .spiral-body, .shell-body, .o2-body, .sargassum-body, .acid-body { font-size: 11pt !important; text-transform: none !important; letter-spacing: 0.04em !important; }
+  /* ── Mobile-only: font sizes, CTA width, overlay — hard px so vw clamps don't collapse ── */
+  .btn                 { font-size: 13px !important; }
+  .brand-sub           { font-size: 14px !important; }
+  .spiral-body, .shell-body, .o2-body, .sargassum-body, .acid-body { font-size: 15px !important; text-transform: none !important; letter-spacing: 0.04em !important; }
   .spiral-title, .shell-title, .o2-title, .sargassum-title, .acid-title { font-size: 28px !important; }
   .spiral-bold, .shell-bold, .o2-bold, .sargassum-bold, .acid-bold { font-size: 14px !important; }
-  .page-disclaimer     { font-size: 11px !important; }
-  .cta-pill-text       { font-size: 12px !important; }
+  .page-disclaimer     { font-size: 12px !important; }
+  .cta-pill-text       { font-size: 13px !important; }
   #spiral-cta, #shell-cta, #o2-cta, #sargassum-cta, #acid-cta { width: 260px !important; }
-
-  /* Overlay body: 12px on mobile */
-  .overlay-body        { font-size: 12px !important; }
+  .overlay-body        { font-size: 15px !important; }
+  .tagline             { font-size: 14px !important; }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -832,7 +874,7 @@ html, body {
   pointer-events: none;
   transition: opacity 0.45s ease 0.1s;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: transparent;
@@ -870,7 +912,7 @@ html, body {
 .shell-title {
   font-family: 'NaNTresor', serif;
   font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
+  font-size: var(--fs-panel-title);
   color: var(--white);
   letter-spacing: -0.02em;
   line-height: 1;
@@ -881,7 +923,7 @@ html, body {
 
 .shell-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: lowercase;
@@ -892,7 +934,7 @@ html, body {
 .shell-bold {
   font-family: 'NaNTresor', serif;
   font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: var(--fs-body);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--green);
@@ -973,7 +1015,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.1s;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   letter-spacing: 0.04em; text-transform: uppercase;
   background: transparent;
   color: var(--white);
@@ -996,7 +1038,7 @@ html, body {
 
 .o2-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
+  font-size: var(--fs-panel-title);
   color: var(--yellow);
   letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
@@ -1005,7 +1047,7 @@ html, body {
 
 .o2-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   color: var(--white);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -1013,7 +1055,7 @@ html, body {
 
 .o2-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: var(--fs-body);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--yellow);
@@ -1078,7 +1120,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.1s;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   letter-spacing: 0.04em; text-transform: uppercase;
   background: transparent; color: var(--white);
   border: 1.5px solid var(--sargassum); padding: 0.55rem 1.4rem; border-radius: 2rem;
@@ -1099,7 +1141,7 @@ html, body {
 
 .sargassum-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
+  font-size: var(--fs-panel-title);
   color: var(--white);
   letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
@@ -1107,7 +1149,7 @@ html, body {
 
 .sargassum-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -1115,7 +1157,7 @@ html, body {
 
 .sargassum-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: var(--fs-body);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--sargassum);
@@ -1201,7 +1243,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.1s;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   letter-spacing: 0.04em; text-transform: uppercase;
   background: transparent; color: var(--white);
   border: 1.5px solid var(--pink); padding: 0.55rem 1.4rem; border-radius: 2rem;
@@ -1222,7 +1264,7 @@ html, body {
 
 .acid-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
+  font-size: var(--fs-panel-title);
   color: var(--white);
   letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
@@ -1230,7 +1272,7 @@ html, body {
 
 .acid-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.1vw, 16px);
+  font-size: var(--fs-ui);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -1238,7 +1280,7 @@ html, body {
 
 .acid-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: var(--fs-body);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--pink);

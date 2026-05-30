@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>She Tells — Sea Shells</title>
   <link rel="stylesheet" href="css/style2.css?v=30" />
+  <script src="lang.js"></script>
 </head>
 <body>
 
@@ -25,7 +26,8 @@
 
     <nav class="nav-buttons">
       <button class="btn btn-circle" id="btn-info" aria-haspopup="dialog">?</button>
-      <a href="memories.html" class="btn btn-filled" id="btn-memories">
+      <button class="btn btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
+      <a href="memories.html" class="btn btn-filled" id="btn-memories" data-i18n="nav.memories">
         Send your memories today!
       </a>
       <button class="btn btn-outline" id="btn-dunes">tune in to the stream</button>
@@ -68,18 +70,18 @@
   <!-- Spiral click panel: "sexy dunes" — INSIDE .page so it shares the same stacking context -->
   <div id="spiral-panel">
     <p class="spiral-title">sexy dunes</p>
-    <p class="spiral-body">Research shows that dunes which look sexy have a 25% less chance of getting littered.</p>
-    <p class="spiral-bold">We got you covered.</p>
+    <p class="spiral-body" data-i18n="spiral.body">Research shows that dunes which look sexy have a 25% less chance of getting littered.</p>
+    <p class="spiral-bold" data-i18n="spiral.bold">We got you covered.</p>
   </div>
 
   <!-- Spiral floating CTA button -->
   <button id="spiral-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
-    <span class="cta-pill-text">Send your memories today!</span>
+    <span class="cta-pill-text" data-i18n="cta.pill">Send your memories today!</span>
   </button>
 
   <!-- Disclaimer — bottom right, appears with spiral click -->
-  <p class="page-disclaimer" id="spiral-disclaimer">
+  <p class="page-disclaimer" id="spiral-disclaimer" data-i18n-html="spiral.disclaimer">
     <strong>Disclaimer:</strong> Terms and conditions apply.
     The numbers stated are all predictions based on data
     from the She Tells Research Centre. Check the terms
@@ -93,18 +95,18 @@
   <!-- Shell Cream text panel -->
   <div id="shell-panel">
     <p class="shell-title">Shell Cream</p>
-    <p class="shell-body">The ocean doesn't care about your insides</p>
-    <p class="shell-bold">But we do.</p>
+    <p class="shell-body" data-i18n="shell.body">The ocean doesn't care about your insides</p>
+    <p class="shell-bold" data-i18n="shell.bold">But we do.</p>
   </div>
 
   <!-- Shell Cream floating CTA (wave SVG + text, same as spiral) -->
   <button id="shell-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
-    <span class="cta-pill-text">Send your memories today!</span>
+    <span class="cta-pill-text" data-i18n="cta.pill">Send your memories today!</span>
   </button>
 
   <!-- Shell Cream disclaimer -->
-  <p class="page-disclaimer" id="shell-disclaimer">
+  <p class="page-disclaimer" id="shell-disclaimer" data-i18n-html="shell.disclaimer">
     <strong>Disclaimer:</strong> She Tells Shell Cream is a cosmetic supplement and not
     a solution to ocean acidification. Individual carbonate saturation levels
     may vary. She Tells Corp assumes no liability for planetary pH.
@@ -116,16 +118,16 @@
 
   <div id="o2-panel">
     <p class="o2-title">deluxe o<sub>2</sub></p>
-    <p class="o2-body">Are you bored of your old, landy oxygen, coming from those ugly green trees?</p>
-    <p class="o2-bold">Breathe better, darling!</p>
+    <p class="o2-body" data-i18n="o2.body">Are you bored of your old, landy oxygen, coming from those ugly green trees?</p>
+    <p class="o2-bold" data-i18n="o2.bold">Breathe better, darling!</p>
   </div>
 
   <button id="o2-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
-    <span class="cta-pill-text">Send your memories today!</span>
+    <span class="cta-pill-text" data-i18n="cta.pill">Send your memories today!</span>
   </button>
 
-  <p class="page-disclaimer" id="o2-disclaimer">
+  <p class="page-disclaimer" id="o2-disclaimer" data-i18n-html="o2.disclaimer">
     <strong>Disclaimer:</strong> Please only consume our premium oxygen if evolution
     has equipped you with the proper organs to process it.
   </p>
@@ -136,16 +138,16 @@
 
   <div id="sargassum-panel">
     <p class="sargassum-title">sargassum city</p>
-    <p class="sargassum-body">Take me down to Sargassum City. Where the grass is green and the fish are pretty.</p>
-    <p class="sargassum-bold">Get your prime location now.</p>
+    <p class="sargassum-body" data-i18n="sargassum.body">Take me down to Sargassum City. Where the grass is green and the fish are pretty.</p>
+    <p class="sargassum-bold" data-i18n="sargassum.bold">Get your prime location now.</p>
   </div>
 
   <button id="sargassum-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
-    <span class="cta-pill-text">Send your memories today!</span>
+    <span class="cta-pill-text" data-i18n="cta.pill">Send your memories today!</span>
   </button>
 
-  <p class="page-disclaimer" id="sargassum-disclaimer">
+  <p class="page-disclaimer" id="sargassum-disclaimer" data-i18n-html="sargassum.disclaimer">
     <strong>Disclaimer:</strong> At Sargassum City, we do not take responsibility for climate change,
     carbon emissions, or the plastic in your body. If any of these symptoms occur in your area,
     please ask your doctor or pharmacist whether this is right for you.
@@ -157,16 +159,16 @@
 
   <div id="acid-panel">
     <p class="acid-title">acid tabs</p>
-    <p class="acid-body">Keep your ACID UNDER control. Now in Dimethyl SULFIDE Flavour!</p>
-    <p class="acid-bold">The ocean will never leave you now.</p>
+    <p class="acid-body" data-i18n="acid.body">Keep your ACID UNDER control. Now in Dimethyl SULFIDE Flavour!</p>
+    <p class="acid-bold" data-i18n="acid.bold">The ocean will never leave you now.</p>
   </div>
 
   <button id="acid-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
-    <span class="cta-pill-text">Send your memories today!</span>
+    <span class="cta-pill-text" data-i18n="cta.pill">Send your memories today!</span>
   </button>
 
-  <p class="page-disclaimer" id="acid-disclaimer">
+  <p class="page-disclaimer" id="acid-disclaimer" data-i18n-html="acid.disclaimer">
     <strong>Disclaimer:</strong> She Tells Acid Tabs are a food supplement and not a substitute
     for medical advice, ocean governance, or carbonate chemistry. Results may vary depending on
     your personal pH levels and the current aragonite saturation of your local waters.
@@ -187,8 +189,9 @@
 <div class="overlay" id="overlay-info" role="dialog" aria-modal="true">
   <div class="overlay-box">
     <button class="overlay-close" id="close-info" aria-label="Close">✕</button>
-    <h2 class="overlay-title">Info</h2>
-    <div class="overlay-body">
+    <div class="overlay-scroll">
+    <h2 class="overlay-title">about the project</h2>
+    <div class="overlay-body" id="info-overlay-body">
       <p>Our project is called She Tells, Sea Shells (as you could have guessed already), and we want you to get closer to water, because it's important to pay more attention to your environment, there is the climate change, sustainability, AI using a lot of water, a big part of you is water, seafood is delicious and it's more and more full of plastic, swimming is nice, but there is plastic here too... well, we have tonnes of reasons, but mainly because <strong>we care about water, and we want you to care more.</strong><br>
         <br>
         We are part of <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener" style="color:inherit;">S+T+ARTS Aquamotion</a> artist residency, so this project is funded by the EU, and we work together with <a href="https://rioneiva.com/" target="_blank" rel="noopener" style="color:inherit;">Rio Neiva</a>. We are very happy about all these collaborations! By the way, by we, we mean our <a href="team.html" style="color:inherit;">team</a>.<br>
@@ -196,6 +199,8 @@
         Please take your time to surf around on this site! There is no rush.
       </p>
     </div>
+    <p id="info-machine-note" style="display:none;margin-top:1rem;font-size:var(--fs-fine);opacity:0.55;font-family:sans-serif;" data-i18n="mem.machine"></p>
+    </div><!-- /overlay-scroll -->
   </div>
 </div>
 
@@ -206,6 +211,18 @@
   const closeOverlay = id => { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; };
 
   document.getElementById('btn-info').addEventListener('click',   () => openOverlay('overlay-info'));
+
+  /* ── Info overlay: swap body text + show machine note in PT ── */
+  const infoBody        = document.getElementById('info-overlay-body');
+  const infoMachineNote = document.getElementById('info-machine-note');
+  function applyInfoLang() {
+    if (typeof t !== 'function') return;
+    infoBody.innerHTML = t('info.body');
+    const isPt = (typeof currentLang !== 'undefined' ? currentLang : 'en') === 'pt';
+    infoMachineNote.style.display = isPt ? 'block' : 'none';
+  }
+  document.addEventListener('langchange', applyInfoLang);
+  document.addEventListener('DOMContentLoaded', applyInfoLang);
   document.getElementById('close-info').addEventListener('click', () => closeOverlay('overlay-info'));
   document.getElementById('close-disclaimer').addEventListener('click', () => closeOverlay('overlay-disclaimer'));
 
@@ -230,25 +247,35 @@
   });
 
   /* ── Typewriter ── */
-  const phrases = [
-    "I have… lots to tell you.., honey.",
-    "While you are waiting, we have lots to tell.",
-    "Yeah, I have things to tell.",
-    "We have lots to tell.",
-    "We have things to tell, honey.",
-    "We are telling you so you better listen, honey.",
-    "Baby! We have things to tell.",
-    "Do tell, tell we shell?",
-    "stay salty"
-  ];
+  function getPhrases() {
+    return (typeof t === 'function' ? t('tagline.phrases') : null) || [
+      "I have… lots to tell you.., honey.",
+      "While you are waiting, we have lots to tell.",
+      "Yeah, I have things to tell.",
+      "We have lots to tell.",
+      "We have things to tell, honey.",
+      "We are telling you so you better listen, honey.",
+      "Baby! We have things to tell.",
+      "Do tell, tell we shell?",
+      "stay salty"
+    ];
+  }
 
   const taglineText = document.querySelector('.tagline-text');
   let phraseIdx  = 0;
   let charIdx    = 0;
   let deleting   = false;
 
+  /* On lang switch: reset to first phrase in new language */
+  document.addEventListener('langchange', () => {
+    phraseIdx = 0;
+    charIdx   = 0;
+    deleting  = false;
+    taglineText.textContent = '';
+  });
+
   function typeStep() {
-    const phrase = phrases[phraseIdx];
+    const phrase = getPhrases()[phraseIdx];
 
     if (!deleting) {
       charIdx++;
@@ -266,7 +293,7 @@
       taglineText.textContent = phrase.slice(0, charIdx);
       if (charIdx === 0) {
         deleting = false;
-        phraseIdx = (phraseIdx + 1) % phrases.length;
+        phraseIdx = (phraseIdx + 1) % getPhrases().length;
         setTimeout(typeStep, 420);
         return;
       }
@@ -302,6 +329,16 @@
   const pageEl   = document.querySelector('.page');
   const btnDunes = document.getElementById('btn-dunes');
 
+  /* Keep btn-dunes in sync with language when no panel is open */
+  const anyPanelOpen = () => spiralOpen || shellOpen || o2Open || sargassumOpen || acidOpen;
+  document.addEventListener('langchange', () => {
+    if (!anyPanelOpen()) btnDunes.textContent = t('nav.stream');
+  });
+  /* Init on load */
+  document.addEventListener('DOMContentLoaded', () => {
+    btnDunes.textContent = t('nav.stream');
+  });
+
   function openSpiral() {
     if (shellOpen)     closeShell();
     if (o2Open)        closeO2();
@@ -322,7 +359,7 @@
     spiralCta.classList.remove('active');
     disclaimer.classList.remove('active');
     pageEl.classList.remove('spiral-open');
-    btnDunes.textContent = 'tune in to the stream';
+    btnDunes.textContent = t('nav.stream');
   }
 
   spiralIllus.addEventListener('click', e => {
@@ -392,7 +429,7 @@
     shellDisclaimer.classList.remove('active');
     shellCornerBtn.classList.remove('active');
     pageEl.classList.remove('shell-open');
-    btnDunes.textContent = 'tune in to the stream';
+    btnDunes.textContent = t('nav.stream');
   }
 
   shellIllus.addEventListener('click', e => {
@@ -457,7 +494,7 @@
     o2Disclaimer.classList.remove('active');
     o2CornerBtn.classList.remove('active');
     pageEl.classList.remove('o2-open');
-    btnDunes.textContent = 'tune in to the stream';
+    btnDunes.textContent = t('nav.stream');
   }
 
   o2Illus.addEventListener('click', e => { e.stopPropagation(); o2Open ? closeO2() : openO2(); });
@@ -509,7 +546,7 @@
     sargassumDisclaimer.classList.remove('active');
     sargassumCornerBtn.classList.remove('active');
     pageEl.classList.remove('sargassum-open');
-    btnDunes.textContent = 'tune in to the stream';
+    btnDunes.textContent = t('nav.stream');
   }
 
   sargassumIllus.addEventListener('click', e => { e.stopPropagation(); sargassumOpen ? closeSargassum() : openSargassum(); });
@@ -562,7 +599,7 @@
     acidDisclaimer.classList.remove('active');
     acidCornerBtn.classList.remove('active');
     pageEl.classList.remove('acid-open');
-    btnDunes.textContent = 'tune in to the stream';
+    btnDunes.textContent = t('nav.stream');
   }
 
   acidIllus.addEventListener('click', e => { e.stopPropagation(); acidOpen ? closeAcid() : openAcid(); });

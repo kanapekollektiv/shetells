@@ -313,6 +313,24 @@ body {
 /* ════════════════════════════════════════════
    MOBILE (≤ 600px) — everything stacks
 ════════════════════════════════════════════ */
+/* ── Mobile type scale: CeleScript = 12pt, NaNTresor = 14pt ── */
+@media (max-width: 768px) {
+  /* CeleScript elements */
+  .btn-stream,
+  .btn-memories,
+  .btn-info,
+  .nav-link,
+  .recorder-label,
+  .toolkit-label { font-size: 12pt !important; }
+
+  /* NaNTresor elements */
+  .info-body,
+  .info-content p,
+  .info-content li,
+  .recorder-note,
+  .toolkit-note  { font-size: 14pt !important; }
+}
+
 @media (max-width: 600px) {
   .top-bar {
     flex-direction: column;

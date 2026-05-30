@@ -6,7 +6,18 @@
   <title>sea shells — tell us your memories</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="memories.css" />
+  <script src="lang.js"></script>
   <style>
+    :root {
+      --fs-display:     clamp(52px, 7.5vw, 108px);
+      --fs-panel-title: clamp(22px, 2.8vw, 38px);
+      --fs-body:        clamp(12px, 1.2vw, 17px);
+      --fs-fine:        clamp(9px, 0.8vw, 11px);
+      --fs-ui-lg:       clamp(13px, 1.6vw, 22px);
+      --fs-ui:          clamp(11px, 1.2vw, 16px);
+      --fs-ui-sm:       clamp(10px, 1vw, 13px);
+    }
+
     /* ── ExtraLight weight for brand title ── */
     @font-face {
       font-family: 'NaNTresorM';
@@ -24,7 +35,7 @@
     .brand-title {
       font-family: 'NaNTresorM', serif;
       font-weight: 200;
-      font-size: clamp(52px, 7.5vw, 108px);
+      font-size: var(--fs-display);
       line-height: 1;
       color: #0046FF;
       letter-spacing: -0.02em;
@@ -32,7 +43,7 @@
 
     .brand-sub {
       font-family: 'Celescript', cursive;
-      font-size: clamp(13px, 1.6vw, 22px);
+      font-size: var(--fs-ui-lg);
       color: #0046FF;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -44,8 +55,8 @@
 
     .mem-privacy-note {
       font-family: 'NaNTresorM', serif;
-      font-weight: 400;
-      font-size: clamp(9pt, 1vw, 11pt);
+      font-weight: 200;
+      font-size: clamp(14pt, 1vw, 14pt); /* fixed 14pt — overridden to 14pt mobile too */
       color: rgba(0, 70, 255, 0.55);
       line-height: 1.6;
       max-width: 560px;
@@ -73,91 +84,94 @@
           <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
         </div>
       </a>
-      <span class="mem-step" id="stepLabel">1 / 2</span>
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <span class="mem-step" id="stepLabel">1 / 2</span>
+        <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language" style="font-family:'CeleScript',cursive;font-size:10pt;border:1.5px solid #0046FF;color:#0046FF;background:transparent;border-radius:50%;width:1.8rem;height:1.8rem;cursor:pointer;flex-shrink:0;line-height:1;">PT</button>
+      </div>
     </div>
 
     <div class="mem-content">
 
       <!-- ── Screen 1 ── -->
       <div class="mem-screen active" id="screen-1">
-        <div class="mem-question">We are all water in some way.
+        <div class="mem-question" data-i18n="mem.q1">We are all water in some way.
 Let's collect our shared memories.
 
 As an easy warm up: how are you feeling now?</div>
         <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(2)">sunny</button>
-          <button class="mem-btn" onclick="goTo(2)">cloudy</button>
-          <button class="mem-btn" onclick="goTo(2)">stormy</button>
+          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.mood.sunny">sunny</button>
+          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.mood.cloudy">cloudy</button>
+          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.mood.stormy">stormy</button>
           <button class="mem-btn" onclick="goTo(2)">normy</button>
         </div>
       </div>
 
       <!-- ── Screen 2 ── -->
       <div class="mem-screen" id="screen-2">
-        <div class="mem-question">Oh darling, I feel this too.
+        <div class="mem-question" data-i18n="mem.q2">Oh darling, I feel this too.
 
 And what type of water do you feel the closest to now?</div>
-        <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(3)">ocean</button>
-          <button class="mem-btn" onclick="goTo(3)">sea</button>
-          <button class="mem-btn" onclick="goTo(3)">river</button>
-          <button class="mem-btn" onclick="goTo(3)">lake</button>
-          <button class="mem-btn" onclick="goTo(3)">cloud</button>
-          <button class="mem-btn" onclick="goTo(3)">rain</button>
-          <button class="mem-btn" onclick="goTo(3)">paddle</button>
-          <button class="mem-btn" onclick="goTo(3)">groundwater</button>
-          <button class="mem-btn" onclick="goTo(3)">tap</button>
-          <button class="mem-btn" onclick="goTo(3)">drink</button>
-          <button class="mem-btn" onclick="goTo(3)">drop</button>
-          <button class="mem-btn" onclick="goTo(3)">sweat</button>
-          <button class="mem-btn" onclick="goTo(3)">tear</button>
-          <button class="mem-btn" onclick="goTo(3)">pond</button>
-          <button class="mem-btn" onclick="goTo(3)">stream</button>
-          <button class="mem-btn" onclick="goTo(3)">fjord</button>
-          <button class="mem-btn" onclick="goTo(3)">swamp</button>
-          <button class="mem-btn" onclick="goTo(3)">wetland</button>
-          <button class="mem-btn" onclick="goTo(3)">spring</button>
-          <button class="mem-btn" onclick="goTo(3)">glacier</button>
-          <button class="mem-btn" onclick="goTo(3)">iceberg</button>
-          <button class="mem-btn" onclick="goTo(3)">fog</button>
-          <button class="mem-btn" onclick="goTo(3)">steam</button>
-          <button class="mem-btn" onclick="goTo(3)">vapor</button>
-          <button class="mem-btn" onclick="goTo(3)">saliva</button>
-          <button class="mem-btn" onclick="goTo(3)">flood</button>
-          <button class="mem-btn" onclick="goTo(3)">geyser</button>
-          <button class="mem-btn" onclick="goTo(3)">tsunami</button>
-          <button class="mem-btn" onclick="goTo(3)">something else</button>
+        <div class="mem-answers" id="water-buttons">
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="ocean"       data-pt="oceano">ocean</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="sea"         data-pt="mar">sea</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="river"       data-pt="rio">river</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="lake"        data-pt="lago">lake</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="cloud"       data-pt="nuvem">cloud</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="rain"        data-pt="chuva">rain</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="paddle"      data-pt="remo">paddle</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="groundwater" data-pt="água subterrânea">groundwater</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="tap"         data-pt="torneira">tap</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="drink"       data-pt="bebida">drink</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="drop"        data-pt="gota">drop</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="sweat"       data-pt="suor">sweat</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="tear"        data-pt="lágrima">tear</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="pond"        data-pt="lagoa">pond</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="stream"      data-pt="riacho">stream</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="fjord"       data-pt="fiordo">fjord</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="swamp"       data-pt="pântano">swamp</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="wetland"     data-pt="área úmida">wetland</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="spring"      data-pt="nascente">spring</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="glacier"     data-pt="geleira">glacier</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="iceberg"     data-pt="iceberg">iceberg</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="fog"         data-pt="névoa">fog</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="steam"       data-pt="vapor quente">steam</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="vapor"       data-pt="vapor">vapor</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="saliva"      data-pt="saliva">saliva</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="flood"       data-pt="enchente">flood</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="geyser"      data-pt="gêiser">geyser</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="tsunami"     data-pt="tsunami">tsunami</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="something else" data-pt="algo diferente">something else</button>
         </div>
       </div>
 
       <!-- ── Screen 3: auto-advances after 5s ── -->
       <div class="mem-screen" id="screen-3">
-        <div class="mem-transition">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
+        <div class="mem-transition" data-i18n="mem.q3">Oh, wow. Interesting choice, I'm a bit surprised, but ok.</div>
       </div>
 
       <!-- ── Screen 4 ── -->
       <div class="mem-screen" id="screen-4">
-        <div class="mem-question">Now try to remember a water memory of yours.
+        <div class="mem-question" data-i18n="mem.q4">Now try to remember a water memory of yours.
 Where you felt that special bond with other water beings.
 
 Did you meet a stunning creature at a surprising spot? Did you rescue another being from their misery? Have you learnt something special? Were you anxious and you found peace somehow? We have so many stories where water is the main character.</div>
         <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(5)">I just remembered a story</button>
+          <button class="mem-btn" onclick="goTo(5)" data-i18n="mem.btn.remembered">I just remembered a story</button>
         </div>
       </div>
 
       <!-- ── Screen 5 ── -->
       <div class="mem-screen" id="screen-5">
-        <div class="mem-question">You have been thinking way too much from your human perspective already. How about trying something more fluid, for a change?</div>
+        <div class="mem-question" data-i18n="mem.q5">You have been thinking way too much from your human perspective already. How about trying something more fluid, for a change?</div>
         <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(6)">Sure, let's go with the flow</button>
-          <button class="mem-btn" onclick="goTo(6)">Can I take a rain check?</button>
+          <button class="mem-btn" onclick="goTo(6)" data-i18n="mem.btn.flow">Sure, let's go with the flow</button>
+          <button class="mem-btn" onclick="goTo(6)" data-i18n="mem.btn.raincheck">Can I take a rain check?</button>
         </div>
       </div>
 
       <!-- ── Screen 6: final page ── -->
       <div class="mem-screen" id="screen-6">
-        <div class="mem-question">I like your attitude.
+        <div class="mem-question" id="mem-q6">I like your attitude.
 
 So this water memory...
 Can you let go of your human point of view? And try to remember more as if you were... you know... <strong>water</strong>...
@@ -166,9 +180,10 @@ which you already are in ca. 60 %... just add that extra 40 %, babe!
 Feel the flow! And tell us your memory, so it can float with the others! We want to hear your voice!</div>
 
         <div class="mem-answers">
-          <button class="mem-btn mem-btn-record" onclick="window.location.href='recorder.html'">record your water memory!</button>
+          <button class="mem-btn mem-btn-record" onclick="window.location.href='recorder.html'" data-i18n="mem.btn.record">record your water memory!</button>
         </div>
-        <p class="mem-privacy-note">* We are recording your anonymous voice message, we save it to our drive, and it is going to go to our internet stream. We are not going to train an AI on your voice. It will go to the ocean of voices. Which are the voices of the ocean.</p>
+        <p class="mem-privacy-note" data-i18n="mem.privacy">* We are recording your anonymous voice message, we save it to our drive, and it is going to go to our internet stream. We are not going to train an AI on your voice. It will go to the ocean of voices. Which are the voices of the ocean.</p>
+        <p class="mem-privacy-note mem-machine-note" id="mem-machine-note" style="display:none;margin-top:0.5rem;opacity:0.6;font-size:12px;" data-i18n="mem.machine"></p>
       </div>
 
     </div>
@@ -231,6 +246,24 @@ Feel the flow! And tell us your memory, so it can float with the others! We want
     }
 
     scheduleBubble();
+
+    /* ── Language: screen 6 HTML + machine note ── */
+    const q6el       = document.getElementById('mem-q6');
+    const machineNote = document.getElementById('mem-machine-note');
+
+    function applyMemLang() {
+      if (typeof t !== 'function') return;
+      q6el.innerHTML = t('mem.q6html');
+      const isPt = (typeof currentLang !== 'undefined' ? currentLang : 'en') === 'pt';
+      machineNote.style.display = isPt ? 'block' : 'none';
+      /* swap water buttons */
+      document.querySelectorAll('.water-btn').forEach(btn => {
+        btn.textContent = isPt ? btn.dataset.pt : btn.dataset.en;
+      });
+    }
+
+    document.addEventListener('langchange', applyMemLang);
+    document.addEventListener('DOMContentLoaded', applyMemLang);
   </script>
 </body>
 </html>

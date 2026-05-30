@@ -26,10 +26,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 1rem 1rem 3rem;
+  padding: 1rem 1rem 3rem;   /* matches landing page header padding */
 }
 
-/* ── Top bar ── */
+/* ── Top bar — mirrors .header on landing page ── */
 .mem-topbar {
   display: flex;
   flex-direction: row;
@@ -37,6 +37,7 @@ body {
   justify-content: space-between;
   margin-bottom: 2rem;
   flex-shrink: 0;
+  gap: 1rem;
 }
 
 /* ── Consistent site header ── */
@@ -68,10 +69,12 @@ body {
 
 .mem-step {
   font-family: 'Celescript', cursive;
-  font-size: 12pt;
+  font-size: var(--fs-ui, clamp(11px, 1.2vw, 16px));
   color: #0046FF;
-  opacity: 0.7;
-  padding-top: 8px;
+  border: 1.5px solid #0046FF;
+  border-radius: 2rem;
+  padding: 0.3rem 0.9rem;
+  white-space: nowrap;
 }
 
 /* ── Progress bar ── */
@@ -238,22 +241,23 @@ body {
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
-  .mem-page           { padding: 0.75rem 0.75rem 2rem; }
-  .mem-topbar         { margin-bottom: 1.5rem; }
+  .mem-page           { padding: 1rem 1rem 2rem; }
+  .mem-topbar         { margin-bottom: 1.5rem; flex-wrap: wrap; align-items: flex-start; gap: 0.5rem; }
+  /* Step+toggle sit on their own row below the brand, left-aligned */
+  .mem-topbar > div   { width: 100%; display: flex; align-items: center; gap: 0.5rem; }
 
   /* Brand proportions match landing page on mobile */
   .brand-title        { white-space: nowrap; }
-  .brand-sub          { font-size: clamp(12px, 3.8vw, 18px); }
   .brand-line         { width: 28px !important; height: auto !important; }
-
-  /* Step label moves below brand on mobile */
-  .mem-topbar         { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-  .mem-step           { align-self: flex-start; }
   .mem-progress-wrap  { margin-bottom: 36px; }
+  /* ── Mobile type: CeleScript = 12pt, NaNTresor = 14pt ── */
   .mem-question,
-  .mem-transition     { font-size: 14pt; }
-  .mem-btn            { font-size: 11pt; padding: 10px 20px; }
-  .mem-btn-record     { font-size: 11pt; padding: 12px 24px; background: #0046FF; color: #ffffff; }
+  .mem-transition     { font-size: 14pt; }           /* NaNTresor */
+  .mem-privacy-note   { font-size: 14pt; }           /* NaNTresor — was collapsing to 9px */
+  .mem-btn            { font-size: 12pt; padding: 10px 20px; }  /* CeleScript */
+  .mem-btn-record     { font-size: 12pt; padding: 12px 24px; background: #0046FF; color: #ffffff; }
+  .mem-step           { font-size: 12pt; }           /* CeleScript */
+  .brand-sub          { font-size: 12pt !important; } /* CeleScript */
   .mem-answers        { gap: 10px; }
   .site-title         { font-size: 22pt; }
 }

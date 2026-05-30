@@ -36,6 +36,8 @@
       z-index: 1;
       width: 100vw;
       height: 100vh;
+      height: 100svh;                    /* iOS/Chrome: excludes browser chrome */
+      height: -webkit-fill-available;    /* older iOS fallback */
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -55,6 +57,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      z-index: 10;               /* above illustrations (z-index:2) */
     }
 
     /* ── Player pill — outlined like btn-outline ── */
@@ -92,7 +96,7 @@
     /* ── Player text elements ── */
     .player-label {
       font-family: 'CeleScript', cursive;
-      font-size: clamp(12px, 1.4vw, 18px);
+      font-size: var(--fs-ui);
       letter-spacing: 0.06em;
       color: var(--black);
       transition: color 0.35s;
@@ -108,7 +112,7 @@
 
     .volume-label {
       font-family: 'CeleScript', cursive;
-      font-size: clamp(10px, 1.1vw, 14px);
+      font-size: var(--fs-ui-sm);
       color: rgba(0,0,0,0.5);
       letter-spacing: 0.04em;
       transition: color 0.35s;
@@ -157,7 +161,7 @@
 
     .status-text {
       font-family: 'CeleScript', cursive;
-      font-size: clamp(10px, 1.1vw, 14px);
+      font-size: var(--fs-ui-sm);
       letter-spacing: 0.04em;
       color: rgba(0,0,0,0.45);
       transition: color 0.35s;
@@ -261,6 +265,7 @@
     }
 
   </style>
+  <script src="lang.js"></script>
 </head>
 <body>
 
@@ -292,7 +297,8 @@
         </div>
       </a>
       <nav class="nav-buttons">
-        <a href="memories.html" class="btn btn-filled">Send your memories today!</a>
+        <button class="btn btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
+        <a href="memories.html" class="btn btn-filled" data-i18n="nav.memories">Send your memories today!</a>
       </nav>
     </header>
 
@@ -304,13 +310,13 @@
             <polygon points="2,1 13,7 2,13" />
           </svg>
         </button>
-        <span class="player-label">stream</span>
+        <span class="player-label" data-i18n="player.label">stream</span>
         <div class="player-divider"></div>
-        <span class="volume-label">vol</span>
+        <span class="volume-label" data-i18n="player.vol">vol</span>
         <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
         <div class="player-divider"></div>
         <div class="status-dot" id="statusDot"></div>
-        <span class="status-text" id="statusText">offline</span>
+        <span class="status-text" id="statusText" data-i18n="player.offline">offline</span>
       </div>
     </div>
 
@@ -332,8 +338,8 @@
     let bubbleTimer = null;
 
     /* ── Status ── */
-    function setStatus(text, live) {
-      statusText.textContent = text;
+    function setStatus(key, live) {
+      statusText.textContent = typeof t === 'function' ? t(key) : key;
       statusDot.classList.toggle('live', live);
     }
 
@@ -346,12 +352,16 @@
     }
 
     /* ── Bubble words ── */
-    const BUBBLE_WORDS = ['stream', 'stream', 'shhh', '~', 'stream'];
+    function getBubbleWords() {
+      return (typeof t === 'function' ? t('player.bubbles') : null)
+          || ['stream', 'stream', 'shhh', '~', 'stream'];
+    }
 
     function spawnBubble() {
+      const words    = getBubbleWords();
       const el       = document.createElement('span');
       el.className   = 'bubble-word';
-      el.textContent = BUBBLE_WORDS[Math.floor(Math.random() * BUBBLE_WORDS.length)];
+      el.textContent = words[Math.floor(Math.random() * words.length)];
       const x        = 5 + Math.random() * 85;
       const size     = (11 + Math.random() * 10).toFixed(1) + 'pt';
       const duration = (5  + Math.random() * 5).toFixed(1)  + 's';
@@ -384,18 +394,18 @@
         audio = new Audio();
         audio.crossOrigin = 'anonymous';
         audio.volume = parseFloat(volSlider.value);
-        audio.addEventListener('waiting', () => setStatus('connecting…', false));
-        audio.addEventListener('playing', () => setStatus('live',        true));
-        audio.addEventListener('stalled', () => setStatus('buffering…',  false));
+        audio.addEventListener('waiting', () => setStatus('player.connecting', false));
+        audio.addEventListener('playing', () => setStatus('player.live',       true));
+        audio.addEventListener('stalled', () => setStatus('player.buffering',  false));
         audio.addEventListener('error',   () => {
-          setStatus('error', false);
+          setStatus('player.error', false);
           setPlayState(false);
           audio = null;
         });
-        setStatus('connecting…', false);
+        setStatus('player.connecting', false);
         audio.src = STREAM_URL;
         audio.play().catch(() => {
-          setStatus('offline', false);
+          setStatus('player.offline', false);
           setPlayState(false);
           audio = null;
         });
@@ -405,12 +415,17 @@
         audio.src = '';
         audio = null;
         setPlayState(false);
-        setStatus('offline', false);
+        setStatus('player.offline', false);
       }
     });
 
     volSlider.addEventListener('input', () => {
       if (audio) audio.volume = parseFloat(volSlider.value);
+    });
+
+    /* ── Re-apply live status text on lang switch ── */
+    document.addEventListener('langchange', () => {
+      if (!playing) setStatus('player.offline', false);
     });
 
     /* ── Kick drop animations on load ── */
