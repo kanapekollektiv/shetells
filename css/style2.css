@@ -663,11 +663,11 @@ html, body {
     transform: none !important;
   }
 
-  /* ── Spiral CTA button — horizontally centred ── */
+  /* ── Spiral CTA — above the spiral illustration (top: 73%) ── */
   #spiral-cta {
     left: 50% !important;
     right: auto !important;
-    top: calc(35% + 110px) !important;
+    top: 64% !important;
     transform: translateX(-50%);
   }
 
@@ -691,11 +691,12 @@ html, body {
     width: calc(100vw - 2rem);
     transform: none !important;
   }
+  /* ── Shell CTA — left-aligned with panel, in line with shell illustration (top: 56%) ── */
   #shell-cta {
-    left: 50% !important;
+    left: 1rem !important;
     right: auto !important;
-    top: calc(35% + 110px) !important;
-    transform: translateX(-50%);
+    top: 52% !important;
+    transform: none !important;
   }
   /* Corner buttons hidden on mobile — btn-outline in nav handles close */
   #shell-corner-btn,
@@ -1097,9 +1098,16 @@ html, body {
     left: 1rem !important; top: 35% !important;
     width: calc(100vw - 2rem); transform: none !important;
   }
-  #o2-cta, #sargassum-cta {
+  /* ── O2 CTA — lower for legibility ── */
+  #o2-cta {
     left: 50% !important; right: auto !important;
-    top: calc(35% + 110px) !important; transform: translateX(-50%);
+    top: 53% !important; transform: translateX(-50%);
+  }
+  /* ── Sargassum CTA — just above the disclaimer ── */
+  #sargassum-cta {
+    left: 50% !important; right: auto !important;
+    top: auto !important; bottom: 90px !important;
+    transform: translateX(-50%);
   }
   /* corner buttons hidden on mobile (see rule above) */
 }
@@ -1213,9 +1221,10 @@ html, body {
     left: 1rem !important; top: 35% !important;
     width: calc(100vw - 2rem); transform: none !important;
   }
+  /* ── Acid CTA — lower for legibility ── */
   #acid-cta {
     left: 50% !important; right: auto !important;
-    top: calc(35% + 110px) !important; transform: translateX(-50%);
+    top: 53% !important; transform: translateX(-50%);
   }
   #acid-corner-btn { top: 0.75rem !important; right: 0.75rem !important; }
 }
