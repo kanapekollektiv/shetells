@@ -658,7 +658,7 @@ html, body {
   /* ── Spiral click panel ── */
   #spiral-panel {
     left: 1rem !important;
-    top: 44% !important;
+    top: 30% !important;
     width: calc(100vw - 2rem);
     transform: none !important;
   }
@@ -667,7 +667,7 @@ html, body {
   #spiral-cta {
     left: 50% !important;
     right: auto !important;
-    top: 36% !important;
+    top: 22% !important;
     transform: translateX(-50%);
   }
 
@@ -687,14 +687,14 @@ html, body {
   /* ── Shell Cream mobile ── */
   #shell-panel {
     left: 1rem !important;
-    top: 44% !important;
+    top: 30% !important;
     width: calc(100vw - 2rem);
     transform: none !important;
   }
   #shell-cta {
     left: 50% !important;
     right: auto !important;
-    top: 36% !important;
+    top: 22% !important;
     transform: translateX(-50%);
   }
   /* Corner buttons hidden on mobile — btn-outline in nav handles close */
@@ -1094,12 +1094,12 @@ html, body {
 /* ── Mobile overrides for new panels ── */
 @media (max-width: 768px) {
   #o2-panel, #sargassum-panel {
-    left: 1rem !important; top: 44% !important;
+    left: 1rem !important; top: 30% !important;
     width: calc(100vw - 2rem); transform: none !important;
   }
   #o2-cta, #sargassum-cta {
     left: 50% !important; right: auto !important;
-    top: 36% !important; transform: translateX(-50%);
+    top: 22% !important; transform: translateX(-50%);
   }
   /* corner buttons hidden on mobile (see rule above) */
 }
@@ -1210,12 +1210,12 @@ html, body {
 /* Mobile overrides */
 @media (max-width: 768px) {
   #acid-panel {
-    left: 1rem !important; top: 44% !important;
+    left: 1rem !important; top: 30% !important;
     width: calc(100vw - 2rem); transform: none !important;
   }
   #acid-cta {
     left: 50% !important; right: auto !important;
-    top: 36% !important; transform: translateX(-50%);
+    top: 22% !important; transform: translateX(-50%);
   }
   #acid-corner-btn { top: 0.75rem !important; right: 0.75rem !important; }
 }
