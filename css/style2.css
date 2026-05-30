@@ -1043,9 +1043,16 @@ html, body {
 ══════════════════════════════════════════════════════ */
 :root { --sargassum: #5fc821; }
 
-.illus-sargassum { pointer-events: auto; cursor: pointer; }
+.illus-sargassum { pointer-events: auto; cursor: pointer; transition: transform 0.45s ease; }
 .illus-sargassum img { transition: filter 0.3s ease, opacity 0.3s ease; }
 .illus-sargassum:hover img { filter: drop-shadow(0 0 10px rgba(95,200,33,0.4)); opacity: 0.85; }
+
+/* Sargassum illustration moves lower when its panel is open (mobile) */
+@media (max-width: 768px) {
+  .sargassum-open .illus-sargassum {
+    transform: translateY(80px) rotate(var(--rot-end, 2deg));
+  }
+}
 
 .sargassum-open .illus:not(.illus-sargassum) { opacity: 0; pointer-events: none; }
 .sargassum-open .illus-sargassum img { filter: invert(1) brightness(10); }
