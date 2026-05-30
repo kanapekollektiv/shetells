@@ -663,12 +663,12 @@ html, body {
     transform: none !important;
   }
 
-  /* ── Spiral CTA — above the disclaimer, like sargassum ── */
+  /* ── Spiral CTA — above the spiral illustration ── */
   #spiral-cta {
     left: 50% !important;
     right: auto !important;
-    top: auto !important;
-    bottom: 90px !important;
+    top: 64% !important;
+    bottom: auto !important;
     transform: translateX(-50%);
   }
 
