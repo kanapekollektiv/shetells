@@ -672,12 +672,14 @@ html, body {
     transform: translateX(-50%);
   }
 
-  /* ── Disclaimer ── */
+  /* ── Disclaimers — left-aligned to panel (1rem) across all sections ── */
   .page-disclaimer {
     bottom: 1rem;
-    right: auto;
-    left: 1rem;
+    right: auto !important;
+    left: 1rem !important;
     max-width: calc(100vw - 2rem);
+    background: transparent !important;
+    backdrop-filter: none !important;
   }
 
   /* ── Overlay box ── */
@@ -713,8 +715,7 @@ html, body {
   .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
   .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
 
-  /* Spiral disclaimer: no brown box on mobile */
-  #spiral-disclaimer { background: transparent !important; backdrop-filter: none !important; }
+  /* All disclaimers: transparent bg handled by .page-disclaimer rule above */
 
   /* ── Mobile-only: font sizes, CTA width, overlay — desktop unchanged ── */
   .btn                 { font-size: 12px !important; }
