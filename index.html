@@ -4,63 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>She Tells — Sea Shells</title>
-  <link rel="stylesheet" href="css/style2.css" />
+  <link rel="stylesheet" href="css/style2.css?v=30" />
 </head>
 <body>
 
 <div class="page">
 
-  <!-- Background image — fades in when spiral is clicked -->
+  <!-- Background layer — hidden until spiral is clicked -->
   <div class="page-bg"></div>
 
   <!-- Header -->
   <header class="header">
     <div class="brand">
       <span class="brand-title">she tells</span>
-      <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
+      <span class="brand-sub">
+        <img src="drawings/Asset 2.svg" class="brand-line" alt="" aria-hidden="true" />
+        sea shells
+      </span>
     </div>
 
     <nav class="nav-buttons">
       <button class="btn btn-circle" id="btn-info" aria-haspopup="dialog">?</button>
-      <a href="memories.html" class="btn btn-filled">Send your memories today!</a>
-      <a href="stream.html" class="btn btn-outline">tune in to the stream</a>
+      <a href="memories.html" class="btn btn-filled" id="btn-memories">
+        Send your memories today!
+      </a>
+      <button class="btn btn-outline" id="btn-dunes">tune in to the stream</button>
     </nav>
   </header>
 
-  <!-- Tagline — typewriter text -->
+  <!-- Tagline — dash is fixed; text is filled by typewriter JS -->
   <p class="tagline"><span class="tagline-dash">— </span><span class="tagline-text"></span><span class="tagline-cursor"></span></p>
 
-  <!-- Illustrations -->
+  <!-- Illustrations — drop from top, wiggle on land -->
   <div class="illustrations">
 
     <div class="illus illus-shell" id="shell-illus"
-         style="--size:19vw; --rot-start:-6deg; --rot-end:-3deg; --delay:0s; --duration:2.6s; --y-rest:-10vh;">
-      <img src="drawings/Asset 7.svg" alt="" />
+         style="--size:19vw; --rot-start:-6deg; --rot-end:-3deg; --delay:0s;    --duration:2.6s; --y-rest:-10vh;">
+      <img src="drawings/Asset 7.svg" alt="illustration 1" />
     </div>
 
     <div class="illus illus-spiral" id="spiral-illus"
-         style="--size:17vw; --rot-start:4deg; --rot-end:3deg; --delay:0.3s; --duration:2.5s; --y-rest:-3vh;">
-      <img src="drawings/Asset 8.svg" alt="" />
+         style="--size:17vw; --rot-start:4deg;  --rot-end:3deg;  --delay:0.3s;  --duration:2.5s; --y-rest:-3vh;">
+      <img src="drawings/Asset 8.svg" alt="illustration 2" />
     </div>
 
     <div class="illus illus-acid" id="acid-illus"
-         style="--size:12vw; --rot-start:-3deg; --rot-end:1deg; --delay:0.55s; --duration:2.4s; --y-rest:-16vh;">
-      <img src="drawings/Asset 11.svg" alt="" />
+         style="--size:12vw; --rot-start:-3deg; --rot-end:1deg;  --delay:0.55s; --duration:2.4s; --y-rest:-16vh;">
+      <img src="drawings/Asset 11.svg" alt="illustration 3" />
     </div>
 
     <div class="illus illus-sargassum" id="sargassum-illus"
-         style="--size:22vw; --rot-start:5deg; --rot-end:2deg; --delay:0.2s; --duration:2.7s; --y-rest:0px;">
-      <img src="drawings/Asset 14.svg" alt="" />
+         style="--size:22vw; --rot-start:5deg;  --rot-end:2deg;  --delay:0.2s;  --duration:2.7s; --y-rest:0px;">
+      <img src="drawings/Asset 14.svg" alt="illustration 4" />
     </div>
 
     <div class="illus illus-o2" id="o2-illus"
-         style="--size:16vw; --rot-start:-4deg; --rot-end:-2deg; --delay:0.4s; --duration:2.5s; --y-rest:-7vh;">
-      <img src="drawings/Asset 9.svg" alt="" />
+         style="--size:16vw; --rot-start:-4deg; --rot-end:-2deg; --delay:0.4s;  --duration:2.5s; --y-rest:-7vh;">
+      <img src="drawings/Asset 9.svg" alt="illustration 5" />
     </div>
 
   </div>
 
-  <!-- Spiral click panel -->
+  <!-- Spiral click panel: "sexy dunes" — INSIDE .page so it shares the same stacking context -->
   <div id="spiral-panel">
     <p class="spiral-title">sexy dunes</p>
     <p class="spiral-body">
@@ -72,13 +77,13 @@
     <p class="spiral-bold">We got you covered.</p>
   </div>
 
-  <!-- Spiral floating CTA -->
+  <!-- Spiral floating CTA button -->
   <button id="spiral-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
     <span class="cta-pill-text">Send your memories today!</span>
   </button>
 
-  <!-- Spiral disclaimer -->
+  <!-- Disclaimer — bottom right, appears with spiral click -->
   <p class="page-disclaimer" id="spiral-disclaimer">
     <strong>Disclaimer:</strong> Terms and conditions apply.
     The numbers stated are all predictions based on data
@@ -86,7 +91,7 @@
     and conditions on our website.
   </p>
 
-  <!-- Shell Cream corner button -->
+  <!-- Shell Cream top-right button -->
   <button id="shell-corner-btn">Outlast the acid era...</button>
 
   <!-- Shell Cream text panel -->
@@ -96,7 +101,7 @@
     <p class="shell-bold">But we do.</p>
   </div>
 
-  <!-- Shell Cream floating CTA -->
+  <!-- Shell Cream floating CTA (wave SVG + text, same as spiral) -->
   <button id="shell-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
     <span class="cta-pill-text">Send your memories today!</span>
@@ -109,68 +114,59 @@
     may vary. She Tells Corp assumes no liability for planetary pH.
   </p>
 
-  <!-- Deluxe O₂ corner button -->
+  <!-- ── O₂ (Asset 9) ── -->
   <button id="o2-corner-btn">You will oooh too...</button>
 
-  <!-- Deluxe O₂ text panel -->
   <div id="o2-panel">
     <p class="o2-title">deluxe o<sub>2</sub></p>
     <p class="o2-body">Are you bored of your old, landy oxygen,<br>coming from those ugly green trees?</p>
     <p class="o2-bold">Breathe better, darling!</p>
   </div>
 
-  <!-- Deluxe O₂ floating CTA -->
   <button id="o2-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
     <span class="cta-pill-text">Send your memories today!</span>
   </button>
 
-  <!-- Deluxe O₂ disclaimer -->
   <p class="page-disclaimer" id="o2-disclaimer">
     <strong>Disclaimer:</strong> Please only consume our premium oxygen if evolution
     has equipped you with the proper organs to process it.
   </p>
 
-  <!-- Sargassum City corner button -->
+  <!-- ── Sargassum City (Asset 14) ── -->
   <button id="sargassum-corner-btn">@ The Big Sea-ty Life</button>
 
-  <!-- Sargassum City text panel -->
   <div id="sargassum-panel">
     <p class="sargassum-title">sargassum city</p>
     <p class="sargassum-body">Take me down to Sargassum City.<br>Where the grass is green<br>and the fish are pretty.</p>
     <p class="sargassum-bold">Get your prime location now.</p>
   </div>
 
-  <!-- Sargassum City floating CTA -->
   <button id="sargassum-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
     <span class="cta-pill-text">Send your memories today!</span>
   </button>
 
-  <!-- Sargassum City disclaimer -->
   <p class="page-disclaimer" id="sargassum-disclaimer">
     <strong>Disclaimer:</strong> At Sargassum City, we do not take responsibility for climate change,
     carbon emissions, or the plastic in your body. If any of these symptoms occur in your area,
     please ask your doctor or pharmacist whether this is right for you.
   </p>
 
-  <!-- Acid Tabs corner button -->
+  <!-- ── Acid Tabs (Asset 11) ── -->
   <button id="acid-corner-btn">DISSOLVE WITH DIGNITY.</button>
 
-  <!-- Acid Tabs text panel -->
   <div id="acid-panel">
     <p class="acid-title">acid tabs</p>
     <p class="acid-body">Keep your ACID UNDER control.<br>Now in Dimethyl SULFIDE Flavour!</p>
     <p class="acid-bold">The ocean will never leave you now.</p>
   </div>
 
-  <!-- Acid Tabs floating CTA -->
   <button id="acid-cta" aria-haspopup="dialog">
     <img src="drawings/Asset 16.svg" class="cta-wave" alt="" aria-hidden="true" />
     <span class="cta-pill-text">Send your memories today!</span>
   </button>
 
-  <!-- Acid Tabs disclaimer -->
   <p class="page-disclaimer" id="acid-disclaimer">
     <strong>Disclaimer:</strong> She Tells Acid Tabs are a food supplement and not a substitute
     for medical advice, ocean governance, or carbonate chemistry. Results may vary depending on
@@ -183,13 +179,9 @@
 <div class="overlay" id="overlay-info" role="dialog" aria-modal="true">
   <div class="overlay-box">
     <button class="overlay-close" id="close-info" aria-label="Close">✕</button>
-    <h2 class="overlay-title">sea shells</h2>
+    <h2 class="overlay-title">Info</h2>
     <div class="overlay-body">
-      <p>
-        Hi!<br>
-        Lovely to see you here.<br>
-        <br>
-        Our project is called She Tells, Sea Shells (as you could have guessed already), and we want you to get closer to water, because it's important to pay more attention to your environment, there is the climate change, sustainability, AI using a lot of water, a big part of you is water, seafood is delicious and it's more and more full of plastic, swimming is nice, but there is plastic here too... well, we have tonnes of reasons, but mainly because <strong>we care about water, and we want you to care more.</strong><br>
+      <p>Our project is called She Tells, Sea Shells (as you could have guessed already), and we want you to get closer to water, because it's important to pay more attention to your environment, there is the climate change, sustainability, AI using a lot of water, a big part of you is water, seafood is delicious and it's more and more full of plastic, swimming is nice, but there is plastic here too... well, we have tonnes of reasons, but mainly because <strong>we care about water, and we want you to care more.</strong><br>
         <br>
         We are part of <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener" style="color:inherit;">S+T+ARTS Aquamotion</a> artist residency, so this project is funded by the EU, and we work together with <a href="https://rioneiva.com/" target="_blank" rel="noopener" style="color:inherit;">Rio Neiva</a>. We are very happy about all these collaborations! By the way, by we, we mean our <a href="team.html" style="color:inherit;">team</a>.<br>
         <br>
@@ -198,6 +190,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
   /* ── Info overlay ── */
@@ -229,10 +222,13 @@
   ];
 
   const taglineText = document.querySelector('.tagline-text');
-  let phraseIdx = 0, charIdx = 0, deleting = false;
+  let phraseIdx  = 0;
+  let charIdx    = 0;
+  let deleting   = false;
 
   function typeStep() {
     const phrase = phrases[phraseIdx];
+
     if (!deleting) {
       charIdx++;
       taglineText.textContent = phrase.slice(0, charIdx);
@@ -257,95 +253,108 @@
     }
   }
 
-  /* ── Shared state ── */
-  const pageEl = document.querySelector('.page');
-  let spiralOpen = false, shellOpen = false, o2Open = false, sargassumOpen = false, acidOpen = false;
+  /* ── Spiral click interaction ── */
+  const spiralIllus  = document.getElementById('spiral-illus');
+  const spiralPanel  = document.getElementById('spiral-panel');
+  const spiralCta    = document.getElementById('spiral-cta');
+  const disclaimer   = document.getElementById('spiral-disclaimer');
+  let   spiralOpen   = false;
 
-  function closeAll() {
-    if (spiralOpen)    closeSpiral();
+  function positionSpiralContent() {
+    // Place panel left of the spiral, CTA button above it
+    const rect = spiralIllus.getBoundingClientRect();
+    const cx   = rect.left + rect.width / 2;   // spiral centre x
+    const cy   = rect.top  + rect.height / 2;  // spiral centre y
+
+    // Panel: to the left, centred vertically on spiral
+    spiralPanel.style.left  = Math.max(16, cx - rect.width * 1.9) + 'px';
+    spiralPanel.style.top   = (cy - rect.height * 0.3) + 'px';
+    spiralPanel.style.transform = 'none';
+
+    // CTA button: above the spiral, slightly right of its centre
+    const ctaW = spiralCta.offsetWidth;
+    spiralCta.style.left  = (cx - ctaW / 2 + rect.width * 0.4) + 'px';
+    spiralCta.style.top   = (rect.top - 60) + 'px';
+    spiralCta.style.right = 'auto';
+  }
+
+  const pageEl   = document.querySelector('.page');
+  const btnDunes = document.getElementById('btn-dunes');
+
+  function openSpiral() {
     if (shellOpen)     closeShell();
     if (o2Open)        closeO2();
     if (sargassumOpen) closeSargassum();
     if (acidOpen)      closeAcid();
-  }
-
-  /* ── Spiral interaction ── */
-  const spiralIllus    = document.getElementById('spiral-illus');
-  const spiralPanel    = document.getElementById('spiral-panel');
-  const spiralCta      = document.getElementById('spiral-cta');
-  const spiralDisclaimer = document.getElementById('spiral-disclaimer');
-
-  function positionSpiralContent() {
-    const rect = spiralIllus.getBoundingClientRect();
-    const cx   = rect.left + rect.width / 2;
-    const cy   = rect.top  + rect.height / 2;
-    spiralPanel.style.left      = Math.max(16, cx - rect.width * 1.9) + 'px';
-    spiralPanel.style.top       = (cy - rect.height * 0.3) + 'px';
-    spiralPanel.style.transform = 'none';
-    const ctaW = spiralCta.offsetWidth;
-    const ctaH = spiralCta.offsetHeight || 80;
-    if (window.innerWidth <= 768) {
-      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
-      spiralCta.style.left  = left + 'px';
-      spiralCta.style.top   = Math.max(window.innerHeight * 0.18 + 160, rect.top - ctaH - 8) + 'px';
-    } else {
-      spiralCta.style.left  = (cx - ctaW / 2 + rect.width * 0.4) + 'px';
-      spiralCta.style.top   = (rect.top - 60) + 'px';
-    }
-    spiralCta.style.right = 'auto';
-  }
-
-  function openSpiral() {
-    closeAll();
     spiralOpen = true;
     positionSpiralContent();
     spiralPanel.classList.add('active');
     spiralCta.classList.add('active');
-    spiralDisclaimer.classList.add('active');
+    disclaimer.classList.add('active');
     pageEl.classList.add('spiral-open');
+    btnDunes.textContent = 'Dunes don\'t lie baby!';
   }
 
   function closeSpiral() {
     spiralOpen = false;
     spiralPanel.classList.remove('active');
     spiralCta.classList.remove('active');
-    spiralDisclaimer.classList.remove('active');
+    disclaimer.classList.remove('active');
     pageEl.classList.remove('spiral-open');
+    btnDunes.textContent = 'tune in to the stream';
   }
 
-  spiralIllus.addEventListener('click', e => { e.stopPropagation(); spiralOpen ? closeSpiral() : openSpiral(); });
-  spiralCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
+  spiralIllus.addEventListener('click', e => {
+    e.stopPropagation();
+    spiralOpen ? closeSpiral() : openSpiral();
+  });
 
-  /* ── Shell Cream (Asset 7) ── */
+  // CTA button opens the memories overlay
+  spiralCta.addEventListener('click', e => {
+    e.stopPropagation();
+    openOverlay('overlay-memories');
+  });
+
+  // Click anywhere else closes whichever panel is open
+  document.addEventListener('click', () => {
+    if (spiralOpen)    closeSpiral();
+    if (shellOpen)     closeShell();
+    if (o2Open)        closeO2();
+    if (sargassumOpen) closeSargassum();
+    if (acidOpen)      closeAcid();
+  });
+
+  /* ── Shell Cream (Asset 7) click interaction ── */
   const shellIllus      = document.getElementById('shell-illus');
   const shellPanel      = document.getElementById('shell-panel');
   const shellCta        = document.getElementById('shell-cta');
   const shellDisclaimer = document.getElementById('shell-disclaimer');
   const shellCornerBtn  = document.getElementById('shell-corner-btn');
+  let   shellOpen       = false;
 
   function positionShellContent() {
     const rect = shellIllus.getBoundingClientRect();
     const cx   = rect.left + rect.width / 2;
     const cy   = rect.top  + rect.height / 2;
+
+    // Panel: comfortably to the right of the illustration, not overlapping
     const panelLeft = rect.right + rect.width * 0.3;
     shellPanel.style.left  = Math.min(panelLeft, window.innerWidth * 0.38) + 'px';
     shellPanel.style.top   = (cy - rect.height * 0.3) + 'px';
     shellPanel.style.transform = 'none';
+
+    // CTA: right above the shell illustration, centred on it (mirrors spiral)
     const ctaW = shellCta.offsetWidth;
-    const ctaH = shellCta.offsetHeight || 80;
-    if (window.innerWidth <= 768) {
-      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
-      shellCta.style.left  = left + 'px';
-      shellCta.style.top   = Math.max(window.innerHeight * 0.18 + 160, rect.top - ctaH - 8) + 'px';
-    } else {
-      shellCta.style.left  = (cx - ctaW / 2 + rect.width * 0.1) + 'px';
-      shellCta.style.top   = (rect.top - 60) + 'px';
-    }
+    shellCta.style.left  = (cx - ctaW / 2 + rect.width * 0.1) + 'px';
+    shellCta.style.top   = (rect.top - 60) + 'px';
     shellCta.style.right = 'auto';
   }
 
   function openShell() {
-    closeAll();
+    if (spiralOpen) closeSpiral();
+    if (o2Open)     closeO2();
+    if (sargassumOpen) closeSargassum();
+    if (acidOpen)   closeAcid();
     shellOpen = true;
     positionShellContent();
     shellPanel.classList.add('active');
@@ -353,6 +362,7 @@
     shellDisclaimer.classList.add('active');
     shellCornerBtn.classList.add('active');
     pageEl.classList.add('shell-open');
+    btnDunes.textContent = 'Outlast the acid era...';
   }
 
   function closeShell() {
@@ -362,43 +372,54 @@
     shellDisclaimer.classList.remove('active');
     shellCornerBtn.classList.remove('active');
     pageEl.classList.remove('shell-open');
+    btnDunes.textContent = 'tune in to the stream';
   }
 
-  shellIllus.addEventListener('click', e => { e.stopPropagation(); shellOpen ? closeShell() : openShell(); });
-  shellCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
-  shellCornerBtn.addEventListener('click', e => { e.stopPropagation(); closeShell(); });
+  shellIllus.addEventListener('click', e => {
+    e.stopPropagation();
+    shellOpen ? closeShell() : openShell();
+  });
 
-  /* ── Deluxe O₂ (Asset 9) ── */
+  shellCta.addEventListener('click', e => {
+    e.stopPropagation();
+    openOverlay('overlay-memories');
+  });
+
+  shellCornerBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    closeShell();
+  });
+
+  /* ── O₂ (Asset 9) ── */
   const o2Illus      = document.getElementById('o2-illus');
   const o2Panel      = document.getElementById('o2-panel');
   const o2Cta        = document.getElementById('o2-cta');
   const o2Disclaimer = document.getElementById('o2-disclaimer');
   const o2CornerBtn  = document.getElementById('o2-corner-btn');
+  let   o2Open       = false;
 
   function positionO2Content() {
     const rect = o2Illus.getBoundingClientRect();
     const cx   = rect.left + rect.width / 2;
     const cy   = rect.top  + rect.height / 2;
+    // Panel: to the LEFT of the illustration
     const panelW = o2Panel.offsetWidth;
     o2Panel.style.left      = Math.max(16, cx - rect.width * 1.8 - panelW * 0.3) + 'px';
     o2Panel.style.top       = (cy - rect.height * 0.3) + 'px';
     o2Panel.style.transform = 'none';
+    // CTA: above the illustration — clamp left so it never overflows the viewport
     const ctaW = o2Cta.offsetWidth;
-    const ctaH = o2Cta.offsetHeight || 80;
-    if (window.innerWidth <= 768) {
-      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
-      o2Cta.style.left  = left + 'px';
-      o2Cta.style.top   = Math.max(window.innerHeight * 0.18 + 160, rect.top - ctaH - 8) + 'px';
-    } else {
-      const ctaLeft = Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 16);
-      o2Cta.style.left  = Math.max(16, ctaLeft) + 'px';
-      o2Cta.style.top   = (rect.top - 60) + 'px';
-    }
+    const ctaLeft = Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 16);
+    o2Cta.style.left  = Math.max(16, ctaLeft) + 'px';
+    o2Cta.style.top   = (rect.top - 60) + 'px';
     o2Cta.style.right = 'auto';
   }
 
   function openO2() {
-    closeAll();
+    if (spiralOpen) closeSpiral();
+    if (shellOpen)  closeShell();
+    if (sargassumOpen) closeSargassum();
+    if (acidOpen)   closeAcid();
     o2Open = true;
     positionO2Content();
     o2Panel.classList.add('active');
@@ -406,6 +427,7 @@
     o2Disclaimer.classList.add('active');
     o2CornerBtn.classList.add('active');
     pageEl.classList.add('o2-open');
+    btnDunes.textContent = 'You will oooh too...';
   }
 
   function closeO2() {
@@ -415,6 +437,7 @@
     o2Disclaimer.classList.remove('active');
     o2CornerBtn.classList.remove('active');
     pageEl.classList.remove('o2-open');
+    btnDunes.textContent = 'tune in to the stream';
   }
 
   o2Illus.addEventListener('click', e => { e.stopPropagation(); o2Open ? closeO2() : openO2(); });
@@ -427,28 +450,28 @@
   const sargassumCta        = document.getElementById('sargassum-cta');
   const sargassumDisclaimer = document.getElementById('sargassum-disclaimer');
   const sargassumCornerBtn  = document.getElementById('sargassum-corner-btn');
+  let   sargassumOpen       = false;
 
   function positionSargassumContent() {
     const rect = sargassumIllus.getBoundingClientRect();
     const cx   = rect.left + rect.width / 2;
+    const cy   = rect.top  + rect.height / 2;
+    // Panel: to the LEFT of the illustration — top comes from CSS, only left is set by JS
     const panelW = sargassumPanel.offsetWidth;
     sargassumPanel.style.left      = Math.max(16, cx - rect.width * 1.6 - panelW * 0.2) + 'px';
     sargassumPanel.style.transform = 'none';
+    // CTA: above the illustration
     const ctaW = sargassumCta.offsetWidth;
-    const ctaH = sargassumCta.offsetHeight || 80;
-    if (window.innerWidth <= 768) {
-      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
-      sargassumCta.style.left  = left + 'px';
-      sargassumCta.style.top   = Math.max(window.innerHeight * 0.18 + 160, rect.top - ctaH - 8) + 'px';
-    } else {
-      sargassumCta.style.left  = (cx - ctaW / 2) + 'px';
-      sargassumCta.style.top   = (rect.top - 60) + 'px';
-    }
+    sargassumCta.style.left  = (cx - ctaW / 2) + 'px';
+    sargassumCta.style.top   = (rect.top - 60) + 'px';
     sargassumCta.style.right = 'auto';
   }
 
   function openSargassum() {
-    closeAll();
+    if (spiralOpen) closeSpiral();
+    if (shellOpen)  closeShell();
+    if (o2Open)     closeO2();
+    if (acidOpen)   closeAcid();
     sargassumOpen = true;
     positionSargassumContent();
     sargassumPanel.classList.add('active');
@@ -456,6 +479,7 @@
     sargassumDisclaimer.classList.add('active');
     sargassumCornerBtn.classList.add('active');
     pageEl.classList.add('sargassum-open');
+    btnDunes.textContent = '@ The Big Sea-ty Life';
   }
 
   function closeSargassum() {
@@ -465,6 +489,7 @@
     sargassumDisclaimer.classList.remove('active');
     sargassumCornerBtn.classList.remove('active');
     pageEl.classList.remove('sargassum-open');
+    btnDunes.textContent = 'tune in to the stream';
   }
 
   sargassumIllus.addEventListener('click', e => { e.stopPropagation(); sargassumOpen ? closeSargassum() : openSargassum(); });
@@ -477,30 +502,29 @@
   const acidCta        = document.getElementById('acid-cta');
   const acidDisclaimer = document.getElementById('acid-disclaimer');
   const acidCornerBtn  = document.getElementById('acid-corner-btn');
+  let   acidOpen       = false;
 
   function positionAcidContent() {
     const rect = acidIllus.getBoundingClientRect();
     const cx   = rect.left + rect.width / 2;
     const cy   = rect.top  + rect.height / 2;
+    // Panel: to the LEFT of the illustration
     const panelW = acidPanel.offsetWidth;
     acidPanel.style.left      = Math.max(16, cx - rect.width * 1.6 - panelW * 0.2) + 'px';
     acidPanel.style.top       = (cy - rect.height * 0.3) + 'px';
     acidPanel.style.transform = 'none';
+    // CTA: above the illustration
     const ctaW = acidCta.offsetWidth;
-    const ctaH = acidCta.offsetHeight || 80;
-    if (window.innerWidth <= 768) {
-      const left = Math.max(8, Math.min(cx - ctaW / 2, window.innerWidth - ctaW - 8));
-      acidCta.style.left  = left + 'px';
-      acidCta.style.top   = Math.max(window.innerHeight * 0.18 + 160, rect.top - ctaH - 8) + 'px';
-    } else {
-      acidCta.style.left  = (cx - ctaW / 2) + 'px';
-      acidCta.style.top   = (rect.top - 60) + 'px';
-    }
+    acidCta.style.left  = (cx - ctaW / 2) + 'px';
+    acidCta.style.top   = (rect.top - 60) + 'px';
     acidCta.style.right = 'auto';
   }
 
   function openAcid() {
-    closeAll();
+    if (spiralOpen)    closeSpiral();
+    if (shellOpen)     closeShell();
+    if (o2Open)        closeO2();
+    if (sargassumOpen) closeSargassum();
     acidOpen = true;
     positionAcidContent();
     acidPanel.classList.add('active');
@@ -508,6 +532,7 @@
     acidDisclaimer.classList.add('active');
     acidCornerBtn.classList.add('active');
     pageEl.classList.add('acid-open');
+    btnDunes.textContent = 'DISSOLVE WITH DIGNITY.';
   }
 
   function closeAcid() {
@@ -517,56 +542,81 @@
     acidDisclaimer.classList.remove('active');
     acidCornerBtn.classList.remove('active');
     pageEl.classList.remove('acid-open');
+    btnDunes.textContent = 'tune in to the stream';
   }
 
   acidIllus.addEventListener('click', e => { e.stopPropagation(); acidOpen ? closeAcid() : openAcid(); });
   acidCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'memories.html'; });
   acidCornerBtn.addEventListener('click', e => { e.stopPropagation(); closeAcid(); });
 
-  document.addEventListener('click', closeAll);
+  /* ── btnDunes: close active section, or navigate to stream.html ── */
+  btnDunes.addEventListener('click', e => {
+    e.stopPropagation();
+    if (spiralOpen)    { closeSpiral();    return; }
+    if (shellOpen)     { closeShell();     return; }
+    if (o2Open)        { closeO2();        return; }
+    if (sargassumOpen) { closeSargassum(); return; }
+    if (acidOpen)      { closeAcid();      return; }
+    window.location.href = 'stream.html';
+  });
 
-  /* ── Tagline positioning ── */
+  /* ── Align tagline: left edge flush with ? button, floated below header ── */
   function positionTagline() {
     const btn     = document.getElementById('btn-info');
     const tagline = document.querySelector('.tagline');
     const btnRect = btn.getBoundingClientRect();
-    tagline.style.left  = btnRect.left + 'px';
+
+    // Left edge of tagline = left edge of the ? button
+    tagline.style.left = btnRect.left + 'px';
     tagline.style.right = 'auto';
-    tagline.style.top   = (btnRect.bottom + window.innerHeight * 0.14) + 'px';
+
+    // Vertical: header bottom + ~18% of viewport height — sits below header
+    // but well above the illustrations (not right under the button)
+    tagline.style.top = (btnRect.bottom + window.innerHeight * 0.14) + 'px';
   }
 
-  /* ── Mobile layout ── */
+  /* ── Mobile: zero out --y-rest so translateY(0) = CSS top position ── */
   function applyMobileLayout() {
     const isMobile = window.innerWidth <= 768;
     document.querySelectorAll('.illus').forEach(el => {
       if (isMobile) {
         el.style.setProperty('--y-rest', '0px');
       } else {
+        // restore original values from data attributes (set once on first run)
         const orig = el.dataset.yrest;
         if (orig) el.style.setProperty('--y-rest', orig);
       }
     });
   }
 
+  // Store originals before mutating
   document.querySelectorAll('.illus').forEach(el => {
     el.dataset.yrest = el.style.getPropertyValue('--y-rest') || '0px';
   });
 
   applyMobileLayout();
   window.addEventListener('resize', applyMobileLayout);
+
   positionTagline();
   window.addEventListener('resize', positionTagline);
 
-  /* ── Kick animations ── */
+  /* ── Trigger drop animation after fonts + images are ready ── */
   async function kickAnimations() {
     await document.fonts.ready;
+
+    // Wait for all images to load so sizes are known
     const imgs = [...document.querySelectorAll('.illus img')];
     await Promise.all(imgs.map(img =>
       img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
     ));
+
+    // Small tick so the browser has painted the initial transform state
     requestAnimationFrame(() => requestAnimationFrame(() => {
       document.querySelectorAll('.illus').forEach(el => el.classList.add('animate'));
     }));
+
+    // Start typewriter after the last illustration finishes landing
+    // max(delay + duration) across all 5 illus = 0.55 + 2.4 = 2.95 s
     setTimeout(typeStep, 2950 + 350);
   }
 

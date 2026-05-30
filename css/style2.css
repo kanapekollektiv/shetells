@@ -50,30 +50,30 @@ html, body {
 }
 
 /* Background image on an explicit layer — hidden by default,
-   fades in when a section is opened */
+   fades in when .spiral-open is added to .page */
 .page-bg {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('../Background/Asset 15-100.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 0.55s ease, background-image 0s;
+  transition: opacity 0.55s ease;
   pointer-events: none;
 }
-.spiral-open    .page-bg { opacity: 1; background-image: url('../Background/Asset 15-100.jpg'); }
-.shell-open     .page-bg { opacity: 1; background-image: url('../Background/Asset_7_BG.png'); }
-.o2-open        .page-bg { opacity: 1; background-image: url('../Background/Asset_9_BG.png'); }
-.sargassum-open .page-bg { opacity: 1; background-image: url('../Background/Asset_14_BG.png'); }
-.acid-open      .page-bg { opacity: 1; background-image: url('../Background/Asset_11_BG.png'); }
+/* Each background layer uses a pseudo or separate bg declaration */
+.page-bg               { background-image: url('../Background/Asset 15-100.jpg'); }
+.spiral-open    .page-bg { opacity: 1; }
+.shell-open     .page-bg { background-image: url('../Background/Asset_7_BG.png');  opacity: 1; }
+.o2-open        .page-bg { background-image: url('../Background/Asset_9_BG.png');  opacity: 1; }
+.sargassum-open .page-bg { background-image: url('../Background/Asset_14_BG.png'); opacity: 1; }
 
 /* ── Header — 1rem (16px) from each corner ── */
 .header {
   position: relative;
   z-index: 12;   /* above ::before bg layer (z-index:1) */
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 1rem 1rem 0;
   flex-shrink: 0;
@@ -109,23 +109,34 @@ html, body {
 
 .brand-sub {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.2vw, 18px);
+  font-size: clamp(13px, 1.6vw, 22px);
   color: var(--black);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5em;
 }
-.spiral-open .brand-sub { color: var(--white); }
 
+/* Wave line replacing the dashes */
 .brand-line {
-  width: clamp(36px, 3.5vw, 55px);
-  height: auto;
-  display: block;
+  display: inline-block;
+  height: clamp(10px, 1.2vw, 16px);
+  width: auto;
+  /* SVG is white — invert to black for default white page */
+  filter: invert(1);
+  transition: filter 0.35s ease;
   flex-shrink: 0;
 }
+
+/* Restore white when any panel is open */
+.spiral-open    .brand-line,
+.shell-open     .brand-line,
+.o2-open        .brand-line,
+.sargassum-open .brand-line,
+.acid-open      .brand-line { filter: none; }
+.spiral-open .brand-sub { color: var(--white); }
 
 /* ── Nav buttons ── */
 .nav-buttons {
@@ -274,7 +285,7 @@ html, body {
 .spiral-title {
   font-family: 'NaNTresor', serif;
   font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
+  font-size: clamp(28px, 2.8vw, 38px);
   color: var(--white);
   letter-spacing: -0.01em;
   margin-bottom: 0.7rem;
@@ -283,23 +294,23 @@ html, body {
 
 .spiral-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(10px, 1vw, 13px);
+  font-size: clamp(13px, 1.2vw, 15px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  line-height: 1.7;
+  line-height: 1.4;           /* matches shell body */
   margin-bottom: 0.9rem;
 }
 
 .spiral-bold {
   font-family: 'NaNTresor', serif;
   font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: clamp(15px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--brown);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 3px; /* matches shell bold */
 }
 
 /* ── Spiral floating CTA button ── */
@@ -324,6 +335,23 @@ html, body {
   pointer-events: auto;
 }
 
+/* Spiral CTA — no pill, white text over wave SVG */
+#spiral-cta .cta-pill-text {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--white);
+}
+
+/* Spiral disclaimer — brown themed box */
+#spiral-disclaimer {
+  background: rgba(91, 41, 21, 0.82);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(4px);
+}
+#spiral-disclaimer strong { color: rgba(255,255,255,0.95); }
+
 /* SVG fills the button — acts as the shape/container */
 .cta-wave {
   display: block;
@@ -341,7 +369,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(11px, 1.2vw, 15px);
+  font-size: clamp(13px, 1.2vw, 15px);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
@@ -357,7 +385,7 @@ html, body {
   bottom: 1.4rem;
   right: 1.6rem;
   font-family: 'NaNTresor', serif;
-  font-size: clamp(8px, 0.75vw, 11px);
+  font-size: clamp(11px, 0.9vw, 13px);
   color: rgba(255,255,255,0.6);
   max-width: 220px;
   line-height: 1.55;
@@ -469,10 +497,8 @@ html, body {
   inset: 0;
   z-index: 100;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 5vh 1rem;
-  overflow-y: auto;
   background: rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(6px);
   opacity: 0;
@@ -491,7 +517,7 @@ html, body {
   border: 1.5px solid var(--black);
   border-radius: 1.2rem;
   padding: 2.8rem 3.2rem;
-  max-width: 720px;
+  max-width: 520px;
   width: 90%;
   position: relative;
   transform: translateY(20px);
@@ -545,7 +571,7 @@ html, body {
 
   .brand-title { font-size: clamp(28px, 10vw, 52px); }
 
-  .brand-sub { font-size: clamp(9px, 2.5vw, 14px); }
+  .brand-sub { font-size: clamp(12px, 3.8vw, 18px); }
 
   .nav-buttons {
     width: 100%;
@@ -564,7 +590,7 @@ html, body {
   .tagline {
     width: calc(100vw - 1.5rem) !important;
     left: 0.75rem !important;
-    top: 26% !important;      /* overrides JS inline style */
+    top: 30% !important;      /* overrides JS inline style */
     bottom: auto;
     font-size: clamp(12px, 3.8vw, 18px);
   }
@@ -591,65 +617,61 @@ html, body {
      but also set here as a fallback for browsers that respect it. */
   .illus { --y-rest: 0px; }
 
-  /* ── Individual placement — staggered scatter across lower 55% ── */
+  /* ── Individual placement — spread across full page width & height ── */
 
-  /* 1: Asset 7 (Shell) — mid-right */
+  /* ── All illustrations cluster toward the bottom 45% of the page ── */
+
+  /* 1: Asset 7 — left */
   .illustrations .illus:nth-child(1) {
-    top: 56%;
-    right: 3vw;
-    left: auto;
-  }
-  .illustrations .illus:nth-child(1) img { width: 42vw; max-height: 23vh; }
-
-  /* 2: Spiral — lower, shifted right so it clears the O₂ */
-  .illus-spiral {
-    top: 73%;
-    left: 22vw;
-  }
-  .illus-spiral img { width: 40vw !important; max-height: 23vh; }
-
-  /* 3: Asset 11 (Acid seaweed) — lower-right */
-  .illustrations .illus:nth-child(3) {
-    top: 68%;
-    right: 3vw;
-    left: auto;
-  }
-  .illustrations .illus:nth-child(3) img { width: 28vw; max-height: 23vh; }
-
-  /* 4: Asset 14 (Sargassum submarine) — upper-centre */
-  .illustrations .illus:nth-child(4) {
-    top: 48%;
-    left: 16vw;
-  }
-  .illustrations .illus:nth-child(4) img { width: 56vw; max-height: 23vh; }
-
-  /* 5: Asset 9 (O₂) — mid-left, well above the spiral */
-  .illustrations .illus:nth-child(5) {
-    top: 60%;
+    top: 58%;
     left: 2vw;
   }
-  .illustrations .illus:nth-child(5) img { width: 28vw; max-height: 23vh; }
+  .illustrations .illus:nth-child(1) img { width: 32vw; max-height: none; }
 
-  /* ── All text panels: appear just below the header ── */
-  #spiral-panel,
-  #shell-panel,
-  #o2-panel,
-  #sargassum-panel,
-  #acid-panel {
+  /* 2: Spiral — centre */
+  .illus-spiral {
+    top: 50%;
+    left: 28vw;
+  }
+  .illus-spiral img { width: 30vw !important; max-height: none; }
+
+  /* 3: Asset 11 — upper right */
+  .illustrations .illus:nth-child(3) {
+    top: 36%;
+    right: 10vw;
+    left: auto;
+  }
+  .illustrations .illus:nth-child(3) img { width: 16vw; max-height: none; }
+
+  /* 4: Asset 14 — right under spiral */
+  .illustrations .illus:nth-child(4) {
+    top: 62%;
+    left: 38vw;
+  }
+  .illustrations .illus:nth-child(4) img { width: 38vw; max-height: none; }
+
+  /* 5: Asset 9 — lower right */
+  .illustrations .illus:nth-child(5) {
+    top: 60%;
+    right: 10vw;
+    left: auto;
+  }
+  .illustrations .illus:nth-child(5) img { width: 22vw; max-height: none; }
+
+  /* ── Spiral click panel ── */
+  #spiral-panel {
     left: 1rem !important;
-    top: 18% !important;
+    top: 44% !important;
     width: calc(100vw - 2rem);
     transform: none !important;
   }
 
-  /* ── All CTA buttons: JS positions them above the illustration ── */
-  #spiral-cta,
-  #shell-cta,
-  #o2-cta,
-  #sargassum-cta,
-  #acid-cta {
+  /* ── Spiral CTA button — horizontally centred ── */
+  #spiral-cta {
+    left: 50% !important;
     right: auto !important;
-    transform: none !important;
+    top: 36% !important;
+    transform: translateX(-50%);
   }
 
   /* ── Disclaimer ── */
@@ -665,117 +687,203 @@ html, body {
     padding: 2rem 1.6rem;
   }
 
-  /* ── Hide corner buttons on mobile ── */
+  /* ── Shell Cream mobile ── */
+  #shell-panel {
+    left: 1rem !important;
+    top: 44% !important;
+    width: calc(100vw - 2rem);
+    transform: none !important;
+  }
+  #shell-cta {
+    left: 50% !important;
+    right: auto !important;
+    top: 36% !important;
+    transform: translateX(-50%);
+  }
+  /* Corner buttons on mobile — fixed bottom-right so always visible */
   #shell-corner-btn,
   #o2-corner-btn,
   #sargassum-corner-btn,
-  #acid-corner-btn { display: none !important; }
-
-  /* ── Panel text: boost sizes and allow titles to wrap ── */
-  .spiral-title, .shell-title, .o2-title,
-  .sargassum-title, .acid-title {
-    font-size: clamp(26px, 7vw, 40px);
-    white-space: normal;
+  #acid-corner-btn {
+    display: block !important;
+    position: fixed !important;
+    top: auto !important;
+    bottom: 1.5rem !important;
+    right: 1rem !important;
+    font-size: clamp(11px, 3vw, 14px) !important;
   }
 
-  .spiral-body, .shell-body, .o2-body,
-  .sargassum-body, .acid-body {
-    font-size: 13px;
-  }
-
-  .spiral-bold, .shell-bold, .o2-bold,
-  .sargassum-bold, .acid-bold {
-    font-size: 14px;
-  }
+  /* Show btn-outline on mobile when a section is open, styled with its colour */
+  .shell-open     .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--green)    !important; color: var(--white) !important; }
+  .o2-open        .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--yellow)   !important; color: var(--white) !important; }
+  .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
+  .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
 }
 
 /* ══════════════════════════════════════════════════════
-   SHELL CREAM — Asset 7  |  #00652e dark forest green
+   SHELL CREAM — Asset 7 click state
+   Accent colour: #00652e (dark forest green)
 ══════════════════════════════════════════════════════ */
+
 :root { --green: #00652e; }
 
-.illus-shell { pointer-events: auto; cursor: pointer; }
+/* Clickable shell illustration */
+.illus-shell {
+  pointer-events: auto;
+  cursor: pointer;
+}
 .illus-shell img { transition: filter 0.3s ease, opacity 0.3s ease; }
-.illus-shell:hover img { filter: drop-shadow(0 0 10px rgba(0,101,46,0.4)); opacity: 0.85; }
+.illus-shell:hover img {
+  filter: drop-shadow(0 0 10px rgba(0,101,46,0.4));
+  opacity: 0.85;
+}
 
+/* When shell is open — all other illus fade, shell goes white */
 .shell-open .illus:not(.illus-shell) { opacity: 0; }
 .shell-open .illus-shell img { filter: invert(1) brightness(10); }
 
+/* Colour flips — brand & UI go green-scheme */
 .shell-open .brand-title,
-.shell-open .brand-sub    { color: var(--white); }
-.shell-open .tagline      { color: var(--white); z-index: 0; }
-.shell-open .tagline-cursor { background: var(--white); color: var(--white); }
-.shell-open .btn-circle   { border-color: var(--white); background: rgba(255,255,255,0.12); color: var(--white); }
-.shell-open .btn-circle:hover { background: var(--white); color: var(--black); }
-.shell-open .btn-filled   { background: var(--green); }
-.shell-open .btn-filled:hover { background: #004d22; }
-.shell-open .btn-outline  { opacity: 0; pointer-events: none; }
+.shell-open .brand-sub  { color: var(--white); }
+.shell-open .tagline,
+.shell-open .tagline-cursor { color: var(--white); }
+.shell-open .tagline-cursor { background: var(--white); }
+.shell-open .tagline { z-index: 0; }
 
+.shell-open .btn-circle {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.12);
+  color: var(--white);
+}
+.shell-open .btn-circle:hover { background: var(--white); color: var(--black); }
+
+.shell-open .btn-filled  { background: var(--green); }
+.shell-open .btn-filled:hover { background: #004d22; }
+
+.shell-open .btn-outline {
+  border-color: var(--white);
+  color: var(--white);
+  background: transparent;
+}
+.shell-open .btn-outline:hover { background: var(--white); color: var(--black); }
+
+/* When shell open: hide only the outline nav button, keep memories button visible as green */
+.shell-open .btn-outline { opacity: 0; pointer-events: none; }
+
+/* ── Shell Cream top-right corner button — green outlined, white text ── */
 #shell-corner-btn {
-  position: absolute; z-index: 15; top: 1rem; right: 1rem;
-  opacity: 0; pointer-events: none;
+  position: absolute;
+  z-index: 15;
+  top: 1rem;
+  right: 1rem;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.45s ease 0.1s;
   font-family: 'CeleScript', cursive;
   font-size: clamp(11px, 1.1vw, 16px);
-  letter-spacing: 0.04em; text-transform: uppercase;
-  background: transparent; color: var(--white);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--white);
   border: 1.5px solid var(--green);
-  padding: 0.55rem 1.4rem; border-radius: 2rem;
-  cursor: pointer; white-space: nowrap;
+  padding: 0.55rem 1.4rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  white-space: nowrap;
 }
-#shell-corner-btn.active { opacity: 1; pointer-events: auto; }
-#shell-corner-btn:hover  { background: rgba(0,101,46,0.2); }
+#shell-corner-btn.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+#shell-corner-btn:hover { background: rgba(0,101,46,0.2); }
 
+/* ── Shell Cream text panel ── */
 #shell-panel {
-  position: absolute; z-index: 15;
-  left: 40%; top: 50%; transform: translateY(-40%);
+  position: absolute;
+  z-index: 15;
+  left: 40%;
+  top: 50%;
+  transform: translateY(-40%);
   width: clamp(180px, 20vw, 280px);
-  opacity: 0; pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
-#shell-panel.active { opacity: 1; pointer-events: auto; transform: translateY(-40%) translateX(0); }
+#shell-panel.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-40%) translateX(0);
+}
 
 .shell-title {
-  font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
-  color: var(--white); letter-spacing: -0.02em; line-height: 1;
-  margin-bottom: 0.8rem; white-space: nowrap;
+  font-family: 'NaNTresor', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 2.8vw, 38px);
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.8rem;
+  white-space: nowrap;          /* never wraps */
 }
+
 .shell-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(10px, 1vw, 13px);
+  font-size: clamp(13px, 1.2vw, 15px);
   color: rgba(255,255,255,0.85);
-  letter-spacing: 0.14em; text-transform: uppercase;
-  line-height: 1.4; margin-bottom: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;           /* tighter — matches spiral body */
+  margin-bottom: 0.9rem;
 }
+
 .shell-bold {
-  font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-family: 'NaNTresor', serif;
+  font-weight: 700;
+  font-size: clamp(15px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--green);
-  text-underline-offset: 4px; text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 3px; /* thicker */
 }
 
+/* ── Shell CTA — same wave SVG style, green pill ── */
 #shell-cta {
-  position: absolute; z-index: 15;
-  opacity: 0; pointer-events: none;
+  position: absolute;
+  z-index: 15;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.45s ease 0.12s;
-  background: transparent; border: none; padding: 0; cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   width: clamp(200px, 26vw, 360px);
 }
-#shell-cta.active { opacity: 1; pointer-events: auto; }
-#shell-cta .cta-pill-text { background: transparent; border: none; border-radius: 0; color: var(--white); }
+#shell-cta.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Shell CTA — no pill, white text over wave SVG */
+#shell-cta .cta-pill-text {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--white);
+}
 
+/* Disclaimer gets a dark green box */
 #shell-disclaimer {
-  background: rgba(0,101,46,0.82);
-  padding: 0.75rem 1rem; border-radius: 0.5rem;
-  color: rgba(255,255,255,0.75); backdrop-filter: blur(4px);
+  background: rgba(0, 101, 46, 0.82);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: rgba(255,255,255,0.75);
+  backdrop-filter: blur(4px);
 }
 #shell-disclaimer strong { color: rgba(255,255,255,0.95); }
 
 /* ══════════════════════════════════════════════════════
-   DELUXE O₂ — Asset 9  |  #f3ec07 yellow
+   DELUXE O₂ — Asset 9  |  #f3ec07 yellow, text black
 ══════════════════════════════════════════════════════ */
 :root { --yellow: #f3ec07; }
 
@@ -784,18 +892,29 @@ html, body {
 .illus-o2:hover img { filter: drop-shadow(0 0 10px rgba(243,236,7,0.5)); opacity: 0.85; }
 
 .o2-open .illus:not(.illus-o2) { opacity: 0; }
+/* Turn yellow SVG fully white against the blue background when open */
 .o2-open .illus-o2 img { filter: brightness(0) invert(1); }
 
+/* UI colour flips */
 .o2-open .brand-title,
-.o2-open .brand-sub    { color: var(--white); }
-.o2-open .tagline      { color: var(--white); z-index: 0; }
+.o2-open .brand-sub      { color: var(--white); }
+.o2-open .tagline        { color: var(--white); z-index: 0; }
 .o2-open .tagline-cursor { background: var(--white); }
-.o2-open .btn-circle   { border-color: var(--yellow); color: var(--yellow); background: transparent; }
+.o2-open .btn-circle     { border-color: var(--yellow); color: var(--yellow); background: transparent; }
 .o2-open .btn-circle:hover { background: var(--yellow); color: var(--black); }
-.o2-open .btn-filled   { background: var(--yellow); color: var(--black); }
+.o2-open .btn-filled     { background: var(--yellow); color: var(--black); }
 .o2-open .btn-filled:hover { background: #d4cc00; }
-.o2-open .btn-outline  { opacity: 0; pointer-events: none; }
+.o2-open .btn-outline    { opacity: 0; pointer-events: none; }
 
+/* O₂ CTA — no pill, just white text floating over the wave SVG */
+#o2-cta .cta-pill-text {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--white);
+}
+
+/* Corner button — yellow outlined, white text */
 #o2-corner-btn {
   position: absolute; z-index: 15; top: 1rem; right: 1rem;
   opacity: 0; pointer-events: none;
@@ -803,7 +922,8 @@ html, body {
   font-family: 'CeleScript', cursive;
   font-size: clamp(11px, 1.1vw, 16px);
   letter-spacing: 0.04em; text-transform: uppercase;
-  background: transparent; color: var(--white);
+  background: transparent;
+  color: var(--white);
   border: 1.5px solid var(--yellow);
   padding: 0.55rem 1.4rem; border-radius: 2rem;
   cursor: pointer; white-space: nowrap;
@@ -811,6 +931,7 @@ html, body {
 #o2-corner-btn.active { opacity: 1; pointer-events: auto; }
 #o2-corner-btn:hover  { background: rgba(243,236,7,0.15); }
 
+/* Panel */
 #o2-panel {
   position: absolute; z-index: 15;
   right: 55%; top: 50%; transform: translateY(-40%);
@@ -822,26 +943,40 @@ html, body {
 
 .o2-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
-  color: var(--yellow); letter-spacing: -0.01em; line-height: 1;
+  font-size: clamp(28px, 2.8vw, 38px);
+  color: var(--yellow);
+  letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
 }
 .o2-title sub { font-size: 0.6em; vertical-align: sub; }
+
 .o2-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(10px, 1vw, 13px);
-  color: var(--white); letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: clamp(13px, 1.2vw, 15px);
+  color: var(--white);
+  letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
 }
+
 .o2-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: clamp(15px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--yellow);
   text-underline-offset: 4px; text-decoration-thickness: 3px;
 }
 
+/* O₂ disclaimer — far left, no background */
+#o2-disclaimer {
+  background: transparent;
+  left: 1.6rem;
+  right: auto;
+  color: rgba(255,255,255,0.75);
+}
+#o2-disclaimer strong { color: rgba(255,255,255,0.95); }
+
+/* O₂ CTA button */
 #o2-cta {
   position: absolute; z-index: 15;
   opacity: 0; pointer-events: none;
@@ -850,13 +985,7 @@ html, body {
   width: clamp(200px, 26vw, 360px);
 }
 #o2-cta.active { opacity: 1; pointer-events: auto; }
-#o2-cta .cta-pill-text { background: transparent; border: none; border-radius: 0; color: var(--white); }
 
-#o2-disclaimer {
-  background: transparent; left: 1.6rem; right: auto;
-  color: rgba(255,255,255,0.75);
-}
-#o2-disclaimer strong { color: rgba(255,255,255,0.95); }
 
 /* ══════════════════════════════════════════════════════
    SARGASSUM CITY — Asset 14  |  #5fc821 green
@@ -870,16 +999,26 @@ html, body {
 .sargassum-open .illus:not(.illus-sargassum) { opacity: 0; }
 .sargassum-open .illus-sargassum img { filter: invert(1) brightness(10); }
 
+/* UI colour flips */
 .sargassum-open .brand-title,
-.sargassum-open .brand-sub    { color: var(--white); }
-.sargassum-open .tagline      { color: var(--white); z-index: 0; }
+.sargassum-open .brand-sub      { color: var(--white); }
+.sargassum-open .tagline        { color: var(--white); z-index: 0; }
 .sargassum-open .tagline-cursor { background: var(--white); }
-.sargassum-open .btn-circle   { border-color: var(--white); background: rgba(255,255,255,0.12); color: var(--white); }
+.sargassum-open .btn-circle     { border-color: var(--white); background: rgba(255,255,255,0.12); color: var(--white); }
 .sargassum-open .btn-circle:hover { background: var(--white); color: var(--black); }
-.sargassum-open .btn-filled   { background: var(--sargassum); color: var(--white); }
+.sargassum-open .btn-filled     { background: var(--sargassum); color: var(--white); }
 .sargassum-open .btn-filled:hover { background: #4aaa18; }
-.sargassum-open .btn-outline  { opacity: 0; pointer-events: none; }
+.sargassum-open .btn-outline    { opacity: 0; pointer-events: none; }
 
+/* Sargassum CTA — no pill, white text over wave SVG */
+#sargassum-cta .cta-pill-text {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--white);
+}
+
+/* Corner button — sargassum outlined, white text */
 #sargassum-corner-btn {
   position: absolute; z-index: 15; top: 1rem; right: 1rem;
   opacity: 0; pointer-events: none;
@@ -888,13 +1027,13 @@ html, body {
   font-size: clamp(11px, 1.1vw, 16px);
   letter-spacing: 0.04em; text-transform: uppercase;
   background: transparent; color: var(--white);
-  border: 1.5px solid var(--sargassum);
-  padding: 0.55rem 1.4rem; border-radius: 2rem;
+  border: 1.5px solid var(--sargassum); padding: 0.55rem 1.4rem; border-radius: 2rem;
   cursor: pointer; white-space: nowrap;
 }
 #sargassum-corner-btn.active { opacity: 1; pointer-events: auto; }
 #sargassum-corner-btn:hover  { background: rgba(95,200,33,0.15); }
 
+/* Panel */
 #sargassum-panel {
   position: absolute; z-index: 15;
   right: 55%; top: 50%; transform: translateY(-40%);
@@ -906,25 +1045,39 @@ html, body {
 
 .sargassum-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
-  color: var(--white); letter-spacing: -0.01em; line-height: 1;
+  font-size: clamp(28px, 2.8vw, 38px);
+  color: var(--white);
+  letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
 }
+
 .sargassum-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(10px, 1vw, 13px);
-  color: rgba(255,255,255,0.85); letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: clamp(13px, 1.2vw, 15px);
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
 }
+
 .sargassum-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: clamp(15px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--sargassum);
   text-underline-offset: 4px; text-decoration-thickness: 3px;
 }
 
+/* Sargassum disclaimer — far left, no background */
+#sargassum-disclaimer {
+  background: transparent;
+  left: 1.6rem;
+  right: auto;
+  color: rgba(255,255,255,0.75);
+}
+#sargassum-disclaimer strong { color: rgba(255,255,255,0.95); }
+
+/* Sargassum CTA button */
 #sargassum-cta {
   position: absolute; z-index: 15;
   opacity: 0; pointer-events: none;
@@ -933,13 +1086,19 @@ html, body {
   width: clamp(200px, 26vw, 360px);
 }
 #sargassum-cta.active { opacity: 1; pointer-events: auto; }
-#sargassum-cta .cta-pill-text { background: transparent; border: none; border-radius: 0; color: var(--white); }
 
-#sargassum-disclaimer {
-  background: transparent; left: 1.6rem; right: auto;
-  color: rgba(255,255,255,0.75);
+/* ── Mobile overrides for new panels ── */
+@media (max-width: 768px) {
+  #o2-panel, #sargassum-panel {
+    left: 1rem !important; top: 44% !important;
+    width: calc(100vw - 2rem); transform: none !important;
+  }
+  #o2-cta, #sargassum-cta {
+    left: 50% !important; right: auto !important;
+    top: 36% !important; transform: translateX(-50%);
+  }
+  /* corner buttons hidden on mobile (see rule above) */
 }
-#sargassum-disclaimer strong { color: rgba(255,255,255,0.95); }
 
 /* ══════════════════════════════════════════════════════
    ACID TABS — Asset 11  |  #d0429c pink/magenta
@@ -952,18 +1111,30 @@ html, body {
 
 .acid-open .illus:not(.illus-acid) { opacity: 0; }
 .acid-open .illus-acid img { filter: invert(1) brightness(10); }
+
+/* Background */
 .acid-open .page-bg { background-image: url('../Background/Asset_11_BG.png'); opacity: 1; }
 
+/* UI colour flips */
 .acid-open .brand-title,
-.acid-open .brand-sub    { color: var(--white); }
-.acid-open .tagline      { color: var(--white); z-index: 0; }
+.acid-open .brand-sub      { color: var(--white); }
+.acid-open .tagline        { color: var(--white); z-index: 0; }
 .acid-open .tagline-cursor { background: var(--white); }
-.acid-open .btn-circle   { border-color: var(--white); background: rgba(255,255,255,0.12); color: var(--white); }
+.acid-open .btn-circle     { border-color: var(--white); background: rgba(255,255,255,0.12); color: var(--white); }
 .acid-open .btn-circle:hover { background: var(--white); color: var(--black); }
-.acid-open .btn-filled   { background: var(--pink); color: var(--white); }
+.acid-open .btn-filled     { background: var(--pink); color: var(--white); }
 .acid-open .btn-filled:hover { background: #a8327e; }
-.acid-open .btn-outline  { opacity: 0; pointer-events: none; }
+.acid-open .btn-outline    { opacity: 0; pointer-events: none; }
 
+/* Acid CTA — no pill, white text over wave SVG */
+#acid-cta .cta-pill-text {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--white);
+}
+
+/* Corner button — pink outlined, white text */
 #acid-corner-btn {
   position: absolute; z-index: 15; top: 1rem; right: 1rem;
   opacity: 0; pointer-events: none;
@@ -972,13 +1143,13 @@ html, body {
   font-size: clamp(11px, 1.1vw, 16px);
   letter-spacing: 0.04em; text-transform: uppercase;
   background: transparent; color: var(--white);
-  border: 1.5px solid var(--pink);
-  padding: 0.55rem 1.4rem; border-radius: 2rem;
+  border: 1.5px solid var(--pink); padding: 0.55rem 1.4rem; border-radius: 2rem;
   cursor: pointer; white-space: nowrap;
 }
 #acid-corner-btn.active { opacity: 1; pointer-events: auto; }
 #acid-corner-btn:hover  { background: rgba(208,66,156,0.15); }
 
+/* Panel */
 #acid-panel {
   position: absolute; z-index: 15;
   left: 24%; top: 50%; transform: translateY(-40%);
@@ -990,25 +1161,39 @@ html, body {
 
 .acid-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 38px);
-  color: var(--white); letter-spacing: -0.01em; line-height: 1;
+  font-size: clamp(28px, 2.8vw, 38px);
+  color: var(--white);
+  letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
 }
+
 .acid-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(10px, 1vw, 13px);
-  color: rgba(255,255,255,0.85); letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: clamp(13px, 1.2vw, 15px);
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
 }
+
 .acid-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(12px, 1.15vw, 16px);
+  font-size: clamp(15px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--pink);
   text-underline-offset: 4px; text-decoration-thickness: 3px;
 }
 
+/* Acid disclaimer — far left, no background */
+#acid-disclaimer {
+  background: transparent;
+  left: 1.6rem;
+  right: auto;
+  color: rgba(255,255,255,0.75);
+}
+#acid-disclaimer strong { color: rgba(255,255,255,0.95); }
+
+/* Acid CTA button */
 #acid-cta {
   position: absolute; z-index: 15;
   opacity: 0; pointer-events: none;
@@ -1017,10 +1202,16 @@ html, body {
   width: clamp(200px, 26vw, 360px);
 }
 #acid-cta.active { opacity: 1; pointer-events: auto; }
-#acid-cta .cta-pill-text { background: transparent; border: none; border-radius: 0; color: var(--white); }
 
-#acid-disclaimer {
-  background: transparent; left: 1.6rem; right: auto;
-  color: rgba(255,255,255,0.75);
+/* Mobile overrides */
+@media (max-width: 768px) {
+  #acid-panel {
+    left: 1rem !important; top: 44% !important;
+    width: calc(100vw - 2rem); transform: none !important;
+  }
+  #acid-cta {
+    left: 50% !important; right: auto !important;
+    top: 36% !important; transform: translateX(-50%);
+  }
+  #acid-corner-btn { top: 0.75rem !important; right: 0.75rem !important; }
 }
-#acid-disclaimer strong { color: rgba(255,255,255,0.95); }
