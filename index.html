@@ -309,10 +309,9 @@
     spiralOpen ? closeSpiral() : openSpiral();
   });
 
-  // CTA button opens the memories overlay
   spiralCta.addEventListener('click', e => {
     e.stopPropagation();
-    openOverlay('overlay-memories');
+    window.location.href = 'memories.html';
   });
 
   // Click anywhere else closes whichever panel is open
@@ -382,7 +381,7 @@
 
   shellCta.addEventListener('click', e => {
     e.stopPropagation();
-    openOverlay('overlay-memories');
+    window.location.href = 'memories.html';
   });
 
   shellCornerBtn.addEventListener('click', e => {
