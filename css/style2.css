@@ -320,7 +320,7 @@ html, body {
   padding: 0;
   cursor: pointer;
   /* width controls size; height is set by the SVG aspect ratio */
-  width: clamp(200px, 26vw, 360px);
+  width: clamp(240px, 30vw, 420px);
 }
 
 #spiral-cta.active {
@@ -845,7 +845,7 @@ html, body {
   border: none;
   padding: 0;
   cursor: pointer;
-  width: clamp(200px, 26vw, 360px);
+  width: clamp(240px, 30vw, 420px);
 }
 #shell-cta.active {
   opacity: 1;
@@ -969,7 +969,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.12s;
   background: transparent; border: none; padding: 0; cursor: pointer;
-  width: clamp(200px, 26vw, 360px);
+  width: clamp(240px, 30vw, 420px);
 }
 #o2-cta.active { opacity: 1; pointer-events: auto; }
 
@@ -1070,7 +1070,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.12s;
   background: transparent; border: none; padding: 0; cursor: pointer;
-  width: clamp(200px, 26vw, 360px);
+  width: clamp(240px, 30vw, 420px);
 }
 #sargassum-cta.active { opacity: 1; pointer-events: auto; }
 
@@ -1186,7 +1186,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.12s;
   background: transparent; border: none; padding: 0; cursor: pointer;
-  width: clamp(200px, 26vw, 360px);
+  width: clamp(240px, 30vw, 420px);
 }
 #acid-cta.active { opacity: 1; pointer-events: auto; }
 
