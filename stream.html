@@ -19,7 +19,7 @@
     .stream-bg-image {
       position: fixed;
       inset: 0;
-      background-image: url('blueshell.png');
+      background-image: url('bg-stream.png');
       background-size: cover;
       background-position: center;
       z-index: 0;
@@ -46,8 +46,8 @@
     body.is-playing .brand-sub       { color: var(--white); }
     body.is-playing .btn-circle      { border-color: var(--white); background: rgba(255,255,255,0.12); color: var(--white); }
     body.is-playing .btn-circle:hover{ background: var(--white); color: var(--black); }
-    body.is-playing .btn-filled      { background: var(--brown); }
-    body.is-playing .btn-filled:hover{ background: #7a3620; }
+    body.is-playing .btn-filled      { background: var(--white); color: var(--black); }
+    body.is-playing .btn-filled:hover{ background: rgba(255,255,255,0.85); color: var(--black); }
 
     /* ── Centred player area ── */
     .stream-center {
@@ -127,7 +127,7 @@
       flex-shrink: 0;
       transition: background 0.35s;
     }
-    body.is-playing input[type="range"] { background: rgba(255,255,255,0.3); }
+    body.is-playing input[type="range"] { background: rgba(0,0,0,0.25); }
 
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -184,6 +184,66 @@
       100% { transform: translateY(-105vh) translateX(0);             opacity: 0; }
     }
 
+    /* ── Asset 19 illustrations ── */
+    .stream-illustrations {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .s-illus {
+      position: absolute;
+      bottom: 0;
+      transform: translateY(-110vh) rotate(var(--rot-start, 0deg));
+      will-change: transform;
+      transition: opacity 0.5s ease;
+    }
+
+    .s-illus img {
+      display: block;
+      width: var(--size, 12vw);
+      height: auto;
+      filter: brightness(0); /* black by default */
+      transition: filter 0.9s ease;
+    }
+
+    body.is-playing .s-illus img {
+      filter: brightness(0) invert(1); /* white when playing */
+    }
+
+    @keyframes drop-wiggle {
+      0%   { transform: translateY(-110vh) rotate(var(--rot-start, -4deg)); animation-timing-function: cubic-bezier(0.5,0,0.85,0.6); }
+      55%  { transform: translateY(var(--y-rest,0px)) scaleY(0.88) rotate(var(--rot-end,2deg)); animation-timing-function: ease-out; }
+      61%  { transform: translateY(calc(var(--y-rest,0px) - 28px)) scaleY(1.06) rotate(calc(var(--rot-end,2deg) - 7deg)); }
+      67%  { transform: translateY(var(--y-rest,0px)) scaleY(1) rotate(calc(var(--rot-end,2deg) + 7deg)); }
+      71%  { transform: translateY(calc(var(--y-rest,0px) - 10px)) rotate(calc(var(--rot-end,2deg) - 3deg)); }
+      75%  { transform: translateY(var(--y-rest,0px)) rotate(calc(var(--rot-end,2deg) + 3deg)); }
+      80%  { transform: translateY(var(--y-rest,0px)) rotate(calc(var(--rot-end,2deg) - 4deg)); }
+      86%  { transform: translateY(var(--y-rest,0px)) rotate(calc(var(--rot-end,2deg) + 4deg)); }
+      91%  { transform: translateY(var(--y-rest,0px)) rotate(calc(var(--rot-end,2deg) - 2deg)); }
+      96%  { transform: translateY(var(--y-rest,0px)) rotate(calc(var(--rot-end,2deg) + 1deg)); }
+      100% { transform: translateY(var(--y-rest,0px)) rotate(var(--rot-end,2deg)); }
+    }
+
+    .s-illus.animate {
+      animation: drop-wiggle var(--duration, 2s) var(--delay, 0s) cubic-bezier(0.4,0,1,1) both;
+    }
+
+    /* ── Continuous dance when playing ── */
+    @keyframes dance {
+      0%   { transform: translateY(var(--y-rest,0px)) rotate(var(--rot-end,2deg)); }
+      20%  { transform: translateY(calc(var(--y-rest,0px) - 14px)) rotate(calc(var(--rot-end,2deg) - 6deg)); }
+      40%  { transform: translateY(var(--y-rest,0px)) rotate(calc(var(--rot-end,2deg) + 5deg)); }
+      60%  { transform: translateY(calc(var(--y-rest,0px) - 8px)) rotate(calc(var(--rot-end,2deg) - 4deg)); }
+      80%  { transform: translateY(var(--y-rest,0px)) rotate(calc(var(--rot-end,2deg) + 3deg)); }
+      100% { transform: translateY(var(--y-rest,0px)) rotate(var(--rot-end,2deg)); }
+    }
+
+    body.is-playing .s-illus.animate {
+      animation: dance 3.2s var(--dance-offset, 0s) ease-in-out infinite;
+    }
+
     /* ── Mobile ── */
     @media (max-width: 768px) {
       .stream-player {
@@ -194,6 +254,10 @@
         padding: 0.6rem 1.2rem;
       }
       input[type="range"] { width: 60px; }
+
+      .s-illus-a { --size: 28vw !important; }
+      .s-illus-b { --size: 22vw !important; }
+      .s-illus-c { --size: 26vw !important; }
     }
 
   </style>
@@ -203,6 +267,19 @@
   <!-- Background layers -->
   <div class="stream-bg-white"></div>
   <div class="stream-bg-image"></div>
+
+  <!-- Illustrations -->
+  <div class="stream-illustrations">
+    <div class="s-illus s-illus-a" style="left:6vw;  --size:7vw;  --rot-start:-8deg; --rot-end:-4deg; --delay:0s;    --duration:2.6s; --y-rest:-8vh;  --dance-offset:0s;">
+      <img src="asset19.svg" alt="" />
+    </div>
+    <div class="s-illus s-illus-b" style="left:42vw; --size:9vw;  --rot-start:5deg;  --rot-end:3deg;  --delay:0.35s; --duration:2.5s; --y-rest:-52vh; --dance-offset:0.6s;">
+      <img src="asset19.svg" alt="" />
+    </div>
+    <div class="s-illus s-illus-c" style="right:5vw; --size:6vw;  --rot-start:-4deg; --rot-end:2deg;  --delay:0.6s;  --duration:2.7s; --y-rest:-6vh;  --dance-offset:1.2s;">
+      <img src="asset19.svg" alt="" />
+    </div>
+  </div>
 
   <div class="stream-page">
 
@@ -335,6 +412,18 @@
     volSlider.addEventListener('input', () => {
       if (audio) audio.volume = parseFloat(volSlider.value);
     });
+
+    /* ── Kick drop animations on load ── */
+    (async function() {
+      await document.fonts.ready;
+      const imgs = [...document.querySelectorAll('.s-illus img')];
+      await Promise.all(imgs.map(img =>
+        img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
+      ));
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        document.querySelectorAll('.s-illus').forEach(el => el.classList.add('animate'));
+      }));
+    })();
   </script>
 
 </body>

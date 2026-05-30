@@ -109,6 +109,7 @@ html, body {
   line-height: 1;
   color: var(--black);
   letter-spacing: -0.02em;
+  text-box: trim-both cap alphabetic;
 }
 .spiral-open .brand-title { color: var(--white); }
 
