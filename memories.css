@@ -237,9 +237,14 @@ body {
 }
 
 /* ── Mobile ── */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .mem-page           { padding: 0.75rem 0.75rem 2rem; }
   .mem-topbar         { margin-bottom: 1.5rem; }
+
+  /* Brand proportions match landing page on mobile */
+  .brand-title        { white-space: nowrap; }
+  .brand-sub          { font-size: clamp(12px, 3.8vw, 18px); }
+  .brand-line         { width: 28px !important; height: auto !important; }
   .mem-progress-wrap  { margin-bottom: 36px; }
   .mem-question,
   .mem-transition     { font-size: 14pt; }
