@@ -692,17 +692,12 @@ html, body {
     top: 36% !important;
     transform: translateX(-50%);
   }
-  /* Corner buttons on mobile — fixed bottom-right so always visible */
+  /* Corner buttons hidden on mobile — btn-outline in nav handles close */
   #shell-corner-btn,
   #o2-corner-btn,
   #sargassum-corner-btn,
   #acid-corner-btn {
-    display: block !important;
-    position: fixed !important;
-    top: auto !important;
-    bottom: 1.5rem !important;
-    right: 1rem !important;
-    font-size: clamp(11px, 3vw, 14px) !important;
+    display: none !important;
   }
 
   /* Show btn-outline on mobile when a section is open, styled with its colour */
