@@ -140,7 +140,7 @@ html, body {
 
 .btn {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(12px, 1.5vw, 20px);
+  font-size: clamp(11px, 1.1vw, 16px);
   cursor: pointer;
   border: none;
   transition: background 0.18s, color 0.18s, transform 0.12s;
@@ -278,7 +278,7 @@ html, body {
 .spiral-title {
   font-family: 'NaNTresor', serif;
   font-weight: 400;
-  font-size: clamp(28px, 2.8vw, 38px);
+  font-size: clamp(22px, 2.8vw, 38px);
   color: var(--white);
   letter-spacing: -0.01em;
   margin-bottom: 0.7rem;
@@ -287,7 +287,7 @@ html, body {
 
 .spiral-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(12px, 1.5vw, 20px);
+  font-size: clamp(11px, 1.1vw, 16px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -298,7 +298,7 @@ html, body {
 .spiral-bold {
   font-family: 'NaNTresor', serif;
   font-weight: 700;
-  font-size: clamp(15px, 1.15vw, 16px);
+  font-size: clamp(12px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--brown);
@@ -320,7 +320,7 @@ html, body {
   padding: 0;
   cursor: pointer;
   /* width controls size; height is set by the SVG aspect ratio */
-  width: clamp(240px, 30vw, 420px);
+  width: clamp(200px, 26vw, 360px);
 }
 
 #spiral-cta.active {
@@ -362,7 +362,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(12px, 1.5vw, 20px);
+  font-size: clamp(11px, 1.1vw, 16px);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
@@ -378,7 +378,7 @@ html, body {
   bottom: 1.4rem;
   right: 1.6rem;
   font-family: 'NaNTresor', serif;
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(8px, 0.75vw, 11px);
   color: rgba(255,255,255,0.6);
   max-width: 220px;
   line-height: 1.55;
@@ -540,15 +540,9 @@ html, body {
 }
 
 .overlay-body {
-  font-family: sans-serif;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* Hyperlinks inside overlay keep CeleScript */
-.overlay-body a {
   font-family: 'CeleScript', cursive;
-  font-size: 12px;
+  font-size: 15pt;
+  line-height: 1.6;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -711,6 +705,19 @@ html, body {
   .o2-open        .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--yellow)   !important; color: var(--white) !important; }
   .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
   .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
+
+  /* ── Mobile-only: font sizes, CTA width, overlay — desktop unchanged ── */
+  .btn                 { font-size: 12px !important; }
+  .spiral-body, .shell-body, .o2-body, .sargassum-body, .acid-body { font-size: 12px !important; }
+  .spiral-title, .shell-title, .o2-title, .sargassum-title, .acid-title { font-size: 28px !important; }
+  .spiral-bold, .shell-bold, .o2-bold, .sargassum-bold, .acid-bold { font-size: 14px !important; }
+  .page-disclaimer     { font-size: 11px !important; }
+  .cta-pill-text       { font-size: 12px !important; }
+  #spiral-cta, #shell-cta, #o2-cta, #sargassum-cta, #acid-cta { width: 260px !important; }
+
+  /* Overlay body: sans-serif on mobile, hyperlinks keep CeleScript */
+  .overlay-body        { font-family: sans-serif !important; font-size: 12px !important; }
+  .overlay-body a      { font-family: 'CeleScript', cursive !important; font-size: 12px !important; }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -811,7 +818,7 @@ html, body {
 .shell-title {
   font-family: 'NaNTresor', serif;
   font-weight: 400;
-  font-size: clamp(28px, 2.8vw, 38px);
+  font-size: clamp(22px, 2.8vw, 38px);
   color: var(--white);
   letter-spacing: -0.02em;
   line-height: 1;
@@ -821,7 +828,7 @@ html, body {
 
 .shell-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(12px, 1.5vw, 20px);
+  font-size: clamp(11px, 1.1vw, 16px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -832,7 +839,7 @@ html, body {
 .shell-bold {
   font-family: 'NaNTresor', serif;
   font-weight: 700;
-  font-size: clamp(15px, 1.15vw, 16px);
+  font-size: clamp(12px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--green);
@@ -851,7 +858,7 @@ html, body {
   border: none;
   padding: 0;
   cursor: pointer;
-  width: clamp(240px, 30vw, 420px);
+  width: clamp(200px, 26vw, 360px);
 }
 #shell-cta.active {
   opacity: 1;
@@ -936,7 +943,7 @@ html, body {
 
 .o2-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(28px, 2.8vw, 38px);
+  font-size: clamp(22px, 2.8vw, 38px);
   color: var(--yellow);
   letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
@@ -945,7 +952,7 @@ html, body {
 
 .o2-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(12px, 1.5vw, 20px);
+  font-size: clamp(11px, 1.1vw, 16px);
   color: var(--white);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -953,7 +960,7 @@ html, body {
 
 .o2-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(15px, 1.15vw, 16px);
+  font-size: clamp(12px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--yellow);
@@ -975,7 +982,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.12s;
   background: transparent; border: none; padding: 0; cursor: pointer;
-  width: clamp(240px, 30vw, 420px);
+  width: clamp(200px, 26vw, 360px);
 }
 #o2-cta.active { opacity: 1; pointer-events: auto; }
 
@@ -1038,7 +1045,7 @@ html, body {
 
 .sargassum-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(28px, 2.8vw, 38px);
+  font-size: clamp(22px, 2.8vw, 38px);
   color: var(--white);
   letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
@@ -1046,7 +1053,7 @@ html, body {
 
 .sargassum-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(12px, 1.5vw, 20px);
+  font-size: clamp(11px, 1.1vw, 16px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -1054,7 +1061,7 @@ html, body {
 
 .sargassum-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(15px, 1.15vw, 16px);
+  font-size: clamp(12px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--sargassum);
@@ -1076,7 +1083,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.12s;
   background: transparent; border: none; padding: 0; cursor: pointer;
-  width: clamp(240px, 30vw, 420px);
+  width: clamp(200px, 26vw, 360px);
 }
 #sargassum-cta.active { opacity: 1; pointer-events: auto; }
 
@@ -1154,7 +1161,7 @@ html, body {
 
 .acid-title {
   font-family: 'NaNTresor', serif; font-weight: 400;
-  font-size: clamp(28px, 2.8vw, 38px);
+  font-size: clamp(22px, 2.8vw, 38px);
   color: var(--white);
   letter-spacing: -0.01em; line-height: 1;
   margin-bottom: 0.8rem; white-space: nowrap;
@@ -1162,7 +1169,7 @@ html, body {
 
 .acid-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(12px, 1.5vw, 20px);
+  font-size: clamp(11px, 1.1vw, 16px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -1170,7 +1177,7 @@ html, body {
 
 .acid-bold {
   font-family: 'NaNTresor', serif; font-weight: 700;
-  font-size: clamp(15px, 1.15vw, 16px);
+  font-size: clamp(12px, 1.15vw, 16px);
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--pink);
@@ -1192,7 +1199,7 @@ html, body {
   opacity: 0; pointer-events: none;
   transition: opacity 0.45s ease 0.12s;
   background: transparent; border: none; padding: 0; cursor: pointer;
-  width: clamp(240px, 30vw, 420px);
+  width: clamp(200px, 26vw, 360px);
 }
 #acid-cta.active { opacity: 1; pointer-events: auto; }
 
