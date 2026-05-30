@@ -667,7 +667,7 @@ html, body {
   #spiral-cta {
     left: 50% !important;
     right: auto !important;
-    top: 26% !important;
+    top: calc(35% + 110px) !important;
     transform: translateX(-50%);
   }
 
@@ -694,7 +694,7 @@ html, body {
   #shell-cta {
     left: 50% !important;
     right: auto !important;
-    top: 26% !important;
+    top: calc(35% + 110px) !important;
     transform: translateX(-50%);
   }
   /* Corner buttons hidden on mobile — btn-outline in nav handles close */
@@ -1099,7 +1099,7 @@ html, body {
   }
   #o2-cta, #sargassum-cta {
     left: 50% !important; right: auto !important;
-    top: 26% !important; transform: translateX(-50%);
+    top: calc(35% + 110px) !important; transform: translateX(-50%);
   }
   /* corner buttons hidden on mobile (see rule above) */
 }
@@ -1215,7 +1215,7 @@ html, body {
   }
   #acid-cta {
     left: 50% !important; right: auto !important;
-    top: 26% !important; transform: translateX(-50%);
+    top: calc(35% + 110px) !important; transform: translateX(-50%);
   }
   #acid-corner-btn { top: 0.75rem !important; right: 0.75rem !important; }
 }
