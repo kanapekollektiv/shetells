@@ -90,6 +90,7 @@
     from the She Tells Research Centre. Check the terms
     and conditions on our website.
   </p>
+  <button class="disclaimer-btn" id="spiral-disclaimer-btn" aria-label="Disclaimer">i</button>
 
   <!-- Shell Cream top-right button -->
   <button id="shell-corner-btn">Outlast the acid era...</button>
@@ -113,6 +114,7 @@
     a solution to ocean acidification. Individual carbonate saturation levels
     may vary. She Tells Corp assumes no liability for planetary pH.
   </p>
+  <button class="disclaimer-btn" id="shell-disclaimer-btn" aria-label="Disclaimer">i</button>
 
   <!-- ── O₂ (Asset 9) ── -->
   <button id="o2-corner-btn">You will oooh too...</button>
@@ -132,6 +134,7 @@
     <strong>Disclaimer:</strong> Please only consume our premium oxygen if evolution
     has equipped you with the proper organs to process it.
   </p>
+  <button class="disclaimer-btn" id="o2-disclaimer-btn" aria-label="Disclaimer">i</button>
 
   <!-- ── Sargassum City (Asset 14) ── -->
   <button id="sargassum-corner-btn">@ The Big Sea-ty Life</button>
@@ -152,6 +155,7 @@
     carbon emissions, or the plastic in your body. If any of these symptoms occur in your area,
     please ask your doctor or pharmacist whether this is right for you.
   </p>
+  <button class="disclaimer-btn" id="sargassum-disclaimer-btn" aria-label="Disclaimer">i</button>
 
   <!-- ── Acid Tabs (Asset 11) ── -->
   <button id="acid-corner-btn">DISSOLVE WITH DIGNITY.</button>
@@ -172,7 +176,16 @@
     for medical advice, ocean governance, or carbonate chemistry. Results may vary depending on
     your personal pH levels and the current aragonite saturation of your local waters.
   </p>
+  <button class="disclaimer-btn" id="acid-disclaimer-btn" aria-label="Disclaimer">i</button>
 
+</div>
+
+<!-- Disclaimer overlay (mobile "i" button) -->
+<div class="overlay" id="overlay-disclaimer" role="dialog" aria-modal="true">
+  <div class="overlay-box">
+    <button class="overlay-close" id="close-disclaimer" aria-label="Close">✕</button>
+    <div class="overlay-body" id="disclaimer-overlay-body"></div>
+  </div>
 </div>
 
 <!-- Info overlay -->
@@ -193,12 +206,25 @@
 
 
 <script>
-  /* ── Info overlay ── */
+  /* ── Overlays ── */
   const openOverlay  = id => { document.getElementById(id).classList.add('active');    document.body.style.overflow = 'hidden'; };
   const closeOverlay = id => { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; };
 
   document.getElementById('btn-info').addEventListener('click',   () => openOverlay('overlay-info'));
   document.getElementById('close-info').addEventListener('click', () => closeOverlay('overlay-info'));
+  document.getElementById('close-disclaimer').addEventListener('click', () => closeOverlay('overlay-disclaimer'));
+
+  /* ── Mobile "i" disclaimer buttons ── */
+  const disclaimerOverlayBody = document.getElementById('disclaimer-overlay-body');
+  ['spiral','shell','o2','sargassum','acid'].forEach(id => {
+    const btn = document.getElementById(id + '-disclaimer-btn');
+    if (!btn) return;
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      disclaimerOverlayBody.innerHTML = document.getElementById(id + '-disclaimer').innerHTML;
+      openOverlay('overlay-disclaimer');
+    });
+  });
 
   document.querySelectorAll('.overlay').forEach(el => {
     el.addEventListener('click', e => { if (e.target === el) closeOverlay(el.id); });

@@ -720,7 +720,36 @@ html, body {
   .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
   .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
 
-  /* All disclaimers: transparent bg handled by .page-disclaimer rule above */
+  /* All disclaimers: hidden on mobile — replaced by "i" button */
+  .page-disclaimer { display: none !important; }
+
+  /* "i" disclaimer button — bottom-left circle, hidden until section opens */
+  .disclaimer-btn {
+    display: flex !important;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--white);
+    background: transparent;
+    color: var(--white);
+    font-family: 'CeleScript', cursive;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    align-items: center;
+    justify-content: center;
+  }
+  .spiral-open    #spiral-disclaimer-btn,
+  .shell-open     #shell-disclaimer-btn,
+  .o2-open        #o2-disclaimer-btn,
+  .sargassum-open #sargassum-disclaimer-btn,
+  .acid-open      #acid-disclaimer-btn { opacity: 1; pointer-events: auto; }
 
   /* ── Mobile-only: font sizes, CTA width, overlay — desktop unchanged ── */
   .btn                 { font-size: 12px !important; }
