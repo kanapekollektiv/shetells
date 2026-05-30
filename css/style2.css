@@ -442,6 +442,7 @@ html, body {
 /* All other illustrations fade out */
 .spiral-open .illus:not(.illus-spiral) {
   opacity: 0;
+  pointer-events: none;
 }
 
 /* Spiral SVG flips to white */
@@ -717,8 +718,8 @@ html, body {
     display: none !important;
   }
 
-  /* O2 background flipped vertically on mobile */
-  .o2-open .page-bg { transform: scaleY(-1); }
+  /* O2 background: rotate 90° + scale to fill portrait screen */
+  .o2-open .page-bg { transform: rotate(-90deg) scale(2.3); transform-origin: center; }
 
   /* Show btn-outline on mobile when a section is open, styled with its colour */
   .shell-open     .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--green)    !important; color: var(--white) !important; }
@@ -789,7 +790,7 @@ html, body {
 }
 
 /* When shell is open — all other illus fade, shell goes white */
-.shell-open .illus:not(.illus-shell) { opacity: 0; }
+.shell-open .illus:not(.illus-shell) { opacity: 0; pointer-events: none; }
 .shell-open .illus-shell img { filter: invert(1) brightness(10); }
 
 /* Colour flips — brand & UI go green-scheme */
@@ -941,7 +942,7 @@ html, body {
 .illus-o2 img { transition: filter 0.3s ease, opacity 0.3s ease; }
 .illus-o2:hover img { filter: drop-shadow(0 0 10px rgba(243,236,7,0.5)); opacity: 0.85; }
 
-.o2-open .illus:not(.illus-o2) { opacity: 0; }
+.o2-open .illus:not(.illus-o2) { opacity: 0; pointer-events: none; }
 /* Turn yellow SVG fully white against the blue background when open */
 .o2-open .illus-o2 img { filter: brightness(0) invert(1); }
 
@@ -1046,7 +1047,7 @@ html, body {
 .illus-sargassum img { transition: filter 0.3s ease, opacity 0.3s ease; }
 .illus-sargassum:hover img { filter: drop-shadow(0 0 10px rgba(95,200,33,0.4)); opacity: 0.85; }
 
-.sargassum-open .illus:not(.illus-sargassum) { opacity: 0; }
+.sargassum-open .illus:not(.illus-sargassum) { opacity: 0; pointer-events: none; }
 .sargassum-open .illus-sargassum img { filter: invert(1) brightness(10); }
 
 /* UI colour flips */
@@ -1166,7 +1167,7 @@ html, body {
 .illus-acid img { transition: filter 0.3s ease, opacity 0.3s ease; }
 .illus-acid:hover img { filter: drop-shadow(0 0 10px rgba(208,66,156,0.4)); opacity: 0.85; }
 
-.acid-open .illus:not(.illus-acid) { opacity: 0; }
+.acid-open .illus:not(.illus-acid) { opacity: 0; pointer-events: none; }
 .acid-open .illus-acid img { filter: invert(1) brightness(10); }
 
 /* Background */
