@@ -713,8 +713,8 @@ html, body {
   .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
   .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
 
-  /* Spiral: no background on mobile */
-  .spiral-open .page-bg { opacity: 0 !important; }
+  /* Spiral disclaimer: no brown box on mobile */
+  #spiral-disclaimer { background: transparent !important; backdrop-filter: none !important; }
 
   /* ── Mobile-only: font sizes, CTA width, overlay — desktop unchanged ── */
   .btn                 { font-size: 12px !important; }
