@@ -287,7 +287,7 @@ html, body {
 
 .spiral-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(12px, 1.5vw, 20px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -362,7 +362,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-family: 'CeleScript', cursive;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(12px, 1.5vw, 20px);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
@@ -562,7 +562,7 @@ html, body {
 
   .brand { gap: 0.6rem; }
 
-  .brand-title { font-size: clamp(28px, 10vw, 52px); }
+  .brand-title { font-size: clamp(22px, 7.5vw, 40px); white-space: nowrap; }
 
   .brand-sub { font-size: clamp(12px, 3.8vw, 18px); }
 
@@ -610,46 +610,44 @@ html, body {
      but also set here as a fallback for browsers that respect it. */
   .illus { --y-rest: 0px; }
 
-  /* ── Individual placement — spread across full page width & height ── */
+  /* ── Individual placement — matches shetells.stream/index.html ── */
 
-  /* ── All illustrations cluster toward the bottom 45% of the page ── */
-
-  /* 1: Asset 7 — left */
+  /* 1: Asset 7 — upper right */
   .illustrations .illus:nth-child(1) {
-    top: 58%;
-    left: 2vw;
-  }
-  .illustrations .illus:nth-child(1) img { width: 32vw; max-height: none; }
-
-  /* 2: Spiral — centre */
-  .illus-spiral {
-    top: 50%;
-    left: 28vw;
-  }
-  .illus-spiral img { width: 30vw !important; max-height: none; }
-
-  /* 3: Asset 11 — upper right */
-  .illustrations .illus:nth-child(3) {
-    top: 36%;
-    right: 10vw;
+    top: 56%;
+    right: 3vw;
     left: auto;
   }
-  .illustrations .illus:nth-child(3) img { width: 16vw; max-height: none; }
+  .illustrations .illus:nth-child(1) img { width: 42vw; max-height: 23vh; }
 
-  /* 4: Asset 14 — right under spiral */
-  .illustrations .illus:nth-child(4) {
-    top: 62%;
-    left: 38vw;
+  /* 2: Spiral — lower centre */
+  .illus-spiral {
+    top: 73%;
+    left: 22vw;
   }
-  .illustrations .illus:nth-child(4) img { width: 38vw; max-height: none; }
+  .illus-spiral img { width: 40vw !important; max-height: 23vh; }
 
-  /* 5: Asset 9 — lower right */
+  /* 3: Asset 11 (Acid) — lower right */
+  .illustrations .illus:nth-child(3) {
+    top: 68%;
+    right: 3vw;
+    left: auto;
+  }
+  .illustrations .illus:nth-child(3) img { width: 28vw; max-height: 23vh; }
+
+  /* 4: Asset 14 (Sargassum) — upper centre */
+  .illustrations .illus:nth-child(4) {
+    top: 48%;
+    left: 16vw;
+  }
+  .illustrations .illus:nth-child(4) img { width: 56vw; max-height: 23vh; }
+
+  /* 5: Asset 9 (O₂) — mid left */
   .illustrations .illus:nth-child(5) {
     top: 60%;
-    right: 10vw;
-    left: auto;
+    left: 2vw;
   }
-  .illustrations .illus:nth-child(5) img { width: 22vw; max-height: none; }
+  .illustrations .illus:nth-child(5) img { width: 28vw; max-height: 23vh; }
 
   /* ── Spiral click panel ── */
   #spiral-panel {
@@ -821,7 +819,7 @@ html, body {
 
 .shell-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(12px, 1.5vw, 20px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -945,7 +943,7 @@ html, body {
 
 .o2-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(12px, 1.5vw, 20px);
   color: var(--white);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -1046,7 +1044,7 @@ html, body {
 
 .sargassum-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(12px, 1.5vw, 20px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
@@ -1162,7 +1160,7 @@ html, body {
 
 .acid-body {
   font-family: 'CeleScript', cursive;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(12px, 1.5vw, 20px);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
   line-height: 1.4; margin-bottom: 0.9rem;
