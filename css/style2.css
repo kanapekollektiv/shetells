@@ -120,22 +120,14 @@ html, body {
 }
 
 /* Wave line replacing the dashes */
+/* Wave line — inline SVG uses currentColor, inherits from brand-sub */
 .brand-line {
   display: inline-block;
   height: clamp(10px, 1.2vw, 16px);
   width: auto;
-  /* SVG is white — invert to black for default white page */
-  filter: invert(1);
-  transition: filter 0.35s ease;
   flex-shrink: 0;
 }
-
-/* Restore white when any panel is open */
-.spiral-open    .brand-line,
-.shell-open     .brand-line,
-.o2-open        .brand-line,
-.sargassum-open .brand-line,
-.acid-open      .brand-line { filter: none; }
+/* currentColor flips automatically with brand-sub colour transitions — no filter needed */
 .spiral-open .brand-sub { color: var(--white); }
 
 /* ── Nav buttons ── */
