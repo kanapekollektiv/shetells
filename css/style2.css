@@ -663,11 +663,12 @@ html, body {
     transform: none !important;
   }
 
-  /* ── Spiral CTA — above the spiral illustration (top: 73%) ── */
+  /* ── Spiral CTA — above the disclaimer, like sargassum ── */
   #spiral-cta {
     left: 50% !important;
     right: auto !important;
-    top: 64% !important;
+    top: auto !important;
+    bottom: 90px !important;
     transform: translateX(-50%);
   }
 
@@ -691,11 +692,11 @@ html, body {
     width: calc(100vw - 2rem);
     transform: none !important;
   }
-  /* ── Shell CTA — left-aligned with panel, in line with shell illustration (top: 56%) ── */
+  /* ── Shell CTA — left-aligned, lower behind illustration ── */
   #shell-cta {
     left: 1rem !important;
     right: auto !important;
-    top: 52% !important;
+    top: 62% !important;
     transform: none !important;
   }
   /* Corner buttons hidden on mobile — btn-outline in nav handles close */
@@ -1101,7 +1102,7 @@ html, body {
   /* ── O2 CTA — lower for legibility ── */
   #o2-cta {
     left: 50% !important; right: auto !important;
-    top: 53% !important; transform: translateX(-50%);
+    top: 60% !important; transform: translateX(-50%);
   }
   /* ── Sargassum CTA — just above the disclaimer ── */
   #sargassum-cta {
@@ -1224,7 +1225,7 @@ html, body {
   /* ── Acid CTA — lower for legibility ── */
   #acid-cta {
     left: 50% !important; right: auto !important;
-    top: 53% !important; transform: translateX(-50%);
+    top: 60% !important; transform: translateX(-50%);
   }
   #acid-corner-btn { top: 0.75rem !important; right: 0.75rem !important; }
 }
