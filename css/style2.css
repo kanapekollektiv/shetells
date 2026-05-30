@@ -650,12 +650,17 @@ html, body {
   }
   .illustrations .illus:nth-child(3) img { width: 28vw; max-height: 23vh; }
 
-  /* 4: Asset 14 (Sargassum) — upper centre */
+  /* 4: Asset 14 (Sargassum) — upper centre, no animation on mobile */
   .illustrations .illus:nth-child(4) {
-    top: 48%;
+    top: 50%;
     left: 16vw;
   }
   .illustrations .illus:nth-child(4) img { width: 56vw; max-height: 23vh; }
+  #sargassum-illus,
+  #sargassum-illus.animate {
+    animation: none !important;
+    transform: translateY(4px) rotate(2deg) !important;
+  }
 
   /* 5: Asset 9 (O₂) — mid left */
   .illustrations .illus:nth-child(5) {
@@ -703,11 +708,11 @@ html, body {
     width: calc(100vw - 2rem);
     transform: none !important;
   }
-  /* ── Shell CTA — below the illustration ── */
+  /* ── Shell CTA — below illustration (illus ends ~79%) ── */
   #shell-cta {
     left: 1rem !important;
     right: auto !important;
-    top: 72% !important;
+    top: 80% !important;
     transform: none !important;
   }
   /* Corner buttons hidden on mobile — btn-outline in nav handles close */
@@ -760,7 +765,7 @@ html, body {
 
   /* ── Mobile-only: font sizes, CTA width, overlay — desktop unchanged ── */
   .btn                 { font-size: 12px !important; }
-  .spiral-body, .shell-body, .o2-body, .sargassum-body, .acid-body { font-size: 11pt !important; }
+  .spiral-body, .shell-body, .o2-body, .sargassum-body, .acid-body { font-size: 11pt !important; text-transform: none !important; letter-spacing: 0.04em !important; }
   .spiral-title, .shell-title, .o2-title, .sargassum-title, .acid-title { font-size: 28px !important; }
   .spiral-bold, .shell-bold, .o2-bold, .sargassum-bold, .acid-bold { font-size: 14px !important; }
   .page-disclaimer     { font-size: 11px !important; }
