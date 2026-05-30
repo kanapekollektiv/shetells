@@ -874,6 +874,7 @@ html, body {
   letter-spacing: -0.02em;
   line-height: 1;
   margin-bottom: 0.8rem;
+  text-transform: lowercase;
   white-space: nowrap;          /* never wraps */
 }
 
