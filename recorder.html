@@ -191,6 +191,24 @@
       color: #ffffff;
       border-color: #0046FF;
     }
+
+    /* Email input */
+    .rec-email-input {
+      font-family: 'Celescript', cursive;
+      font-size: 13pt;
+      color: #0046FF;
+      background: transparent;
+      border: 1.5px solid #0046FF;
+      border-radius: 999px;
+      padding: 12px 24px;
+      max-width: 480px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.18s;
+    }
+
+    .rec-email-input::placeholder { color: rgba(0, 70, 255, 0.4); }
+    .rec-email-input:focus { border-color: #0035cc; }
   </style>
 </head>
 <body>
@@ -264,6 +282,15 @@
 
       <!-- Send section -->
       <div class="rec-send-section" id="sendSection">
+        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">Leave your email (optional)</div>
+        <input
+          class="rec-email-input"
+          id="emailInput"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+        />
         <button class="mem-btn mem-btn-record" onclick="sendMemory()">send my memory to the stream</button>
         <div class="rec-feedback" id="recFeedback"></div>
       </div>
@@ -301,7 +328,7 @@
     /* ══════════════════════════════════════════
        RECORDER
     ══════════════════════════════════════════ */
-    const UPLOAD_URL = 'https://shell.kokott.art/upload'; // ← confirm endpoint with your friend
+    const UPLOAD_URL = 'https://shell.kokott.art/submissions';
 
     let mediaRecorder = null;
     let audioChunks   = [];
@@ -460,11 +487,20 @@
 
       setFeedback('sending...');
 
-      // Convert to wav-compatible blob with .wav extension for the server
-      const filename = 'memory-' + selectedTag + '-' + Date.now() + '.wav';
+      // Name the file with the extension that matches what we actually
+      // recorded. The server (shell.phone POST /submissions) trusts the
+      // filename extension, so a fake .wav on webm data would mislabel it.
+      const type = (audioBlob.type || '').toLowerCase();
+      const ext  = type.includes('ogg') ? '.ogg' : '.webm';
+      const filename = 'memory-' + selectedTag + '-' + Date.now() + ext;
+
+      const email = document.getElementById('emailInput').value.trim();
+
+      // Fields match shell.phone's multipart parser: tag, email, file.
       const formData = new FormData();
       formData.append('tag',  selectedTag);
-      formData.append('file', audioBlob, filename); // ← field name may need adjusting
+      if (email) formData.append('email', email);
+      formData.append('file', audioBlob, filename);
 
       try {
         const res = await fetch(UPLOAD_URL, {
