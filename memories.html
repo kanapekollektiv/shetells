@@ -97,49 +97,31 @@
         <div class="mem-question" data-i18n="mem.q1">We are all water in some way.
 Let's collect our shared memories.
 
-As an easy warm up: how are you feeling now?</div>
+As an easy warm up: when did you encounter water the last time?</div>
         <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.mood.sunny">sunny</button>
-          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.mood.cloudy">cloudy</button>
-          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.mood.stormy">stormy</button>
-          <button class="mem-btn" onclick="goTo(2)">normy</button>
+          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.btn.recent">I can still feel it</button>
+          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.btn.today">some time today</button>
+          <button class="mem-btn" onclick="goTo(2)" data-i18n="mem.btn.tooLong">too long ago</button>
         </div>
       </div>
 
       <!-- ── Screen 2 ── -->
       <div class="mem-screen" id="screen-2">
-        <div class="mem-question" data-i18n="mem.q2">Oh darling, I feel this too.
+        <div class="mem-question" data-i18n="mem.q2">Oh darling, I was about to start missing you.
 
 And what type of water do you feel the closest to now?</div>
         <div class="mem-answers" id="water-buttons">
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="ocean"       data-pt="oceano">ocean</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="sea"         data-pt="mar">sea</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="river"       data-pt="rio">river</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="lake"        data-pt="lago">lake</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="cloud"       data-pt="nuvem">cloud</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="rain"        data-pt="chuva">rain</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="paddle"      data-pt="remo">paddle</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="groundwater" data-pt="água subterrânea">groundwater</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="tap"         data-pt="torneira">tap</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="drink"       data-pt="bebida">drink</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="drop"        data-pt="gota">drop</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="sweat"       data-pt="suor">sweat</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="tear"        data-pt="lágrima">tear</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="pond"        data-pt="lagoa">pond</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="stream"      data-pt="riacho">stream</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="fjord"       data-pt="fiordo">fjord</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="swamp"       data-pt="pântano">swamp</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="wetland"     data-pt="área úmida">wetland</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="spring"      data-pt="nascente">spring</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="glacier"     data-pt="geleira">glacier</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="iceberg"     data-pt="iceberg">iceberg</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="fog"         data-pt="névoa">fog</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="steam"       data-pt="vapor quente">steam</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="vapor"       data-pt="vapor">vapor</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="saliva"      data-pt="saliva">saliva</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="flood"       data-pt="enchente">flood</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="geyser"      data-pt="gêiser">geyser</button>
-          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="tsunami"     data-pt="tsunami">tsunami</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="ocean"        data-pt="oceano">ocean</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="sea"          data-pt="mar">sea</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="lake"         data-pt="lago">lake</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="river"        data-pt="rio">river</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="cloud"        data-pt="nuvem">cloud</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="rain"         data-pt="chuva">rain</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="drop"         data-pt="gota">drop</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="sweat"        data-pt="suor">sweat</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="tear"         data-pt="lágrima">tear</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="swamp"        data-pt="pântano">swamp</button>
+          <button class="mem-btn water-btn" onclick="goTo(3)" data-en="glacier"      data-pt="geleira">glacier</button>
           <button class="mem-btn water-btn" onclick="goTo(3)" data-en="something else" data-pt="algo diferente">something else</button>
         </div>
       </div>
