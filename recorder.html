@@ -282,7 +282,7 @@
 
       <!-- Send section -->
       <div class="rec-send-section" id="sendSection">
-        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">Leave your email (optional)</div>
+        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">Leave your email</div>
         <input
           class="rec-email-input"
           id="emailInput"
@@ -290,6 +290,7 @@
           inputmode="email"
           autocomplete="email"
           placeholder="you@example.com"
+          required
         />
         <button class="mem-btn mem-btn-record" onclick="sendMemory()">send my memory to the stream</button>
         <div class="rec-feedback" id="recFeedback"></div>
@@ -474,6 +475,11 @@
       show('sendSection', true);
     }
 
+    /* ── Basic email validation: one "@", a dotted domain, no spaces ── */
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
     /* ── Send to shell.kokott.art ── */
     async function sendMemory() {
       if (!audioBlob) {
@@ -482,6 +488,16 @@
       }
       if (!selectedTag) {
         setFeedback('please choose a tag first');
+        return;
+      }
+
+      const email = document.getElementById('emailInput').value.trim();
+      if (!email) {
+        setFeedback('please enter your email first');
+        return;
+      }
+      if (!isValidEmail(email)) {
+        setFeedback('that email doesn’t look right — please check it');
         return;
       }
 
@@ -494,13 +510,11 @@
       const ext  = type.includes('ogg') ? '.ogg' : '.webm';
       const filename = 'memory-' + selectedTag + '-' + Date.now() + ext;
 
-      const email = document.getElementById('emailInput').value.trim();
-
       // Fields match shell.phone's multipart parser: tag, email, file.
       const formData = new FormData();
-      formData.append('tag',  selectedTag);
-      if (email) formData.append('email', email);
-      formData.append('file', audioBlob, filename);
+      formData.append('tag',   selectedTag);
+      formData.append('email', email);
+      formData.append('file',  audioBlob, filename);
 
       try {
         const res = await fetch(UPLOAD_URL, {
