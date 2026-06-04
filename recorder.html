@@ -529,8 +529,7 @@
         });
 
         if (res.ok) {
-          setFeedback('your memory is now floating in the stream. thank you.');
-          document.getElementById('sendSection').querySelector('.mem-btn').disabled = true;
+          window.location.href = 'thankyou.html';
         } else {
           const text = await res.text();
           setFeedback('something went wrong (' + res.status + '). please try again.');

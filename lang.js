@@ -91,6 +91,9 @@ const TRANSLATIONS = {
     'mem.btn.partOfThis':   'I want to be part of this!',
     'mem.btn.accept':       'I understand and I accept these conditions.',
     'mem.btn.record':       'record your water memory!',
+
+    /* ── thankyou.html ── */
+    'ty.text': 'Your memory is now part of the current.\nOur team will listen closely and follow its course. We\'ll let you know when your voice joins the stream.\nThank you for adding your drop to this shared body of memories.',
   },
 
   pt: {
@@ -179,6 +182,9 @@ const TRANSLATIONS = {
     'mem.btn.partOfThis':   'Quero fazer parte disso!',
     'mem.btn.accept':       'Entendo e aceito estas condições.',
     'mem.btn.record':       'grave sua memória aquática!',
+
+    /* ── thankyou.html ── */
+    'ty.text': 'Sua memória agora faz parte da corrente.\nNossa equipe vai ouvir com atenção e acompanhar o seu percurso. Vamos te avisar quando a sua voz se juntar ao stream.\nObrigada por adicionar sua gota a esse corpo compartilhado de memórias.',
   }
 };
 

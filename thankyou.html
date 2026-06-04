@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sea shells — thank you</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="memories.css" />
+  <script src="lang.js?v=2"></script>
+  <style>
+    @font-face {
+      font-family: 'NaNTresorM';
+      src: url('Fonts/NaNTresor/NaNTresorM-ExtraLight.ttf') format('truetype');
+      font-weight: 200;
+    }
+
+    .brand {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.2rem;
+    }
+
+    .brand-title {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 200;
+      font-size: clamp(52px, 7.5vw, 108px);
+      line-height: 1;
+      color: #0046FF;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(13px, 1.6vw, 22px);
+      color: #0046FF;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .brand-line {
+      width: clamp(40px, 4vw, 60px);
+      height: clamp(8px, 1vw, 12px);
+      display: block;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="mem-bg"></div>
+
+  <div class="mem-page">
+
+    <div class="mem-topbar">
+      <a href="index.html" style="text-decoration:none;">
+        <div class="brand">
+          <span class="brand-title">she tells</span>
+          <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
+        </div>
+      </a>
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <span class="mem-step">✓</span>
+        <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language" style="font-family:'CeleScript',cursive;font-size:10pt;border:1.5px solid #0046FF;color:#0046FF;background:transparent;border-radius:50%;width:1.8rem;height:1.8rem;cursor:pointer;flex-shrink:0;line-height:1;">PT</button>
+      </div>
+    </div>
+
+    <div class="mem-content" style="gap: 40px;">
+
+      <div class="mem-question" data-i18n="ty.text">Your memory is now part of the current.
+Our team will listen closely and follow its course. We'll let you know when your voice joins the stream.
+Thank you for adding your drop to this shared body of memories.</div>
+
+    </div>
+  </div>
+
+  <script>
+    /* Bubbles */
+    const BUBBLE_WORDS = ['blub', 'blubblub'];
+    function spawnBubble() {
+      const el = document.createElement('span');
+      el.className = 'bubble-word';
+      el.textContent = BUBBLE_WORDS[Math.floor(Math.random() * BUBBLE_WORDS.length)];
+      const x        = 5 + Math.random() * 85;
+      const size     = (12 + Math.random() * 10).toFixed(1) + 'pt';
+      const duration = (5 + Math.random() * 5).toFixed(1) + 's';
+      const wobble   = (Math.random() * 60 - 30).toFixed(0) + 'px';
+      el.style.setProperty('--duration', duration);
+      el.style.setProperty('--size', size);
+      el.style.setProperty('--wobble', wobble);
+      el.style.left = x + 'vw';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), parseFloat(duration) * 1000 + 100);
+    }
+    function scheduleBubble() {
+      spawnBubble();
+      setTimeout(scheduleBubble, 1200 + Math.random() * 1600);
+    }
+    scheduleBubble();
+  </script>
+</body>
+</html>
