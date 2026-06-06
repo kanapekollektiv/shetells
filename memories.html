@@ -59,6 +59,54 @@
       display: block;
       flex-shrink: 0;
     }
+
+    /* ── Breathing buttons — liquid fill animation ── */
+    .breathe-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Suppress default hover so it doesn't flash blue before the animation */
+    .breathe-btn:hover        { background: transparent; color: #0046FF; }
+    #btn-breathe-out:hover    { background: transparent; color: #ffffff; }
+
+    /* The rising/falling blue fill — sits behind the label */
+    .breathe-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #0046FF;
+      pointer-events: none;
+      transition: transform 2.5s cubic-bezier(0.42, 0, 0.58, 1);
+    }
+
+    /* Keep text above the fill layer */
+    .breathe-label {
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ── Breath In: fill rises from below ── */
+    #btn-breathe-in::before          { transform: translateY(100%); }   /* starts below */
+    #btn-breathe-in.filling::before  { transform: translateY(0); }      /* rises to top */
+
+    /* Text flips white just after the fill passes the centre (~1.2s into 2.5s) */
+    #btn-breathe-in.filling .breathe-label {
+      color: #ffffff;
+      transition: color 0.05s linear 1.2s;
+    }
+
+    /* ── Breath Out: starts full, drains downward ── */
+    #btn-breathe-out::before         { transform: translateY(0); }      /* starts full */
+    #btn-breathe-out .breathe-label  { color: #ffffff; }                /* white on blue */
+    #btn-breathe-out.draining::before { transform: translateY(100%); }  /* drains down */
+
+    /* Text flips back to blue just after fill drops past centre */
+    #btn-breathe-out.draining .breathe-label {
+      color: #0046FF;
+      transition: color 0.05s linear 1.2s;
+    }
   </style>
 </head>
 <body>
@@ -86,8 +134,8 @@
       <div class="mem-screen active" id="screen-1">
         <div class="mem-question" data-i18n-html="mem.q1html"><strong>Remembering is about time.</strong><br>We know that this is the internet, and it's supposed to be quick and you are probably in a hurry, but how about taking a deep breath and slowing down a little? We want you to give space for your memories.</div>
         <div class="mem-answers">
-          <button class="mem-btn" id="btn-breathe-in" onclick="breatheIn()" data-i18n="mem.btn.breatheIn">breath in</button>
-          <button class="mem-btn" id="btn-breathe-out" onclick="goTo(2)" data-i18n="mem.btn.breatheOut" style="display:none;">breath out</button>
+          <button class="mem-btn breathe-btn" id="btn-breathe-in" onclick="breatheIn()"><span class="breathe-label" data-i18n="mem.btn.breatheIn">breath in</span></button>
+          <button class="mem-btn breathe-btn" id="btn-breathe-out" onclick="breatheOut()" style="display:none;"><span class="breathe-label" data-i18n="mem.btn.breatheOut">breath out</span></button>
         </div>
       </div>
 
@@ -178,8 +226,21 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
        BREATHING — screen 1
     ══════════════════════════════════════════ */
     function breatheIn() {
-      document.getElementById('btn-breathe-in').style.display  = 'none';
-      document.getElementById('btn-breathe-out').style.display = 'inline-flex';
+      const btnIn = document.getElementById('btn-breathe-in');
+      btnIn.classList.add('filling');
+      btnIn.style.pointerEvents = 'none';           // prevent double-tap
+      setTimeout(() => {
+        btnIn.style.display = 'none';
+        const btnOut = document.getElementById('btn-breathe-out');
+        btnOut.style.display = 'inline-flex';
+      }, 2600);                                     // slightly after 2.5s animation ends
+    }
+
+    function breatheOut() {
+      const btnOut = document.getElementById('btn-breathe-out');
+      btnOut.classList.add('draining');
+      btnOut.style.pointerEvents = 'none';          // prevent double-tap
+      setTimeout(() => goTo(2), 2600);
     }
 
     /* ══════════════════════════════════════════
