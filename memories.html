@@ -60,24 +60,23 @@
       flex-shrink: 0;
     }
 
-    /* ── Breathing buttons — liquid fill animation ── */
+    /* ── Breathing button — liquid fill animation ── */
     .breathe-btn {
       position: relative;
       overflow: hidden;
     }
 
-    /* Suppress default hover so it doesn't flash blue before the animation */
-    .breathe-btn:hover        { background: transparent; color: #0046FF; }
-    #btn-breathe-out:hover    { background: transparent; color: #ffffff; }
+    /* Suppress default hover flash during animation */
+    .breathe-btn:hover { background: transparent; color: #0046FF; }
 
-    /* The rising/falling blue fill — sits behind the label */
+    /* The rising blue fill — sits behind the label */
     .breathe-btn::before {
       content: '';
       position: absolute;
       inset: 0;
       background: #0046FF;
       pointer-events: none;
-      transition: transform 2.5s cubic-bezier(0.42, 0, 0.58, 1);
+      transition: transform 10s cubic-bezier(0.37, 0, 0.63, 1);
     }
 
     /* Keep text above the fill layer */
@@ -85,27 +84,27 @@
       position: relative;
       z-index: 1;
       pointer-events: none;
+      transition: opacity 0.35s ease, color 0.05s linear 5s;
     }
+
+    /* Fade out during text swap */
+    .breathe-label.text-fading { opacity: 0; }
 
     /* ── Breath In: fill rises from below ── */
-    #btn-breathe-in::before          { transform: translateY(100%); }   /* starts below */
-    #btn-breathe-in.filling::before  { transform: translateY(0); }      /* rises to top */
+    #btn-breathe-in::before         { transform: translateY(100%); }
+    #btn-breathe-in.filling::before { transform: translateY(0); }
 
-    /* Text flips white just after the fill passes the centre (~1.2s into 2.5s) */
-    #btn-breathe-in.filling .breathe-label {
-      color: #ffffff;
-      transition: color 0.05s linear 1.2s;
+    /* Text flips white at midpoint (~5s into 10s fill) */
+    #btn-breathe-in.filling .breathe-label { color: #ffffff; }
+
+    /* Pulse ring when button becomes clickable */
+    #btn-breathe-in.ready {
+      cursor: pointer;
+      animation: breathe-pulse 1.4s ease-in-out infinite alternate;
     }
-
-    /* ── Breath Out: starts full, drains downward ── */
-    #btn-breathe-out::before         { transform: translateY(0); }      /* starts full */
-    #btn-breathe-out .breathe-label  { color: #ffffff; }                /* white on blue */
-    #btn-breathe-out.draining::before { transform: translateY(100%); }  /* drains down */
-
-    /* Text flips back to blue just after fill drops past centre */
-    #btn-breathe-out.draining .breathe-label {
-      color: #0046FF;
-      transition: color 0.05s linear 1.2s;
+    @keyframes breathe-pulse {
+      from { box-shadow: 0 0 0 0   rgba(0,70,255,0.35); }
+      to   { box-shadow: 0 0 0 10px rgba(0,70,255,0);   }
     }
   </style>
 </head>
@@ -134,8 +133,7 @@
       <div class="mem-screen active" id="screen-1">
         <div class="mem-question" data-i18n-html="mem.q1html"><strong>Remembering is about time.</strong><br>We know that this is the internet, and it's supposed to be quick and you are probably in a hurry, but how about taking a deep breath and slowing down a little? We want you to give space for your memories.</div>
         <div class="mem-answers">
-          <button class="mem-btn breathe-btn" id="btn-breathe-in" onclick="breatheIn()"><span class="breathe-label" data-i18n="mem.btn.breatheIn">breath in</span></button>
-          <button class="mem-btn breathe-btn" id="btn-breathe-out" onclick="breatheOut()" style="display:none;"><span class="breathe-label" data-i18n="mem.btn.breatheOut">breath out</span></button>
+          <button class="mem-btn breathe-btn" id="btn-breathe-in"><span class="breathe-label" data-i18n="mem.btn.breatheIn">breath in</span></button>
         </div>
       </div>
 
@@ -216,24 +214,44 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
 
     /* ══════════════════════════════════════════
        BREATHING — screen 1
+       Auto-fills over 10s on load, cycles text,
+       then becomes clickable to advance.
     ══════════════════════════════════════════ */
-    function breatheIn() {
-      const btnIn = document.getElementById('btn-breathe-in');
-      btnIn.classList.add('filling');
-      btnIn.style.pointerEvents = 'none';           // prevent double-tap
-      setTimeout(() => {
-        btnIn.style.display = 'none';
-        const btnOut = document.getElementById('btn-breathe-out');
-        btnOut.style.display = 'inline-flex';
-      }, 2600);                                     // slightly after 2.5s animation ends
-    }
+    (function initBreathing() {
+      const btn   = document.getElementById('btn-breathe-in');
+      const label = btn.querySelector('.breathe-label');
 
-    function breatheOut() {
-      const btnOut = document.getElementById('btn-breathe-out');
-      btnOut.classList.add('draining');
-      btnOut.style.pointerEvents = 'none';          // prevent double-tap
-      setTimeout(() => goTo(2), 2600);
-    }
+      function getText(phase) {
+        if (typeof t === 'function') {
+          return phase === 0 ? t('mem.btn.breatheIn') : t('mem.btn.breatheOut');
+        }
+        return phase === 0 ? 'breath in' : 'breath out';
+      }
+
+      function swapText(phase) {
+        label.classList.add('text-fading');
+        setTimeout(() => {
+          label.textContent = getText(phase);
+          label.classList.remove('text-fading');
+        }, 350);
+      }
+
+      // Start fill immediately on load — not clickable yet
+      btn.style.pointerEvents = 'none';
+      btn.classList.add('filling');
+
+      // Cycle: in → out → in → out (every 2.5s)
+      setTimeout(() => swapText(1), 2500);
+      setTimeout(() => swapText(0), 5000);
+      setTimeout(() => swapText(1), 7500);
+
+      // After 10s: make clickable, add pulse ring
+      setTimeout(() => {
+        btn.classList.add('ready');
+        btn.style.pointerEvents = 'auto';
+        btn.addEventListener('click', () => goTo(2), { once: true });
+      }, 10200);
+    })();
 
     /* ══════════════════════════════════════════
        BUBBLE WORDS
