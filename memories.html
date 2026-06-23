@@ -236,9 +236,13 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
         }, 350);
       }
 
-      // Start fill immediately on load — not clickable yet
+      // Start fill on load — not clickable yet.
+      // Double rAF ensures the browser paints the initial state first,
+      // so the 10s CSS transition actually plays instead of snapping.
       btn.style.pointerEvents = 'none';
-      btn.classList.add('filling');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        btn.classList.add('filling');
+      }));
 
       // Cycle: in → out → in → out (every 2.5s)
       setTimeout(() => swapText(1), 2500);
