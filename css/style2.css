@@ -306,7 +306,7 @@ html, body {
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  line-height: 1.4;           /* matches shell body */
+  line-height: 1.6;
   margin-bottom: 0.9rem;
 }
 
@@ -927,7 +927,7 @@ html, body {
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em;
   text-transform: lowercase;
-  line-height: 1.4;
+  line-height: 1.6;
   margin-bottom: 0.9rem;
 }
 
@@ -1050,7 +1050,7 @@ html, body {
   font-size: var(--fs-ui);
   color: var(--white);
   letter-spacing: 0.14em; text-transform: uppercase;
-  line-height: 1.4; margin-bottom: 0.9rem;
+  line-height: 1.6; margin-bottom: 0.9rem;
 }
 
 .o2-bold {
@@ -1152,7 +1152,7 @@ html, body {
   font-size: var(--fs-ui);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
-  line-height: 1.4; margin-bottom: 0.9rem;
+  line-height: 1.6; margin-bottom: 0.9rem;
 }
 
 .sargassum-bold {
@@ -1275,7 +1275,7 @@ html, body {
   font-size: var(--fs-ui);
   color: rgba(255,255,255,0.85);
   letter-spacing: 0.14em; text-transform: uppercase;
-  line-height: 1.4; margin-bottom: 0.9rem;
+  line-height: 1.6; margin-bottom: 0.9rem;
 }
 
 .acid-bold {

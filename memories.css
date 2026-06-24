@@ -212,7 +212,7 @@ body {
   font-family: 'Celescript', cursive;
   font-size: 16pt;
   color: #ffffff;
-  line-height: 1.3;
+  line-height: 1.6;
 }
 
 .mem-upload-slot {
@@ -267,7 +267,8 @@ body {
   .mem-progress-wrap  { margin-bottom: 36px; }
   /* ── Mobile type: CeleScript = 12pt, NaNTresor = 14pt ── */
   .mem-question,
-  .mem-transition     { font-size: 14pt; }           /* NaNTresor */
+  .mem-transition,
+  .mem-cycle          { font-size: 14pt; }           /* NaNTresor */
   .mem-privacy-note   { font-size: 14pt; }           /* NaNTresor — was collapsing to 9px */
   .mem-btn            { font-size: 12pt; padding: 10px 20px; }  /* CeleScript */
   .mem-btn-record     { font-size: 12pt; padding: 12px 24px; background: #0046FF; color: #ffffff; }
@@ -314,7 +315,7 @@ body {
   font-weight: 400;
   font-size: 16pt;
   color: #0046FF;
-  line-height: 1.2;
+  line-height: 1.6;
 }
 
 @media (max-width: 600px) {
