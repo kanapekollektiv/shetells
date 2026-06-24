@@ -6,6 +6,7 @@
   <title>sea shells — record your memory</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="memories.css" />
+  <script src="lang.js?v=4"></script>
   <style>
     /* ── ExtraLight weight for brand title ── */
     @font-face {
@@ -258,6 +259,10 @@
       transition: opacity 0.2s ease;
     }
     .mem-btn-rerecord:hover { opacity: 1; }
+
+    @media (max-width: 768px) {
+      #controlButtons .mem-btn { width: auto; }
+    }
   </style>
 </head>
 <body>
@@ -273,17 +278,18 @@
           <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
         </div>
       </a>
+      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language" style="font-family:'CeleScript',cursive;font-size:10pt;border:1.5px solid #0046FF;color:#0046FF;background:transparent;border-radius:50%;width:1.8rem;height:1.8rem;cursor:pointer;flex-shrink:0;line-height:1;">PT</button>
     </div>
 
     <div class="mem-content" style="gap: 32px;">
 
       <!-- Title -->
-      <div class="mem-question">your water memory</div>
+      <div class="mem-question" data-i18n="rec.title">your water memory</div>
 
       <!-- Status + timer -->
       <div class="rec-status">
         <div class="rec-dot" id="recDot"></div>
-        <span id="recStatusText">ready to record</span>
+        <span id="recStatusText" data-i18n="rec.status.ready">ready to record</span>
       </div>
 
       <div class="rec-timer" id="recTimer">0:00</div>
@@ -293,10 +299,10 @@
 
       <!-- Control buttons -->
       <div class="mem-answers" id="controlButtons">
-        <button class="mem-btn" id="startBtn" onclick="startRecording()">start recording</button>
-        <button class="mem-btn" id="stopBtn" onclick="stopRecording()" style="display:none;">stop recording</button>
-        <div class="rec-or" id="recOr">or</div>
-        <button class="mem-btn" id="uploadBtn" onclick="handleUpload()">upload a file</button>
+        <button class="mem-btn" id="startBtn" onclick="startRecording()" data-i18n="rec.btn.start">start recording</button>
+        <button class="mem-btn" id="stopBtn" onclick="stopRecording()" style="display:none;" data-i18n="rec.btn.stop">stop recording</button>
+        <div class="rec-or" id="recOr" data-i18n="rec.or">or</div>
+        <button class="mem-btn" id="uploadBtn" onclick="handleUpload()" data-i18n="rec.btn.upload">upload a file</button>
       </div>
       <input type="file" id="uploadInput" accept="audio/*" style="display:none;" />
 
@@ -304,30 +310,30 @@
 
       <!-- Playback preview -->
       <div class="rec-preview" id="previewSection">
-        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">listen back</div>
+        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);" data-i18n="rec.listen">listen back</div>
         <audio id="audioPreview"></audio>
         <div class="rec-player">
           <div class="rec-player-controls">
-            <button class="mem-btn" id="previewPlayBtn" onclick="togglePreview()">▶ play</button>
+            <button class="mem-btn" id="previewPlayBtn" onclick="togglePreview()" data-i18n="rec.btn.play">▶ play</button>
             <div class="rec-progress-wrap" id="progressWrap" onclick="seekPreview(event)">
               <div class="rec-progress-bar" id="progressBar"></div>
             </div>
             <span class="rec-time" id="previewTime">0:00</span>
           </div>
         </div>
-        <button class="mem-btn mem-btn-rerecord" onclick="reRecord()">↩ re-record</button>
+        <button class="mem-btn mem-btn-rerecord" onclick="reRecord()" data-i18n="rec.btn.rerecord">↩ re-record</button>
       </div>
 
       <div class="rec-divider" id="divider2" style="display:none;"></div>
 
       <!-- Tag question -->
       <div class="rec-tag-section" id="tagSection">
-        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">How would you describe your memory?</div>
+        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);" data-i18n="rec.tag.question">How would you describe your memory?</div>
         <div class="mem-answers" id="tagButtons">
-          <button class="mem-btn" onclick="selectTag('sunny',   this)">sunny</button>
-          <button class="mem-btn" onclick="selectTag('cloudy',  this)">cloudy</button>
-          <button class="mem-btn" onclick="selectTag('stormy',  this)">stormy</button>
-          <button class="mem-btn" onclick="selectTag('normy',   this)">normy</button>
+          <button class="mem-btn" onclick="selectTag('sunny',   this)" data-i18n="rec.tag.sunny">sunny</button>
+          <button class="mem-btn" onclick="selectTag('cloudy',  this)" data-i18n="rec.tag.cloudy">cloudy</button>
+          <button class="mem-btn" onclick="selectTag('stormy',  this)" data-i18n="rec.tag.stormy">stormy</button>
+          <button class="mem-btn" onclick="selectTag('normy',   this)" data-i18n="rec.tag.normy">normy</button>
         </div>
       </div>
 
@@ -335,7 +341,7 @@
 
       <!-- Send section -->
       <div class="rec-send-section" id="sendSection">
-        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);">Leave your email</div>
+        <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);" data-i18n="rec.email.label">Leave your email</div>
         <input
           class="rec-email-input"
           id="emailInput"
@@ -345,7 +351,7 @@
           placeholder="you@example.com"
           required
         />
-        <button class="mem-btn mem-btn-record" onclick="sendMemory()">send my memory to the stream</button>
+        <button class="mem-btn mem-btn-record" onclick="sendMemory()" data-i18n="rec.btn.send">send my memory to the stream</button>
         <div class="rec-feedback" id="recFeedback"></div>
       </div>
 
@@ -488,7 +494,7 @@
         stopBtn.style.display  = 'inline-flex';
         document.getElementById('uploadBtn').style.display = 'none';
         document.getElementById('recOr').style.display     = 'none';
-        setStatus('recording...', 'recording');
+        setStatus(t('rec.status.recording'), 'recording');
 
         // Timer
         seconds = 0;
@@ -501,7 +507,7 @@
         drawWaveform();
 
       } catch (err) {
-        setStatus('microphone access denied', '');
+        setStatus(t('rec.status.noMic'), '');
         console.error(err);
       }
     }
@@ -513,7 +519,7 @@
       }
       clearInterval(timerInterval);
       stopBtn.style.display = 'none';
-      setStatus('recorded — ' + formatTime(seconds), 'done');
+      setStatus(t('rec.status.recorded') + ' — ' + formatTime(seconds), 'done');
 
       // Clear waveform
       const W = waveform.width  = waveform.offsetWidth;
@@ -543,10 +549,10 @@
       document.getElementById('audioPreview').src = '';
       progressBar.style.width    = '0%';
       previewTime.textContent    = '0:00';
-      previewPlayBtn.textContent = '▶ play';
+      previewPlayBtn.textContent = t('rec.btn.play');
 
       // Reset status + timer + waveform
-      setStatus('ready to record', '');
+      setStatus(t('rec.status.ready'), '');
       recTimer.textContent = '0:00';
       const W = waveform.width  = waveform.offsetWidth;
       const H = waveform.height = waveform.offsetHeight;
@@ -577,7 +583,7 @@
 
       // Update status; clear timer (no duration during upload)
       const label = file.name.length > 32 ? file.name.slice(0, 29) + '…' : file.name;
-      setStatus('file loaded — ' + label, 'done');
+      setStatus(t('rec.status.fileLoaded') + ' — ' + label, 'done');
       recTimer.textContent = '';
 
       // Show same preview → tag → send flow as after recording
@@ -604,21 +610,21 @@
     /* ── Send to shell.kokott.art ── */
     async function sendMemory() {
       if (!audioBlob) {
-        setFeedback('no recording found — please record first');
+        setFeedback(t('rec.feedback.noRec'));
         return;
       }
       if (!selectedTag) {
-        setFeedback('please choose a tag first');
+        setFeedback(t('rec.feedback.noTag'));
         return;
       }
 
       const email = document.getElementById('emailInput').value.trim();
       if (!email) {
-        setFeedback('please enter your email first');
+        setFeedback(t('rec.feedback.noEmail'));
         return;
       }
       if (!isValidEmail(email)) {
-        setFeedback('that email doesn’t look right — please check it');
+        setFeedback(t('rec.feedback.badEmail'));
         return;
       }
 
@@ -653,11 +659,11 @@
           window.location.href = 'thankyou.html';
         } else {
           const text = await res.text();
-          setFeedback('something went wrong (' + res.status + '). please try again.');
+          setFeedback(t('rec.feedback.error'));
           console.error(text);
         }
       } catch (err) {
-        setFeedback('could not reach the stream. check your connection.');
+        setFeedback(t('rec.feedback.noConn'));
         console.error(err);
       }
     }
@@ -682,10 +688,10 @@
     function togglePreview() {
       if (audioPreview.paused) {
         audioPreview.play();
-        previewPlayBtn.textContent = '⏸ pause';
+        previewPlayBtn.textContent = t('rec.btn.pause');
       } else {
         audioPreview.pause();
-        previewPlayBtn.textContent = '▶ play';
+        previewPlayBtn.textContent = t('rec.btn.play');
       }
     }
 
@@ -697,7 +703,7 @@
     });
 
     audioPreview.addEventListener('ended', () => {
-      previewPlayBtn.textContent = '▶ play';
+      previewPlayBtn.textContent = t('rec.btn.play');
       progressBar.style.width = '0%';
       previewTime.textContent = '0:00';
     });
@@ -708,6 +714,19 @@
       const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
       audioPreview.currentTime = pct * audioPreview.duration;
     }
+
+    document.addEventListener('langchange', () => {
+      document.getElementById('emailInput').placeholder = t('rec.email.placeholder');
+      if (audioPreview.paused) {
+        previewPlayBtn.textContent = t('rec.btn.play');
+      } else {
+        previewPlayBtn.textContent = t('rec.btn.pause');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('emailInput').placeholder = t('rec.email.placeholder');
+    });
   </script>
 </body>
 </html>
