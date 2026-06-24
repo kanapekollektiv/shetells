@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sea shells — tell us your memories</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="memories.css" />
+  <link rel="stylesheet" href="memories.css?v=2" />
   <script src="lang.js?v=3"></script>
   <style>
     :root {
@@ -194,14 +194,11 @@ We are building an archive of memories in our stream. It's a flow of human exper
 
       <!-- ── Screen 5: Record your memory ── -->
       <div class="mem-screen" id="screen-5">
-        <div class="mem-question" data-i18n="mem.q5">Amazing, thank you!
+        <div class="mem-question" data-i18n="mem.q5intro">Amazing, thank you.
 
 Now try to remember a water memory of yours.
-Where you felt that unique bond with other water beings.
-
-Did you meet a stunning creature at a surprising spot? Did you rescue another being from their misery? Have you learnt something special? Were you anxious and you found peace somehow? We have so many stories where water is the main character.
-
-Please tell us your memory here! And don't stress, it doesn't have to be flawless. We are all just humans here. And water.</div>
+Where you felt that unique bond with other water beings.</div>
+        <div class="mem-cycle" id="q5cycle"></div>
         <div class="mem-answers">
           <button class="mem-btn mem-btn-record" onclick="sessionStorage.setItem('memoriesReturnScreen','5'); window.location.href='recorder.html'" data-i18n="mem.btn.record">record your water memory!</button>
         </div>
@@ -216,6 +213,7 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
     ══════════════════════════════════════════ */
     const TOTAL     = 5;
     const stepLabel = document.getElementById('stepLabel');
+    let q5cycleInterval = null;
 
     function goTo(n, fromHistory) {
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
@@ -226,7 +224,30 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
 
       if (!fromHistory) history.pushState({ screen: n }, '', '#step-' + n);
 
+      if (n === 5) startQ5Cycle();
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startQ5Cycle() {
+      if (q5cycleInterval) { clearInterval(q5cycleInterval); q5cycleInterval = null; }
+      const el = document.getElementById('q5cycle');
+      if (!el) return;
+      const getPrompts = () => (typeof t === 'function' ? t('mem.q5prompts') : []) || [];
+      let prompts = getPrompts();
+      if (!prompts.length) return;
+      let i = 0;
+      el.textContent = prompts[i];
+      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; }));
+      q5cycleInterval = setInterval(() => {
+        el.style.opacity = '0';
+        setTimeout(() => {
+          prompts = getPrompts();
+          i = (i + 1) % prompts.length;
+          el.textContent = prompts[i];
+          el.style.opacity = '1';
+        }, 750);
+      }, 3500);
     }
 
     window.addEventListener('popstate', e => {
