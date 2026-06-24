@@ -107,6 +107,9 @@
       to   { box-shadow: 0 0 0 10px rgba(0,70,255,0);   }
     }
 
+    /* Hide question text until typewriter starts — prevents flash of full text */
+    #screen-1 .mem-question { visibility: hidden; }
+
     /* Button hidden until typewriter finishes */
     #btn-breathe-in { opacity: 0; transition: opacity 0.7s ease; }
 
@@ -200,7 +203,7 @@ Did you meet a stunning creature at a surprising spot? Did you rescue another be
 
 Please tell us your memory here! And don't stress, it doesn't have to be flawless. We are all just humans here. And water.</div>
         <div class="mem-answers">
-          <button class="mem-btn mem-btn-record" onclick="window.location.href='recorder.html'" data-i18n="mem.btn.record">record your water memory!</button>
+          <button class="mem-btn mem-btn-record" onclick="sessionStorage.setItem('memoriesReturnScreen','5'); window.location.href='recorder.html'" data-i18n="mem.btn.record">record your water memory!</button>
         </div>
       </div>
 
@@ -214,18 +217,21 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
     const TOTAL     = 5;
     const stepLabel = document.getElementById('stepLabel');
 
-    function goTo(n) {
+    function goTo(n, fromHistory) {
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
 
-      if      (n === 1) { stepLabel.textContent = '1 / 4'; }
-      else if (n === 2) { stepLabel.textContent = '2 / 4'; }
-      else if (n === 3) { stepLabel.textContent = '3 / 4'; }
-      else if (n === 4) { stepLabel.textContent = '4 / 4'; }
-      else              { stepLabel.textContent = '✓'; }
+      const steps = { 1: '1 / 4', 2: '2 / 4', 3: '3 / 4', 4: '4 / 4' };
+      stepLabel.textContent = steps[n] || '✓';
+
+      if (!fromHistory) history.pushState({ screen: n }, '', '#step-' + n);
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    window.addEventListener('popstate', e => {
+      if (e.state && e.state.screen) goTo(e.state.screen, true);
+    });
 
     /* ══════════════════════════════════════════
        TYPEWRITER + BREATHING — screen 1
@@ -236,83 +242,92 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
       const questionEl = document.querySelector('#screen-1 .mem-question');
       const btn        = document.getElementById('btn-breathe-in');
       const label      = btn.querySelector('.breathe-label');
+      const fullHTML   = typeof t === 'function' ? t('mem.q1html') : questionEl.innerHTML;
 
-      // Get translated HTML (t() is defined synchronously by lang.js)
-      const fullHTML = typeof t === 'function' ? t('mem.q1html') : questionEl.innerHTML;
+      // ── Restore screen if returning from recorder.html via browser back ──
+      const returnTo = parseInt(sessionStorage.getItem('memoriesReturnScreen') || '0');
+      if (returnTo > 1) {
+        sessionStorage.removeItem('memoriesReturnScreen');
+        questionEl.innerHTML = fullHTML;
+        questionEl.style.visibility = 'visible';
+        btn.style.opacity = '1';
+        history.replaceState({ screen: returnTo }, '', '#step-' + returnTo);
+        goTo(returnTo, true);
+        return;
+      }
+
+      // ── Normal load: set initial history state then run typewriter ──
+      history.replaceState({ screen: 1 }, '', window.location.href);
       questionEl.innerHTML = '';
+      questionEl.style.visibility = 'visible';
 
       // Blinking cursor that travels with the text
       const cursor = document.createElement('span');
       cursor.className = 'tw-cursor';
       questionEl.appendChild(cursor);
 
-      // Type HTML node-by-node so <strong> and <br> are preserved
+      // Type HTML node-by-node:
+      // • text nodes → typed char by char
+      // • <br>       → inserted instantly with a brief pause
+      // • inline elements (strong, em…) → cursor moves inside, text typed, cursor moves back out
       function typeHTML(el, html, charDelay, onDone) {
         const tmp = document.createElement('div');
         tmp.innerHTML = html;
         const nodes = Array.from(tmp.childNodes);
         let ni = 0;
 
+        function typeInto(container, text, after) {
+          const tn  = document.createTextNode('');
+          const ref = cursor.parentNode === container ? cursor : null;
+          if (ref) container.insertBefore(tn, ref); else container.appendChild(tn);
+          let ci = 0;
+          (function nextChar() {
+            if (ci < text.length) { tn.textContent += text[ci++]; setTimeout(nextChar, charDelay); }
+            else after();
+          })();
+        }
+
         function nextNode() {
-          if (ni >= nodes.length) {
-            cursor.remove();
-            onDone();
-            return;
-          }
+          if (ni >= nodes.length) { cursor.remove(); onDone(); return; }
           const node = nodes[ni++];
           if (node.nodeType === Node.TEXT_NODE) {
-            const text = node.textContent;
-            let ci = 0;
-            const tn = document.createTextNode('');
-            el.insertBefore(tn, cursor);
-            (function nextChar() {
-              if (ci < text.length) {
-                tn.textContent += text[ci++];
-                setTimeout(nextChar, charDelay);
-              } else {
-                nextNode();
-              }
-            })();
+            if (!node.textContent) { nextNode(); return; }
+            typeInto(el, node.textContent, nextNode);
+          } else if (node.tagName === 'BR') {
+            el.insertBefore(document.createElement('br'), cursor.parentNode === el ? cursor : null);
+            setTimeout(nextNode, charDelay * 4);
           } else {
-            // <strong>, <br>, etc. — insert instantly
-            el.insertBefore(node.cloneNode(true), cursor);
-            nextNode();
+            // Inline wrapper: move cursor inside, type text, move cursor back out
+            const wrapper = document.createElement(node.tagName);
+            el.insertBefore(wrapper, cursor.parentNode === el ? cursor : null);
+            wrapper.appendChild(cursor);
+            typeInto(wrapper, node.textContent, () => {
+              const after = wrapper.nextSibling;
+              if (after) el.insertBefore(cursor, after); else el.appendChild(cursor);
+              nextNode();
+            });
           }
         }
         nextNode();
       }
 
       function getText(phase) {
-        if (typeof t === 'function') {
-          return phase === 0 ? t('mem.btn.breatheIn') : t('mem.btn.breatheOut');
-        }
+        if (typeof t === 'function') return phase === 0 ? t('mem.btn.breatheIn') : t('mem.btn.breatheOut');
         return phase === 0 ? 'breath in' : 'breath out';
       }
 
       function swapText(phase) {
         label.classList.add('text-fading');
-        setTimeout(() => {
-          label.textContent = getText(phase);
-          label.classList.remove('text-fading');
-        }, 350);
+        setTimeout(() => { label.textContent = getText(phase); label.classList.remove('text-fading'); }, 350);
       }
 
       function startBreathing() {
-        // Fade in button
         btn.style.opacity = '1';
-
-        // Start fill after button is visible — double rAF so transition plays
         setTimeout(() => {
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            btn.classList.add('filling');
-          }));
-
-          // Cycle: in → out → in → out every 2.5s
+          requestAnimationFrame(() => requestAnimationFrame(() => btn.classList.add('filling')));
           setTimeout(() => swapText(1), 2500);
           setTimeout(() => swapText(0), 5000);
           setTimeout(() => swapText(1), 7500);
-
-          // Clickable after 10s
           setTimeout(() => {
             btn.classList.add('ready');
             btn.style.pointerEvents = 'auto';
@@ -321,10 +336,7 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
         }, 700);
       }
 
-      // Start typewriter; breathing begins when text is fully typed
-      typeHTML(questionEl, fullHTML, 30, () => {
-        setTimeout(startBreathing, 500);
-      });
+      typeHTML(questionEl, fullHTML, 30, () => setTimeout(startBreathing, 500));
     });
 
     /* ══════════════════════════════════════════
