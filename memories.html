@@ -261,10 +261,12 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
       questionEl.innerHTML = '';
       questionEl.style.visibility = 'visible';
 
-      // Blinking cursor that travels with the text
-      const cursor = document.createElement('span');
-      cursor.className = 'tw-cursor';
-      questionEl.appendChild(cursor);
+      // Cursor and typing start after a pause — lets the user take in the page first
+      let cursor;
+      setTimeout(() => {
+        cursor = document.createElement('span');
+        cursor.className = 'tw-cursor';
+        questionEl.appendChild(cursor);
 
       // Type HTML node-by-node:
       // • text nodes → typed char by char
@@ -336,7 +338,8 @@ Please tell us your memory here! And don't stress, it doesn't have to be flawles
         }, 700);
       }
 
-      typeHTML(questionEl, fullHTML, 30, () => setTimeout(startBreathing, 500));
+        typeHTML(questionEl, fullHTML, 30, () => setTimeout(startBreathing, 500));
+      }, 1500);
     });
 
     /* ══════════════════════════════════════════
