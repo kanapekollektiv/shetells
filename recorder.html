@@ -247,6 +247,15 @@
 
     .rec-email-input::placeholder { color: rgba(0, 70, 255, 0.4); }
     .rec-email-input:focus { border-color: #0035cc; }
+
+    /* Re-record — small secondary action */
+    .mem-btn-rerecord {
+      font-size: 0.82em;
+      opacity: 0.55;
+      border-color: rgba(0, 70, 255, 0.35);
+      transition: opacity 0.2s ease;
+    }
+    .mem-btn-rerecord:hover { opacity: 1; }
   </style>
 </head>
 <body>
@@ -304,6 +313,7 @@
             <span class="rec-time" id="previewTime">0:00</span>
           </div>
         </div>
+        <button class="mem-btn mem-btn-rerecord" onclick="reRecord()">↩ re-record</button>
       </div>
 
       <div class="rec-divider" id="divider2" style="display:none;"></div>
@@ -471,9 +481,11 @@
 
         mediaRecorder.start(100);
 
-        // UI
+        // UI — commit to recording, hide the upload alternative
         startBtn.style.display = 'none';
         stopBtn.style.display  = 'inline-flex';
+        document.getElementById('uploadBtn').style.display = 'none';
+        document.getElementById('recOr').style.display     = 'none';
         setStatus('recording...', 'recording');
 
         // Timer
@@ -505,6 +517,43 @@
       const W = waveform.width  = waveform.offsetWidth;
       const H = waveform.height = waveform.offsetHeight;
       waveCtx.clearRect(0, 0, W, H);
+    }
+
+    /* ── Re-record: reset everything back to the initial state ── */
+    function reRecord() {
+      audioBlob   = null;
+      selectedTag = null;
+
+      // Hide everything downstream
+      ['divider1','divider2','divider3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+      ['previewSection','tagSection','sendSection'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.style.display = 'none'; el.classList.remove('visible'); }
+      });
+
+      // Reset tag selection
+      document.querySelectorAll('#tagButtons .mem-btn').forEach(b => b.classList.remove('selected'));
+
+      // Reset audio element + player UI
+      document.getElementById('audioPreview').src = '';
+      progressBar.style.width    = '0%';
+      previewTime.textContent    = '0:00';
+      previewPlayBtn.textContent = '▶ play';
+
+      // Reset status + timer + waveform
+      setStatus('ready to record', '');
+      recTimer.textContent = '0:00';
+      const W = waveform.width  = waveform.offsetWidth;
+      const H = waveform.height = waveform.offsetHeight;
+      waveCtx.clearRect(0, 0, W, H);
+
+      // Restore record + upload options
+      startBtn.style.display = '';
+      document.getElementById('uploadBtn').style.display = '';
+      document.getElementById('recOr').style.display     = '';
     }
 
     /* ── Upload a file ── */
