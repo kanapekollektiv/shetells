@@ -198,6 +198,15 @@
       border-color: #0046FF;
     }
 
+    /* "or" label between record / upload */
+    .rec-or {
+      font-family: 'Celescript', cursive;
+      font-size: 11pt;
+      color: rgba(0,70,255,0.45);
+      text-align: center;
+      padding: 2px 0;
+    }
+
     /* Email input */
     .rec-email-input {
       font-family: 'Celescript', cursive;
@@ -252,7 +261,10 @@
       <div class="mem-answers" id="controlButtons">
         <button class="mem-btn" id="startBtn" onclick="startRecording()">start recording</button>
         <button class="mem-btn" id="stopBtn" onclick="stopRecording()" style="display:none;">stop recording</button>
+        <div class="rec-or" id="recOr">or</div>
+        <button class="mem-btn" id="uploadBtn" onclick="handleUpload()">upload a file</button>
       </div>
+      <input type="file" id="uploadInput" accept="audio/*" style="display:none;" />
 
       <div class="rec-divider" id="divider1" style="display:none;"></div>
 
@@ -472,6 +484,35 @@
       waveCtx.clearRect(0, 0, W, H);
     }
 
+    /* ── Upload a file ── */
+    function handleUpload() {
+      document.getElementById('uploadInput').click();
+    }
+
+    document.getElementById('uploadInput').addEventListener('change', function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      audioBlob = file;
+      document.getElementById('audioPreview').src = URL.createObjectURL(file);
+
+      // Hide record / upload buttons
+      startBtn.style.display  = 'none';
+      document.getElementById('uploadBtn').style.display = 'none';
+      document.getElementById('recOr').style.display     = 'none';
+
+      // Update status; clear timer (no duration during upload)
+      const label = file.name.length > 32 ? file.name.slice(0, 29) + '…' : file.name;
+      setStatus('file loaded — ' + label, 'done');
+      recTimer.textContent = '';
+
+      // Show same preview → tag → send flow as after recording
+      show('divider1');
+      show('previewSection', true);
+      show('divider2');
+      show('tagSection', true);
+    });
+
     /* ── Tag selection ── */
     function selectTag(tag, btn) {
       selectedTag = tag;
@@ -512,8 +553,14 @@
       // Name the file with the extension that matches what we actually
       // recorded. The server (shell.phone POST /submissions) trusts the
       // filename extension, so a fake .wav on webm data would mislabel it.
-      const type = (audioBlob.type || '').toLowerCase();
-      const ext  = type.includes('ogg') ? '.ogg' : '.webm';
+      const ext = (() => {
+        if (audioBlob instanceof File) {
+          const dot = audioBlob.name.lastIndexOf('.');
+          return dot !== -1 ? audioBlob.name.slice(dot) : '.audio';
+        }
+        const type = (audioBlob.type || '').toLowerCase();
+        return type.includes('ogg') ? '.ogg' : '.webm';
+      })();
       const filename = 'memory-' + selectedTag + '-' + Date.now() + ext;
 
       // Fields match shell.phone's multipart parser: tag, email, file.
