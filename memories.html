@@ -6,7 +6,7 @@
   <title>sea shells — tell us your memories</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="memories.css?v=2" />
-  <script src="lang.js?v=3"></script>
+  <script src="lang.js?v=4"></script>
   <style>
     :root {
       --fs-display:     clamp(52px, 7.5vw, 108px);
@@ -161,28 +161,28 @@
 
       <!-- ── Screen 2: Hypersea + water closeness ── -->
       <div class="mem-screen" id="screen-2">
-        <div class="mem-question" data-i18n="mem.q2">We are all water in some way.
-Do you know about the hypersea theory?
-It says that all beings came from the ocean, and those who left the water for the land, carried the ocean in themselves.
-Well, we are 55-65% water…
+        <div class="mem-question" data-i18n="mem.q2">Did you ever think that you carry the ocean with you?
+
+55 to 65% of you is water, the same water that has been circling this planet long before you arrived.
+
+Some tales of hypersea say that when life left the ocean for the land, it didn't leave the water behind. It just changed containers.
 
 How close do you feel to water in your daily life?</div>
         <div class="mem-answers">
-          <button class="mem-btn" onclick="goTo(3)" data-i18n="mem.btn.dislikeWater">I'm not really into water.</button>
-          <button class="mem-btn" onclick="goTo(3)" data-i18n="mem.btn.neutral">I am neutral.</button>
-          <button class="mem-btn" onclick="goTo(3)" data-i18n="mem.btn.loveWater">I love water.</button>
-          <button class="mem-btn" onclick="goTo(3)" data-i18n="mem.btn.iAmWater">I am water.</button>
+          <button class="mem-btn" onclick="q2Choice='dislike'; goTo(3)" data-i18n="mem.btn.dislikeWater">I'm not really into water.</button>
+          <button class="mem-btn" onclick="q2Choice='neutral'; goTo(3)" data-i18n="mem.btn.neutral">I am neutral.</button>
+          <button class="mem-btn" onclick="q2Choice='love'; goTo(3)" data-i18n="mem.btn.loveWater">I love water.</button>
+          <button class="mem-btn" onclick="q2Choice='water'; goTo(3)" data-i18n="mem.btn.iAmWater">I am water.</button>
         </div>
       </div>
 
       <!-- ── Screen 3: Connection + archive ── -->
       <div class="mem-screen" id="screen-3">
-        <div class="mem-question" data-i18n="mem.q3">I like your attitude.
+        <div class="mem-question" id="q3question" data-i18n="mem.q3.neutral">Neutral. Like still water before the tide turns.
 
-Nevertheless, if I am mostly water and you are mostly water, and the same water keeps circulating in our planet, we are all connected in some way.
+If we are mostly water and the same water keeps circling through bodies, clouds, and seas, our memories already share a current.
 
-That's why we want to collect our shared water memories.
-We are building an archive of memories in our stream. It's a flow of human experiences curated by water.</div>
+We are building an archive. A stream of water memories flows through the invisible cloud. Can you think of a memory you would like to throw into our eternal stream?</div>
         <div class="mem-answers">
           <button class="mem-btn" onclick="goTo(4)" data-i18n="mem.btn.partOfThis">I want to be part of this!</button>
         </div>
@@ -218,6 +218,7 @@ Where you felt that unique bond with other water beings.</div>
     const TOTAL     = 5;
     const stepLabel = document.getElementById('stepLabel');
     let q5cycleInterval = null;
+    let q2Choice = 'neutral';
 
     function goTo(n, fromHistory) {
       document.querySelectorAll('.mem-screen').forEach(s => s.classList.remove('active'));
@@ -227,6 +228,13 @@ Where you felt that unique bond with other water beings.</div>
       stepLabel.textContent = steps[n] || '✓';
 
       if (!fromHistory) history.pushState({ screen: n }, '', '#step-' + n);
+
+      if (n === 3) {
+        const q3el = document.getElementById('q3question');
+        const key = 'mem.q3.' + q2Choice;
+        q3el.dataset.i18n = key;
+        q3el.textContent = t(key);
+      }
 
       if (n === 5) startQ5Cycle();
 
