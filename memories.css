@@ -270,7 +270,7 @@ body {
   .mem-transition,
   .mem-cycle          { font-size: 14pt; }           /* NaNTresor */
   .mem-privacy-note   { font-size: 14pt; }           /* NaNTresor — was collapsing to 9px */
-  .mem-btn            { font-size: 12pt; padding: 10px 20px; }  /* CeleScript */
+  .mem-btn            { font-size: 12pt; padding: 10px 20px; white-space: normal; text-align: center; }  /* CeleScript */
   .mem-btn-record     { font-size: 12pt; padding: 12px 24px; background: #0046FF; color: #ffffff; }
   .mem-step           { font-size: 12pt; }           /* CeleScript */
   .brand-sub          { font-size: 12pt !important; } /* CeleScript */
