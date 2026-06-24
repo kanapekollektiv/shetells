@@ -277,15 +277,18 @@ Where you felt that unique bond with other water beings.</div>
       const label      = btn.querySelector('.breathe-label');
       const fullHTML   = typeof t === 'function' ? t('mem.q1html') : questionEl.innerHTML;
 
-      // ── Restore screen if returning from recorder.html via browser back ──
-      const returnTo = parseInt(sessionStorage.getItem('memoriesReturnScreen') || '0');
-      if (returnTo > 1) {
+      // ── Restore screen on refresh (hash) or return from recorder.html (sessionStorage) ──
+      const hashMatch  = window.location.hash.match(/^#step-(\d+)$/);
+      const hashScreen = hashMatch ? parseInt(hashMatch[1]) : 0;
+      const ssScreen   = parseInt(sessionStorage.getItem('memoriesReturnScreen') || '0');
+      const restoreTo  = ssScreen > 1 ? ssScreen : hashScreen;
+      if (restoreTo > 1) {
         sessionStorage.removeItem('memoriesReturnScreen');
         questionEl.innerHTML = fullHTML;
         questionEl.style.visibility = 'visible';
         btn.style.opacity = '1';
-        history.replaceState({ screen: returnTo }, '', '#step-' + returnTo);
-        goTo(returnTo, true);
+        history.replaceState({ screen: restoreTo }, '', '#step-' + restoreTo);
+        goTo(restoreTo, true);
         return;
       }
 
