@@ -113,6 +113,9 @@
     /* Button hidden until typewriter finishes */
     #btn-breathe-in { opacity: 0; transition: opacity 0.7s ease; }
 
+    /* Record button hidden until cycling prompts complete one full loop */
+    #screen-5 .mem-btn-record { opacity: 0; pointer-events: none; transition: opacity 0.8s ease; }
+
     /* Typewriter cursor */
     .tw-cursor {
       display: inline-block;
@@ -237,6 +240,7 @@ Where you felt that unique bond with other water beings.</div>
       let prompts = getPrompts();
       if (!prompts.length) return;
       let i = 0;
+      let shown = 1;
       el.textContent = prompts[i];
       requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; }));
       q5cycleInterval = setInterval(() => {
@@ -246,6 +250,14 @@ Where you felt that unique bond with other water beings.</div>
           i = (i + 1) % prompts.length;
           el.textContent = prompts[i];
           el.style.opacity = '1';
+          shown++;
+          // After all prompts shown once, reveal the record button
+          if (shown === prompts.length) {
+            setTimeout(() => {
+              const btn = document.querySelector('#screen-5 .mem-btn-record');
+              if (btn) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; }
+            }, 2000);
+          }
         }, 750);
       }, 3500);
     }
