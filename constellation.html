@@ -105,6 +105,8 @@
       height: 2300px;
       transform-origin: 0 0;
       will-change: transform;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* ── Cards ── */
@@ -273,14 +275,7 @@
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
       <svg id="linesSvg" width="3400" height="2300"
-           style="position:absolute;top:0;left:0;pointer-events:none;" aria-hidden="true">
-        <defs>
-          <filter id="wobble" x="-10%" y="-10%" width="120%" height="120%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="9" result="n"/>
-            <feDisplacementMap in="SourceGraphic" in2="n" scale="4"
-              xChannelSelector="R" yChannelSelector="G"/>
-          </filter>
-        </defs>
+           style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
 
@@ -511,7 +506,6 @@
     path.setAttribute('stroke-width', '1.8');
     path.setAttribute('stroke-opacity', color === '#F5DE0A' ? '0.7' : '0.45');
     path.setAttribute('stroke-linecap', 'round');
-    path.setAttribute('filter', 'url(#wobble)');
     path.dataset.connection = `${from}-${to}`;
     svg.appendChild(path);
   });
