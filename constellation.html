@@ -39,51 +39,94 @@
     .const-header {
       flex-shrink: 0;
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: space-between;
       padding: 0.9rem 1.5rem 0.7rem;
       background: #ffffff;
-      border-bottom: 1.5px solid rgba(0, 70, 255, 0.1);
       z-index: 100;
     }
 
-    .brand { display: flex; align-items: flex-end; gap: 1rem; text-decoration: none; }
+    .brand { display: flex; align-items: flex-end; gap: 1.2rem; text-decoration: none; }
 
     .brand-title {
       font-family: 'NaNTresorM', Georgia, serif;
       font-weight: 200;
-      font-size: clamp(28px, 3.5vw, 52px);
+      font-size: clamp(52px, 7.5vw, 108px);
       line-height: 1;
-      color: #0046FF;
+      color: #111111;
       letter-spacing: -0.02em;
     }
 
     .brand-sub {
       font-family: 'Celescript', cursive;
-      font-size: clamp(10px, 1.1vw, 15px);
-      color: #0046FF;
+      font-size: clamp(13px, 1.6vw, 22px);
+      color: #111111;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 0.45em;
-      padding-bottom: 3px;
+      gap: 0.5em;
+      white-space: nowrap;
     }
 
     .brand-line {
-      width: clamp(24px, 2.8vw, 40px);
-      height: auto;
-      display: block;
+      display: inline-block;
+      height: clamp(8px, 1vw, 12px);
+      width: clamp(40px, 4vw, 60px);
+      flex-shrink: 0;
     }
 
-    .const-page-label {
-      font-family: 'Celescript', cursive;
-      font-size: clamp(9px, 1vw, 13px);
-      color: rgba(0, 70, 255, 0.4);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      align-self: center;
+    /* ── Nav buttons (mirrors main page style) ── */
+    .const-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      align-self: flex-start;
+      padding-top: 0.2rem;
     }
+
+    .c-btn {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(11px, 1.2vw, 16px);
+      cursor: pointer;
+      border: none;
+      transition: background 0.18s, color 0.18s, transform 0.12s;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .c-btn:active { transform: scale(0.96); }
+
+    .c-btn-circle {
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 50%;
+      border: 1.5px solid #111111;
+      background: transparent;
+      color: #111111;
+    }
+    .c-btn-circle:hover { background: #111111; color: #ffffff; }
+
+    .c-btn-filled {
+      background: #111111;
+      color: #ffffff;
+      padding: 0.55rem 1.4rem;
+      border-radius: 2rem;
+    }
+    .c-btn-filled:hover { background: #333; }
+
+    .c-btn-outline {
+      background: transparent;
+      color: #111111;
+      padding: 0.55rem 1.4rem;
+      border-radius: 2rem;
+      border: 1.5px solid #111111;
+    }
+    .c-btn-outline:hover { background: #111111; color: #ffffff; }
+    .c-btn-outline.playing { background: #111111; color: #ffffff; }
 
     /* ── Viewport ── */
     .map-viewport {
@@ -177,28 +220,32 @@
 
     /* ── Legend ── */
     .map-legend {
-      flex-shrink: 0;
+      position: fixed;
+      left: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.15rem 1rem;
-      padding: 0.45rem 1.5rem;
+      flex-direction: column;
+      gap: 0.55rem;
+      padding: 1.1rem 1.3rem;
       background: #ffffff;
-      border-top: 1.5px solid rgba(0, 70, 255, 0.1);
+      border-radius: 16px;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
       z-index: 100;
     }
 
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
       cursor: pointer;
       transition: opacity 0.18s ease;
     }
     .legend-item.dimmed { opacity: 0.2; }
 
     .legend-dot {
-      width: 9px; height: 9px;
+      width: 10px; height: 10px;
       border-radius: 50%;
       flex-shrink: 0;
       transition: transform 0.18s ease;
@@ -207,8 +254,8 @@
 
     .legend-label {
       font-family: 'Celescript', cursive;
-      font-size: 10px;
-      color: #0046FF;
+      font-size: 11px;
+      color: #111111;
       letter-spacing: 0.04em;
       white-space: nowrap;
     }
@@ -226,9 +273,9 @@
     .zoom-btn {
       width: 28px; height: 28px;
       border-radius: 50%;
-      border: 1.5px solid rgba(0,70,255,0.25);
+      border: 1.5px solid rgba(0,0,0,0.25);
       background: rgba(255,255,255,0.9);
-      color: #0046FF;
+      color: #111111;
       font-family: 'NaNTresorM', Georgia, serif;
       font-weight: 400;
       font-size: 18px;
@@ -238,25 +285,284 @@
       backdrop-filter: blur(6px);
       transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
-    .zoom-btn:hover { background: #0046FF; color: #fff; border-color: #0046FF; }
+    .zoom-btn:hover { background: #111111; color: #fff; border-color: #111111; }
 
     .map-hint {
       position: absolute;
       bottom: 16px; right: 16px;
       font-family: 'Celescript', cursive;
       font-size: 10px;
-      color: rgba(0,0,0,0.2);
+      color: rgba(0,0,0,0.55);
       letter-spacing: 0.06em;
       pointer-events: none;
       z-index: 20;
+      background: #ffffff;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 8px 14px;
+      line-height: 1.7;
+      text-align: right;
     }
 
     /* ── Filter transitions ── */
     .card-wrap { transition: opacity 0.22s ease; }
     .card-wrap.dimmed { opacity: 0.08; }
+    .card-wrap:hover { z-index: 30 !important; position: relative; }
+
+    /* ── Idle water-float ── */
+    @keyframes floatWater {
+      0%   { transform: translate(0px, 0px) rotate(0deg); }
+      20%  { transform: translate(var(--fx), calc(var(--fy) * -1)) rotate(calc(var(--fr) * 1deg)); }
+      45%  { transform: translate(calc(var(--fx) * -0.6), var(--fy)) rotate(calc(var(--fr) * -0.5deg)); }
+      70%  { transform: translate(calc(var(--fx) * 0.4), calc(var(--fy) * -0.8)) rotate(calc(var(--fr) * 0.7deg)); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+
+    .canvas-idle .card-wrap {
+      animation: floatWater var(--fdur, 7s) ease-in-out infinite var(--fdelay, 0s);
+    }
+
+    /* ── Cluster headline labels ── */
+    .cluster-label {
+      position: absolute;
+      transform: translateX(-50%);
+      font-family: 'Celescript', cursive;
+      font-size: 13pt;
+      line-height: 1;
+      padding: 8px 22px;
+      border-radius: 999px;
+      white-space: nowrap;
+      pointer-events: auto;
+      cursor: pointer;
+      z-index: 6;
+      transition: opacity 0.22s ease;
+    }
+    .cluster-label.dimmed { opacity: 0.05; }
+
+    /* ── Link pill card ── */
+    .card-link-pill {
+      border-radius: 999px !important;
+      background: #ffffff;
+      border: 1.5px solid rgba(0,0,0,0.2);
+      box-shadow: none !important;
+      display: flex; align-items: center; justify-content: center;
+      overflow: visible !important;
+    }
+    .card-link-pill:hover { background: #f5f5f5; transform: none !important; }
+    .card-link-text {
+      font-family: 'Celescript', cursive;
+      font-size: 10px; color: #111; letter-spacing: 0.04em; white-space: nowrap;
+    }
+
+    /* ── Text preview card ── */
+    .card-text-box {
+      border-radius: 12px !important;
+      background: #ffffff;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+      padding: 11px 12px;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .card-text-box:hover { border-color: rgba(0,0,0,0.3) !important; }
+    .card-text-preview {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 11px; line-height: 1.52; color: #333;
+      overflow: hidden;
+      display: -webkit-box; -webkit-line-clamp: 9; -webkit-box-orient: vertical;
+      flex: 1;
+    }
+    .card-text-hint {
+      font-family: 'Celescript', cursive;
+      font-size: 8.5px; color: rgba(0,0,0,0.28); letter-spacing: 0.05em; flex-shrink: 0;
+    }
+
+    /* ── Credits card ── */
+    .card-credits-box {
+      background: transparent; border: none;
+      box-shadow: none !important; padding: 2px 0;
+    }
+    .card-credits-box:hover { transform: none !important; box-shadow: none !important; }
+    .card-credits-text {
+      font-family: 'Celescript', cursive;
+      font-size: 9px; color: rgba(0,0,0,0.38); letter-spacing: 0.04em; line-height: 1.5;
+    }
+
+    /* ── Card Popup Modal (matches ? info overlay style) ── */
+    .card-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.12);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .card-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .card-popup {
+      background: #ffffff;
+      color: #111111;
+      border: 1.5px solid #111111;
+      border-radius: 1.2rem;
+      max-width: 680px;
+      width: 90%;
+      max-height: 78vh;
+      overflow: hidden;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-overlay.active .card-popup { transform: translateY(0); }
+
+    .dp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.3rem 0.85rem;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      flex-shrink: 0;
+    }
+    .dp-chip {
+      font-family: 'Celescript', cursive;
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 4px 14px;
+      letter-spacing: 0.05em;
+    }
+    .dp-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 200;
+      font-size: 1.4rem;
+      color: #111111;
+      line-height: 1;
+      padding: 2px 6px;
+      transition: opacity 0.15s;
+    }
+    .dp-close:hover { opacity: 0.5; }
+
+    .dp-body {
+      overflow-y: auto;
+      flex: 1;
+      scrollbar-width: thin;
+      scrollbar-color: #111111 rgba(0,0,0,0.06);
+    }
+    .dp-body::-webkit-scrollbar { width: 6px; }
+    .dp-body::-webkit-scrollbar-track { background: rgba(0,0,0,0.06); }
+    .dp-body::-webkit-scrollbar-thumb { background: #111111; }
+
+    .dp-hero { width: 100%; overflow: hidden; flex-shrink: 0; }
+    .dp-hero img { width: 100%; max-height: 220px; object-fit: cover; display: block; }
+
+    .dp-content { padding: 1.5rem 1.6rem 2.5rem; }
+    .dp-title {
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 200;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #111111;
+      margin-bottom: 1rem;
+    }
+    .dp-text {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.78;
+      color: #444;
+      margin-bottom: 1.4rem;
+    }
+    .dp-divider { height: 1px; background: rgba(0,0,0,0.08); margin: 1.2rem 0; }
+    .dp-label {
+      font-family: 'Celescript', cursive;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      margin-bottom: 0.9rem;
+    }
+    .dp-book {
+      display: flex;
+      gap: 1.1rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+    .dp-book-cover {
+      width: 68px; flex-shrink: 0;
+      border-radius: 3px; overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.13);
+    }
+    .dp-book-cover img { width: 100%; display: block; }
+    .dp-book-title {
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 400; font-size: 15px;
+      color: #111; line-height: 1.3; margin-bottom: 0.25rem;
+    }
+    .dp-book-author {
+      font-family: system-ui, sans-serif;
+      font-size: 12px; color: rgba(0,0,0,0.42); margin-bottom: 0.6rem;
+    }
+    .dp-pill {
+      font-family: 'Celescript', cursive;
+      font-size: 10px; border-radius: 999px;
+      padding: 3px 13px; text-decoration: none;
+      display: inline-flex; transition: opacity 0.15s;
+    }
+    .dp-pill:hover { opacity: 0.75; }
+    .dp-ext-link {
+      display: flex; align-items: baseline; gap: 0.8rem;
+      text-decoration: none; padding: 0.75rem 1rem;
+      border: 1.5px solid rgba(0,0,0,0.09); border-radius: 10px;
+      margin-bottom: 0.5rem; transition: border-color 0.18s, background 0.18s;
+    }
+    .dp-ext-link:hover { background: rgba(0,0,0,0.025); border-color: rgba(0,0,0,0.22); }
+    .dp-ext-title {
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 400; font-size: 14px; color: #111; flex: 1; line-height: 1.4;
+    }
+    .dp-ext-arrow { font-size: 12px; flex-shrink: 0; opacity: 0.45; }
+    .dp-photo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 5px; margin-bottom: 5px;
+    }
+    .dp-photo-grid img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; border-radius: 6px; display: block;
+    }
+    .dp-video-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 5px; margin-bottom: 0.8rem;
+    }
+    .dp-video-grid video {
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover; border-radius: 6px; display: block;
+    }
+    .dp-credits {
+      font-family: 'Celescript', cursive;
+      font-size: 10px; letter-spacing: 0.05em; color: rgba(0,0,0,0.35);
+    }
+    .dp-placeholder {
+      font-family: 'Celescript', cursive;
+      font-size: 12px; color: rgba(0,0,0,0.28);
+      letter-spacing: 0.06em; margin-top: 1.6rem;
+    }
   </style>
 </head>
 <body>
+
+  <audio id="streamAudio" src="https://shell.kokott.art/ambient.mp3" preload="none"></audio>
 
   <header class="const-header">
     <a class="brand" href="index.html">
@@ -269,7 +575,12 @@
         sea shells
       </span>
     </a>
-    <span class="const-page-label">constellation</span>
+    <nav class="const-nav">
+      <button class="c-btn c-btn-circle" id="btnInfo" aria-label="About">?</button>
+      <button class="c-btn c-btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
+      <button class="c-btn c-btn-outline" id="btnStream">&#9654;</button>
+      <a href="memories.html" class="c-btn c-btn-filled">contribute to the living archive</a>
+    </nav>
   </header>
 
   <div class="map-viewport" id="viewport">
@@ -283,10 +594,20 @@
       <button class="zoom-btn" id="btnZoomIn"  aria-label="Zoom in">+</button>
       <button class="zoom-btn" id="btnZoomOut" aria-label="Zoom out">−</button>
     </div>
-    <p class="map-hint">drag to explore · scroll to zoom</p>
+    <p class="map-hint">drag to explore<br>scroll to zoom<br>press h to center</p>
   </div>
 
   <footer class="map-legend" id="mapLegend"></footer>
+
+  <div class="card-overlay" id="cardOverlay" role="dialog" aria-modal="true">
+    <div class="card-popup">
+      <div class="dp-header">
+        <span class="dp-chip" id="dpChip"></span>
+        <button class="dp-close" id="btnClosePanel" aria-label="Close">✕</button>
+      </div>
+      <div class="dp-body" id="dpBody"></div>
+    </div>
+  </div>
 
   <script>
   /* ═══════════════════════════════════════════════════
@@ -297,27 +618,24 @@
        Purple #6e00b0 — creative, human, cultural
   ═══════════════════════════════════════════════════ */
   const CATS = [
-    // Blue family — ocean / water / knowledge
-    { key: 'hypersea',    label: 'Hypersea',            color: '#0046FF' },
-    { key: 'sargassum',   label: 'Sargassum',            color: '#0077CC' },
-    { key: 'speculative', label: 'Speculative Futures',  color: '#3D9BE9' },
-    { key: 'data',        label: 'Data',                 color: '#001F8A' },
-    // Yellow family — making / process / production
-    { key: 'workshop',    label: 'Workshop',             color: '#F5DE0A' },
-    { key: 'toolkit',     label: 'Toolkit',              color: '#C4A800' },
-    { key: 'future',      label: 'Future Product',       color: '#FFB800' },
-    // Purple family — creative / human / cultural
-    { key: 'drawings',    label: 'Drawings',             color: '#6e00b0' },
-    { key: 'exhibition',  label: 'Exhibition',           color: '#9B40CC' },
-    { key: 'local',       label: 'Local Stories',        color: '#4A0078' },
-    { key: 'nonhuman',    label: 'Non-Human',            color: '#CC66FF' },
+    { key: 'hypersea',    label: 'Hypersea',            color: '#9CB2FF' },
+    { key: 'sargassum',   label: 'Sargassum',           color: '#00652E' },
+    { key: 'speculative', label: 'Speculative Futures',  color: '#FF6EE6' },
+    { key: 'data',        label: 'Data',                 color: '#32BE3A' },
+    { key: 'workshop',    label: 'Workshops',            color: '#CCDE07' },
+    { key: 'toolkit',     label: 'Toolkit',              color: '#CB561D' },
+    { key: 'future',      label: 'Future Products',      color: '#FF5E33' },
+    { key: 'drawings',    label: 'Drawings',             color: '#92CEF8' },
+    { key: 'exhibition',  label: 'Exhibition',           color: '#5B2915' },
+    { key: 'local',       label: 'Local Stories',        color: '#9861FF' },
+    { key: 'nonhuman',    label: 'Non Human',            color: '#4B06F7' },
   ];
   const CAT_MAP = Object.fromEntries(CATS.map(c => [c.key, c]));
 
   /* ── Cluster center coordinates for drawing connection lines ── */
   const CENTERS = {
-    hypersea:    [360,  450],
-    local:       [862,  275],
+    hypersea:    [530,  490],
+    local:       [960,  275],
     workshop:    [1298, 352],
     drawings:    [1768, 268],
     speculative: [2170, 368],
@@ -366,20 +684,41 @@
      [cats[], x, y, w, h, title, url]
   ═══════════════════════════════════════════════════ */
   const CARDS = [
-    // ── HYPERSEA
-    [['hypersea'],               252,  380, 115,  85, null, null],
-    [['hypersea'],               395,  295,  80, 112, null, null],
-    [['hypersea'],               450,  460, 106,  76, null, null],
-    [['hypersea'],               290,  540,  92,  66, null, null],
-    [['hypersea'],               312,  440, 140,  95, 'Water Memory Stream', 'https://shetells.stream'],
+    // ── HYPERSEA — reading link pills
+    [['hypersea'], 148, 196, 200, 34, null, { link: 'https://spacestudios.org.uk/wp-content/uploads/2017/11/hydrofeminism_or_on_becoming_a_body_of_water.pdf', label: 'Hydrofeminism →' }],
+    [['hypersea'], 196, 244, 298, 34, null, { link: 'https://www.researchgate.net/publication/335701988_The_ocean_in_excess_Towards_a_more-than-wet_ontology', label: 'More than Wet Ontologies →' }],
+
+    // ── HYPERSEA — book cover + link pill below
+    [['hypersea','local'], 148, 292, 125, 168, null, { img: 'la/hypersea/book.jpg', alt: 'Hypersea: Life on Land', link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C' }],
+    [['hypersea'], 148, 470, 172,  34, null, { link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', label: 'Link to the Book →' }],
+
+    // ── HYPERSEA — intro text card (right of book, clear gap)
+    [['hypersea'], 340, 188, 308, 272, null, { txt: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…', full: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…' }],
+
+    // ── HYPERSEA — glass text card (below book, spanning bottom-left)
+    [['hypersea','sargassum'], 148, 520, 300, 248, null, { txt: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum.', full: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.' }],
+
+    // ── HYPERSEA — credits
+    [['hypersea'], 148, 778, 300, 48, null, { credits: '.credits: glass blown by @berlinglassworks and amazing @vivianestroede' }],
+
+    // ── HYPERSEA — photos (scattered collage)
+    [['hypersea','sargassum'],  700, 186, 112, 152, null, { img: 'la/hypersea/dunes.jpg',    alt: 'Esposende dunes' }],
+    [['hypersea','workshop'],   832, 184, 132, 106, null, { img: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' }],
+    [['hypersea','workshop'],   694, 348, 112, 106, null, { img: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel' }],
+    [['hypersea','workshop'],   838, 302, 132, 106, null, { img: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere' }],
+    [['hypersea','sargassum'],  700, 466, 112, 106, null, { img: 'la/hypersea/IMG_7465.jpg', alt: 'Coastal landscape' }],
+
+    // ── HYPERSEA — videos (lazy-play)
+    [['hypersea','workshop'],   842, 420, 132, 96, null, { vid: 'la/hypersea/glass1.mp4' }],
+    [['hypersea','workshop'],   700, 584, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
 
     // ── LOCAL STORIES
-    [['local'],                  730,  228, 100,  76, null, null],
-    [['local'],                  870,  168,  82, 112, null, null],
-    [['local'],                  940,  308, 106,  80, null, null],
+    [['local'],                  820,  228, 100,  76, null, null],
+    [['local'],                  960,  168,  82, 112, null, null],
+    [['local'],                 1030,  308, 106,  80, null, null],
 
     // ── CROSS: Hypersea × Local Stories
-    [['hypersea','local'],       592,  308,  98,  74, 'Field Notes', null],
+    [['hypersea','local'],       712,  380,  88,  64, 'Field Notes', null],
 
     // ── WORKSHOP
     [['workshop'],              1166,  268,  96,  92, null, null],
@@ -496,15 +835,16 @@
   ═══════════════════════════════════════════════════ */
   const svg = document.getElementById('linesSvg');
 
-  CONNECTIONS.forEach(({ from, to, color, bend }) => {
+  CONNECTIONS.forEach(({ from, to, bend }) => {
     const [x1, y1] = CENTERS[from];
     const [x2, y2] = CENTERS[to];
+    const color = CAT_MAP[from]?.color || '#999';
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', connectionPath(x1, y1, x2, y2, bend));
     path.setAttribute('fill', 'none');
     path.setAttribute('stroke', color);
     path.setAttribute('stroke-width', '1.8');
-    path.setAttribute('stroke-opacity', color === '#F5DE0A' ? '0.7' : '0.45');
+    path.setAttribute('stroke-opacity', '0.55');
     path.setAttribute('stroke-linecap', 'round');
     path.dataset.connection = `${from}-${to}`;
     svg.appendChild(path);
@@ -515,48 +855,76 @@
   ═══════════════════════════════════════════════════ */
   const canvasInner = document.getElementById('canvasInner');
 
-  CARDS.forEach(([cats, x, y, w, h, title, url]) => {
+  CARDS.forEach(([cats, x, y, w, h, title, content]) => {
     const colors = cats.map(k => CAT_MAP[k].color);
 
-    const wrap = document.createElement(url ? 'a' : 'figure');
+    const wrap = document.createElement('div');
     wrap.className = 'card-wrap';
     wrap.dataset.cats = cats.join(',');
-    wrap.style.cssText = `left:${x}px; top:${y}px; width:${w}px;`;
-
-    if (url) {
-      wrap.href = url;
-      wrap.target = '_blank';
-      wrap.rel = 'noopener';
-    }
+    wrap.dataset.primaryCat = cats[0];
+    wrap.style.cssText = `left:${x}px; top:${y}px; width:${w}px; cursor:pointer;`;
 
     const card = document.createElement('div');
     card.className = 'card';
     card.style.cssText = `width:${w}px; height:${h}px;`;
 
-    const band = document.createElement('div');
-    band.className = 'card-band';
-    if (colors.length === 1) {
-      band.style.background = colors[0];
+    if (content && content.img) {
+      const img = document.createElement('img');
+      img.src = content.img; img.alt = content.alt || '';
+      img.loading = 'lazy';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      card.appendChild(img);
+    } else if (content && content.vid) {
+      const vid = document.createElement('video');
+      vid.src = content.vid; vid.muted = true; vid.loop = true;
+      vid.playsInline = true; vid.preload = 'none';
+      vid.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      card.appendChild(vid);
+    } else if (content && content.link) {
+      card.className += ' card-link-pill';
+      const span = document.createElement('span');
+      span.className = 'card-link-text';
+      span.textContent = content.label;
+      card.appendChild(span);
+    } else if (content && content.txt) {
+      card.className += ' card-text-box';
+      const pre = document.createElement('p');
+      pre.className = 'card-text-preview';
+      pre.textContent = content.txt;
+      const hint = document.createElement('span');
+      hint.className = 'card-text-hint';
+      hint.textContent = 'click to read more';
+      card.appendChild(pre);
+      card.appendChild(hint);
+    } else if (content && content.credits) {
+      card.className += ' card-credits-box';
+      const span = document.createElement('span');
+      span.className = 'card-credits-text';
+      span.textContent = content.credits;
+      card.appendChild(span);
     } else {
-      const stops = colors.map((c,i) => {
-        const pct = 100 / colors.length;
-        return `${c} ${(i*pct).toFixed(0)}%, ${c} ${((i+1)*pct).toFixed(0)}%`;
-      }).join(', ');
-      band.style.background = `linear-gradient(to right, ${stops})`;
+      const band = document.createElement('div');
+      band.className = 'card-band';
+      if (colors.length === 1) {
+        band.style.background = colors[0];
+      } else {
+        const stops = colors.map((c,i) => {
+          const pct = 100 / colors.length;
+          return `${c} ${(i*pct).toFixed(0)}%, ${c} ${((i+1)*pct).toFixed(0)}%`;
+        }).join(', ');
+        band.style.background = `linear-gradient(to right, ${stops})`;
+      }
+      const body = document.createElement('div');
+      body.className = 'card-body';
+      if (title) {
+        const t = document.createElement('span');
+        t.className = 'card-title';
+        t.textContent = title;
+        body.appendChild(t);
+      }
+      card.appendChild(band);
+      card.appendChild(body);
     }
-
-    const body = document.createElement('div');
-    body.className = 'card-body';
-
-    if (title) {
-      const t = document.createElement('span');
-      t.className = 'card-title';
-      t.textContent = title;
-      body.appendChild(t);
-    }
-
-    card.appendChild(band);
-    card.appendChild(body);
 
     const dots = document.createElement('div');
     dots.className = 'card-cats-dots';
@@ -568,8 +936,79 @@
     });
 
     wrap.appendChild(card);
-    wrap.appendChild(dots);
+    // Only show category dots on image/video/plain cards
+    if (!content || content.img || content.vid) {
+      wrap.appendChild(dots);
+    }
+
+    // Per-card random float parameters
+    const rSign = () => (Math.random() < 0.5 ? 1 : -1);
+    wrap.style.setProperty('--fx',    (rSign() * (2 + Math.random() * 3)).toFixed(2) + 'px');
+    wrap.style.setProperty('--fy',    (rSign() * (1.5 + Math.random() * 2.5)).toFixed(2) + 'px');
+    wrap.style.setProperty('--fr',    (rSign() * (0.3 + Math.random() * 0.6)).toFixed(3));
+    wrap.style.setProperty('--fdur',  (5 + Math.random() * 3.5).toFixed(1) + 's');
+    wrap.style.setProperty('--fdelay',(-(Math.random() * 9)).toFixed(2) + 's');
+
+    let _spx = 0, _spy = 0, _spt = 0;
+    wrap.addEventListener('pointerdown', e => {
+      _spx = e.clientX; _spy = e.clientY; _spt = Date.now();
+      e.stopPropagation();
+    }, { passive: true });
+    wrap.addEventListener('pointerup', e => {
+      if (Math.hypot(e.clientX - _spx, e.clientY - _spy) > 12 || Date.now() - _spt > 600) return;
+      if (content && content.img && content.link) {
+        window.open(content.link, '_blank', 'noopener noreferrer');
+      } else if (content && content.link) {
+        window.open(content.link, '_blank', 'noopener noreferrer');
+      } else if (content && content.img) {
+        openMediaPopup({ img: content.img, alt: content.alt, title }, cats[0]);
+      } else if (content && content.vid) {
+        openMediaPopup({ vid: content.vid, title }, cats[0]);
+      } else if (content && content.txt) {
+        openTextPopup(content.full || content.txt, cats[0]);
+      } else if (!content || (!content.credits)) {
+        openPanel(cats[0]);
+      }
+    }, { passive: true });
+
     canvasInner.appendChild(wrap);
+  });
+
+  /* ═══════════════════════════════════════════════════
+     BUILD CLUSTER LABELS
+  ═══════════════════════════════════════════════════ */
+  // Categories whose colour is light enough to need dark text on the cluster label
+  const YELLOW_CATS = new Set(['hypersea', 'workshop', 'drawings']);
+
+  CATS.forEach(({ key, label, color }) => {
+    const members = CARDS.filter(([cats]) => cats.includes(key));
+    if (!members.length) return;
+
+    let minX = Infinity, maxX = -Infinity, minY = Infinity;
+    members.forEach(([, x, y, w]) => {
+      minX = Math.min(minX, x);
+      maxX = Math.max(maxX, x + w);
+      minY = Math.min(minY, y);
+    });
+
+    const cx = (minX + maxX) / 2;
+    const lbl = document.createElement('div');
+    lbl.className = 'cluster-label';
+    lbl.dataset.cat = key;
+    lbl.textContent = label;
+    lbl.style.left   = cx + 'px';
+    lbl.style.top    = (minY - 54) + 'px';
+    lbl.style.background = color;
+    lbl.style.color = YELLOW_CATS.has(key) ? '#1a1200' : '#ffffff';
+    lbl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (key === 'hypersea') {
+        window.location.href = 'hypersea.html';
+      } else {
+        openPanel(key);
+      }
+    });
+    canvasInner.appendChild(lbl);
   });
 
   /* ═══════════════════════════════════════════════════
@@ -596,8 +1035,15 @@
     legendEl.appendChild(item);
 
     item.addEventListener('click', () => {
-      activeFilter = activeFilter === key ? null : key;
-      applyFilter(activeFilter);
+      if (activeFilter === key) {
+        activeFilter = null;
+        applyFilter(null);
+        flyToOverview();
+      } else {
+        activeFilter = key;
+        applyFilter(key);
+        flyToCluster(key);
+      }
     });
   });
 
@@ -609,13 +1055,78 @@
       const cats = el.dataset.cats.split(',');
       el.classList.toggle('dimmed', key !== null && !cats.includes(key));
     });
-    // Dim connections that don't involve the active category
+    document.querySelectorAll('.cluster-label').forEach(el => {
+      el.classList.toggle('dimmed', key !== null && el.dataset.cat !== key);
+    });
     svg.querySelectorAll('path').forEach(el => {
       const conn = el.dataset.connection || '';
       const relevant = key === null || conn.includes(key);
       el.style.transition = 'opacity 0.22s ease';
       el.style.opacity = relevant ? '' : '0.04';
     });
+  }
+
+  /* ── Compute bounding box of all cards for a category ── */
+  function clusterBounds(key) {
+    const members = CARDS.filter(([cats]) => cats.includes(key));
+    if (!members.length) return null;
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    members.forEach(([, x, y, w, h]) => {
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x + w);
+      maxY = Math.max(maxY, y + h);
+    });
+    return { cx: (minX + maxX) / 2, cy: (minY + maxY) / 2,
+             w: maxX - minX, h: maxY - minY };
+  }
+
+  /* ── Animated fly to a cluster ── */
+  let flyTimer = null;
+
+  function flyTo(targetTx, targetTy, targetScale) {
+    canvasInner.style.transition = 'transform 0.72s cubic-bezier(0.4, 0, 0.2, 1)';
+    scale = targetScale;
+    tx = targetTx;
+    ty = targetTy;
+    applyTransform();
+    clearTimeout(flyTimer);
+    flyTimer = setTimeout(() => { canvasInner.style.transition = ''; }, 800);
+  }
+
+  function flyToCluster(key) {
+    const bounds = clusterBounds(key);
+    if (!bounds) return;
+    const vw = viewport.clientWidth, vh = viewport.clientHeight;
+    const legendW = document.getElementById('mapLegend')?.offsetWidth || 220;
+    const usableW = vw - legendW;
+    const PAD = 100;
+    const targetScale = Math.min(
+      usableW / (bounds.w + PAD * 2),
+      vh      / (bounds.h + PAD * 2),
+      1.2
+    );
+    // Center within the usable area (right of legend)
+    const centerX = legendW + usableW / 2;
+    flyTo(
+      centerX - bounds.cx * targetScale,
+      vh / 2 - bounds.cy * targetScale,
+      Math.max(0.3, targetScale)
+    );
+  }
+
+  function flyToOverview() {
+    const vw = viewport.clientWidth, vh = viewport.clientHeight;
+    const PAD = 100;
+    const cX = 165 - PAD, cY = 83 - PAD;
+    const cW = 2385 - 165 + PAD * 2;
+    const cH = 1680 - 83  + PAD * 2;
+    const targetScale = Math.min(vw / cW, vh / cH) * 0.92;
+    flyTo(
+      (vw - cW * targetScale) / 2 - cX * targetScale,
+      (vh - cH * targetScale) / 2 - cY * targetScale,
+      targetScale
+    );
   }
 
   /* ═══════════════════════════════════════════════════
@@ -626,9 +1137,35 @@
   let tx = 0, ty = 0;
   let isPanning = false;
   let startX = 0, startY = 0;
+  let dragOriginX = 0, dragOriginY = 0;
+  let didDrag = false;
+
+  let videoTimer = null;
+  function updateVideos() {
+    const vw = viewport.clientWidth, vh = viewport.clientHeight;
+    document.querySelectorAll('.card-wrap').forEach(wrap => {
+      const vid = wrap.querySelector('video');
+      if (!vid) return;
+      const cx = parseFloat(wrap.style.left);
+      const cy = parseFloat(wrap.style.top);
+      const cw = parseFloat(wrap.style.width);
+      const cardEl = wrap.querySelector('.card');
+      const ch = cardEl ? parseFloat(cardEl.style.height) : 80;
+      const sx = cx * scale + tx, sy = cy * scale + ty;
+      const visible = (cx + cw) * scale + tx > 0 && sx < vw &&
+                      (cy + ch) * scale + ty > 0 && sy < vh;
+      if (visible && scale > 0.45) {
+        if (vid.paused) vid.play().catch(() => {});
+      } else {
+        if (!vid.paused) vid.pause();
+      }
+    });
+  }
 
   function applyTransform() {
     canvasInner.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+    clearTimeout(videoTimer);
+    videoTimer = setTimeout(updateVideos, 350);
   }
 
   function initView() {
@@ -648,13 +1185,17 @@
   viewport.addEventListener('pointerdown', e => {
     if (e.target.closest('.map-controls')) return;
     isPanning = true;
+    didDrag = false;
     startX = e.clientX; startY = e.clientY;
+    dragOriginX = e.clientX; dragOriginY = e.clientY;
     viewport.classList.add('panning');
     viewport.setPointerCapture(e.pointerId);
   });
 
   viewport.addEventListener('pointermove', e => {
     if (!isPanning) return;
+    const moved = Math.hypot(e.clientX - dragOriginX, e.clientY - dragOriginY);
+    if (moved > 14) didDrag = true;
     tx += e.clientX - startX;
     ty += e.clientY - startY;
     startX = e.clientX; startY = e.clientY;
@@ -664,6 +1205,7 @@
   viewport.addEventListener('pointerup', () => {
     isPanning = false;
     viewport.classList.remove('panning');
+    setTimeout(() => { didDrag = false; }, 50);
   });
 
   viewport.addEventListener('wheel', e => {
@@ -733,6 +1275,269 @@
     window.addEventListener('load', () => requestAnimationFrame(initView));
   }
   window.addEventListener('resize', initView);
+
+  /* ── H key → center ── */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'h' || e.key === 'H') flyToOverview();
+  });
+
+  /* ── Idle water-float ── */
+  let idleTimer = null;
+
+  function goIdle() {
+    canvasInner.classList.add('canvas-idle');
+  }
+
+  function wakeUp() {
+    canvasInner.classList.remove('canvas-idle');
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(goIdle, 2500);
+  }
+
+  ['mousedown', 'touchstart', 'wheel'].forEach(ev =>
+    viewport.addEventListener(ev, wakeUp, { passive: true })
+  );
+
+  // Start idle after 2s on load
+  idleTimer = setTimeout(goIdle, 2000);
+
+  /* ═══════════════════════════════════════════════════
+     SECTION PANEL CONTENT
+  ═══════════════════════════════════════════════════ */
+  const LIGHT_TEXT_CATS = new Set(['hypersea', 'workshop', 'drawings']);
+
+  const SECTIONS = {
+    hypersea: {
+      title: 'Hypersea',
+      heroImg: 'la/hypersea/dunes.jpg',
+      heroAlt: 'Esposende coastline sand dunes',
+      body: 'We have been using the Hypersea concept by Mark A. S. McMenamin and Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems.',
+      streamLink: { title: 'Water Memory Stream', href: 'https://shetells.stream' },
+      reading: {
+        label: 'Reading',
+        items: [
+          {
+            type: 'book',
+            title: 'Hypersea: Life on Land',
+            author: 'Mark A. S. McMenamin & Dianna L. Schulte McMenamin',
+            href: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C',
+            cover: 'la/hypersea/book.jpg',
+          },
+          {
+            type: 'link',
+            title: 'The Ocean in Excess: Towards a More-Than-Wet Ontology',
+            href: 'https://www.researchgate.net/publication/335701988_The_ocean_in_excess_Towards_a_more-than-wet_ontology',
+          },
+          {
+            type: 'link',
+            title: 'Astrida Neimanis — Hydrofeminism: On Becoming Body of Water',
+            href: 'https://spacestudios.org.uk/wp-content/uploads/2017/11/hydrofeminism_or_on_becoming_a_body_of_water.pdf',
+          },
+        ],
+      },
+      glassSection: {
+        label: 'Glass Blowing',
+        body: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea — ground shell and rock and marine sediment gathered by the water — and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline.',
+        photos: [
+          { src: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel taking shape' },
+          { src: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere with torch flame' },
+          { src: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' },
+        ],
+        videos: ['la/hypersea/glass1.mp4', 'la/hypersea/glass2.mp4'],
+        credits: 'glass blown by @berlinglassworks and @vivianestroede',
+      },
+      footerImg: { src: 'la/hypersea/IMG_7465.jpg', alt: 'Esposende coastline at dusk' },
+    },
+  };
+
+  function openTextPopup(txt, catKey) {
+    const cat = CAT_MAP[catKey];
+    const overlay = document.getElementById('cardOverlay');
+    const chip    = document.getElementById('dpChip');
+    const body    = document.getElementById('dpBody');
+    const darkText = LIGHT_TEXT_CATS.has(catKey);
+    chip.textContent = cat.label;
+    chip.style.background = cat.color;
+    chip.style.color = darkText ? '#1a1200' : '#ffffff';
+    body.innerHTML = '';
+    const div = document.createElement('div');
+    div.style.cssText = 'padding:1.5rem 1.6rem 2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;';
+    div.textContent = txt;
+    body.appendChild(div);
+    overlay.classList.add('active');
+    body.scrollTop = 0;
+  }
+
+  function openMediaPopup(content, catKey) {
+    const cat = CAT_MAP[catKey];
+    const overlay = document.getElementById('cardOverlay');
+    const chip    = document.getElementById('dpChip');
+    const body    = document.getElementById('dpBody');
+    const darkText = LIGHT_TEXT_CATS.has(catKey);
+
+    chip.textContent      = cat.label;
+    chip.style.background = cat.color;
+    chip.style.color      = darkText ? '#1a1200' : '#ffffff';
+
+    body.innerHTML = '';
+
+    if (content.img) {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'background:#f8f8f8;display:flex;align-items:center;justify-content:center;padding:1rem;';
+      const img = document.createElement('img');
+      img.src   = content.img;
+      img.alt   = content.alt || '';
+      img.style.cssText = 'max-width:100%;max-height:68vh;object-fit:contain;display:block;border-radius:4px;';
+      wrap.appendChild(img);
+      body.appendChild(wrap);
+      if (content.title) {
+        const cap = document.createElement('p');
+        cap.style.cssText = 'padding:0.8rem 1.2rem 1rem;font-family:\'NaNTresorM\',serif;font-weight:200;font-size:14px;color:#555;';
+        cap.textContent = content.title;
+        body.appendChild(cap);
+      }
+    } else if (content.vid) {
+      const vid = document.createElement('video');
+      vid.src        = content.vid;
+      vid.controls   = true;
+      vid.playsInline = true;
+      vid.autoplay   = true;
+      vid.style.cssText = 'width:100%;max-height:68vh;object-fit:contain;display:block;background:#000;';
+      body.appendChild(vid);
+    }
+
+    overlay.classList.add('active');
+    body.scrollTop = 0;
+  }
+
+  function openPanel(catKey) {
+    const cat = CAT_MAP[catKey];
+    if (!cat) return;
+    const section = SECTIONS[catKey];
+
+    const overlay  = document.getElementById('cardOverlay');
+    const chip     = document.getElementById('dpChip');
+    const body     = document.getElementById('dpBody');
+    const darkText = LIGHT_TEXT_CATS.has(catKey);
+
+    chip.textContent   = cat.label;
+    chip.style.background = cat.color;
+    chip.style.color   = darkText ? '#1a1200' : '#ffffff';
+
+    body.innerHTML = '';
+
+    if (!section) {
+      const content = document.createElement('div');
+      content.className = 'dp-content';
+      content.innerHTML = `<h2 class="dp-title">${cat.label}</h2><p class="dp-placeholder">content being woven</p>`;
+      body.appendChild(content);
+    } else {
+      if (section.heroImg) {
+        const hero = document.createElement('div');
+        hero.className = 'dp-hero';
+        const img = document.createElement('img');
+        img.src = section.heroImg; img.alt = section.heroAlt || ''; img.loading = 'lazy';
+        hero.appendChild(img);
+        body.appendChild(hero);
+      }
+
+      const content = document.createElement('div');
+      content.className = 'dp-content';
+
+      let html = `<h2 class="dp-title">${section.title}</h2>`;
+
+      if (section.body) {
+        html += `<p class="dp-text">${section.body}</p>`;
+      }
+
+      if (section.streamLink) {
+        html += `<a class="dp-ext-link" href="${section.streamLink.href}" target="_blank" rel="noopener">
+          <span class="dp-ext-title">${section.streamLink.title}</span>
+          <span class="dp-ext-arrow">↗</span>
+        </a>`;
+      }
+
+      if (section.reading) {
+        html += `<div class="dp-divider"></div><p class="dp-label">${section.reading.label}</p>`;
+        section.reading.items.forEach(item => {
+          if (item.type === 'book') {
+            html += `<a class="dp-book" href="${item.href}" target="_blank" rel="noopener">
+              <div class="dp-book-cover"><img src="${item.cover}" alt="${item.title}" /></div>
+              <div>
+                <p class="dp-book-title">${item.title}</p>
+                <p class="dp-book-author">${item.author}</p>
+                <span class="dp-pill" style="background:${cat.color};color:${darkText?'#1a1200':'#fff'}">read →</span>
+              </div>
+            </a>`;
+          } else {
+            html += `<a class="dp-ext-link" href="${item.href}" target="_blank" rel="noopener">
+              <span class="dp-ext-title">${item.title}</span>
+              <span class="dp-ext-arrow">↗</span>
+            </a>`;
+          }
+        });
+      }
+
+      if (section.glassSection) {
+        const gs = section.glassSection;
+        html += `<div class="dp-divider"></div><p class="dp-label">${gs.label}</p>`;
+        if (gs.body) html += `<p class="dp-text">${gs.body}</p>`;
+        if (gs.photos && gs.photos.length) {
+          html += `<div class="dp-photo-grid">${gs.photos.map(p => `<img src="${p.src}" alt="${p.alt}" loading="lazy" />`).join('')}</div>`;
+        }
+        if (gs.videos && gs.videos.length) {
+          html += `<div class="dp-video-grid">${gs.videos.map(v => `<video src="${v}" controls playsinline preload="metadata"></video>`).join('')}</div>`;
+        }
+        if (gs.credits) html += `<p class="dp-credits">${gs.credits}</p>`;
+      }
+
+      content.innerHTML = html;
+      body.appendChild(content);
+
+      if (section.footerImg) {
+        const footer = document.createElement('div');
+        footer.className = 'dp-hero';
+        const img = document.createElement('img');
+        img.src = section.footerImg.src; img.alt = section.footerImg.alt || ''; img.loading = 'lazy';
+        footer.appendChild(img);
+        body.appendChild(footer);
+      }
+    }
+
+    overlay.classList.add('active');
+    body.scrollTop = 0;
+  }
+
+  function closePanel() {
+    document.getElementById('cardOverlay').classList.remove('active');
+  }
+
+  document.getElementById('btnClosePanel').addEventListener('click', closePanel);
+  document.getElementById('cardOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('cardOverlay')) closePanel();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePanel();
+  });
+
+  /* ── Stream play/pause ── */
+  const streamAudio = document.getElementById('streamAudio');
+  const btnStream   = document.getElementById('btnStream');
+  let streamPlaying = false;
+
+  btnStream.addEventListener('click', () => {
+    if (streamPlaying) {
+      streamAudio.pause();
+      btnStream.innerHTML = '&#9654;';
+      btnStream.classList.remove('playing');
+    } else {
+      streamAudio.play();
+      btnStream.innerHTML = '&#9646;&#9646;';
+      btnStream.classList.add('playing');
+    }
+    streamPlaying = !streamPlaying;
+  });
   </script>
 
 </body>

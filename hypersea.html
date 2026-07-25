@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hypersea — she tells</title>
+  <script src="lang.js?v=4"></script>
+  <style>
+    @font-face {
+      font-family: 'NaNTresorM';
+      src: url('Fonts/NaNTresor/NaNTresorM-ExtraLight.ttf') format('truetype');
+      font-weight: 200;
+    }
+    @font-face {
+      font-family: 'NaNTresorM';
+      src: url('Fonts/NaNTresor/NaNTresorM-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Celescript';
+      src: url('Celescript.ttf') format('truetype');
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #9CB2FF;
+      --black:  #111111;
+      --white:  #ffffff;
+      --sans:   system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--sans);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem 0.7rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.2rem;
+      text-decoration: none;
+    }
+    .brand-title {
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 200;
+      font-size: clamp(52px, 7.5vw, 108px);
+      line-height: 1;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+    .brand-sub {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(13px, 1.6vw, 22px);
+      color: var(--black);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      white-space: nowrap;
+    }
+    .brand-line {
+      display: inline-block;
+      height: clamp(8px, 1vw, 12px);
+      width: clamp(40px, 4vw, 60px);
+      flex-shrink: 0;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding-top: 0.2rem;
+    }
+
+    .c-btn {
+      font-family: 'Celescript', cursive;
+      font-size: clamp(11px, 1.2vw, 16px);
+      cursor: pointer;
+      border: none;
+      transition: background 0.18s, color 0.18s;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .c-btn-circle {
+      width: 2.6rem; height: 2.6rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--black);
+      background: transparent;
+      color: var(--black);
+    }
+    .c-btn-circle:hover { background: var(--black); color: var(--white); }
+    .c-btn-filled {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.55rem 1.4rem;
+      border-radius: 2rem;
+    }
+    .c-btn-filled:hover { background: #333; }
+
+    /* ── Page content ── */
+    .page-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+    }
+
+    /* ── Back + chip row ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+    }
+    .back-link {
+      font-family: 'Celescript', cursive;
+      font-size: 13px;
+      color: rgba(0,0,0,0.4);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--black); }
+
+    .cat-chip {
+      font-family: 'Celescript', cursive;
+      font-size: 12px;
+      background: var(--accent);
+      color: var(--black);
+      border-radius: 999px;
+      padding: 5px 16px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Section title ── */
+    .section-title {
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 200;
+      font-size: clamp(40px, 6vw, 80px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── Body text (sans) ── */
+    .body-text {
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height: 1.75;
+      color: #333333;
+      max-width: 680px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+      margin: 3rem 0;
+    }
+
+    /* ── Reading section ── */
+    .reading-label {
+      font-family: 'Celescript', cursive;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.38);
+      margin-bottom: 1.4rem;
+    }
+
+    .reading-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    /* Book card — image left, text right */
+    .book-card {
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+      text-decoration: none;
+      transition: opacity 0.18s;
+    }
+    .book-card:hover { opacity: 0.8; }
+    .book-cover {
+      width: 90px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .book-cover img {
+      width: 100%;
+      display: block;
+    }
+    .book-meta {
+      padding-top: 0.3rem;
+    }
+    .book-title {
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.35;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+    .book-author {
+      font-size: 13px;
+      color: rgba(0,0,0,0.45);
+      margin-bottom: 0.8rem;
+    }
+    .book-link-pill {
+      display: inline-flex;
+      font-family: 'Celescript', cursive;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      background: var(--accent);
+      color: var(--black);
+      border-radius: 999px;
+      padding: 4px 14px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .book-link-pill:hover { opacity: 0.75; }
+
+    /* Text-only reading links */
+    .reading-link {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      text-decoration: none;
+      padding: 1rem 1.2rem;
+      border: 1.5px solid rgba(0,0,0,0.09);
+      border-radius: 12px;
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .reading-link:hover {
+      border-color: var(--accent);
+      background: rgba(156,178,255,0.06);
+    }
+    .reading-link-title {
+      font-family: 'NaNTresorM', Georgia, serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--black);
+      line-height: 1.4;
+      flex: 1;
+    }
+    .reading-link-arrow {
+      font-size: 14px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── Full-bleed image ── */
+    .full-bleed {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      overflow: hidden;
+      max-height: 60vh;
+    }
+    .full-bleed img,
+    .full-bleed video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Glass section ── */
+    .glass-intro {
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height: 1.75;
+      color: #333333;
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .photo-grid img,
+    .photo-grid video {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .video-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+    }
+    .video-row video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .credits {
+      font-family: 'Celescript', cursive;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(0,0,0,0.38);
+      margin-top: 1rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .video-row  { grid-template-columns: 1fr; }
+      .section-title { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-title">she tells</span>
+    <span class="brand-sub">
+      <svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"
+          d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/>
+      </svg>
+      sea shells
+    </span>
+  </a>
+  <nav class="header-nav">
+    <a href="memories.html" class="c-btn c-btn-filled">contribute to the living archive</a>
+  </nav>
+</header>
+
+<main class="page-content">
+
+  <div class="breadcrumb">
+    <a class="back-link" href="constellation.html">← constellation</a>
+    <span class="cat-chip">Hypersea</span>
+  </div>
+
+  <h1 class="section-title">Hypersea</h1>
+
+  <p class="body-text">
+    We have been using the Hypersea concept by Mark A. S. McMenamin and Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems.
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- Reading list -->
+  <p class="reading-label">Reading</p>
+  <div class="reading-grid">
+
+    <a class="book-card" href="https://www.sciencedirect.com/science/article/abs/pii/030326479390043C" target="_blank" rel="noopener">
+      <div class="book-cover">
+        <img src="la/hypersea/book.jpg" alt="Hypersea: Life on Land book cover" />
+      </div>
+      <div class="book-meta">
+        <p class="book-title">Hypersea: Life on Land</p>
+        <p class="book-author">Mark A. S. McMenamin &amp; Dianna L. Schulte McMenamin</p>
+        <span class="book-link-pill">read →</span>
+      </div>
+    </a>
+
+    <a class="reading-link" href="https://www.researchgate.net/publication/335701988_The_ocean_in_excess_Towards_a_more-than-wet_ontology" target="_blank" rel="noopener">
+      <span class="reading-link-title">The Ocean in Excess: Towards a More-Than-Wet Ontology</span>
+      <span class="reading-link-arrow">↗</span>
+    </a>
+
+    <a class="reading-link" href="https://spacestudios.org.uk/wp-content/uploads/2017/11/hydrofeminism_or_on_becoming_a_body_of_water.pdf" target="_blank" rel="noopener">
+      <span class="reading-link-title">Astrida Neimanis — Hydrofeminism: On Becoming Body of Water</span>
+      <span class="reading-link-arrow">↗</span>
+    </a>
+
+  </div>
+
+  <div class="divider"></div>
+
+</main>
+
+<!-- Full-bleed dune photo -->
+<div class="full-bleed">
+  <img src="la/hypersea/dunes.jpg" alt="Esposende coastline sand dunes" loading="lazy" />
+</div>
+
+<main class="page-content">
+
+  <!-- Glass blowing section -->
+  <div style="margin-top: 3rem;">
+    <div class="glass-intro">
+      We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea — ground shell and rock and marine sediment gathered by the water — and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.
+    </div>
+
+    <div class="photo-grid">
+      <img src="la/hypersea/IMG_8668.jpg" alt="Glass blowing — vessel taking shape" loading="lazy" />
+      <img src="la/hypersea/IMG_8677.jpg" alt="Glass blowing — sphere with flame" loading="lazy" />
+      <img src="la/hypersea/IMG_8729.jpg" alt="Glass blowing — workshop" loading="lazy" />
+    </div>
+
+    <div class="video-row">
+      <video src="la/hypersea/glass1.mp4" controls playsinline preload="metadata"></video>
+      <video src="la/hypersea/glass2.mp4" controls playsinline preload="metadata"></video>
+    </div>
+
+    <p class="credits">glass blown by @berlinglassworks and @vivianestroede</p>
+  </div>
+
+  <div class="divider"></div>
+
+</main>
+
+<!-- Coastal landscape full-bleed -->
+<div class="full-bleed">
+  <img src="la/hypersea/IMG_7465.jpg" alt="Esposende coastline at dusk" loading="lazy" />
+</div>
+
+</body>
+</html>
