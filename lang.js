@@ -8,6 +8,12 @@ const TRANSLATIONS = {
   en: {
     /* ── Shared nav ── */
     'nav.memories':         'Send your memories today!',
+
+    /* ── living archive map ── */
+    'archive.contribute':   'contribute to the living archive',
+    'archive.hint':         'drag to explore<br>scroll to zoom<br>press h to center',
+    'archive.readmore':     '(click to read more)',
+    'archive.placeholder':  'content being woven',
     'nav.stream':           'tune in to the stream',
 
     /* ── stream.html player ── */
@@ -140,6 +146,12 @@ const TRANSLATIONS = {
   pt: {
     /* ── Shared nav ── */
     'nav.memories':         'Envie suas memórias hoje!',
+
+    /* ── living archive map ── */
+    'archive.contribute':   'contribua para o arquivo vivo',
+    'archive.hint':         'arraste para explorar<br>role para ampliar<br>pressione h para centralizar',
+    'archive.readmore':     '(clique para ler mais)',
+    'archive.placeholder':  'conteúdo sendo tecido',
     'nav.stream':           'sintonize a transmissão',
 
     /* ── stream.html player ── */

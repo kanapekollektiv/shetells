@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>she tells — the living archive</title>
-  <script src="lang.js?v=4"></script>
+  <script src="lang.js?v=5"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -576,7 +576,7 @@
       <button class="c-btn c-btn-circle" id="btnInfo" aria-label="About">?</button>
       <button class="c-btn c-btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
       <button class="c-btn c-btn-outline" id="btnStream">&#9654;</button>
-      <a href="memories.html" class="c-btn c-btn-filled">contribute to the living archive</a>
+      <a href="memories.html" class="c-btn c-btn-filled" data-i18n="archive.contribute">contribute to the living archive</a>
     </nav>
   </header>
 
@@ -591,7 +591,7 @@
       <button class="zoom-btn" id="btnZoomIn"  aria-label="Zoom in">+</button>
       <button class="zoom-btn" id="btnZoomOut" aria-label="Zoom out">−</button>
     </div>
-    <p class="map-hint">drag to explore<br>scroll to zoom<br>press h to center</p>
+    <p class="map-hint" data-i18n-html="archive.hint">drag to explore<br>scroll to zoom<br>press h to center</p>
   </div>
 
   <footer class="map-legend" id="mapLegend"></footer>
@@ -608,6 +608,32 @@
 
   <script>
   /* ═══════════════════════════════════════════════════
+     BILINGUAL CONTENT
+     Any string in CATS / CARDS / SECTIONS may be written either as a plain
+     string (identical in both languages, or not translated yet) or as
+     { en: '…', pt: '…' }. L() returns the active language and falls back to
+     English, so untranslated entries keep rendering instead of going blank.
+     Chrome that lives in the HTML uses the site-wide data-i18n mechanism in
+     lang.js instead.
+  ═══════════════════════════════════════════════════ */
+  function L(v) {
+    if (v == null || typeof v === 'string') return v;
+    const lang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
+    return v[lang] ?? v.en ?? '';
+  }
+
+  // Re-apply language-dependent text to DOM that is already built, so
+  // switching language never rebuilds the map — a rebuild would throw away
+  // the current pan, zoom and per-card float phase.
+  let openPanelKey = null;
+  const langUpdaters = [];
+  function onLang(fn) { langUpdaters.push(fn); fn(); }
+  document.addEventListener('langchange', () => {
+    langUpdaters.forEach(fn => fn());
+    if (openPanelKey) openPanel(openPanelKey);   // redraw an open side panel
+  });
+
+  /* ═══════════════════════════════════════════════════
      CATEGORY DEFINITIONS
      Three color families from the landing page:
        Blue  #0046FF — water, ocean, data, future
@@ -615,17 +641,17 @@
        Purple #6e00b0 — creative, human, cultural
   ═══════════════════════════════════════════════════ */
   const CATS = [
-    { key: 'hypersea',    label: 'Hypersea',            color: '#9CB2FF' },
-    { key: 'sargassum',   label: 'Sargassum',           color: '#00652E' },
-    { key: 'speculative', label: 'Speculative Futures',  color: '#FF6EE6' },
-    { key: 'data',        label: 'Data',                 color: '#32BE3A' },
-    { key: 'workshop',    label: 'Workshops',            color: '#CCDE07' },
-    { key: 'toolkit',     label: 'Toolkit',              color: '#CB561D' },
-    { key: 'future',      label: 'Future Products',      color: '#FF5E33' },
-    { key: 'drawings',    label: 'Drawings',             color: '#92CEF8' },
-    { key: 'exhibition',  label: 'Exhibition',           color: '#5B2915' },
-    { key: 'local',       label: 'Local Stories',        color: '#9861FF' },
-    { key: 'nonhuman',    label: 'Non Human',            color: '#4B06F7' },
+    { key: 'hypersea',    label: { en: 'Hypersea',            pt: 'Hypersea' },              color: '#9CB2FF' },
+    { key: 'sargassum',   label: { en: 'Sargassum',           pt: 'Sargaço' },               color: '#00652E' },
+    { key: 'speculative', label: { en: 'Speculative Futures', pt: 'Futuros Especulativos' }, color: '#FF6EE6' },
+    { key: 'data',        label: { en: 'Data',                pt: 'Dados' },                 color: '#32BE3A' },
+    { key: 'workshop',    label: { en: 'Workshops',           pt: 'Oficinas' },              color: '#CCDE07' },
+    { key: 'toolkit',     label: { en: 'Toolkit',             pt: 'Kit de Ferramentas' },    color: '#CB561D' },
+    { key: 'future',      label: { en: 'Future Products',     pt: 'Produtos Futuros' },      color: '#FF5E33' },
+    { key: 'drawings',    label: { en: 'Drawings',            pt: 'Desenhos' },              color: '#92CEF8' },
+    { key: 'exhibition',  label: { en: 'Exhibition',          pt: 'Exposição' },             color: '#5B2915' },
+    { key: 'local',       label: { en: 'Local Stories',       pt: 'Histórias Locais' },      color: '#9861FF' },
+    { key: 'nonhuman',    label: { en: 'Non Human',           pt: 'Não Humano' },            color: '#4B06F7' },
   ];
   const CAT_MAP = Object.fromEntries(CATS.map(c => [c.key, c]));
 
@@ -874,7 +900,8 @@
 
     if (content && content.img) {
       const img = document.createElement('img');
-      img.src = content.img; img.alt = content.alt || '';
+      img.src = content.img;
+      onLang(() => { img.alt = L(content.alt) || ''; });
       img.loading = 'lazy';
       img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       card.appendChild(img);
@@ -888,23 +915,28 @@
       card.className += ' card-link-pill';
       const span = document.createElement('span');
       span.className = 'card-link-text';
-      span.textContent = content.label;
+      onLang(() => { span.textContent = L(content.label); });
       card.appendChild(span);
     } else if (content && content.txt) {
       card.className += ' card-text-box';
       const pre = document.createElement('p');
       pre.className = 'card-text-preview';
-      pre.textContent = content.txt + ' ';
+      // separate text node so the inline hint survives a language swap
+      const preText = document.createTextNode('');
       const hint = document.createElement('span');
       hint.className = 'card-text-hint';
-      hint.textContent = '(click to read more)';
+      pre.appendChild(preText);
       pre.appendChild(hint);
+      onLang(() => {
+        preText.nodeValue = L(content.txt) + ' ';
+        hint.textContent = t('archive.readmore');
+      });
       card.appendChild(pre);
     } else if (content && content.credits) {
       card.className += ' card-credits-box';
       const span = document.createElement('span');
       span.className = 'card-credits-text';
-      span.textContent = content.credits;
+      onLang(() => { span.textContent = L(content.credits); });
       card.appendChild(span);
     } else {
       const band = document.createElement('div');
@@ -921,10 +953,11 @@
       const body = document.createElement('div');
       body.className = 'card-body';
       if (title) {
-        const t = document.createElement('span');
-        t.className = 'card-title';
-        t.textContent = title;
-        body.appendChild(t);
+        // named titleEl, not t — t() is the global translator from lang.js
+        const titleEl = document.createElement('span');
+        titleEl.className = 'card-title';
+        onLang(() => { titleEl.textContent = L(title); });
+        body.appendChild(titleEl);
       }
       card.appendChild(band);
       card.appendChild(body);
@@ -1004,7 +1037,7 @@
     const lbl = document.createElement('div');
     lbl.className = 'cluster-label';
     lbl.dataset.cat = key;
-    lbl.textContent = label;
+    onLang(() => { lbl.textContent = L(label); });
     lbl.style.left   = cx + 'px';
     lbl.style.top    = (minY - 54) + 'px';
     lbl.style.background = color;
@@ -1037,7 +1070,7 @@
 
     const lbl = document.createElement('span');
     lbl.className = 'legend-label';
-    lbl.textContent = label;
+    onLang(() => { lbl.textContent = L(label); });
 
     item.appendChild(dot);
     item.appendChild(lbl);
@@ -1382,31 +1415,33 @@
   };
 
   function openTextPopup(txt, catKey) {
+    openPanelKey = null;
     const cat = CAT_MAP[catKey];
     const overlay = document.getElementById('cardOverlay');
     const chip    = document.getElementById('dpChip');
     const body    = document.getElementById('dpBody');
     const darkText = LIGHT_TEXT_CATS.has(catKey);
-    chip.textContent = cat.label;
+    chip.textContent = L(cat.label);
     chip.style.background = cat.color;
     chip.style.color = darkText ? '#1a1200' : '#ffffff';
     body.innerHTML = '';
     const div = document.createElement('div');
     div.style.cssText = 'padding:1.5rem 1.6rem 2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;';
-    div.textContent = txt;
+    div.textContent = L(txt);
     body.appendChild(div);
     overlay.classList.add('active');
     body.scrollTop = 0;
   }
 
   function openMediaPopup(content, catKey) {
+    openPanelKey = null;
     const cat = CAT_MAP[catKey];
     const overlay = document.getElementById('cardOverlay');
     const chip    = document.getElementById('dpChip');
     const body    = document.getElementById('dpBody');
     const darkText = LIGHT_TEXT_CATS.has(catKey);
 
-    chip.textContent      = cat.label;
+    chip.textContent      = L(cat.label);
     chip.style.background = cat.color;
     chip.style.color      = darkText ? '#1a1200' : '#ffffff';
 
@@ -1444,6 +1479,7 @@
   function openPanel(catKey) {
     const cat = CAT_MAP[catKey];
     if (!cat) return;
+    openPanelKey = catKey;
     const section = SECTIONS[catKey];
 
     const overlay  = document.getElementById('cardOverlay');
@@ -1451,7 +1487,7 @@
     const body     = document.getElementById('dpBody');
     const darkText = LIGHT_TEXT_CATS.has(catKey);
 
-    chip.textContent   = cat.label;
+    chip.textContent   = L(cat.label);
     chip.style.background = cat.color;
     chip.style.color   = darkText ? '#1a1200' : '#ffffff';
 
@@ -1460,7 +1496,7 @@
     if (!section) {
       const content = document.createElement('div');
       content.className = 'dp-content';
-      content.innerHTML = `<h2 class="dp-title">${cat.label}</h2><p class="dp-placeholder">content being woven</p>`;
+      content.innerHTML = `<h2 class="dp-title">${L(cat.label)}</h2><p class="dp-placeholder">${t('archive.placeholder')}</p>`;
       body.appendChild(content);
     } else {
       if (section.heroImg) {
@@ -1541,6 +1577,7 @@
 
   function closePanel() {
     document.getElementById('cardOverlay').classList.remove('active');
+    openPanelKey = null;
   }
 
   document.getElementById('btnClosePanel').addEventListener('click', closePanel);
