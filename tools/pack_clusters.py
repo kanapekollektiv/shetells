@@ -70,7 +70,7 @@ STAGGER = {
 }
 
 # ── Parsing ───────────────────────────────────────────────────────────────
-# Every card is one line: [[cats], x, y, w, h, title, {…}],
+# Every card is one line: [[cats], x, y, w, h, contentId, {layout}],
 CARD_RE = re.compile(
     r"^(?P<head>\s*\[\[(?P<cats>[^\]]*)\],)"
     r"(?P<wx>\s*)(?P<x>-?\d+),"
@@ -84,9 +84,10 @@ def parse_cards(text):
     """Return [(line_index, cluster_key, x, y, w, h)] for every card line."""
     lines = text.split('\n')
     try:
-        start = next(i for i, l in enumerate(lines) if 'const CARDS = [' in l)
+        start = next(i for i, l in enumerate(lines)
+                     if 'const CARDS_LAYOUT = [' in l or 'const CARDS = [' in l)
     except StopIteration:
-        sys.exit('could not find "const CARDS = [" in the file')
+        sys.exit('could not find the card array in the file')
 
     cards = []
     for i in range(start + 1, len(lines)):

@@ -3,17 +3,17 @@
 ════════════════════════════════════════════ */
 @font-face {
   font-family: 'NaNTresorM';
-  src: url('NaNTresorM-Bold.ttf') format('truetype');
+  src: url('Fonts/NaNTresor/NaNTresorM-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 @font-face {
   font-family: 'NaNTresorM';
-  src: url('NaNTresorM-Regular.ttf') format('truetype');
+  src: url('Fonts/NaNTresor/NaNTresorM-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 @font-face {
   font-family: 'Celescript';
-  src: url('Celescript.ttf') format('truetype');
+  src: url('Fonts/Celescript.ttf') format('truetype');
 }
 
 /* ════════════════════════════════════════════
