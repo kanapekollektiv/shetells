@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>she tells — splash bounce sprite</title>
+<style>
+  /* ─────────────────────────────────────────────
+     5-frame hand-drawn splash bounce. Transparent.
+     ───────────────────────────────────────────── */
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: transparent; overflow: hidden;
+  }
+
+  #stage {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(var(--fit, 1));
+    transform-origin: center center;
+    width: var(--sw, 512px);
+    height: var(--sh, 512px);
+  }
+
+  .cell {
+    position: absolute;
+    top: 0; left: 0;
+    width: var(--cw, 640px);
+    height: var(--ch, 474px);
+  }
+  .cell svg { display: block; width: 100%; height: 100%; }
+
+  /* Sprite playback: only one frame visible at a time — a hard cut per
+     frame, no interpolation, so it reads as drawn animation. */
+  #stage.play .cell { visibility: hidden; }
+  #stage.play .cell.on { visibility: visible; }
+
+  /* Sprite-sheet mode lays the frames out in a strip instead. */
+  #stage.sheet .cell { visibility: visible; }
+
+  #bar {
+    position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+    display: flex; gap: 8px; align-items: center;
+    font: 500 12px/1 -apple-system, Helvetica, Arial, sans-serif;
+    color: #fff; background: rgba(0,0,0,.6);
+    padding: 8px 14px; border-radius: 999px; z-index: 10;
+  }
+  #bar button {
+    font: inherit; color: #fff; background: transparent;
+    border: 1px solid rgba(255,255,255,.5); border-radius: 999px;
+    padding: 5px 10px; cursor: pointer;
+  }
+  body.rendering #bar { display: none; }
+</style>
+</head>
+<body>
+
+<div id="stage"></div>
+<div id="bar">
+  <button id="slower">−</button>
+  <span id="rate">10 fps</span>
+  <button id="faster">+</button>
+  <button id="sheetBtn">sprite sheet</button>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   she tells — splash bounce, 5-frame sprite
+
+   Preview:  splash-sprite.html
+   Options:  ?frame=2    show one frame only (for PNG export)
+             ?sheet=1    lay all frames out as a horizontal strip
+             ?fps=8      playback rate
+             ?white=1    render all-white instead of two-colour
+             ?render=1   hide UI chrome
+   ───────────────────────────────────────────────────────────── */
+
+const Q = new URLSearchParams(location.search);
+
+/* The drawing lives inside this window of the 400x400 canvas — cropping to
+   the action stops each sprite cell being mostly empty. */
+const VB = { x: 30, y: 108, w: 340, h: 252 };
+const CELL_W = 640;
+const CELL_H = Math.round(CELL_W * VB.h / VB.w);
+/* ?white=1 renders the whole splash in white instead of the two-colour
+   scheme, for use over colour footage or dark backgrounds. */
+const WHITE = Q.has('white');
+const ACID  = WHITE ? '#FFFFFF' : '#CCDE07';   // yellow-green
+const GREEN = WHITE ? '#FFFFFF' : '#32BE3A';
+
+/* Every frame is drawn by hand rather than tweened: the surface line and
+   droplets are redrawn slightly differently each time so the ink boils,
+   the way the existing drawings do. The bounce is baked into the shapes —
+   squashed on impact, stretched at the peak — not applied as a transform. */
+const FRAMES = [
+
+  /* 1 — impact. Droplet strikes, surface dimples, two flicks kick up. */
+  `<path class="g" d="M40,302 C92,296 138,306 190,300 C242,294 300,305 362,298"/>
+   <path class="g" d="M168,300 C178,311 198,312 210,301"/>
+   <path class="a" d="M166,295 C161,285 158,278 156,269"/>
+   <path class="a" d="M212,296 C218,286 221,279 224,270"/>
+   <path class="a" d="M189,240 C197,250 196,261 189,264 C182,261 181,250 189,240 Z"/>`,
+
+  /* 2 — crown rises. Arms lift, cup opens, first droplets break free. */
+  `<path class="g" d="M38,301 C94,306 138,295 192,301 C246,307 302,295 362,302"/>
+   <path class="g" d="M158,300 C154,277 151,258 146,236 C161,255 180,272 200,277 C221,272 240,254 256,235 C251,257 247,277 242,301"/>
+   <path class="a" d="M144,234 C140,226 141,219 145,213"/>
+   <path class="a" d="M256,235 C260,227 259,220 255,214"/>
+   <path class="a" d="M128,212 C134,219 133,228 127,230 C121,228 120,219 128,212 Z"/>
+   <path class="a" d="M270,219 C276,226 275,234 269,236 C263,234 262,226 270,219 Z"/>`,
+
+  /* 3 — peak. Tallest, most airborne, first ripple appears. */
+  `<path class="g" d="M36,300 C96,293 140,307 196,299 C252,291 306,306 364,297"/>
+   <path class="g" d="M152,299 C145,257 139,219 129,185 C146,216 171,251 200,268 C230,250 255,216 271,187 C261,220 255,258 248,300"/>
+   <path class="g" d="M129,185 C124,176 126,168 131,161"/>
+   <path class="g" d="M271,187 C276,178 274,170 269,163"/>
+   <path class="a" d="M104,190 C111,198 110,208 103,210 C96,208 95,198 104,190 Z"/>
+   <path class="a" d="M292,198 C299,206 298,216 291,218 C284,216 283,206 292,198 Z"/>
+   <path class="a" d="M190,132 C198,141 197,152 190,154 C183,152 182,141 190,132 Z"/>
+   <path class="a" d="M148,148 C153,154 152,161 147,163 C142,161 141,154 148,148 Z"/>
+   <path class="a" d="M236,156 C241,162 240,169 235,171 C230,169 229,162 236,156 Z"/>
+   <path class="a" d="M108,309 C152,318 250,318 294,306"/>`,
+
+  /* 4 — collapse. Crown folds back, droplets fall wide, ripple spreads. */
+  `<path class="g" d="M34,299 C92,305 142,294 194,301 C248,308 304,296 366,303"/>
+   <path class="g" d="M160,300 C158,285 156,271 152,257 C168,270 184,281 200,284 C217,281 233,269 249,257 C245,271 243,285 240,301"/>
+   <path class="a" d="M100,246 C107,254 106,264 99,266 C92,264 91,254 100,246 Z"/>
+   <path class="a" d="M282,254 C289,262 288,272 281,274 C274,272 273,262 282,254 Z"/>
+   <path class="a" d="M190,198 C196,205 195,214 189,216 C183,214 182,205 190,198 Z"/>
+   <path class="a" d="M138,224 C143,230 142,237 137,239 C132,237 131,230 138,224 Z"/>
+   <path class="a" d="M246,232 C251,238 250,245 245,247 C240,245 239,238 246,232 Z"/>
+   <path class="a" d="M88,311 C146,322 258,322 312,308"/>
+   <path class="a" d="M126,320 C168,328 236,328 274,318"/>`,
+
+  /* 5 — settle. Low mound, wide rings, one last flick left over. */
+  `<path class="g" d="M36,301 C94,296 140,305 192,300 C244,295 302,304 362,299"/>
+   <path class="g" d="M164,300 C176,291 200,290 216,299"/>
+   <path class="a" d="M74,310 C142,323 262,323 322,307"/>
+   <path class="a" d="M112,321 C166,331 240,331 288,319"/>
+   <path class="a" d="M152,331 C180,337 214,337 240,330"/>
+   <path class="a" d="M196,268 C201,274 200,281 195,283 C190,281 189,274 196,268 Z"/>`,
+];
+
+const stage = document.getElementById('stage');
+const SHEET = Q.has('sheet');
+const ONE = Q.has('frame') ? parseInt(Q.get('frame'), 10) : null;
+
+const shown = ONE !== null && FRAMES[ONE] !== undefined ? [ONE]
+            : FRAMES.map((_, i) => i);
+
+shown.forEach((fi, slot) => {
+  const cell = document.createElement('div');
+  cell.className = 'cell';
+  if (SHEET) cell.style.left = slot * CELL_W + 'px';
+  cell.innerHTML =
+    `<svg viewBox="${VB.x} ${VB.y} ${VB.w} ${VB.h}" xmlns="http://www.w3.org/2000/svg">
+       <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+         <g class="frame">${FRAMES[fi]}</g>
+       </g>
+     </svg>`;
+  /* Stroke weights mirror the existing drawings: ~1.4% of artwork height,
+     with the secondary colour a touch lighter. */
+  cell.querySelectorAll('.g').forEach(p => {
+    p.setAttribute('stroke', GREEN); p.setAttribute('stroke-width', '5.6');
+  });
+  cell.querySelectorAll('.a').forEach(p => {
+    p.setAttribute('stroke', ACID); p.setAttribute('stroke-width', '4.6');
+  });
+  stage.appendChild(cell);
+});
+
+/* Stage size: one cell, or the full strip in sheet mode. */
+const SW = SHEET ? CELL_W * shown.length : CELL_W;
+stage.style.setProperty('--sw', SW + 'px');
+stage.style.setProperty('--sh', CELL_H + 'px');
+document.documentElement.style.setProperty('--cw', CELL_W + 'px');
+document.documentElement.style.setProperty('--ch', CELL_H + 'px');
+stage.classList.add(SHEET ? 'sheet' : 'play');
+
+function fit() {
+  if (Q.has('render')) {
+    document.documentElement.style.setProperty('--fit', 1);
+    return;
+  }
+  const s = Math.min(innerWidth / SW, innerHeight / CELL_H, 1.6) * 0.85;
+  document.documentElement.style.setProperty('--fit', s);
+}
+fit();
+addEventListener('resize', fit);
+
+if (Q.has('render')) document.body.classList.add('rendering');
+
+/* Playback — a plain frame cycle, no tweening. Static when a single frame
+   or the sheet is requested, so exports are deterministic. */
+let fps = parseFloat(Q.get('fps')) || 10;
+let idx = 0, timer = null;
+const cells = [...stage.querySelectorAll('.cell')];
+
+function step() {
+  cells.forEach((c, i) => c.classList.toggle('on', i === idx));
+  idx = (idx + 1) % cells.length;
+}
+
+function play() {
+  clearInterval(timer);
+  if (SHEET || ONE !== null) { cells.forEach(c => c.classList.add('on')); return; }
+  step();
+  timer = setInterval(step, 1000 / fps);
+}
+play();
+
+document.getElementById('rate').textContent = fps + ' fps';
+document.getElementById('faster').onclick = () => {
+  fps = Math.min(24, fps + 2); document.getElementById('rate').textContent = fps + ' fps'; play();
+};
+document.getElementById('slower').onclick = () => {
+  fps = Math.max(2, fps - 2); document.getElementById('rate').textContent = fps + ' fps'; play();
+};
+document.getElementById('sheetBtn').onclick = () => {
+  location.search = '?sheet=1';
+};
+
+document.body.dataset.frameReady = '1';
+window.SPLASH = { FRAMES: FRAMES.length, CELL_W, CELL_H };
+</script>
+
+</body>
+</html>

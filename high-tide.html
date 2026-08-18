@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>she tells — high tide hour</title>
+<style>
+  @font-face {
+    font-family: 'Celescript';
+    src: url('Celescript.ttf') format('truetype');
+    font-weight: 400;
+    font-display: block;
+  }
+
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: transparent; overflow: hidden;
+  }
+
+  /* 1920x1080 authoring space, captured at deviceScaleFactor 2 for true 4K.
+     Everything is vector, so nothing is resampled. */
+  #stage {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1920px; height: 1080px;
+    transform: translate(-50%, -50%) scale(var(--fit, 1));
+    transform-origin: center center;
+  }
+  #stage svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  #line {
+    position: absolute;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Celescript', cursive;
+    color: #fff;
+    line-height: 1.28;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  #bar {
+    position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+    display: flex; gap: 10px; align-items: center;
+    font: 500 12px/1 -apple-system, Helvetica, Arial, sans-serif;
+    color: #fff; background: rgba(0,0,0,.6);
+    padding: 8px 14px; border-radius: 999px; z-index: 10;
+  }
+  body.rendering #bar { display: none; }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <svg id="art" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="line"></div>
+</div>
+<div id="bar"><span id="clock">0.00s</span> — high tide hour</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   she tells — high tide hour
+
+   The tide rises under the voiceover: "join she tells stream at the
+   high tide hour". White line art on transparency.
+
+   Preview:  high-tide.html
+   Options:  ?t=2.5      freeze at 2.5 s (deterministic, for frame render)
+             ?text=1     show the spoken line on screen
+             ?compact=1  small centred logo mark instead of full-width waves
+             ?render=1   hide UI chrome
+   ───────────────────────────────────────────────────────────── */
+
+const Q = new URLSearchParams(location.search);
+
+const W = 1920, H = 1080;
+const TOTAL = 5.0;          // clip length, seconds
+const BOIL = 10;            // drawing redraws per second — animate on 3s
+
+const SHOW_TEXT = Q.has('text');
+/* ?compact=1 draws the whole thing small and centred, like a logo mark,
+   instead of waves running the full width of the frame. */
+const COMPACT = Q.has('compact');
+/* The site is the name — it is referred to as @shetells.stream. */
+const LINES = ['join @shetells.stream', 'at the high tide hour'];
+
+function mulberry32(seed) {
+  return function () {
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
+const easeInOut = v => v < 0.5 ? 2 * v * v : 1 - Math.pow(-2 * v + 2, 2) / 2;
+
+/* Smooth an open run of points into a path (Catmull-Rom → cubics). */
+function smooth(pts) {
+  const at = i => pts[Math.max(0, Math.min(pts.length - 1, i))];
+  let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = at(i - 1), p1 = at(i), p2 = at(i + 1), p3 = at(i + 2);
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)}` +
+         ` ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+  }
+  return d;
+}
+
+/* One drawn water line. The per-point jitter is reseeded every BOIL steps,
+   so the ink wobbles in held steps like redrawn animation while the tide
+   itself keeps moving smoothly. */
+function waterLine(y, amp, phase, seed, x0 = -80, x1 = W + 80, stepX = 84) {
+  const rnd = mulberry32(seed);
+  const pts = [];
+  for (let x = x0; x <= x1; x += stepX) {
+    const yy = y
+      + amp * Math.sin(x * 0.0058 + phase)
+      + amp * 0.34 * Math.sin(x * 0.0131 + phase * 1.7)
+      + (rnd() - 0.5) * 9;
+    pts.push([x, yy]);
+  }
+  return smooth(pts);
+}
+
+/* Closed wobbly ring — the moon. */
+function ring(cx, cy, r, seed, wobble = 0.09) {
+  const rnd = mulberry32(seed);
+  const N = 11, pts = [];
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * Math.PI * 2 - Math.PI / 2;
+    const rr = r * (1 - wobble / 2 + rnd() * wobble);
+    pts.push([cx + rr * Math.cos(a), cy + rr * Math.sin(a)]);
+  }
+  const at = i => pts[(i + N) % N];
+  let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < N; i++) {
+    const p0 = at(i - 1), p1 = at(i), p2 = at(i + 1), p3 = at(i + 2);
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)}` +
+         ` ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+  }
+  return d + ' Z';
+}
+
+/* Short arc, used for the crescent shading inside the moon. */
+function arcPath(cx, cy, r, a0, a1) {
+  const x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0);
+  const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+  return `M${x0.toFixed(1)},${y0.toFixed(1)} A${r.toFixed(1)},${r.toFixed(1)}` +
+         ` 0 0 1 ${x1.toFixed(1)},${y1.toFixed(1)}`;
+}
+
+const art = document.getElementById('art');
+const lineEl = document.getElementById('line');
+
+function draw(t) {
+  /* Held drawing step — the boil. */
+  const step = Math.floor(t * BOIL);
+
+  /* Tide level: rises through the middle of the clip, then breathes. */
+  const rise = easeInOut(clamp01((t - 0.45) / 3.0));
+  const swell = Math.sin(Math.PI * clamp01((t - 0.35) / 3.3));
+
+  /* Compact keeps the same motion, scaled into a centred block. */
+  const X0 = COMPACT ? 604 : -80;
+  const X1 = COMPACT ? 1316 : W + 80;
+  const STEPX = COMPACT ? 44 : 84;
+  const ROWS = COMPACT ? 4 : 6;
+  const ROWGAP = COMPACT ? 34 : 54;
+
+  const level = COMPACT ? 648 - 128 * rise + 5 * Math.sin(t * 2.1)
+                        : 980 - 330 * rise + 9 * Math.sin(t * 2.1);
+  const amp = COMPACT ? 7 + 13 * swell : 13 + 26 * swell;
+
+  let d = '';
+
+  /* Moon — drifts up a little as the tide comes in. Nudged clear of the
+     type when the spoken line is on screen. */
+  const moonX = COMPACT ? 960 : (SHOW_TEXT ? 1694 : 1512);
+  const moonR = COMPACT ? 62 : (SHOW_TEXT ? 74 : 96);
+  const moonY = COMPACT ? 336 - 18 * rise
+                        : (SHOW_TEXT ? 232 : 292) - 26 * rise;
+  d += `<path class="w" d="${ring(moonX, moonY, moonR, 7 + step * 13)}"/>`;
+  const mr = mulberry32(41 + step * 19);
+  [[0.62, -0.62, -0.02], [0.44, -0.50, -0.12], [0.78, -0.44, -0.20]].forEach(
+    ([f, a0, a1]) => {
+      const j = (mr() - 0.5) * 0.06;
+      d += `<path class="wt" d="${arcPath(moonX, moonY, moonR * f,
+             Math.PI * (a0 + j), Math.PI * (a1 + j))}"/>`;
+    });
+
+  /* Surface, then the body of water stacked beneath it. */
+  for (let i = 0; i < ROWS; i++) {
+    const y = level + i * ROWGAP;
+    if (y > H + 60) continue;
+    const a = amp * (1 - i * 0.13);
+    const ph = t * 1.9 + i * 0.9;
+    const cls = i === 0 ? 'w' : 'wt';
+    d += `<path class="${cls}" d="${waterLine(y, a, ph, 101 + i * 57 + step * 29,
+           X0, X1, STEPX)}"/>`;
+  }
+
+  /* Foam flicks riding the crest while the swell is strongest. */
+  if (amp > (COMPACT ? 15 : 24)) {
+    const rnd = mulberry32(555 + step * 17);
+    const n = Math.round((amp - (COMPACT ? 15 : 24)) / (COMPACT ? 2.5 : 4));
+    for (let i = 0; i < n; i++) {
+      const x = COMPACT ? X0 + 40 + rnd() * (X1 - X0 - 80)
+                        : 180 + rnd() * (W - 360);
+      const y = level - 18 - rnd() * 46;
+      const r = 6 + rnd() * 9;
+      d += `<path class="wt" d="${ring(x, y, r, 900 + i * 41 + step * 7, 0.3)}"/>`;
+    }
+  }
+
+  art.innerHTML =
+    `<g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">${d}</g>`;
+  art.querySelectorAll('.w').forEach(p => p.setAttribute('stroke-width', COMPACT ? '4.4' : '5.4'));
+  art.querySelectorAll('.wt').forEach(p => p.setAttribute('stroke-width', COMPACT ? '3.4' : '4.2'));
+
+  /* The spoken line, when shown: fades up once the tide is well underway. */
+  if (SHOW_TEXT) {
+    const fade = clamp01((t - 1.9) / 0.7);
+    lineEl.style.opacity = fade;
+    lineEl.style.transform = `translateY(${(1 - fade) * 22}px)`;
+  }
+}
+
+/* Lay out the text once, sized to fit the frame. */
+function buildText() {
+  if (!SHOW_TEXT) { lineEl.style.display = 'none'; return; }
+  lineEl.innerHTML = LINES.map(l => `<div><span>${l}</span></div>`).join('');
+  const BASE = COMPACT ? 66 : 104;
+  lineEl.style.fontSize = BASE + 'px';
+  lineEl.style.top = COMPACT ? '742px' : '324px';
+
+  const MAXW = COMPACT ? 900 : W - 300;
+  let size = BASE;
+  lineEl.querySelectorAll('span').forEach(s => {
+    if (s.offsetWidth > MAXW) size = Math.min(size, Math.floor(BASE * MAXW / s.offsetWidth));
+  });
+  lineEl.style.fontSize = size + 'px';
+}
+
+function fit() {
+  const s = Q.has('render') ? Math.min(innerWidth / W, innerHeight / H)
+                            : Math.min(innerWidth / W, innerHeight / H) * 0.92;
+  document.documentElement.style.setProperty('--fit', s);
+}
+fit();
+addEventListener('resize', fit);
+
+if (Q.has('render')) document.body.classList.add('rendering');
+
+const clock = document.getElementById('clock');
+
+document.fonts.ready.then(() => {
+  buildText();
+
+  if (Q.has('t')) {
+    draw(parseFloat(Q.get('t')) || 0);
+    document.body.dataset.frameReady = '1';
+    return;
+  }
+
+  const t0 = performance.now();
+  (function loop() {
+    const t = ((performance.now() - t0) / 1000) % TOTAL;
+    draw(t);
+    clock.textContent = t.toFixed(2) + 's';
+    requestAnimationFrame(loop);
+  })();
+});
+
+window.TIDE = { TOTAL, W, H };
+</script>
+
+</body>
+</html>

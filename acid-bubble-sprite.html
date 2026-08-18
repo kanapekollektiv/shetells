@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>she tells — acid rising bubble sprite</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: transparent; overflow: hidden;
+  }
+
+  #stage {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(var(--fit, 1));
+    transform-origin: center center;
+    width: var(--sw, 480px);
+    height: var(--sh, 640px);
+  }
+
+  .cell {
+    position: absolute;
+    top: 0; left: 0;
+    width: var(--cw, 480px);
+    height: var(--ch, 640px);
+  }
+  .cell svg { display: block; width: 100%; height: 100%; }
+
+  #stage.play .cell { visibility: hidden; }
+  #stage.play .cell.on { visibility: visible; }
+  #stage.sheet .cell { visibility: visible; }
+
+  #bar {
+    position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+    display: flex; gap: 8px; align-items: center;
+    font: 500 12px/1 -apple-system, Helvetica, Arial, sans-serif;
+    color: #fff; background: rgba(0,0,0,.6);
+    padding: 8px 14px; border-radius: 999px; z-index: 10;
+  }
+  #bar button {
+    font: inherit; color: #fff; background: transparent;
+    border: 1px solid rgba(255,255,255,.5); border-radius: 999px;
+    padding: 5px 10px; cursor: pointer;
+  }
+  body.rendering #bar { display: none; }
+</style>
+</head>
+<body>
+
+<div id="stage"></div>
+<div id="bar">
+  <button id="slower">−</button>
+  <span id="rate">8 fps</span>
+  <button id="faster">+</button>
+  <button id="sheetBtn">sprite sheet</button>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   she tells — acid rising, 5-frame bubble sprite (white)
+
+   Preview:  acid-bubble-sprite.html
+   Options:  ?frame=2    show one frame only (for PNG export)
+             ?sheet=1    lay all frames out as a strip
+             ?fps=8      playback rate
+             ?render=1   hide UI chrome
+   ───────────────────────────────────────────────────────────── */
+
+const Q = new URLSearchParams(location.search);
+
+const VB = { w: 300, h: 400 };
+const CELL_W = 480;
+const CELL_H = Math.round(CELL_W * VB.h / VB.w);
+const INK = '#FFFFFF';
+
+function mulberry32(seed) {
+  return function () {
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/* A bubble is a ring of jittered points smoothed into a closed curve, not a
+   circle. Each frame reseeds the jitter, so the outline wobbles from frame to
+   frame the way a redrawn line does — that boil is what sells it as drawn by
+   hand rather than a shape being moved around. */
+function bubble(cx, cy, r, squash, rnd, wobble = 0.13) {
+  const N = 9;
+  const pts = [];
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * Math.PI * 2 - Math.PI / 2;
+    const rr = r * (1 - wobble / 2 + rnd() * wobble);
+    pts.push([cx + rr * Math.cos(a), cy + rr * squash * Math.sin(a)]);
+  }
+
+  /* Catmull-Rom through the points, converted to cubics, closed. */
+  const at = i => pts[(i + N) % N];
+  let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < N; i++) {
+    const p0 = at(i - 1), p1 = at(i), p2 = at(i + 1), p3 = at(i + 2);
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)}` +
+         ` ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+  }
+  return d + ' Z';
+}
+
+/* The short catchlight arc inside a bubble — the usual shorthand for glass. */
+function glint(cx, cy, r, squash) {
+  const a0 = Math.PI * 1.12, a1 = Math.PI * 1.42, rr = r * 0.6;
+  const x0 = cx + rr * Math.cos(a0), y0 = cy + rr * squash * Math.sin(a0);
+  const x1 = cx + rr * Math.cos(a1), y1 = cy + rr * squash * Math.sin(a1);
+  return `M${x0.toFixed(1)},${y0.toFixed(1)} A${(rr).toFixed(1)},${(rr * squash).toFixed(1)}` +
+         ` 0 0 1 ${x1.toFixed(1)},${y1.toFixed(1)}`;
+}
+
+/* One bubble rising and swelling, with smaller ones trailing behind it.
+   Squash under 1 reads as slowing, over 1 as stretching upward. */
+const FRAMES = [
+  { seed: 11, main: [150, 334, 26, 0.93], small: [[139, 379, 7], [165, 368, 5]] },
+  { seed: 27, main: [153, 272, 31, 1.07], small: [[137, 341, 9], [168, 372, 6]] },
+  { seed: 43, main: [147, 208, 38, 1.05], small: [[161, 291, 11], [131, 336, 7], [171, 375, 5]] },
+  { seed: 61, main: [154, 143, 45, 0.97], small: [[136, 233, 13], [166, 297, 9], [140, 350, 6]] },
+  { seed: 89, main: [149,  80, 52, 1.03], small: [[163, 178, 14], [133, 249, 10], [162, 313, 7], [139, 366, 5]] },
+];
+
+const stage = document.getElementById('stage');
+const SHEET = Q.has('sheet');
+const ONE = Q.has('frame') ? parseInt(Q.get('frame'), 10) : null;
+const shown = ONE !== null && FRAMES[ONE] !== undefined ? [ONE]
+            : FRAMES.map((_, i) => i);
+
+shown.forEach((fi, slot) => {
+  const f = FRAMES[fi];
+  const rnd = mulberry32(f.seed);
+  const [mx, my, mr, msq] = f.main;
+
+  let d = '';
+  /* Trailing bubbles first, so the main one reads on top. */
+  f.small.forEach(([sx, sy, sr]) => {
+    d += `<path class="s" d="${bubble(sx, sy, sr, 1, rnd, 0.18)}"/>`;
+  });
+  d += `<path class="m" d="${bubble(mx, my, mr, msq, rnd)}"/>`;
+  d += `<path class="m" d="${glint(mx, my, mr, msq)}"/>`;
+
+  const cell = document.createElement('div');
+  cell.className = 'cell';
+  if (SHEET) cell.style.left = slot * CELL_W + 'px';
+  cell.innerHTML =
+    `<svg viewBox="0 0 ${VB.w} ${VB.h}" xmlns="http://www.w3.org/2000/svg">
+       <g fill="none" stroke-linecap="round" stroke-linejoin="round">${d}</g>
+     </svg>`;
+
+  /* Stroke weights follow the existing drawings: ~1.4% of artwork height. */
+  cell.querySelectorAll('.m').forEach(p => {
+    p.setAttribute('stroke', INK); p.setAttribute('stroke-width', '5.6');
+  });
+  cell.querySelectorAll('.s').forEach(p => {
+    p.setAttribute('stroke', INK); p.setAttribute('stroke-width', '4.4');
+  });
+  stage.appendChild(cell);
+});
+
+const SW = SHEET ? CELL_W * shown.length : CELL_W;
+stage.style.setProperty('--sw', SW + 'px');
+stage.style.setProperty('--sh', CELL_H + 'px');
+document.documentElement.style.setProperty('--cw', CELL_W + 'px');
+document.documentElement.style.setProperty('--ch', CELL_H + 'px');
+stage.classList.add(SHEET ? 'sheet' : 'play');
+
+function fit() {
+  if (Q.has('render')) {
+    document.documentElement.style.setProperty('--fit', 1);
+    return;
+  }
+  const s = Math.min(innerWidth / SW, innerHeight / CELL_H, 1.6) * 0.85;
+  document.documentElement.style.setProperty('--fit', s);
+}
+fit();
+addEventListener('resize', fit);
+
+if (Q.has('render')) document.body.classList.add('rendering');
+
+let fps = parseFloat(Q.get('fps')) || 8;
+let idx = 0, timer = null;
+const cells = [...stage.querySelectorAll('.cell')];
+
+function step() {
+  cells.forEach((c, i) => c.classList.toggle('on', i === idx));
+  idx = (idx + 1) % cells.length;
+}
+function play() {
+  clearInterval(timer);
+  if (SHEET || ONE !== null) { cells.forEach(c => c.classList.add('on')); return; }
+  step();
+  timer = setInterval(step, 1000 / fps);
+}
+play();
+
+document.getElementById('rate').textContent = fps + ' fps';
+document.getElementById('faster').onclick = () => {
+  fps = Math.min(24, fps + 2); document.getElementById('rate').textContent = fps + ' fps'; play();
+};
+document.getElementById('slower').onclick = () => {
+  fps = Math.max(2, fps - 2); document.getElementById('rate').textContent = fps + ' fps'; play();
+};
+document.getElementById('sheetBtn').onclick = () => { location.search = '?sheet=1'; };
+
+document.body.dataset.frameReady = '1';
+window.BUBBLE = { FRAMES: FRAMES.length, CELL_W, CELL_H };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>she tells — credits card</title>
+<style>
+  @font-face {
+    font-family: 'Celescript';
+    src: url('Celescript.ttf') format('truetype');
+    font-weight: 400; font-display: block;
+  }
+  @font-face {
+    font-family: 'NaNTresor';
+    src: url('NaNTresorM-Regular.ttf') format('truetype');
+    font-weight: 400; font-display: block;
+  }
+
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: transparent; overflow: hidden;
+  }
+
+  /* 1920x1080 authoring space, captured at deviceScaleFactor 2 for 4K. */
+  #stage {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1920px; height: 1080px;
+    transform: translate(-50%, -50%) scale(var(--fit, 1));
+    transform-origin: center center;
+    color: #fff;
+  }
+
+  #title {
+    position: absolute;
+    top: 62px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'NaNTresor', -apple-system, Helvetica, Arial, sans-serif;
+    font-size: 84px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  #cols {
+    position: absolute;
+    top: 206px; left: 140px; right: 140px; bottom: 300px;
+    display: flex;
+    gap: 96px;
+  }
+  /* The left column carries the long artist and mentor lists, so it gets the
+     wider share — otherwise names orphan onto their own line. */
+  .col { flex: 1; }
+  .col:first-child { flex: 1.2; }
+  .col:last-child  { flex: 0.8; }
+
+  .sect { margin-bottom: var(--gap, 40px); }
+  .sect:last-child { margin-bottom: 0; }
+
+  .h {
+    font-family: 'Celescript', cursive;
+    font-size: var(--hs, 42px);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .n {
+    font-family: 'NaNTresor', -apple-system, Helvetica, Arial, sans-serif;
+    font-size: var(--ns, 33px);
+    line-height: 1.42;
+    letter-spacing: 0.012em;
+  }
+
+  /* Foot block — centred on the same axis as the title. */
+  #foot {
+    position: absolute;
+    left: 0; right: 0; bottom: 84px;
+    text-align: center;
+    font-family: 'NaNTresor', -apple-system, Helvetica, Arial, sans-serif;
+  }
+  #handle {
+    font-size: 46px;
+    line-height: 1.1;
+    letter-spacing: 0.015em;
+  }
+  #funding {
+    margin: 26px auto 0;
+    max-width: 1360px;
+    font-size: 24px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  #bar {
+    position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+    font: 500 12px/1 -apple-system, Helvetica, Arial, sans-serif;
+    color: #fff; background: rgba(0,0,0,.6);
+    padding: 7px 13px; border-radius: 999px; z-index: 10;
+  }
+  body.rendering #bar { display: none; }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="title">our team</div>
+  <div id="cols">
+    <div class="col" id="colA"></div>
+    <div class="col" id="colB"></div>
+  </div>
+  <div id="foot">
+    <div id="handle">@shetells.stream</div>
+    <div id="funding">the project is realised within the framework of the S+T+ARTS Aqua Motion artistic residency program, an initiative co-funded by the European Commission and hosted by Rio Neiva, Esposende, Portugal.</div>
+  </div>
+</div>
+<div id="bar">credits card</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   she tells — credits card
+
+   Preview:  credits-card.html
+   Options:  ?render=1   hide UI chrome (for PNG export)
+   ───────────────────────────────────────────────────────────── */
+
+const Q = new URLSearchParams(location.search);
+
+/* Credits exactly as supplied. */
+const LEFT = [
+  ['Artists', ['Helin Ulas, Rita Eperjesi, with Mario Guzman']],
+  ['Residency Host', [
+    'Rio Neiva, Esposende',
+    'Rui Monteiro, Rui Pedro Almeida, Cristina Nava',
+  ]],
+  ['Mentors', [
+    'Fátima São Simão, João Pedro Rosa, Luís Fernandes, ' +
+    'Marina Dolbeth, Rodrigo Carvalho, Vasco Ferreira',
+  ]],
+  ['Performers', ['Pauline Payen, André Correia']],
+  ['Glass Sculpture Production', ['Berlin Glassworks']],
+  ['3D Production', ['Alan Horsley, Bärenglas']],
+];
+
+const RIGHT = [
+  ['Sound Designer', ['Sevki Argalioglu']],
+  ['Scenography', ['Fanny Dreyer']],
+  ['Technical Development', ['Christian Kokott']],
+  ['Video Editing', ['Helin Ulas']],
+  ['Additional Editing', ['Célestin Meunier']],
+  ['Typefaces', [
+    'Celescript, Célestin Meunier',
+    'NaN Tresor, NaN Type Foundry',
+  ]],
+];
+
+function build(el, groups) {
+  el.innerHTML = groups.map(([h, names]) =>
+    `<div class="sect"><div class="h">${h}</div>` +
+    names.map(n => `<div class="n">${n}</div>`).join('') +
+    `</div>`
+  ).join('');
+}
+
+build(document.getElementById('colA'), LEFT);
+build(document.getElementById('colB'), RIGHT);
+
+/* Everything is meant to sit on one card. If the taller column overruns the
+   safe area, step the type down until it fits rather than letting it clip. */
+function fitCard() {
+  const box = document.getElementById('cols');
+  const avail = box.clientHeight;
+  const root = document.documentElement.style;
+
+  let hs = 42, ns = 33, gap = 40;
+  const tallest = () =>
+    Math.max(...[...box.querySelectorAll('.col')].map(c => c.scrollHeight));
+
+  while (tallest() > avail && ns > 22) {
+    hs -= 1.5; ns -= 1.2; gap -= 2;
+    root.setProperty('--hs', hs + 'px');
+    root.setProperty('--ns', ns + 'px');
+    root.setProperty('--gap', Math.max(20, gap) + 'px');
+  }
+}
+
+function fit() {
+  const s = Q.has('render') ? Math.min(innerWidth / 1920, innerHeight / 1080)
+                            : Math.min(innerWidth / 1920, innerHeight / 1080) * 0.94;
+  document.documentElement.style.setProperty('--fit', s);
+}
+fit();
+addEventListener('resize', fit);
+
+if (Q.has('render')) document.body.classList.add('rendering');
+
+document.fonts.ready.then(() => {
+  fitCard();
+  document.body.dataset.frameReady = '1';
+});
+</script>
+
+</body>
+</html>
