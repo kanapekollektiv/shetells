@@ -144,7 +144,7 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4400px;
+      width: 4500px;
       height: 2300px;
       transform-origin: 0 0;
       will-change: transform;
@@ -367,6 +367,7 @@
     .card-text-preview {
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 11px; line-height: 1.52; color: #333;
+      white-space: pre-line;
     }
     .card-text-hint {
       font-family: 'Celescript', cursive;
@@ -615,7 +616,7 @@
       .m-notes-body > * { margin: 0 0 1.15rem; }
       .m-text {
         font-family: system-ui, -apple-system, sans-serif;
-        font-size: 15px; line-height: 1.72; color: #333;
+        font-size: 15px; line-height: 1.72; color: #333; white-space: pre-line;
       }
       .m-link {
         display: block; padding: 0.72rem 1.1rem; border-radius: 999px;
@@ -676,7 +677,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4400" height="2300"
+      <svg id="linesSvg" width="4500" height="2300"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -767,10 +768,10 @@
   /* ── Cluster center coordinates for drawing connection lines ── */
   const CENTERS = {
     hypersea:    [ 510,  504],
-    sargassum:   [1415,  599],
-    local:       [2118,  290],
-    speculative: [2657,  600],
-    future:      [3565,  410],
+    sargassum:   [1485,  599],
+    local:       [2258,  290],
+    speculative: [2797,  600],
+    future:      [3705,  410],
     workshop:    [ 936, 1795],
     drawings:    [1579, 1472],
     data:        [2147, 1862],
@@ -844,9 +845,9 @@
     [['hypersea', 'workshop'],   596, 762, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
 
     // ── LOCAL STORIES
-    [['local'],                  1960,  240, 100,  76, null, null],
-    [['local'],                  2100,  180,  82, 112, null, null],
-    [['local'],                 2170,  320, 106,  80, null, null],
+    [['local'],                  2100,  240, 100,  76, null, null],
+    [['local'],                  2240,  180,  82, 112, null, null],
+    [['local'],                 2310,  320, 106,  80, null, null],
 
     // ── CROSS: Hypersea × Local Stories
     [['hypersea', 'local'],       596,  648,  88,  64, 'Field Notes', null],
@@ -868,11 +869,11 @@
     [['workshop', 'drawings'],   1080,  1720,  92,  78, 'Making Session', null],
 
     // ── SPECULATIVE FUTURES
-    [['speculative'],           2486,  496, 106,  82, null, null],
-    [['speculative'],           2632,  430,  86, 116, null, null],
-    [['speculative'],           2712,  622, 116,  78, null, null],
-    [['speculative'],           2550,  698,  96,  72, null, null],
-    [['speculative'],           2556,  560, 118,  84, 'Future Esposende', null],
+    [['speculative'],           2626,  496, 106,  82, null, null],
+    [['speculative'],           2772,  430,  86, 116, null, null],
+    [['speculative'],           2852,  622, 116,  78, null, null],
+    [['speculative'],           2690,  698,  96,  72, null, null],
+    [['speculative'],           2696,  560, 118,  84, 'Future Esposende', null],
 
     // ── CROSS: Drawings × Speculative Futures
     [['drawings', 'speculative'],1688,  1400,  88,  72, 'Drawn Futures', null],
@@ -880,21 +881,18 @@
     // ── SARGASSUM
     // ── SARGASSUM — text column (each card stacks under the one before it,
     //    so the column re-flows when the Portuguese runs longer)
-    [['sargassum'], 1080,  190, 250,  34, null, { link: 'https://www.visitesposende.com/en/fazer/monumentos/sargasso-museum', label: { en: 'Sargasso Museum →', pt: 'Museu do Sargaço →' } }],
-    [['sargassum'], 1080,  238, 300,  90, null, { txt: { en: 'Esposende has an entanglement with sargassum that goes years and years back.', pt: 'Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.' }, full: { en: 'Esposende has an entanglement with sargassum that goes years and years back.', pt: 'Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.' } }],
-    [['sargassum'], 1080,  342, 300, 150, null, { txt: { en: 'When we set out for the research project, we asked how an old tradition reflects on the future. Futures of creating speculative ways of creating rituals, as an act of care, an act of observation, an act of listening, an act of remembering the water ecology we cohabit.', pt: 'Quando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas especulativas de criar rituais, como um ato de cuidado, um ato de observação, um ato de escuta, um ato de recordar a ecologia aquática com a qual coabitamos.' }, full: { en: 'When we set out for the research project, we asked how an old tradition reflects on the future. Futures of creating speculative ways of creating rituals, as an act of care, an act of observation, an act of listening, an act of remembering the water ecology we cohabit.', pt: 'Quando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas especulativas de criar rituais, como um ato de cuidado, um ato de observação, um ato de escuta, um ato de recordar a ecologia aquática com a qual coabitamos.' }, stackBelow: true, gap: 14 }],
-    [['sargassum'], 1080,  506, 300, 165, null, { txt: { en: 'As SArgaceoro gleaned sargassum, today most interfaces glean data; we often think of this data as residing in an invisible cloud but forget the physical infrastructure it carries. As part of a speculative ritual, our project gleans memories of what has been and what could be for the futures of waters in Esposende.', pt: 'Tal como o SArgaceoro recolhia sargaço, hoje em dia a maioria das interfaces recolhe dados; muitas vezes pensamos que esses dados residem numa nuvem invisível, mas esquecemo-nos da infraestrutura física que os suporta. Como parte de um ritual especulativo, o nosso projeto recolhe memórias do que foi e do que poderá ser para o futuro das águas em Esposende.' }, full: { en: 'As SArgaceoro gleaned sargassum, today most interfaces glean data; we often think of this data as residing in an invisible cloud but forget the physical infrastructure it carries. As part of a speculative ritual, our project gleans memories of what has been and what could be for the futures of waters in Esposende.', pt: 'Tal como o SArgaceoro recolhia sargaço, hoje em dia a maioria das interfaces recolhe dados; muitas vezes pensamos que esses dados residem numa nuvem invisível, mas esquecemo-nos da infraestrutura física que os suporta. Como parte de um ritual especulativo, o nosso projeto recolhe memórias do que foi e do que poderá ser para o futuro das águas em Esposende.' }, stackBelow: true, gap: 14 }],
-    [['sargassum'], 1080,  685, 300, 165, null, { txt: { en: 'The rising temperatures heavily affect the Esposende coast, as they do in global network of water bodies. The changing water will also affect the kelp forests along the town\'s coast. We ask how we could speculate futures of tradition, how could the kelp, once the heart of the livelihood of Esposende, take its shape in a communal futures', pt: 'O aumento das temperaturas afeta fortemente a costa de Esposende, tal como acontece na rede global de massas de água. As alterações nas águas afetarão também as florestas de algas ao longo da costa da cidade. Questionamo-nos sobre como poderíamos especular sobre os futuros da tradição; como é que as algas, outrora o cerne do sustento de Esposende, poderiam assumir a sua forma num futuro comunitário' }, full: { en: 'The rising temperatures heavily affect the Esposende coast, as they do in global network of water bodies. The changing water will also affect the kelp forests along the town\'s coast. We ask how we could speculate futures of tradition, how could the kelp, once the heart of the livelihood of Esposende, take its shape in a communal futures', pt: 'O aumento das temperaturas afeta fortemente a costa de Esposende, tal como acontece na rede global de massas de água. As alterações nas águas afetarão também as florestas de algas ao longo da costa da cidade. Questionamo-nos sobre como poderíamos especular sobre os futuros da tradição; como é que as algas, outrora o cerne do sustento de Esposende, poderiam assumir a sua forma num futuro comunitário' }, stackBelow: true, gap: 14 }],
-    [['sargassum'], 1080, 868, 330,  34, null, { link: 'https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/', label: { en: 'Kelp forests in northern Portugal →', pt: 'Florestas de algas no norte de Portugal →' }, stackBelow: true, gap: 18 }],
-    [['sargassum','future'], 1080, 912, 300, 34, null, { goTo: 'future', label: { en: 'Our speculative products →', pt: 'Os nossos produtos especulativos →' }, stackBelow: true, gap: 10 }],
+    [['sargassum'], 1080,  190, 180,  34, null, { link: 'https://www.visitesposende.com/en/fazer/monumentos/sargasso-museum', label: { en: 'Sargasso Museum →', pt: 'Museu do Sargaço →' } }],
+    [['sargassum'], 1080,  238, 300, 260, null, { txt: { en: 'Esposende has an entanglement with sargassum that goes years and years back.\n\nWhen we set out for the research project, we asked how an old tradition reflects on the future. Futures of creating speculative ways of creating…', pt: 'Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.\n\nQuando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas…' }, full: { en: 'Esposende has an entanglement with sargassum that goes years and years back.\n\nWhen we set out for the research project, we asked how an old tradition reflects on the future. Futures of creating speculative ways of creating rituals, as an act of care, an act of observation, an act of listening, an act of remembering the water ecology we cohabit.\n\nAs Sargaceiros gleaned sargassum, today most interfaces glean data; we often think of this data as residing in an invisible cloud but forget the physical infrastructure it carries. As part of a speculative ritual, our project gleans memories of what has been and what could be for the futures of waters in Esposende.\n\nThe rising temperatures heavily affect the Esposende coast, as they do in a global network of water bodies. The changing water will also affect the kelp forests along the town\'s coast. We ask how we could speculate futures of tradition, how the kelp, once the heart of the livelihood of Esposende, could take its shape in communal futures.', pt: 'Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.\n\nQuando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas especulativas de criar rituais, como um ato de cuidado, um ato de observação, um ato de escuta, um ato de recordar a ecologia aquática com a qual coabitamos.\n\nTal como os Sargaceiros recolhiam sargaço, hoje em dia a maioria das interfaces recolhe dados; muitas vezes pensamos que esses dados residem numa nuvem invisível, mas esquecemo-nos da infraestrutura física que os suporta. Como parte de um ritual especulativo, o nosso projeto recolhe memórias do que foi e do que poderá ser para o futuro das águas em Esposende.\n\nO aumento das temperaturas afeta fortemente a costa de Esposende, tal como acontece numa rede global de massas de água. As alterações nas águas afetarão também as florestas de algas ao longo da costa da cidade. Questionamo-nos sobre como poderíamos especular sobre os futuros da tradição; como é que as algas, outrora o cerne do sustento de Esposende, poderiam assumir a sua forma em futuros comunitários.' } }],
+    [['sargassum'], 1080, 868, 454,  34, null, { link: 'https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/', label: { en: 'Read the article on kelp forests in northern Portugal →', pt: 'Leia o artigo sobre as florestas de algas no norte de Portugal →' }, stackBelow: true, gap: 18 }],
+    [['sargassum','future'], 1080, 912, 280, 34, null, { goTo: 'future', label: { en: 'Our speculative products →', pt: 'Os nossos produtos especulativos →' }, stackBelow: true, gap: 10 }],
     [['sargassum'], 1080, 960, 300,  48, null, { credits: { en: '.credits: museum photographs — Sargasso Museum, Esposende', pt: 'Créditos: fotografias do museu — Museu do Sargaço, Esposende' }, stackBelow: true, gap: 14, mtNotice: true }],
 
     // ── SARGASSUM — images (the two museum photographs are credited above)
-    [['sargassum'], 1440,  190, 152, 104, null, { img: 'la/sargassum/shetells-48.jpg', alt: { en: 'Sargassum fronds draped over rock at low tide', pt: 'Algas de sargaço sobre a rocha na maré baixa' } }],
-    [['sargassum'], 1610,  210, 140, 104, null, { img: 'la/sargassum/IMG_5705.jpg', alt: { en: 'Bladderwrack covering the rocks along the Esposende shore', pt: 'Bodelha a cobrir as rochas na costa de Esposende' } }],
-    [['sargassum'], 1440,  310, 150, 100, null, { img: 'la/sargassum/museum-179232.jpg', alt: { en: 'Sargaceiro sculptures outside the Sargasso Museum, Esposende', pt: 'Esculturas de sargaceiros à entrada do Museu do Sargaço, Esposende' } }],
-    [['sargassum'], 1604,  330, 118, 158, null, { img: 'la/sargassum/museum-IMG_5775.jpg', alt: { en: 'Sargassum landscape protection display at the Sargasso Museum', pt: 'Exposição sobre a proteção da paisagem do sargaço no Museu do Sargaço' } }],
-    [['sargassum','hypersea'], 1444, 432, 116, 158, null, { img: 'la/sargassum/shetells-54.jpg', alt: { en: 'Glass sculpture resting on sargassum-covered rock', pt: 'Escultura de vidro pousada sobre rocha coberta de sargaço' } }],
+    [['sargassum'], 1580,  190, 152, 104, null, { img: 'la/sargassum/shetells-48.jpg', alt: { en: 'Sargassum fronds draped over rock at low tide', pt: 'Algas de sargaço sobre a rocha na maré baixa' } }],
+    [['sargassum'], 1750,  210, 140, 104, null, { img: 'la/sargassum/IMG_5705.jpg', alt: { en: 'Bladderwrack covering the rocks along the Esposende shore', pt: 'Bodelha a cobrir as rochas na costa de Esposende' } }],
+    [['sargassum'], 1580,  310, 150, 100, null, { img: 'la/sargassum/museum-179232.jpg', alt: { en: 'Sargaceiro sculptures outside the Sargasso Museum, Esposende', pt: 'Esculturas de sargaceiros à entrada do Museu do Sargaço, Esposende' } }],
+    [['sargassum'], 1744,  330, 118, 158, null, { img: 'la/sargassum/museum-IMG_5775.jpg', alt: { en: 'Sargassum landscape protection display at the Sargasso Museum', pt: 'Exposição sobre a proteção da paisagem do sargaço no Museu do Sargaço' } }],
+    [['sargassum','hypersea'], 1584, 432, 116, 158, null, { img: 'la/sargassum/shetells-54.jpg', alt: { en: 'Glass sculpture resting on sargassum-covered rock', pt: 'Escultura de vidro pousada sobre rocha coberta de sargaço' } }],
 
     // ── EXHIBITION
     [['exhibition'],             150,  1450, 106,  80, null, null],
@@ -905,7 +903,7 @@
     [['exhibition'],             217,  1490, 130,  88, 'Documentation', null],
 
     // ── CROSS: Sargassum × Exhibition
-    [['sargassum', 'exhibition'], 1618,  620,  94,  76, 'Tidal Archive', null],
+    [['sargassum', 'exhibition'], 1758,  620,  94,  76, 'Tidal Archive', null],
 
     // ── TOOLKIT
     [['toolkit'],               2518,  1460,  96,  82, null, null],
@@ -922,19 +920,19 @@
     [['toolkit', 'data'],        2872,  1496, 102,  78, 'Methods & Measures', null],
 
     // ── FUTURE PRODUCT
-    [['future'],                 3782, 288, 106,  82, null, null],
-    [['future'],                 3916, 210,  90, 110, null, null],
-    [['future'],                 3976, 380, 116,  76, null, null],
+    [['future'],                 3922, 288, 106,  82, null, null],
+    [['future'],                 4056, 210,  90, 110, null, null],
+    [['future'],                 4116, 380, 116,  76, null, null],
 
     // ── NON-HUMAN
-    [['future'],              3430, 348,  96,  82, null, null],
-    [['future'],              3558, 286,  84, 110, null, null],
-    [['future'],              3636, 442, 106,  78, null, null],
-    [['future'],              3498, 522,  90,  88, null, null],
-    [['future'],              3444, 386, 110,  82, 'Non-Human Voices', null],
+    [['future'],              3570, 348,  96,  82, null, null],
+    [['future'],              3698, 286,  84, 110, null, null],
+    [['future'],              3776, 442, 106,  78, null, null],
+    [['future'],              3638, 522,  90,  88, null, null],
+    [['future'],              3584, 386, 110,  82, 'Non-Human Voices', null],
 
     // ── CROSS: Non-Human × Sargassum
-    [['future', 'sargassum'],   3038, 210,  98,  76, 'Seaweed Mapping', null],
+    [['future', 'sargassum'],   3178, 210,  98,  76, 'Seaweed Mapping', null],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -1567,7 +1565,7 @@
     chip.style.color = darkText ? '#1a1200' : '#ffffff';
     body.innerHTML = '';
     const div = document.createElement('div');
-    div.style.cssText = 'padding:1.5rem 1.6rem 2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;';
+    div.style.cssText = 'padding:1.5rem 1.6rem 2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;white-space:pre-line;';
     div.textContent = L(txt);
     body.appendChild(div);
     overlay.classList.add('active');
