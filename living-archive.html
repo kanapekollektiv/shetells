@@ -354,6 +354,11 @@
       font-size: 10px; color: #111; letter-spacing: 0.04em; white-space: nowrap;
     }
 
+    .card-img-missing {
+      display: flex; align-items: center; justify-content: center;
+      background: #f2f2f2; padding: 8px;
+    }
+
     /* ── Text preview card ── */
     .card-text-box {
       border-radius: 12px !important;
@@ -902,7 +907,10 @@
     [['exhibition'],             217,  1490, 130,  88, 'Documentation', null],
 
     // ── CROSS: Sargassum × Exhibition
-    [['sargassum', 'exhibition'], 1758,  620,  94,  76, 'Tidal Archive', null],
+    // Tidal Archive — historical photograph opens the sargaco story.
+    // Image credit: Biblioteca Municipal Manuel de Boaventura. If the file is
+    // absent the card still opens; the <img> hides itself on error.
+    [['sargassum','local'], 1580,  502, 166, 118, 'Tidal Archive', { img: 'la/sargassum/sargaceiro-historico.jpg', alt: { en: 'A sargaceiro hauling a net of sargaço ashore', pt: 'Um sargaceiro a arrastar uma rede de sargaço para a praia' }, credit: { en: 'Biblioteca Municipal Manuel de Boaventura', pt: 'Biblioteca Municipal Manuel de Boaventura' }, full: { en: 'For centuries the sargaço was gathered along the sands of Apúlia, in Esposende, by the lavradores-sargaceiros — men who kept one foot in the sea and one in the field. They waded out with a graveta and a long-handled net, hauled the weed ashore, and left it to dry in the sun for three days before it was carried, together with pilado, onto the masseira fields: plots dug down towards the water table and fed by whatever the tide had given up. By royal decision the seaweed was free of any tax, which is part of why the practice took such hold here.\n\nThe harvest thinned as chemical fertiliser arrived and the masseira fields gave way. What remained moved sideways rather than disappearing: sargaço is gathered today mainly for the pharmaceutical, cosmetic and food industries, and the Sargasso Museum in Apúlia keeps the tools, the boats and the clothing of the older economy.\n\nOffshore, the same coast holds something the sargaceiros had no word for. The kelp forests of northern Portugal — largely Laminaria hyperborea and Saccorhiza polyschides — are estimated to store some 16.5 gigagrams of carbon across roughly 5,100 hectares, and to export around a third of the carbon captured each year by all of the country\'s marine plant habitats. Researchers at CIIMAR and MARE have also recorded a tropicalisation of Portuguese waters that puts those forests, and everything living in them, at risk.\n\nSo the question the tradition leaves open is not whether sargaço will be gathered, but what gathering will come to mean. A fertiliser became a commodity; a commodity could become a form of tending — the weed read as habitat and carbon store rather than yield, and the gleaning kept on as a way of paying attention to a coast that is changing faster than the calendar the sargaceiros worked to.', pt: 'Durante séculos o sargaço foi recolhido nos areais da Apúlia, em Esposende, pelos lavradores-sargaceiros — homens com um pé no mar e outro na terra. Entravam na água com uma graveta e uma rede de cabo comprido, arrastavam a alga para a praia e deixavam-na secar ao sol durante três dias, antes de ser levada, juntamente com o pilado, para os campos de masseira: courelas cavadas em direção ao lençol freático e alimentadas pelo que a maré ia entregando. Por decisão régia, o sargaço estava isento de qualquer imposto, o que ajuda a explicar a força que a prática ganhou aqui.\n\nA apanha foi diminuindo à medida que chegou o adubo químico e os campos de masseira foram cedendo. O que restou deslocou-se em vez de desaparecer: hoje o sargaço é recolhido sobretudo para as indústrias farmacêutica, cosmética e alimentar, e o Museu do Sargaço, na Apúlia, guarda as alfaias, os barcos e o vestuário dessa economia mais antiga.\n\nAo largo, a mesma costa guarda algo para que os sargaceiros não tinham palavra. As florestas de kelp do norte de Portugal — sobretudo Laminaria hyperborea e Saccorhiza polyschides — armazenarão cerca de 16,5 gigagramas de carbono em aproximadamente 5100 hectares e exportam perto de um terço do carbono captado anualmente por todos os habitats de plantas marinhas do país. Investigadores do CIIMAR e do MARE registaram também uma tropicalização das águas portuguesas que coloca em risco essas florestas e tudo o que nelas vive.\n\nA questão que a tradição deixa em aberto não é, portanto, se o sargaço continuará a ser recolhido, mas o que passará a significar recolhê-lo. Um fertilizante tornou-se mercadoria; a mercadoria pode tornar-se uma forma de cuidado — a alga lida como habitat e reservatório de carbono, e não como rendimento, e a apanha mantida como um modo de prestar atenção a uma costa que muda mais depressa do que o calendário que os sargaceiros seguiam.' }, sources: [{ href: 'https://www.visitesposende.com/en/fazer/monumentos/sargasso-museum', label: { en: 'Sargasso Museum, Esposende — the harvesting tradition, tools and masseira fields', pt: 'Museu do Sargaço, Esposende — a tradição da apanha, as alfaias e os campos de masseira' } }, { href: 'https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/', label: { en: 'CIIMAR — Marine forests in northern Portugal: allies against climate change', pt: 'CIIMAR — Florestas marinhas no norte de Portugal: aliadas contra as alterações climáticas' } }, { href: 'https://www.mare-centre.pt/en/kelp_carbon', label: { en: 'MARE — Carbon sequestration potential of kelp', pt: 'MARE — Potencial de sequestro de carbono do kelp' } }] }],
 
     // ── TOOLKIT
     [['toolkit'],               2518,  1460,  96,  82, null, null],
@@ -1021,6 +1029,18 @@
     if (content && content.img) {
       const img = document.createElement('img');
       img.src = content.img;
+      // A photograph that has not landed yet must not leave a broken or empty
+      // card: hide the image and fall back to the card's title.
+      img.addEventListener('error', () => {
+        img.style.display = 'none';
+        if (title && !card.querySelector('.card-title')) {
+          card.classList.add('card-img-missing');
+          const t2 = document.createElement('span');
+          t2.className = 'card-title';
+          onLang(() => { t2.textContent = L(title); });
+          card.appendChild(t2);
+        }
+      });
       onLang(() => { img.alt = L(content.alt) || ''; });
       img.loading = 'lazy';
       img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
@@ -1124,7 +1144,7 @@
       } else if (content && content.link) {
         window.open(content.link, '_blank', 'noopener noreferrer');
       } else if (content && content.img) {
-        openMediaPopup({ img: content.img, alt: content.alt, credit: content.credit, title }, cats[0]);
+        openMediaPopup({ img: content.img, alt: content.alt, credit: content.credit, full: content.full, sources: content.sources, title }, cats[0]);
       } else if (content && content.vid) {
         openMediaPopup({ vid: content.vid, title }, cats[0]);
       } else if (content && content.txt) {
@@ -1612,6 +1632,28 @@
         }
         body.appendChild(cap);
       }
+      if (L(content.full)) {
+        const story = document.createElement('div');
+        story.style.cssText = 'padding:0 1.2rem 1.2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;white-space:pre-line;';
+        story.textContent = L(content.full);
+        body.appendChild(story);
+      }
+      if (content.sources && content.sources.length) {
+        const box = document.createElement('div');
+        box.style.cssText = 'padding:0 1.2rem 1.6rem;';
+        const h = document.createElement('p');
+        h.style.cssText = "font-family:'Celescript',cursive;font-size:11px;letter-spacing:0.05em;color:rgba(0,0,0,0.4);margin-bottom:0.5rem;";
+        h.textContent = t('archive.sources');
+        box.appendChild(h);
+        content.sources.forEach(src => {
+          const a = document.createElement('a');
+          a.href = src.href; a.target = '_blank'; a.rel = 'noopener';
+          a.style.cssText = 'display:block;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;line-height:1.6;color:#3a3a3a;margin-bottom:0.3rem;';
+          a.textContent = '↗ ' + L(src.label);
+          box.appendChild(a);
+        });
+        body.appendChild(box);
+      }
     } else if (content.vid) {
       const vid = document.createElement('video');
       vid.src        = content.vid;
@@ -1851,6 +1893,19 @@
           fig.appendChild(cap);
         }
         mNotesBody.appendChild(fig); rendered++;
+        if (L(content.full)) {
+          const st = document.createElement('p');
+          st.className = 'm-text';
+          st.textContent = L(content.full);
+          mNotesBody.appendChild(st);
+        }
+        (content.sources || []).forEach(src => {
+          const a = document.createElement('a');
+          a.className = 'm-link'; a.href = src.href;
+          a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = '↗ ' + L(src.label);
+          mNotesBody.appendChild(a);
+        });
       } else if (content && content.vid) {
         const v = document.createElement('video');
         v.className = 'm-media'; v.src = content.vid;

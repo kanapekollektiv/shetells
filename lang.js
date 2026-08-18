@@ -15,6 +15,7 @@ const TRANSLATIONS = {
     'archive.readmore':     '(click to read more)',
     'archive.read':         'read →',
     'archive.back':         'all clusters',
+    'archive.sources':      'sources',
     'archive.placeholder':  'content being woven',
     'nav.stream':           'tune in to the stream',
 
@@ -155,6 +156,7 @@ const TRANSLATIONS = {
     'archive.readmore':     '(clique para ler mais)',
     'archive.read':         'ler →',
     'archive.back':         'todos os grupos',
+    'archive.sources':      'fontes',
     'archive.placeholder':  'conteúdo a ser tecido',
     'nav.stream':           'sintonize a transmissão',
 
