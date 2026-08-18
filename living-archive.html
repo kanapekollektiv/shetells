@@ -888,11 +888,10 @@
     [['sargassum'], 1080, 960, 300,  48, null, { credits: { en: '.credits: museum photographs — Sargasso Museum, Esposende', pt: 'Créditos: fotografias do museu — Museu do Sargaço, Esposende' }, stackBelow: true, gap: 14, mtNotice: true }],
 
     // ── SARGASSUM — images (the two museum photographs are credited above)
-    [['sargassum'], 1580,  190, 152, 104, null, { img: 'la/sargassum/shetells-48.jpg', alt: { en: 'Sargassum fronds draped over rock at low tide', pt: 'Algas de sargaço sobre a rocha na maré baixa' } }],
-    [['sargassum'], 1750,  210, 140, 104, null, { img: 'la/sargassum/IMG_5705.jpg', alt: { en: 'Bladderwrack covering the rocks along the Esposende shore', pt: 'Bodelha a cobrir as rochas na costa de Esposende' } }],
-    [['sargassum'], 1580,  310, 150, 100, null, { img: 'la/sargassum/museum-179232.jpg', alt: { en: 'Sargaceiro sculptures outside the Sargasso Museum, Esposende', pt: 'Esculturas de sargaceiros à entrada do Museu do Sargaço, Esposende' } }],
-    [['sargassum'], 1744,  330, 118, 158, null, { img: 'la/sargassum/museum-IMG_5775.jpg', alt: { en: 'Sargassum landscape protection display at the Sargasso Museum', pt: 'Exposição sobre a proteção da paisagem do sargaço no Museu do Sargaço' } }],
-    [['sargassum','hypersea'], 1584, 432, 116, 158, null, { img: 'la/sargassum/shetells-54.jpg', alt: { en: 'Glass sculpture resting on sargassum-covered rock', pt: 'Escultura de vidro pousada sobre rocha coberta de sargaço' } }],
+    [['sargassum','local'], 1580,  190, 152, 104, null, { img: 'la/sargassum/shetells-48.jpg', alt: { en: 'Sargassum fronds draped over rock at low tide', pt: 'Algas de sargaço sobre a rocha na maré baixa' } }],
+    [['sargassum','local'], 1750,  210, 140, 104, null, { img: 'la/sargassum/IMG_5705.jpg', alt: { en: 'Bladderwrack covering the rocks along the Esposende shore', pt: 'Bodelha a cobrir as rochas na costa de Esposende' } }],
+    [['sargassum','local'], 1580,  310, 150, 100, null, { img: 'la/sargassum/museum-179232.jpg', alt: { en: 'Sargaceiro sculptures outside the Sargasso Museum, Esposende', pt: 'Esculturas de sargaceiros à entrada do Museu do Sargaço, Esposende' } , credit: { en: 'Sargasso Museum, Esposende', pt: 'Museu do Sargaço, Esposende' } }],
+    [['sargassum','local'], 1744,  330, 118, 158, null, { img: 'la/sargassum/museum-IMG_5775.jpg', alt: { en: 'Sargassum landscape protection display at the Sargasso Museum', pt: 'Exposição sobre a proteção da paisagem do sargaço no Museu do Sargaço' } , credit: { en: 'Sargasso Museum, Esposende', pt: 'Museu do Sargaço, Esposende' } }],
 
     // ── EXHIBITION
     [['exhibition'],             150,  1450, 106,  80, null, null],
@@ -1125,7 +1124,7 @@
       } else if (content && content.link) {
         window.open(content.link, '_blank', 'noopener noreferrer');
       } else if (content && content.img) {
-        openMediaPopup({ img: content.img, alt: content.alt, title }, cats[0]);
+        openMediaPopup({ img: content.img, alt: content.alt, credit: content.credit, title }, cats[0]);
       } else if (content && content.vid) {
         openMediaPopup({ vid: content.vid, title }, cats[0]);
       } else if (content && content.txt) {
@@ -1258,7 +1257,7 @@
       maxX = Math.max(maxX, x + w);
       maxY = Math.max(maxY, y + h);
     });
-    return { cx: (minX + maxX) / 2, cy: (minY + maxY) / 2,
+    return { cx: (minX + maxX) / 2, cy: (minY + maxY) / 2, minY,
              w: maxX - minX, h: maxY - minY };
   }
 
@@ -1295,11 +1294,15 @@
     const targetScale = Math.max(fit, MIN_READ);
     // Center within the usable area (right of legend)
     const centerX = legendW + usableW / 2;
-    flyTo(
-      centerX - bounds.cx * targetScale,
-      vh / 2 - bounds.cy * targetScale,
-      targetScale
-    );
+    // A cluster taller than the viewport should start at its top — its header
+    // and opening cards — and be scrolled down through, rather than being
+    // centred so that both ends are cut off.
+    const LABEL_ROOM = 70;
+    const fitsVertically = bounds.h * targetScale <= vh;
+    const ty = fitsVertically
+      ? vh / 2 - bounds.cy * targetScale
+      : LABEL_ROOM - (bounds.minY - 54) * targetScale;
+    flyTo(centerX - bounds.cx * targetScale, ty, targetScale);
   }
 
   /* Width reserved on the left for the legend panel, so the overview and
@@ -1595,10 +1598,18 @@
       img.style.cssText = 'max-width:100%;max-height:68vh;object-fit:contain;display:block;border-radius:4px;';
       wrap.appendChild(img);
       body.appendChild(wrap);
-      if (content.title) {
+      const capText = L(content.title) || L(content.alt);
+      const credText = L(content.credit);
+      if (capText || credText) {
         const cap = document.createElement('p');
-        cap.style.cssText = 'padding:0.8rem 1.2rem 1rem;font-family:\'NaNTresorM\',serif;font-weight:200;font-size:14px;color:#555;';
-        cap.textContent = content.title;
+        cap.style.cssText = 'padding:0.8rem 1.2rem 1rem;font-family:system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.6;color:#555;';
+        cap.textContent = capText || '';
+        if (credText) {
+          const cr = document.createElement('span');
+          cr.style.cssText = 'display:block;margin-top:0.25rem;font-size:11.5px;color:#8a8a8a;';
+          cr.textContent = '© ' + credText;
+          cap.appendChild(cr);
+        }
         body.appendChild(cap);
       }
     } else if (content.vid) {
@@ -1827,9 +1838,16 @@
         } else {
           fig.appendChild(img);
         }
-        if (L(content.alt)) {
+        if (L(content.alt) || L(content.credit)) {
           const cap = document.createElement('figcaption');
-          cap.className = 'm-caption'; cap.textContent = L(content.alt);
+          cap.className = 'm-caption';
+          cap.textContent = L(content.alt) || '';
+          if (L(content.credit)) {
+            const cr = document.createElement('span');
+            cr.style.cssText = 'display:block;opacity:0.75;';
+            cr.textContent = '© ' + L(content.credit);
+            cap.appendChild(cr);
+          }
           fig.appendChild(cap);
         }
         mNotesBody.appendChild(fig); rendered++;
