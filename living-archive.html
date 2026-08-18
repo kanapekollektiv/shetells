@@ -401,6 +401,26 @@
       color: rgba(0,0,0,0.4); white-space: nowrap;
     }
 
+    .gal-intro {
+      padding: 0.2rem 1.2rem 1rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 15px; line-height: 1.78; color: #333; white-space: pre-line;
+    }
+    .gal-entry { padding: 0 1.2rem 1.2rem; }
+    .gal-entry h3 {
+      font-family: 'Celescript', cursive; font-size: 14px;
+      letter-spacing: 0.05em; color: #111; margin: 0 0 0.35rem;
+    }
+    .gal-entry p {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px; line-height: 1.72; color: #444;
+      margin: 0 0 0.5rem; white-space: pre-line;
+    }
+    .gal-entry a {
+      display: block; font-family: system-ui, -apple-system, sans-serif;
+      font-size: 12.5px; line-height: 1.6; color: #3a3a3a; margin-bottom: 0.25rem;
+    }
+
     /* ── Text preview card ── */
     .card-text-box {
       border-radius: 12px !important;
@@ -830,7 +850,7 @@
     sargassum:   [1485,  599],
     local:       [2430,  438],
     speculative: [3141,  600],
-    future:      [3928,  510],
+    future:      [3928,  330],
     workshop:    [ 936, 1795],
     drawings:    [1579, 1472],
     data:        [2147, 1862],
@@ -992,16 +1012,10 @@
     [['toolkit', 'data'],        2872,  1496, 102,  78, 'Methods & Measures', null],
 
     // ── FUTURE PRODUCT
-    // ── FUTURE PRODUCTS — text column
-    [['future'], 3522,  210, 300, 200, null, { txt: { en: 'We sell products that do not exist. Each one takes something the coast is actually losing and puts it in a jar with a label and a promise.\n\nThey are speculative, and they are specific. Every one of them starts from something we met in Esposende: a shell we could not find, a kelp forest under warming water, a dune holding on under litter, the oxygen the algae make.', pt: 'Vendemos produtos que não existem. Cada um pega em algo que a costa está mesmo a perder e coloca-o num frasco, com um rótulo e uma promessa.\n\nSão especulativos e são concretos. Todos partem de algo que encontrámos em Esposende: uma concha que não conseguimos achar, uma floresta de algas sob água mais quente, uma duna a aguentar-se sob o lixo, o oxigénio que as algas produzem.' }, full: { en: 'We sell products that do not exist. Each one takes something the coast is actually losing and puts it in a jar with a label and a promise.\n\nThey are speculative, and they are specific. Every one of them starts from something we met in Esposende: a shell we could not find, a kelp forest under warming water, a dune holding on under litter, the oxygen the algae make.', pt: 'Vendemos produtos que não existem. Cada um pega em algo que a costa está mesmo a perder e coloca-o num frasco, com um rótulo e uma promessa.\n\nSão especulativos e são concretos. Todos partem de algo que encontrámos em Esposende: uma concha que não conseguimos achar, uma floresta de algas sob água mais quente, uma duna a aguentar-se sob o lixo, o oxigénio que as algas produzem.' } }],
-    [['future','sargassum'], 3522, 320, 300, 150, 'Shell Cream', { img: 'la/future/products-6.jpg', alt: { en: 'Shell Cream, a shell dissolving into cream in a corked vial', pt: 'Shell Cream, uma concha a dissolver-se em creme num frasco com rolha' }, full: { en: 'As the ocean takes up more carbon its pH drops, and the animals that build shells lose the carbonate they need to build them. Shells grow thinner. Some begin to dissolve.\n\nShell Cream is sold as skincare for that. Outlast the acid era. It promises to give back the ability to make a shell, which is exactly what acidification takes away.\n\nWe went looking for shells on this coast and came back with almost nothing.', pt: 'À medida que o oceano absorve mais carbono, o seu pH desce, e os animais que constroem conchas perdem o carbonato de que precisam para as construir. As conchas ficam mais finas. Algumas começam a dissolver-se.\n\nO Shell Cream é vendido como cosmética para isso. Sobreviva à era ácida. Promete devolver a capacidade de fazer uma concha, que é exatamente o que a acidificação retira.\n\nFomos à procura de conchas nesta costa e voltámos quase sem nada.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/', label: { en: 'Ocean acidification and calcifying marine life', pt: 'Acidificação dos oceanos e vida marinha calcificante' } }] , stackBelow: true, gap: 16 }],
-    [['future','sargassum'], 3522, 490, 300, 150, 'Acid Tabs', { img: 'la/future/products-9.jpg', alt: { en: 'Acid Tabs, white tablets in a corked vial', pt: 'Acid Tabs, pastilhas brancas num frasco com rolha' }, full: { en: 'Acid Tabs come at the same problem from the other side. The long record of falling pH in the Iberian upwelling system covers this coast, and the north of Portugal, Esposende included, is the most exposed part of it.\n\nMarina told us acidification is a serious threat to the sargassum and the kelp forests here, and pointed us towards the blue carbon research to understand what is at stake as those forests degrade.\n\nSo we packaged the acid as a supplement. Keep your acid under control.', pt: 'Os Acid Tabs abordam o mesmo problema pelo outro lado. O longo registo da descida do pH no sistema de afloramento ibérico cobre esta costa, e o norte de Portugal, incluindo Esposende, é a parte mais exposta.\n\nA Marina disse-nos que a acidificação é uma ameaça séria ao sargaço e às florestas de algas daqui, e encaminhou-nos para a investigação sobre carbono azul para perceber o que está em jogo à medida que essas florestas se degradam.\n\nPor isso embalámos o ácido como suplemento. Mantenha o seu ácido sob controlo.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://essd.copernicus.org/articles/12/2647/2020/', label: { en: 'The pH record of the Iberian upwelling system', pt: 'O registo de pH do sistema de afloramento ibérico' } }] , stackBelow: true, gap: 16 }],
-    [['future'], 3522, 660, 300, 150, 'Sexy Dunes', { img: 'la/future/products-7.jpg', alt: { en: 'Sexy Dunes, a vial of dune sand', pt: 'Sexy Dunes, um frasco de areia de duna' }, full: { en: 'The northern Portuguese coast carries some of the highest erosion and flooding risk in the country, and the dunes take it alongside litter and everything else we leave on them. Plastic left on the sand becomes microplastic in the water.\n\nSexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered. Dunes do not lie.', pt: 'A costa norte portuguesa apresenta alguns dos maiores riscos de erosão e de galgamento do país, e as dunas suportam-nos a par do lixo e de tudo o resto que lá deixamos. O plástico deixado na areia torna-se microplástico na água.\n\nO Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de receber lixo. As dunas não mentem.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://www.mdpi.com/2071-1050/16/20/8891', label: { en: 'Coastal erosion and flooding risk on the Portuguese coast', pt: 'Erosão costeira e risco de galgamento na costa portuguesa' } }, { href: 'https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2', label: { en: 'Litter and pressures on the dune environment', pt: 'Lixo e pressões sobre o ambiente dunar' } }] , stackBelow: true, gap: 16 }],
-    [['future','sargassum'], 3872, 210, 300, 150, 'Deluxe O2', { img: 'la/future/products-8.jpg', alt: { en: 'Deluxe O2, an empty corked vial of oxygen', pt: 'Deluxe O2, um frasco vazio de oxigénio com rolha' }, full: { en: 'Sargassum and the marine algae make oxygen by photosynthesis, the other half of the carbon story. That cycle is real, and warming water makes it less steady: it shifts, and in dense bloom conditions it can run the other way and strip oxygen out.\n\nDeluxe O2 bottles that specific oxygen and sells it back. Blue oxygen, our own term, next to the blue carbon everyone already trades in.', pt: 'O sargaço e as algas marinhas produzem oxigénio por fotossíntese, a outra metade da história do carbono. Esse ciclo é real, e a água mais quente torna-o menos estável: altera-se e, em condições de floração densa, pode inverter-se e retirar oxigénio.\n\nO Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing', label: { en: 'Blue carbon reading, shared by Marina', pt: 'Leitura sobre carbono azul, partilhada pela Marina' } }] }],
-    [['future','sargassum'], 3872, 380, 300, 150, 'Sargassum City', { img: 'la/future/products-5.jpg', alt: { en: 'Sargassum City, sargassum suspended in liquid in a corked jar', pt: 'Sargassum City, sargaço suspenso em líquido num frasco com rolha' }, full: { en: 'Sargassum is being used more and likely to be commercialised further, as a resource, for oxygen, for material, for the pharmacy shelf. It is also, first, a habitat that marine life needs in order to exist at all.\n\nSargassum City takes the commodification to its end and builds a whole speculative economy on harvesting it. The joke is that the weed was already a city, with residents, before anyone thought to sell it.', pt: 'O sargaço é cada vez mais utilizado e provavelmente será mais comercializado, como recurso, para oxigénio, para material, para a prateleira da farmácia. É também, antes disso, um habitat de que a vida marinha precisa para simplesmente existir.\n\nA Sargassum City leva a mercantilização até ao fim e constrói uma economia especulativa inteira sobre a sua apanha. A piada é que a alga já era uma cidade, com habitantes, antes de alguém pensar em vendê-la.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing', label: { en: 'Blue carbon reading, shared by Marina', pt: 'Leitura sobre carbono azul, partilhada pela Marina' } }, { href: 'https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing', label: { en: 'Sargassum as habitat, shared by Marina', pt: 'O sargaço como habitat, partilhado pela Marina' } }] , stackBelow: true, gap: 16 }],
+    // FUTURE PRODUCTS: one card. The carousel carries every product and the
+    // documentation, and the writing sits underneath it in the same card.
+    [['future','sargassum'], 3522, 210, 340, 240, { en: 'The range', pt: 'A gama' }, { gallery: [{ src: 'la/future/products-6.jpg', alt: { en: 'Shell Cream, a shell dissolving into cream', pt: 'Shell Cream, uma concha a dissolver-se em creme' } }, { src: 'la/future/products-9.jpg', alt: { en: 'Acid Tabs, white tablets in a corked vial', pt: 'Acid Tabs, pastilhas brancas num frasco com rolha' } }, { src: 'la/future/products-7.jpg', alt: { en: 'Sexy Dunes, a vial of dune sand', pt: 'Sexy Dunes, um frasco de areia de duna' } }, { src: 'la/future/products-8.jpg', alt: { en: 'Deluxe O2, a corked vial of oxygen', pt: 'Deluxe O2, um frasco de oxigénio com rolha' } }, { src: 'la/future/products-5.jpg', alt: { en: 'Sargassum City, sargaço suspended in liquid', pt: 'Sargassum City, sargaço suspenso em líquido' } }, { src: 'la/future/products.jpg', alt: { en: 'The five products lined up', pt: 'Os cinco produtos alinhados' } }, { src: 'la/future/products-3.jpg', alt: { en: 'Shell Cream in front of the range', pt: 'O Shell Cream à frente da gama' } }, { src: 'la/future/products-4.jpg', alt: { en: 'Acid Tabs against the window', pt: 'Os Acid Tabs contra a janela' } }, { src: 'la/future/prints.mp4', alt: { en: 'The printed flyers for the range', pt: 'Os folhetos impressos da gama' } }, { src: 'la/future/dune-a.jpg', alt: { en: 'The dune built in a vitrine, installation view', pt: 'A duna construída numa vitrina, vista da instalação' } }, { src: 'la/future/dune-b.jpg', alt: { en: 'The Sexy Dunes flyer in front of the dune', pt: 'O folheto do Sexy Dunes à frente da duna' } }], full: { en: 'We sell products that do not exist. Each one takes something the coast is actually losing and puts it in a jar with a label and a promise.\n\nThey are speculative, and they are specific. Every one starts from something we met in Esposende: a shell we could not find, a kelp forest under warming water, a dune holding on under litter, the oxygen the algae make.', pt: 'Vendemos produtos que não existem. Cada um pega em algo que a costa está mesmo a perder e coloca-o num frasco, com um rótulo e uma promessa.\n\nSão especulativos e são concretos. Todos partem de algo que encontrámos em Esposende: uma concha que não conseguimos achar, uma floresta de algas sob água mais quente, uma duna a aguentar-se sob o lixo, o oxigénio que as algas produzem.' }, entries: [{ title: { en: 'Shell Cream', pt: 'Shell Cream' }, text: { en: 'As the ocean takes up more carbon its pH drops, and the animals that build shells lose the carbonate they need to build them. Shells grow thinner, and some begin to dissolve. Shell Cream is sold as skincare for exactly that. Outlast the acid era. We went looking for shells on this coast and came back with almost nothing.', pt: 'À medida que o oceano absorve mais carbono, o seu pH desce, e os animais que constroem conchas perdem o carbonato de que precisam para as construir. As conchas ficam mais finas e algumas começam a dissolver-se. O Shell Cream é vendido como cosmética para isso mesmo. Sobreviva à era ácida. Fomos à procura de conchas nesta costa e voltámos quase sem nada.' }, sources: [{ href: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/', label: { en: 'Ocean acidification and calcifying marine life', pt: 'Acidificação dos oceanos e vida marinha calcificante' } }] }, { title: { en: 'Acid Tabs', pt: 'Acid Tabs' }, text: { en: 'The same problem from the other side. The long record of falling pH in the Iberian upwelling system covers this coast, and the north of Portugal, Esposende included, is its most exposed part. Marina told us acidification is a serious threat to the sargaço and the kelp forests here, and pointed us to the blue carbon research to understand what is at stake as those forests degrade. So we packaged the acid as a supplement.', pt: 'O mesmo problema pelo outro lado. O longo registo da descida do pH no sistema de afloramento ibérico cobre esta costa, e o norte de Portugal, incluindo Esposende, é a sua parte mais exposta. A Marina disse-nos que a acidificação é uma ameaça séria ao sargaço e às florestas de algas daqui, e encaminhou-nos para a investigação sobre carbono azul para percebermos o que está em jogo à medida que essas florestas se degradam. Por isso embalámos o ácido como suplemento.' }, sources: [{ href: 'https://essd.copernicus.org/articles/12/2647/2020/', label: { en: 'The pH record of the Iberian upwelling system', pt: 'O registo de pH do sistema de afloramento ibérico' } }] }, { title: { en: 'Sexy Dunes', pt: 'Sexy Dunes' }, text: { en: 'The northern Portuguese coast carries some of the highest erosion and flooding risk in the country, and the dunes take it alongside litter and everything else we leave on them. Plastic left on the sand becomes microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.', pt: 'A costa norte portuguesa apresenta alguns dos maiores riscos de erosão e de galgamento do país, e as dunas suportam-nos a par do lixo e de tudo o resto que lá deixamos. O plástico deixado na areia torna-se microplástico na água. O Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de receber lixo.' }, sources: [{ href: 'https://www.mdpi.com/2071-1050/16/20/8891', label: { en: 'Coastal erosion and flooding risk on the Portuguese coast', pt: 'Erosão costeira e risco de galgamento na costa portuguesa' } }, { href: 'https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2', label: { en: 'Litter and pressures on the dune environment', pt: 'Lixo e pressões sobre o ambiente dunar' } }] }, { title: { en: 'Deluxe O2', pt: 'Deluxe O2' }, text: { en: 'Sargaço and the marine algae make oxygen by photosynthesis, the other half of the carbon story. That cycle is real, and warming water makes it less steady: it shifts, and in dense bloom conditions it can run the other way and strip oxygen out. Deluxe O2 bottles that specific oxygen and sells it back. Blue oxygen, our own term, next to the blue carbon everyone already trades in.', pt: 'O sargaço e as algas marinhas produzem oxigénio por fotossíntese, a outra metade da história do carbono. Esse ciclo é real, e a água mais quente torna-o menos estável: altera-se e, em condições de floração densa, pode inverter-se e retirar oxigénio. O Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.' }, sources: [{ href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing', label: { en: 'Blue carbon reading', pt: 'Leitura sobre carbono azul' } }] }, { title: { en: 'Sargassum City', pt: 'Sargassum City' }, text: { en: 'Sargaço is being used more and will likely be commercialised further, as a resource, for oxygen, for material, for the pharmacy shelf. It is also, first, a habitat that marine life needs in order to exist at all. Sargassum City takes the commodification to its end and builds a whole speculative economy on harvesting it. The joke is that the weed was already a city, with residents, before anyone thought to sell it.', pt: 'O sargaço é cada vez mais utilizado e será provavelmente mais comercializado, como recurso, para oxigénio, para material, para a prateleira da farmácia. É também, antes disso, um habitat de que a vida marinha precisa para simplesmente existir. A Sargassum City leva a mercantilização até ao fim e constrói uma economia especulativa inteira sobre a sua apanha. A piada é que a alga já era uma cidade, com habitantes, antes de alguém pensar em vendê-la.' }, sources: [{ href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing', label: { en: 'Blue carbon reading', pt: 'Leitura sobre carbono azul' } }, { href: 'https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing', label: { en: 'Sargassum as habitat', pt: 'O sargaço como habitat' } }] }], note: { en: 'Text written based on the sources above and edited with ML.', pt: 'Texto escrito com base nas fontes acima e editado com ML. Tradução automática.' } }],
 
-    // ── FUTURE PRODUCTS — documentation, as a carousel
-    [['future','exhibition'], 3872, 550, 300, 200, 'The range', { gallery: [{ src: 'la/future/products.jpg', alt: { en: 'The five products lined up, Sargassum City in front', pt: 'Os cinco produtos alinhados, com a Sargassum City à frente' } }, { src: 'la/future/products-3.jpg', alt: { en: 'Shell Cream in front of the rest of the range', pt: 'O Shell Cream à frente do resto da gama' } }, { src: 'la/future/products-4.jpg', alt: { en: 'Acid Tabs against the window', pt: 'Os Acid Tabs contra a janela' } }, { src: 'la/future/products-10.jpg', alt: { en: 'The dune built in a vitrine, with a paper umbrella', pt: 'A duna construída numa vitrina, com um chapéu de papel' } }, { src: 'la/future/products-11.jpg', alt: { en: 'The dune vitrine seen from the side', pt: 'A vitrina da duna vista de lado' } }, { src: 'la/future/products-12.jpg', alt: { en: 'Marram grass and a pink umbrella in the sand', pt: 'Estorno e um chapéu cor de rosa na areia' } }, { src: 'la/future/products-2.jpg', alt: { en: 'The Sexy Dunes flyer', pt: 'O folheto do Sexy Dunes' } }] , stackBelow: true, gap: 16 }],
     [['future'],              4224, 320, 110,  82, 'Non-Human Voices', null],
 
     // ── CROSS: Non-Human × Sargassum
@@ -1096,16 +1110,22 @@
       card.classList.add('card-gallery');
       const gimg = document.createElement('img');
       gimg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-      gimg.src = content.gallery[0].src;
-      card.appendChild(gimg);
+      const gvid = document.createElement('video');
+      gvid.muted = true; gvid.loop = true; gvid.playsInline = true; gvid.preload = 'metadata';
+      gvid.style.cssText = 'width:100%;height:100%;object-fit:cover;display:none;';
+      card.appendChild(gimg); card.appendChild(gvid);
       const dots = document.createElement('div');
       dots.className = 'gal-dots';
       content.gallery.forEach(() => dots.appendChild(document.createElement('span')));
       card.appendChild(dots);
       let gi = 0;
       const paint = () => {
-        gimg.src = content.gallery[gi].src;
-        gimg.alt = L(content.gallery[gi].alt) || '';
+        const g = content.gallery[gi];
+        const isVid = /\.mp4$/.test(g.src);
+        gimg.style.display = isVid ? 'none' : 'block';
+        gvid.style.display = isVid ? 'block' : 'none';
+        if (isVid) { if (gvid.getAttribute('src') !== g.src) gvid.src = g.src; gvid.play().catch(() => {}); }
+        else { gvid.pause(); gimg.src = g.src; gimg.alt = L(g.alt) || ''; }
         [...dots.children].forEach((d, k) => d.classList.toggle('on', k === gi));
       };
       onLang(paint);
@@ -1701,7 +1721,10 @@
     const stage = document.createElement('div');
     stage.className = 'gal-stage';
     const img = document.createElement('img');
-    stage.appendChild(img);
+    const vid = document.createElement('video');
+    vid.controls = true; vid.loop = true; vid.muted = true; vid.playsInline = true;
+    vid.style.cssText = 'max-width:100%;max-height:66vh;display:none;border-radius:4px;';
+    stage.appendChild(img); stage.appendChild(vid);
     const prev = document.createElement('button');
     prev.className = 'gal-nav gal-prev'; prev.type = 'button'; prev.textContent = '‹';
     const next = document.createElement('button');
@@ -1713,7 +1736,11 @@
     count.className = 'gal-count';
     const draw = () => {
       const g = content.gallery[i];
-      img.src = g.src; img.alt = L(g.alt) || '';
+      const isVid = /\.mp4$/.test(g.src);
+      img.style.display = isVid ? 'none' : 'block';
+      vid.style.display = isVid ? 'block' : 'none';
+      if (isVid) { if (vid.getAttribute('src') !== g.src) vid.src = g.src; vid.play().catch(() => {}); }
+      else { vid.pause(); img.src = g.src; img.alt = L(g.alt) || ''; }
       cap.textContent = L(g.alt) || '';
       count.textContent = (i + 1) + ' / ' + content.gallery.length;
     };
@@ -1725,6 +1752,36 @@
     bar.className = 'gal-bar';
     bar.appendChild(cap); bar.appendChild(count);
     body.appendChild(bar);
+    if (L(content.full)) {
+      const intro = document.createElement('div');
+      intro.className = 'gal-intro';
+      intro.textContent = L(content.full);
+      body.appendChild(intro);
+    }
+    (content.entries || []).forEach(en => {
+      const sec = document.createElement('div');
+      sec.className = 'gal-entry';
+      const h = document.createElement('h3');
+      h.textContent = L(en.title);
+      sec.appendChild(h);
+      const t = document.createElement('p');
+      t.textContent = L(en.text);
+      sec.appendChild(t);
+      (en.sources || []).forEach(sr => {
+        const a = document.createElement('a');
+        a.href = sr.href; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = '↗ ' + L(sr.label);
+        sec.appendChild(a);
+      });
+      body.appendChild(sec);
+    });
+    if (L(content.note)) {
+      const nt = document.createElement('p');
+      nt.className = 'dp-mt-notice';
+      nt.style.cssText = 'padding:0 1.2rem 1.6rem;margin:0;';
+      nt.textContent = L(content.note);
+      body.appendChild(nt);
+    }
     overlay.classList.add('active');
     body.scrollTop = 0;
   }
