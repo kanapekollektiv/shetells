@@ -144,8 +144,8 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4300px;
-      height: 2800px;
+      width: 4100px;
+      height: 2400px;
       transform-origin: 0 0;
       will-change: transform;
       -webkit-font-smoothing: antialiased;
@@ -676,7 +676,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4300" height="2800"
+      <svg id="linesSvg" width="4100" height="2400"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -753,31 +753,29 @@
   const CATS = [
     { key: 'hypersea',    label: { en: 'Hypersea',            pt: 'Hypersea' },              color: '#9CB2FF' },
     { key: 'sargassum',   label: { en: 'Sargassum',           pt: 'Sargaço' },               color: '#00652E' },
-    { key: 'speculative', label: { en: 'Speculative Futures', pt: 'Futuros Especulativos' }, color: '#FF6EE6' },
-    { key: 'data',        label: { en: 'Data',                pt: 'Dados' },                 color: '#32BE3A' },
-    { key: 'workshop',    label: { en: 'Workshops',           pt: 'Oficinas' },              color: '#CCDE07' },
-    { key: 'toolkit',     label: { en: 'Toolkit',             pt: 'Kit de Ferramentas' },    color: '#CB561D' },
-    { key: 'future',      label: { en: 'Future Products',     pt: 'Produtos Futuros' },      color: '#FF5E33' },
-    { key: 'drawings',    label: { en: 'Drawings',            pt: 'Desenhos' },              color: '#92CEF8' },
-    { key: 'exhibition',  label: { en: 'Exhibition',          pt: 'Exposição' },             color: '#5B2915' },
     { key: 'local',       label: { en: 'Local Stories',       pt: 'Histórias Locais' },      color: '#9861FF' },
-    { key: 'nonhuman',    label: { en: 'Non Human',           pt: 'Não Humano' },            color: '#4B06F7' },
+    { key: 'speculative', label: { en: 'Speculative Futures', pt: 'Futuros Especulativos' }, color: '#FF6EE6' },
+    { key: 'future',      label: { en: 'Future Products',     pt: 'Produtos Futuros' },      color: '#FF5E33' },
+    { key: 'workshop',    label: { en: 'Workshops',           pt: 'Oficinas' },              color: '#CCDE07' },
+    { key: 'drawings',    label: { en: 'Drawings',            pt: 'Desenhos' },              color: '#92CEF8' },
+    { key: 'data',        label: { en: 'Data',                pt: 'Dados' },                 color: '#32BE3A' },
+    { key: 'toolkit',     label: { en: 'Toolkit',             pt: 'Kit de Ferramentas' },    color: '#CB561D' },
+    { key: 'exhibition',  label: { en: 'Exhibition',          pt: 'Exposição' },             color: '#5B2915' },
   ];
   const CAT_MAP = Object.fromEntries(CATS.map(c => [c.key, c]));
 
   /* ── Cluster center coordinates for drawing connection lines ── */
   const CENTERS = {
     hypersea:    [ 510,  504],
-    local:       [1458,  260],
-    workshop:    [2686,  297],
-    drawings:    [3797,  294],
-    speculative: [2621, 1270],
-    sargassum:   [ 352, 1226],
-    exhibition:  [1470, 1261],
-    toolkit:     [2678, 2177],
-    data:        [3761, 1254],
-    future:      [ 305, 2173],
-    nonhuman:    [1652, 2250],
+    sargassum:   [1282,  506],
+    local:       [1852,  290],
+    speculative: [2391,  600],
+    future:      [3299,  400],
+    workshop:    [ 936, 1907],
+    drawings:    [1579, 1584],
+    data:        [2147, 1974],
+    toolkit:     [2746, 1647],
+    exhibition:  [ 320, 1661],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -791,10 +789,10 @@
   const CONNECTIONS = [
     // ── Blue connections (water / knowledge / ocean)
     { from: 'hypersea',    to: 'sargassum',   color: '#0046FF', bend: -0.45 },
-    { from: 'sargassum',   to: 'nonhuman',    color: '#0046FF', bend:  0.38 },
+    { from: 'sargassum',   to: 'future',    color: '#0046FF', bend:  0.38 },
     { from: 'hypersea',    to: 'local',       color: '#0046FF', bend: -0.30 },
     { from: 'data',        to: 'speculative', color: '#0046FF', bend: -0.35 },
-    { from: 'nonhuman',    to: 'data',        color: '#0046FF', bend:  0.40 },
+    { from: 'future',    to: 'data',        color: '#0046FF', bend:  0.40 },
     { from: 'sargassum',   to: 'exhibition',  color: '#0046FF', bend:  0.28 },
     { from: 'hypersea',    to: 'speculative', color: '#0046FF', bend: -0.18 }, // long sweep
 
@@ -809,7 +807,7 @@
     // ── Cultural connections (purple curves, using blue as line)
     { from: 'local',       to: 'exhibition',  color: '#0046FF', bend:  0.32 },
     { from: 'exhibition',  to: 'drawings',    color: '#6e00b0', bend: -0.30 },
-    { from: 'local',       to: 'nonhuman',    color: '#6e00b0', bend:  0.38 },
+    { from: 'local',       to: 'future',    color: '#6e00b0', bend:  0.38 },
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -822,107 +820,107 @@
     [['hypersea'], 272, 197, 422, 34, null, { link: 'https://www.researchgate.net/publication/335701988_The_ocean_in_excess_Towards_a_more-than-wet_ontology', label: 'The ocean in excess: Towards a more-than-wet ontology →' }],
 
     // ── HYPERSEA — book cover + link pill below
-    [['hypersea','local'], 272, 262, 125, 168, null, { img: 'la/hypersea/book.jpg', alt: 'Hypersea: Life on Land', link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', mWidth: 165 }],
+    [['hypersea', 'local'], 272, 262, 125, 168, null, { img: 'la/hypersea/book.jpg', alt: 'Hypersea: Life on Land', link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', mWidth: 165 }],
     [['hypersea'], 272, 455, 172,  34, null, { link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', label: { en: 'Link to the Book →', pt: 'Link para o livro →' } }],
 
     // ── HYPERSEA — intro text card (right of book, clear gap)
     [['hypersea'], 562, 264, 308, 272, null, { txt: { en: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…', pt: 'Temos vindo a utilizar o conceito «Hypersea», da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como pontos de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido conjuntivo que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas e o nosso percurso até ao Hypersea' }, full: { en: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…', pt: 'Temos vindo a utilizar o conceito «Hypersea», da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como pontos de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido conjuntivo que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas e o nosso percurso até ao Hypersea' } }],
 
     // ── HYPERSEA — glass text card (below book, spanning bottom-left)
-    [['hypersea','sargassum'], 150, 504, 300, 248, null, { txt: { en: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum.', pt: 'Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto do Hypersea, um ponto de memória. A areia já é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto do Hypersea: a matéria do mar muda de estado, tornando-se um recipiente capaz de conter gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço.' }, full: { en: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.', pt: 'Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto do Hypersea, um ponto de memória. A areia já é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto do Hypersea: a matéria do mar muda de estado, tornando-se um recipiente capaz de conter gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço. A escultura torna-se uma massa de água sob outra forma, um lugar onde o oceano é recordado em vez de extraído.' } }],
+    [['hypersea', 'sargassum'], 150, 504, 300, 248, null, { txt: { en: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum.', pt: 'Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto do Hypersea, um ponto de memória. A areia já é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto do Hypersea: a matéria do mar muda de estado, tornando-se um recipiente capaz de conter gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço.' }, full: { en: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.', pt: 'Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto do Hypersea, um ponto de memória. A areia já é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto do Hypersea: a matéria do mar muda de estado, tornando-se um recipiente capaz de conter gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço. A escultura torna-se uma massa de água sob outra forma, um lugar onde o oceano é recordado em vez de extraído.' } }],
 
     // ── HYPERSEA — credits
-    [['hypersea'], 150, 695, 300, 48, null, { credits: { en: '.credits: glass blown by @berlinglassworks and amazing @vivianestroede', pt: 'Créditos: vidro soprado por @berlinglassworks e pela incrível @vivianestroede' }, stackBelow: true, gap: 6, mtNotice: true }],
+    [['hypersea'], 150, 695, 300, 48, null, { credits: { en: '.credits: glass blown by @berlinglassworks and @vivianestroede', pt: 'Créditos: vidro soprado por @berlinglassworks e @vivianestroede' }, stackBelow: true, gap: 6, mtNotice: true }],
 
     // ── HYPERSEA — photos (scattered collage)
-    [['hypersea','sargassum'],  596, 470, 112, 152, null, { img: 'la/hypersea/dunes.jpg',    alt: 'Esposende dunes' }],
-    [['hypersea','workshop'],   470, 478, 132, 106, null, { img: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' }],
-    [['hypersea','workshop'],   470, 616, 112, 106, null, { img: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel' }],
-    [['hypersea','workshop'],   730, 494, 132, 106, null, { img: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere' }],
-    [['hypersea','sargassum'],  470, 752, 112, 106, null, { img: 'la/hypersea/IMG_7465.jpg', alt: 'Coastal landscape' }],
+    [['hypersea', 'sargassum'],  596, 470, 112, 152, null, { img: 'la/hypersea/dunes.jpg',    alt: 'Esposende dunes' }],
+    [['hypersea', 'workshop'],   470, 478, 132, 106, null, { img: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' }],
+    [['hypersea', 'workshop'],   470, 616, 112, 106, null, { img: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel' }],
+    [['hypersea', 'workshop'],   730, 494, 132, 106, null, { img: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere' }],
+    [['hypersea', 'sargassum'],  470, 752, 112, 106, null, { img: 'la/hypersea/IMG_7465.jpg', alt: 'Coastal landscape' }],
 
     // ── HYPERSEA — videos (lazy-play)
-    [['hypersea','workshop'],   700, 636, 132, 96, null, { vid: 'la/hypersea/glass1.mp4' }],
-    [['hypersea','workshop'],   596, 762, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
+    [['hypersea', 'workshop'],   700, 636, 132, 96, null, { vid: 'la/hypersea/glass1.mp4' }],
+    [['hypersea', 'workshop'],   596, 762, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
 
     // ── LOCAL STORIES
-    [['local'],                  1300,  210, 100,  76, null, null],
-    [['local'],                  1440,  150,  82, 112, null, null],
-    [['local'],                 1510,  290, 106,  80, null, null],
+    [['local'],                  1694,  240, 100,  76, null, null],
+    [['local'],                  1834,  180,  82, 112, null, null],
+    [['local'],                 1904,  320, 106,  80, null, null],
 
     // ── CROSS: Hypersea × Local Stories
-    [['hypersea','local'],       596,  648,  88,  64, 'Field Notes', null],
+    [['hypersea', 'local'],       596,  648,  88,  64, 'Field Notes', null],
 
     // ── WORKSHOP
-    [['workshop'],              2450,  198,  96,  92, null, null],
-    [['workshop'],              2586,  150, 116,  76, null, null],
-    [['workshop'],              2676,  312,  90,  70, null, null],
-    [['workshop'],              2526,  362, 100,  82, null, null],
-    [['workshop'],              2464,  240, 108,  80, 'Workshop Archive', null],
+    [['workshop'],              700,  1808,  96,  92, null, null],
+    [['workshop'],              836,  1760, 116,  76, null, null],
+    [['workshop'],              926,  1922,  90,  70, null, null],
+    [['workshop'],              776,  1972, 100,  82, null, null],
+    [['workshop'],              714,  1850, 108,  80, 'Workshop Archive', null],
 
     // ── DRAWINGS
-    [['drawings'],              3600,  212,  86, 112, null, null],
-    [['drawings'],              3728,  150, 106,  80, null, null],
-    [['drawings'],              3794,  318,  96,  82, null, null],
-    [['drawings'],              3636,  368,  80,  70, null, null],
+    [['drawings'],              1382,  1502,  86, 112, null, null],
+    [['drawings'],              1510,  1440, 106,  80, null, null],
+    [['drawings'],              1576,  1608,  96,  82, null, null],
+    [['drawings'],              1418,  1658,  80,  70, null, null],
 
     // ── CROSS: Workshop × Drawings
-    [['workshop','drawings'],   2830,  222,  92,  78, 'Making Session', null],
+    [['workshop', 'drawings'],   1080,  1832,  92,  78, 'Making Session', null],
 
     // ── SPECULATIVE FUTURES
-    [['speculative'],           2450,  1166, 106,  82, null, null],
-    [['speculative'],           2596,  1100,  86, 116, null, null],
-    [['speculative'],           2676,  1292, 116,  78, null, null],
-    [['speculative'],           2514,  1368,  96,  72, null, null],
-    [['speculative'],           2520,  1230, 118,  84, 'Future Esposende', null],
+    [['speculative'],           2220,  496, 106,  82, null, null],
+    [['speculative'],           2366,  430,  86, 116, null, null],
+    [['speculative'],           2446,  622, 116,  78, null, null],
+    [['speculative'],           2284,  698,  96,  72, null, null],
+    [['speculative'],           2290,  560, 118,  84, 'Future Esposende', null],
 
     // ── CROSS: Drawings × Speculative Futures
-    [['drawings','speculative'],3906,  222,  88,  72, 'Drawn Futures', null],
+    [['drawings', 'speculative'],1688,  1512,  88,  72, 'Drawn Futures', null],
 
     // ── SARGASSUM
-    [['sargassum'],              150,  1176, 116,  82, null, null],
-    [['sargassum'],              286,  1100,  82, 110, null, null],
-    [['sargassum'],              356, 1274, 100,  78, null, null],
+    [['sargassum'],              1080,  456, 116,  82, null, null],
+    [['sargassum'],              1216,  380,  82, 110, null, null],
+    [['sargassum'],              1286, 554, 100,  78, null, null],
 
     // ── EXHIBITION
-    [['exhibition'],             1300,  1162, 106,  80, null, null],
-    [['exhibition'],             1428,  1100,  90, 116, null, null],
-    [['exhibition'],             1528,  1264, 112,  80, null, null],
-    [['exhibition'],             1392, 1344,  96,  78, null, null],
-    [['exhibition'],             1302,  1312,  78,  68, null, null],
-    [['exhibition'],             1367,  1202, 130,  88, 'Documentation', null],
+    [['exhibition'],             150,  1562, 106,  80, null, null],
+    [['exhibition'],             278,  1500,  90, 116, null, null],
+    [['exhibition'],             378,  1664, 112,  80, null, null],
+    [['exhibition'],             242, 1744,  96,  78, null, null],
+    [['exhibition'],             152,  1712,  78,  68, null, null],
+    [['exhibition'],             217,  1602, 130,  88, 'Documentation', null],
 
     // ── CROSS: Sargassum × Exhibition
-    [['sargassum','exhibition'], 460,  1188,  94,  76, 'Tidal Archive', null],
+    [['sargassum', 'exhibition'], 1390,  468,  94,  76, 'Tidal Archive', null],
 
     // ── TOOLKIT
-    [['toolkit'],               2450,  2102,  96,  82, null, null],
-    [['toolkit'],               2572,  2050, 106,  74, null, null],
-    [['toolkit'],               2638,  2208,  90,  96, null, null],
+    [['toolkit'],               2518,  1572,  96,  82, null, null],
+    [['toolkit'],               2640,  1520, 106,  74, null, null],
+    [['toolkit'],               2706,  1678,  90,  96, null, null],
 
     // ── DATA
-    [['data'],                  3600,  1158, 106,  78, null, null],
-    [['data'],                  3732,  1100,  90, 110, null, null],
-    [['data'],                  3806,  1264, 116,  78, null, null],
-    [['data'],                  3666,  1336,  82,  72, null, null],
+    [['data'],                  1986,  1878, 106,  78, null, null],
+    [['data'],                  2118,  1820,  90, 110, null, null],
+    [['data'],                  2192,  1984, 116,  78, null, null],
+    [['data'],                  2052,  2056,  82,  72, null, null],
 
     // ── CROSS: Toolkit × Data
-    [['toolkit','data'],        2804,  2138, 102,  78, 'Methods & Measures', null],
+    [['toolkit', 'data'],        2872,  1608, 102,  78, 'Methods & Measures', null],
 
     // ── FUTURE PRODUCT
-    [['future'],                 150, 2128, 106,  82, null, null],
-    [['future'],                 284, 2050,  90, 110, null, null],
-    [['future'],                 344, 2220, 116,  76, null, null],
+    [['future'],                 3516, 278, 106,  82, null, null],
+    [['future'],                 3650, 200,  90, 110, null, null],
+    [['future'],                 3710, 370, 116,  76, null, null],
 
     // ── NON-HUMAN
-    [['nonhuman'],              1692, 2188,  96,  82, null, null],
-    [['nonhuman'],              1820, 2126,  84, 110, null, null],
-    [['nonhuman'],              1898, 2282, 106,  78, null, null],
-    [['nonhuman'],              1760, 2362,  90,  88, null, null],
-    [['nonhuman'],              1706, 2226, 110,  82, 'Non-Human Voices', null],
+    [['future'],              3164, 338,  96,  82, null, null],
+    [['future'],              3292, 276,  84, 110, null, null],
+    [['future'],              3370, 432, 106,  78, null, null],
+    [['future'],              3232, 512,  90,  88, null, null],
+    [['future'],              3178, 376, 110,  82, 'Non-Human Voices', null],
 
     // ── CROSS: Non-Human × Sargassum
-    [['nonhuman','sargassum'],   1300, 2050,  98,  76, 'Seaweed Mapping', null],
+    [['future', 'sargassum'],   2772, 200,  98,  76, 'Seaweed Mapping', null],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -1535,7 +1533,7 @@
           { src: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' },
         ],
         videos: ['la/hypersea/glass1.mp4', 'la/hypersea/glass2.mp4'],
-        credits: { en: 'glass blown by @berlinglassworks and @vivianestroede', pt: 'Créditos: vidro soprado por @berlinglassworks e pela incrível @vivianestroede' },
+        credits: { en: 'glass blown by @berlinglassworks and @vivianestroede', pt: 'Créditos: vidro soprado por @berlinglassworks e @vivianestroede' },
       },
       footerImg: { src: 'la/hypersea/IMG_7465.jpg', alt: 'Esposende coastline at dusk' },
     },
