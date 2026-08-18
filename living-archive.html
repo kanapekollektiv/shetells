@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>she tells — constellation</title>
+  <title>she tells — the living archive</title>
   <script src="lang.js?v=4"></script>
   <style>
     @font-face {
@@ -144,8 +144,8 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 3400px;
-      height: 2300px;
+      width: 4300px;
+      height: 2800px;
       transform-origin: 0 0;
       will-change: transform;
       -webkit-font-smoothing: antialiased;
@@ -311,11 +311,11 @@
 
     /* ── Idle water-float ── */
     @keyframes floatWater {
-      0%   { transform: translate(0px, 0px) rotate(0deg); }
-      20%  { transform: translate(var(--fx), calc(var(--fy) * -1)) rotate(calc(var(--fr) * 1deg)); }
-      45%  { transform: translate(calc(var(--fx) * -0.6), var(--fy)) rotate(calc(var(--fr) * -0.5deg)); }
-      70%  { transform: translate(calc(var(--fx) * 0.4), calc(var(--fy) * -0.8)) rotate(calc(var(--fr) * 0.7deg)); }
-      100% { transform: translate(0px, 0px) rotate(0deg); }
+      0%   { transform: translate(0px, 0px); }
+      20%  { transform: translate(var(--fx), calc(var(--fy) * -1)); }
+      45%  { transform: translate(calc(var(--fx) * -0.6), var(--fy)); }
+      70%  { transform: translate(calc(var(--fx) * 0.4), calc(var(--fy) * -0.8)); }
+      100% { transform: translate(0px, 0px); }
     }
 
     .canvas-idle .card-wrap {
@@ -367,13 +367,10 @@
     .card-text-preview {
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 11px; line-height: 1.52; color: #333;
-      overflow: hidden;
-      display: -webkit-box; -webkit-line-clamp: 9; -webkit-box-orient: vertical;
-      flex: 1;
     }
     .card-text-hint {
       font-family: 'Celescript', cursive;
-      font-size: 8.5px; color: rgba(0,0,0,0.28); letter-spacing: 0.05em; flex-shrink: 0;
+      font-size: 8.5px; color: rgba(0,0,0,0.28); letter-spacing: 0.05em; white-space: nowrap;
     }
 
     /* ── Credits card ── */
@@ -585,7 +582,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="3400" height="2300"
+      <svg id="linesSvg" width="4300" height="2800"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -634,17 +631,17 @@
 
   /* ── Cluster center coordinates for drawing connection lines ── */
   const CENTERS = {
-    hypersea:    [530,  490],
-    local:       [960,  275],
-    workshop:    [1298, 352],
-    drawings:    [1768, 268],
-    speculative: [2170, 368],
-    sargassum:   [345,  988],
-    exhibition:  [780,  924],
-    toolkit:     [1394, 808],
-    data:        [1975, 795],
-    future:      [518,  1495],
-    nonhuman:    [1198, 1436],
+    hypersea:    [ 563,  471],
+    local:       [1458,  260],
+    workshop:    [2686,  297],
+    drawings:    [3797,  294],
+    speculative: [2621, 1270],
+    sargassum:   [ 352, 1226],
+    exhibition:  [1470, 1261],
+    toolkit:     [2678, 2177],
+    data:        [3761, 1254],
+    future:      [ 305, 2173],
+    nonhuman:    [1652, 2250],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -685,111 +682,111 @@
   ═══════════════════════════════════════════════════ */
   const CARDS = [
     // ── HYPERSEA — reading link pills
-    [['hypersea'], 148, 196, 200, 34, null, { link: 'https://spacestudios.org.uk/wp-content/uploads/2017/11/hydrofeminism_or_on_becoming_a_body_of_water.pdf', label: 'Hydrofeminism →' }],
-    [['hypersea'], 148, 244, 298, 34, null, { link: 'https://www.researchgate.net/publication/335701988_The_ocean_in_excess_Towards_a_more-than-wet_ontology', label: 'More than Wet Ontologies →' }],
+    [['hypersea'], 150, 162, 200, 34, null, { link: 'https://spacestudios.org.uk/wp-content/uploads/2017/11/hydrofeminism_or_on_becoming_a_body_of_water.pdf', label: 'Hydrofeminism →' }],
+    [['hypersea'], 150, 210, 298, 34, null, { link: 'https://www.researchgate.net/publication/335701988_The_ocean_in_excess_Towards_a_more-than-wet_ontology', label: 'More than Wet Ontologies →' }],
 
     // ── HYPERSEA — book cover + link pill below
-    [['hypersea','local'], 148, 292, 125, 168, null, { img: 'la/hypersea/book.jpg', alt: 'Hypersea: Life on Land', link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C' }],
-    [['hypersea'], 148, 470, 172,  34, null, { link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', label: 'Link to the Book →' }],
+    [['hypersea','local'], 150, 258, 125, 168, null, { img: 'la/hypersea/book.jpg', alt: 'Hypersea: Life on Land', link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C' }],
+    [['hypersea'], 150, 436, 172,  34, null, { link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', label: 'Link to the Book →' }],
 
     // ── HYPERSEA — intro text card (right of book, clear gap)
-    [['hypersea'], 340, 188, 308, 272, null, { txt: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…', full: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…' }],
+    [['hypersea'], 342, 154, 308, 272, null, { txt: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…', full: 'We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…' }],
 
     // ── HYPERSEA — glass text card (below book, spanning bottom-left)
-    [['hypersea','sargassum'], 148, 520, 300, 248, null, { txt: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum.', full: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.' }],
+    [['hypersea','sargassum'], 150, 486, 300, 248, null, { txt: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum.', full: 'We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.' }],
 
     // ── HYPERSEA — credits
-    [['hypersea'], 148, 778, 300, 48, null, { credits: '.credits: glass blown by @berlinglassworks and amazing @vivianestroede' }],
+    [['hypersea'], 150, 744, 300, 48, null, { credits: '.credits: glass blown by @berlinglassworks and amazing @vivianestroede' }],
 
     // ── HYPERSEA — photos (scattered collage)
-    [['hypersea','sargassum'],  700, 186, 112, 152, null, { img: 'la/hypersea/dunes.jpg',    alt: 'Esposende dunes' }],
-    [['hypersea','workshop'],   832, 184, 132, 106, null, { img: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' }],
-    [['hypersea','workshop'],   694, 348, 112, 106, null, { img: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel' }],
-    [['hypersea','workshop'],   838, 302, 132, 106, null, { img: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere' }],
-    [['hypersea','sargassum'],  700, 466, 112, 106, null, { img: 'la/hypersea/IMG_7465.jpg', alt: 'Coastal landscape' }],
+    [['hypersea','sargassum'],  702, 152, 112, 152, null, { img: 'la/hypersea/dunes.jpg',    alt: 'Esposende dunes' }],
+    [['hypersea','workshop'],   834, 150, 132, 106, null, { img: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' }],
+    [['hypersea','workshop'],   696, 314, 112, 106, null, { img: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel' }],
+    [['hypersea','workshop'],   840, 268, 132, 106, null, { img: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere' }],
+    [['hypersea','sargassum'],  702, 432, 112, 106, null, { img: 'la/hypersea/IMG_7465.jpg', alt: 'Coastal landscape' }],
 
     // ── HYPERSEA — videos (lazy-play)
-    [['hypersea','workshop'],   842, 420, 132, 96, null, { vid: 'la/hypersea/glass1.mp4' }],
-    [['hypersea','workshop'],   700, 584, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
+    [['hypersea','workshop'],   844, 386, 132, 96, null, { vid: 'la/hypersea/glass1.mp4' }],
+    [['hypersea','workshop'],   702, 550, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
 
     // ── LOCAL STORIES
-    [['local'],                  820,  228, 100,  76, null, null],
-    [['local'],                  960,  168,  82, 112, null, null],
-    [['local'],                 1030,  308, 106,  80, null, null],
+    [['local'],                  1300,  210, 100,  76, null, null],
+    [['local'],                  1440,  150,  82, 112, null, null],
+    [['local'],                 1510,  290, 106,  80, null, null],
 
     // ── CROSS: Hypersea × Local Stories
-    [['hypersea','local'],       712,  380,  88,  64, 'Field Notes', null],
+    [['hypersea','local'],       714,  346,  88,  64, 'Field Notes', null],
 
     // ── WORKSHOP
-    [['workshop'],              1166,  268,  96,  92, null, null],
-    [['workshop'],              1302,  220, 116,  76, null, null],
-    [['workshop'],              1392,  382,  90,  70, null, null],
-    [['workshop'],              1242,  432, 100,  82, null, null],
-    [['workshop'],              1180,  310, 108,  80, 'Workshop Archive', null],
+    [['workshop'],              2450,  198,  96,  92, null, null],
+    [['workshop'],              2586,  150, 116,  76, null, null],
+    [['workshop'],              2676,  312,  90,  70, null, null],
+    [['workshop'],              2526,  362, 100,  82, null, null],
+    [['workshop'],              2464,  240, 108,  80, 'Workshop Archive', null],
 
     // ── DRAWINGS
-    [['drawings'],              1666,  192,  86, 112, null, null],
-    [['drawings'],              1794,  130, 106,  80, null, null],
-    [['drawings'],              1860,  298,  96,  82, null, null],
-    [['drawings'],              1702,  348,  80,  70, null, null],
+    [['drawings'],              3600,  212,  86, 112, null, null],
+    [['drawings'],              3728,  150, 106,  80, null, null],
+    [['drawings'],              3794,  318,  96,  82, null, null],
+    [['drawings'],              3636,  368,  80,  70, null, null],
 
     // ── CROSS: Workshop × Drawings
-    [['workshop','drawings'],   1546,  292,  92,  78, 'Making Session', null],
+    [['workshop','drawings'],   2830,  222,  92,  78, 'Making Session', null],
 
     // ── SPECULATIVE FUTURES
-    [['speculative'],           2032,  268, 106,  82, null, null],
-    [['speculative'],           2178,  202,  86, 116, null, null],
-    [['speculative'],           2258,  394, 116,  78, null, null],
-    [['speculative'],           2096,  470,  96,  72, null, null],
-    [['speculative'],           2102,  332, 118,  84, 'Future Esposende', null],
+    [['speculative'],           2450,  1166, 106,  82, null, null],
+    [['speculative'],           2596,  1100,  86, 116, null, null],
+    [['speculative'],           2676,  1292, 116,  78, null, null],
+    [['speculative'],           2514,  1368,  96,  72, null, null],
+    [['speculative'],           2520,  1230, 118,  84, 'Future Esposende', null],
 
     // ── CROSS: Drawings × Speculative Futures
-    [['drawings','speculative'],1972,  202,  88,  72, 'Drawn Futures', null],
+    [['drawings','speculative'],3906,  222,  88,  72, 'Drawn Futures', null],
 
     // ── SARGASSUM
-    [['sargassum'],              230,  952, 116,  82, null, null],
-    [['sargassum'],              366,  876,  82, 110, null, null],
-    [['sargassum'],              436, 1050, 100,  78, null, null],
+    [['sargassum'],              150,  1176, 116,  82, null, null],
+    [['sargassum'],              286,  1100,  82, 110, null, null],
+    [['sargassum'],              356, 1274, 100,  78, null, null],
 
     // ── EXHIBITION
-    [['exhibition'],             630,  822, 106,  80, null, null],
-    [['exhibition'],             758,  760,  90, 116, null, null],
-    [['exhibition'],             858,  924, 112,  80, null, null],
-    [['exhibition'],             722, 1004,  96,  78, null, null],
-    [['exhibition'],             632,  972,  78,  68, null, null],
-    [['exhibition'],             697,  862, 130,  88, 'Documentation', null],
+    [['exhibition'],             1300,  1162, 106,  80, null, null],
+    [['exhibition'],             1428,  1100,  90, 116, null, null],
+    [['exhibition'],             1528,  1264, 112,  80, null, null],
+    [['exhibition'],             1392, 1344,  96,  78, null, null],
+    [['exhibition'],             1302,  1312,  78,  68, null, null],
+    [['exhibition'],             1367,  1202, 130,  88, 'Documentation', null],
 
     // ── CROSS: Sargassum × Exhibition
-    [['sargassum','exhibition'], 540,  964,  94,  76, 'Tidal Archive', null],
+    [['sargassum','exhibition'], 460,  1188,  94,  76, 'Tidal Archive', null],
 
     // ── TOOLKIT
-    [['toolkit'],               1270,  748,  96,  82, null, null],
-    [['toolkit'],               1392,  696, 106,  74, null, null],
-    [['toolkit'],               1458,  854,  90,  96, null, null],
+    [['toolkit'],               2450,  2102,  96,  82, null, null],
+    [['toolkit'],               2572,  2050, 106,  74, null, null],
+    [['toolkit'],               2638,  2208,  90,  96, null, null],
 
     // ── DATA
-    [['data'],                  1846,  708, 106,  78, null, null],
-    [['data'],                  1978,  650,  90, 110, null, null],
-    [['data'],                  2052,  814, 116,  78, null, null],
-    [['data'],                  1912,  886,  82,  72, null, null],
+    [['data'],                  3600,  1158, 106,  78, null, null],
+    [['data'],                  3732,  1100,  90, 110, null, null],
+    [['data'],                  3806,  1264, 116,  78, null, null],
+    [['data'],                  3666,  1336,  82,  72, null, null],
 
     // ── CROSS: Toolkit × Data
-    [['toolkit','data'],        1624,  784, 102,  78, 'Methods & Measures', null],
+    [['toolkit','data'],        2804,  2138, 102,  78, 'Methods & Measures', null],
 
     // ── FUTURE PRODUCT
-    [['future'],                 398, 1458, 106,  82, null, null],
-    [['future'],                 532, 1380,  90, 110, null, null],
-    [['future'],                 592, 1550, 116,  76, null, null],
+    [['future'],                 150, 2128, 106,  82, null, null],
+    [['future'],                 284, 2050,  90, 110, null, null],
+    [['future'],                 344, 2220, 116,  76, null, null],
 
     // ── NON-HUMAN
-    [['nonhuman'],              1074, 1360,  96,  82, null, null],
-    [['nonhuman'],              1202, 1298,  84, 110, null, null],
-    [['nonhuman'],              1280, 1454, 106,  78, null, null],
-    [['nonhuman'],              1142, 1534,  90,  88, null, null],
-    [['nonhuman'],              1088, 1398, 110,  82, 'Non-Human Voices', null],
+    [['nonhuman'],              1692, 2188,  96,  82, null, null],
+    [['nonhuman'],              1820, 2126,  84, 110, null, null],
+    [['nonhuman'],              1898, 2282, 106,  78, null, null],
+    [['nonhuman'],              1760, 2362,  90,  88, null, null],
+    [['nonhuman'],              1706, 2226, 110,  82, 'Non-Human Voices', null],
 
     // ── CROSS: Non-Human × Sargassum
-    [['nonhuman','sargassum'],   682, 1222,  98,  76, 'Seaweed Mapping', null],
+    [['nonhuman','sargassum'],   1300, 2050,  98,  76, 'Seaweed Mapping', null],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -834,6 +831,11 @@
      BUILD CONNECTION LINES
   ═══════════════════════════════════════════════════ */
   const svg = document.getElementById('linesSvg');
+  // Keep the line layer exactly as large as the canvas, so connection lines to
+  // the outermost clusters are never clipped when the canvas is resized.
+  const canvasEl = document.getElementById('canvasInner');
+  svg.setAttribute('width',  canvasEl.offsetWidth);
+  svg.setAttribute('height', canvasEl.offsetHeight);
 
   CONNECTIONS.forEach(({ from, to, bend }) => {
     const [x1, y1] = CENTERS[from];
@@ -866,7 +868,9 @@
 
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.cssText = `width:${w}px; height:${h}px;`;
+    // Text and credits cards hug their content; everything else keeps its authored height
+    const hugsContent = !!(content && (content.txt || content.credits));
+    card.style.cssText = `width:${w}px;` + (hugsContent ? '' : ` height:${h}px;`);
 
     if (content && content.img) {
       const img = document.createElement('img');
@@ -890,12 +894,12 @@
       card.className += ' card-text-box';
       const pre = document.createElement('p');
       pre.className = 'card-text-preview';
-      pre.textContent = content.txt;
+      pre.textContent = content.txt + ' ';
       const hint = document.createElement('span');
       hint.className = 'card-text-hint';
-      hint.textContent = 'click to read more';
+      hint.textContent = '(click to read more)';
+      pre.appendChild(hint);
       card.appendChild(pre);
-      card.appendChild(hint);
     } else if (content && content.credits) {
       card.className += ' card-credits-box';
       const span = document.createElement('span');
@@ -936,8 +940,9 @@
     });
 
     wrap.appendChild(card);
-    // Only show category dots on image/video/plain cards
-    if (!content || content.img || content.vid) {
+    // Dots mark cross-cluster relationships, so only show them when a card
+    // actually carries more than one tag. Credits cards never show them.
+    if (cats.length > 1 && !(content && content.credits)) {
       wrap.appendChild(dots);
     }
 
@@ -1115,16 +1120,35 @@
     );
   }
 
+  /* Width reserved on the left for the legend panel, so the overview and
+     the per-cluster fly-to never park content underneath it. */
+  const LEGEND_GUTTER = 240;
+
+  /* Measure the real extent of the map so the overview never goes stale
+     when clusters are moved or the canvas is resized. */
+  function contentBounds() {
+    const PAD = 120;
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    canvasInner.querySelectorAll('.card-wrap, .cluster-label').forEach(el => {
+      const w = el.offsetWidth, h = el.offsetHeight;
+      // cluster labels are centred on their x via translateX(-50%)
+      const x = el.classList.contains('cluster-label') ? el.offsetLeft - w / 2 : el.offsetLeft;
+      const y = el.offsetTop;
+      minX = Math.min(minX, x); minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x + w); maxY = Math.max(maxY, y + h);
+    });
+    if (!isFinite(minX)) return { x: 0, y: 0, w: 1000, h: 1000 };
+    return { x: minX - PAD, y: minY - PAD, w: (maxX - minX) + PAD * 2, h: (maxY - minY) + PAD * 2 };
+  }
+
   function flyToOverview() {
     const vw = viewport.clientWidth, vh = viewport.clientHeight;
-    const PAD = 100;
-    const cX = 165 - PAD, cY = 83 - PAD;
-    const cW = 2385 - 165 + PAD * 2;
-    const cH = 1680 - 83  + PAD * 2;
-    const targetScale = Math.min(vw / cW, vh / cH) * 0.92;
+    const b = contentBounds();
+    const availW = Math.max(200, vw - LEGEND_GUTTER);
+    const targetScale = Math.min(availW / b.w, vh / b.h) * 0.92;
     flyTo(
-      (vw - cW * targetScale) / 2 - cX * targetScale,
-      (vh - cH * targetScale) / 2 - cY * targetScale,
+      LEGEND_GUTTER + (availW - b.w * targetScale) / 2 - b.x * targetScale,
+      (vh - b.h * targetScale) / 2 - b.y * targetScale,
       targetScale
     );
   }
@@ -1171,14 +1195,11 @@
   function initView() {
     const vw = viewport.clientWidth;
     const vh = viewport.clientHeight;
-    // Fit to actual content bounds (clusters span roughly x:165–2385, y:83–1680)
-    const PAD = 100;
-    const cX = 165 - PAD, cY = 83 - PAD;
-    const cW = 2385 - 165 + PAD * 2;
-    const cH = 1680 - 83  + PAD * 2;
-    scale = Math.min(vw / cW, vh / cH) * 0.92;
-    tx = (vw - cW * scale) / 2 - cX * scale;
-    ty = (vh - cH * scale) / 2 - cY * scale;
+    const b = contentBounds();
+    const availW = Math.max(200, vw - LEGEND_GUTTER);
+    scale = Math.min(availW / b.w, vh / b.h) * 0.92;
+    tx = LEGEND_GUTTER + (availW - b.w * scale) / 2 - b.x * scale;
+    ty = (vh - b.h * scale) / 2 - b.y * scale;
     applyTransform();
   }
 
