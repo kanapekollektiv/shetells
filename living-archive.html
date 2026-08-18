@@ -144,7 +144,7 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4900px;
+      width: 4600px;
       height: 2300px;
       transform-origin: 0 0;
       will-change: transform;
@@ -357,6 +357,48 @@
     .card-img-missing {
       display: flex; align-items: center; justify-content: center;
       background: #f2f2f2; padding: 8px;
+    }
+
+    .card-gallery { position: relative; }
+    .gal-dots {
+      position: absolute; left: 0; right: 0; bottom: 4px;
+      display: flex; justify-content: center; gap: 3px; pointer-events: none;
+    }
+    .gal-dots span {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 0 2px rgba(0,0,0,0.4);
+    }
+    .gal-dots span.on { background: #fff; }
+    .gal-stage {
+      position: relative; background: #f4f4f4;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem; min-height: 220px;
+    }
+    .gal-stage img {
+      max-width: 100%; max-height: 66vh;
+      object-fit: contain; display: block; border-radius: 4px;
+    }
+    .gal-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92);
+      font-size: 20px; line-height: 1; cursor: pointer; color: #222;
+    }
+    .gal-nav:hover { background: #fff; }
+    .gal-prev { left: 10px; }
+    .gal-next { right: 10px; }
+    .gal-bar {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 1rem; padding: 0.8rem 1.2rem 1.4rem;
+    }
+    .gal-cap {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px; line-height: 1.6; color: #555; margin: 0;
+    }
+    .gal-count {
+      font-family: 'Celescript', cursive; font-size: 11px;
+      color: rgba(0,0,0,0.4); white-space: nowrap;
     }
 
     /* ── Text preview card ── */
@@ -635,6 +677,18 @@
       .m-figure:not(.m-figure-centred) .m-media,
       video.m-media { max-height: 46vh; object-fit: cover; }
       .m-figure { margin: 0 0 1.15rem; }
+      /* a gallery scrolls sideways rather than stacking every frame */
+      .m-strip {
+        display: flex; gap: 0.7rem; overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        margin: 0 -1.25rem 1.15rem; padding: 0 1.25rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .m-strip figure { margin: 0; flex: 0 0 78%; scroll-snap-align: center; }
+      .m-strip img {
+        width: 100%; height: 210px; object-fit: cover;
+        border-radius: 4px; display: block;
+      }
       .m-figure-centred { text-align: center; }
       .m-figure-centred .m-media { margin: 0 auto; }
       .m-caption {
@@ -682,7 +736,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4900" height="2300"
+      <svg id="linesSvg" width="4600" height="2300"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -776,7 +830,7 @@
     sargassum:   [1485,  599],
     local:       [2430,  438],
     speculative: [3141,  600],
-    future:      [4049,  410],
+    future:      [3928,  510],
     workshop:    [ 936, 1795],
     drawings:    [1579, 1472],
     data:        [2147, 1862],
@@ -938,19 +992,20 @@
     [['toolkit', 'data'],        2872,  1496, 102,  78, 'Methods & Measures', null],
 
     // ── FUTURE PRODUCT
-    [['future'],                 4266, 288, 106,  82, null, null],
-    [['future'],                 4400, 210,  90, 110, null, null],
-    [['future'],                 4460, 380, 116,  76, null, null],
+    // ── FUTURE PRODUCTS — text column
+    [['future'], 3522,  210, 300, 200, null, { txt: { en: 'We sell products that do not exist. Each one takes something the coast is actually losing and puts it in a jar with a label and a promise.\n\nThey are speculative, and they are specific. Every one of them starts from something we met in Esposende: a shell we could not find, a kelp forest under warming water, a dune holding on under litter, the oxygen the algae make.', pt: 'Vendemos produtos que não existem. Cada um pega em algo que a costa está mesmo a perder e coloca-o num frasco, com um rótulo e uma promessa.\n\nSão especulativos e são concretos. Todos partem de algo que encontrámos em Esposende: uma concha que não conseguimos achar, uma floresta de algas sob água mais quente, uma duna a aguentar-se sob o lixo, o oxigénio que as algas produzem.' }, full: { en: 'We sell products that do not exist. Each one takes something the coast is actually losing and puts it in a jar with a label and a promise.\n\nThey are speculative, and they are specific. Every one of them starts from something we met in Esposende: a shell we could not find, a kelp forest under warming water, a dune holding on under litter, the oxygen the algae make.', pt: 'Vendemos produtos que não existem. Cada um pega em algo que a costa está mesmo a perder e coloca-o num frasco, com um rótulo e uma promessa.\n\nSão especulativos e são concretos. Todos partem de algo que encontrámos em Esposende: uma concha que não conseguimos achar, uma floresta de algas sob água mais quente, uma duna a aguentar-se sob o lixo, o oxigénio que as algas produzem.' } }],
+    [['future','sargassum'], 3522, 320, 300, 150, 'Shell Cream', { img: 'la/future/products-6.jpg', alt: { en: 'Shell Cream, a shell dissolving into cream in a corked vial', pt: 'Shell Cream, uma concha a dissolver-se em creme num frasco com rolha' }, full: { en: 'As the ocean takes up more carbon its pH drops, and the animals that build shells lose the carbonate they need to build them. Shells grow thinner. Some begin to dissolve.\n\nShell Cream is sold as skincare for that. Outlast the acid era. It promises to give back the ability to make a shell, which is exactly what acidification takes away.\n\nWe went looking for shells on this coast and came back with almost nothing.', pt: 'À medida que o oceano absorve mais carbono, o seu pH desce, e os animais que constroem conchas perdem o carbonato de que precisam para as construir. As conchas ficam mais finas. Algumas começam a dissolver-se.\n\nO Shell Cream é vendido como cosmética para isso. Sobreviva à era ácida. Promete devolver a capacidade de fazer uma concha, que é exatamente o que a acidificação retira.\n\nFomos à procura de conchas nesta costa e voltámos quase sem nada.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/', label: { en: 'Ocean acidification and calcifying marine life', pt: 'Acidificação dos oceanos e vida marinha calcificante' } }] , stackBelow: true, gap: 16 }],
+    [['future','sargassum'], 3522, 490, 300, 150, 'Acid Tabs', { img: 'la/future/products-9.jpg', alt: { en: 'Acid Tabs, white tablets in a corked vial', pt: 'Acid Tabs, pastilhas brancas num frasco com rolha' }, full: { en: 'Acid Tabs come at the same problem from the other side. The long record of falling pH in the Iberian upwelling system covers this coast, and the north of Portugal, Esposende included, is the most exposed part of it.\n\nMarina told us acidification is a serious threat to the sargassum and the kelp forests here, and pointed us towards the blue carbon research to understand what is at stake as those forests degrade.\n\nSo we packaged the acid as a supplement. Keep your acid under control.', pt: 'Os Acid Tabs abordam o mesmo problema pelo outro lado. O longo registo da descida do pH no sistema de afloramento ibérico cobre esta costa, e o norte de Portugal, incluindo Esposende, é a parte mais exposta.\n\nA Marina disse-nos que a acidificação é uma ameaça séria ao sargaço e às florestas de algas daqui, e encaminhou-nos para a investigação sobre carbono azul para perceber o que está em jogo à medida que essas florestas se degradam.\n\nPor isso embalámos o ácido como suplemento. Mantenha o seu ácido sob controlo.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://essd.copernicus.org/articles/12/2647/2020/', label: { en: 'The pH record of the Iberian upwelling system', pt: 'O registo de pH do sistema de afloramento ibérico' } }] , stackBelow: true, gap: 16 }],
+    [['future'], 3522, 660, 300, 150, 'Sexy Dunes', { img: 'la/future/products-7.jpg', alt: { en: 'Sexy Dunes, a vial of dune sand', pt: 'Sexy Dunes, um frasco de areia de duna' }, full: { en: 'The northern Portuguese coast carries some of the highest erosion and flooding risk in the country, and the dunes take it alongside litter and everything else we leave on them. Plastic left on the sand becomes microplastic in the water.\n\nSexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered. Dunes do not lie.', pt: 'A costa norte portuguesa apresenta alguns dos maiores riscos de erosão e de galgamento do país, e as dunas suportam-nos a par do lixo e de tudo o resto que lá deixamos. O plástico deixado na areia torna-se microplástico na água.\n\nO Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de receber lixo. As dunas não mentem.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://www.mdpi.com/2071-1050/16/20/8891', label: { en: 'Coastal erosion and flooding risk on the Portuguese coast', pt: 'Erosão costeira e risco de galgamento na costa portuguesa' } }, { href: 'https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2', label: { en: 'Litter and pressures on the dune environment', pt: 'Lixo e pressões sobre o ambiente dunar' } }] , stackBelow: true, gap: 16 }],
+    [['future','sargassum'], 3872, 210, 300, 150, 'Deluxe O2', { img: 'la/future/products-8.jpg', alt: { en: 'Deluxe O2, an empty corked vial of oxygen', pt: 'Deluxe O2, um frasco vazio de oxigénio com rolha' }, full: { en: 'Sargassum and the marine algae make oxygen by photosynthesis, the other half of the carbon story. That cycle is real, and warming water makes it less steady: it shifts, and in dense bloom conditions it can run the other way and strip oxygen out.\n\nDeluxe O2 bottles that specific oxygen and sells it back. Blue oxygen, our own term, next to the blue carbon everyone already trades in.', pt: 'O sargaço e as algas marinhas produzem oxigénio por fotossíntese, a outra metade da história do carbono. Esse ciclo é real, e a água mais quente torna-o menos estável: altera-se e, em condições de floração densa, pode inverter-se e retirar oxigénio.\n\nO Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing', label: { en: 'Blue carbon reading, shared by Marina', pt: 'Leitura sobre carbono azul, partilhada pela Marina' } }] }],
+    [['future','sargassum'], 3872, 380, 300, 150, 'Sargassum City', { img: 'la/future/products-5.jpg', alt: { en: 'Sargassum City, sargassum suspended in liquid in a corked jar', pt: 'Sargassum City, sargaço suspenso em líquido num frasco com rolha' }, full: { en: 'Sargassum is being used more and likely to be commercialised further, as a resource, for oxygen, for material, for the pharmacy shelf. It is also, first, a habitat that marine life needs in order to exist at all.\n\nSargassum City takes the commodification to its end and builds a whole speculative economy on harvesting it. The joke is that the weed was already a city, with residents, before anyone thought to sell it.', pt: 'O sargaço é cada vez mais utilizado e provavelmente será mais comercializado, como recurso, para oxigénio, para material, para a prateleira da farmácia. É também, antes disso, um habitat de que a vida marinha precisa para simplesmente existir.\n\nA Sargassum City leva a mercantilização até ao fim e constrói uma economia especulativa inteira sobre a sua apanha. A piada é que a alga já era uma cidade, com habitantes, antes de alguém pensar em vendê-la.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing', label: { en: 'Blue carbon reading, shared by Marina', pt: 'Leitura sobre carbono azul, partilhada pela Marina' } }, { href: 'https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing', label: { en: 'Sargassum as habitat, shared by Marina', pt: 'O sargaço como habitat, partilhado pela Marina' } }] , stackBelow: true, gap: 16 }],
 
-    // ── NON-HUMAN
-    [['future'],              3914, 348,  96,  82, null, null],
-    [['future'],              4042, 286,  84, 110, null, null],
-    [['future'],              4120, 442, 106,  78, null, null],
-    [['future'],              3982, 522,  90,  88, null, null],
-    [['future'],              3928, 386, 110,  82, 'Non-Human Voices', null],
+    // ── FUTURE PRODUCTS — documentation, as a carousel
+    [['future','exhibition'], 3872, 550, 300, 200, 'The range', { gallery: [{ src: 'la/future/products.jpg', alt: { en: 'The five products lined up, Sargassum City in front', pt: 'Os cinco produtos alinhados, com a Sargassum City à frente' } }, { src: 'la/future/products-3.jpg', alt: { en: 'Shell Cream in front of the rest of the range', pt: 'O Shell Cream à frente do resto da gama' } }, { src: 'la/future/products-4.jpg', alt: { en: 'Acid Tabs against the window', pt: 'Os Acid Tabs contra a janela' } }, { src: 'la/future/products-10.jpg', alt: { en: 'The dune built in a vitrine, with a paper umbrella', pt: 'A duna construída numa vitrina, com um chapéu de papel' } }, { src: 'la/future/products-11.jpg', alt: { en: 'The dune vitrine seen from the side', pt: 'A vitrina da duna vista de lado' } }, { src: 'la/future/products-12.jpg', alt: { en: 'Marram grass and a pink umbrella in the sand', pt: 'Estorno e um chapéu cor de rosa na areia' } }, { src: 'la/future/products-2.jpg', alt: { en: 'The Sexy Dunes flyer', pt: 'O folheto do Sexy Dunes' } }] , stackBelow: true, gap: 16 }],
+    [['future'],              4224, 320, 110,  82, 'Non-Human Voices', null],
 
     // ── CROSS: Non-Human × Sargassum
-    [['future', 'sargassum'],   3522, 210,  98,  76, 'Seaweed Mapping', null],
+    [['future', 'sargassum'],   4224, 210,  98,  76, 'Seaweed Mapping', null],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -1037,7 +1092,27 @@
     const hugsContent = !!(content && (content.txt || content.credits));
     card.style.cssText = `width:${w}px;` + (hugsContent ? '' : ` height:${h}px;`);
 
-    if (content && content.img) {
+    if (content && content.gallery) {
+      card.classList.add('card-gallery');
+      const gimg = document.createElement('img');
+      gimg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      gimg.src = content.gallery[0].src;
+      card.appendChild(gimg);
+      const dots = document.createElement('div');
+      dots.className = 'gal-dots';
+      content.gallery.forEach(() => dots.appendChild(document.createElement('span')));
+      card.appendChild(dots);
+      let gi = 0;
+      const paint = () => {
+        gimg.src = content.gallery[gi].src;
+        gimg.alt = L(content.gallery[gi].alt) || '';
+        [...dots.children].forEach((d, k) => d.classList.toggle('on', k === gi));
+      };
+      onLang(paint);
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setInterval(() => { gi = (gi + 1) % content.gallery.length; paint(); }, 3600);
+      }
+    } else if (content && content.img) {
       const img = document.createElement('img');
       img.src = content.img;
       // A photograph that has not landed yet must not leave a broken or empty
@@ -1150,7 +1225,9 @@
     }, { passive: true });
     wrap.addEventListener('pointerup', e => {
       if (Math.hypot(e.clientX - _spx, e.clientY - _spy) > 12 || Date.now() - _spt > 600) return;
-      if (content && content.goTo) {
+      if (content && content.gallery) {
+        openGalleryPopup(content, cats[0], title);
+      } else if (content && content.goTo) {
         flyToCluster(content.goTo);
       } else if (content && content.img && content.link) {
         window.open(content.link, '_blank', 'noopener noreferrer');
@@ -1608,6 +1685,50 @@
     body.scrollTop = 0;
   }
 
+  // A gallery opens as a carousel: one image at a time, with arrows and a
+  // counter, rather than a long column of photographs.
+  function openGalleryPopup(content, catKey, title) {
+    openPanelKey = null;
+    const cat = CAT_MAP[catKey];
+    const overlay = document.getElementById('cardOverlay');
+    const chip = document.getElementById('dpChip');
+    const body = document.getElementById('dpBody');
+    chip.textContent = L(cat.label);
+    chip.style.background = cat.color;
+    chip.style.color = LIGHT_TEXT_CATS.has(catKey) ? '#1a1200' : '#ffffff';
+    body.innerHTML = '';
+    let i = 0;
+    const stage = document.createElement('div');
+    stage.className = 'gal-stage';
+    const img = document.createElement('img');
+    stage.appendChild(img);
+    const prev = document.createElement('button');
+    prev.className = 'gal-nav gal-prev'; prev.type = 'button'; prev.textContent = '‹';
+    const next = document.createElement('button');
+    next.className = 'gal-nav gal-next'; next.type = 'button'; next.textContent = '›';
+    stage.appendChild(prev); stage.appendChild(next);
+    const cap = document.createElement('p');
+    cap.className = 'gal-cap';
+    const count = document.createElement('span');
+    count.className = 'gal-count';
+    const draw = () => {
+      const g = content.gallery[i];
+      img.src = g.src; img.alt = L(g.alt) || '';
+      cap.textContent = L(g.alt) || '';
+      count.textContent = (i + 1) + ' / ' + content.gallery.length;
+    };
+    prev.addEventListener('click', e => { e.stopPropagation(); i = (i - 1 + content.gallery.length) % content.gallery.length; draw(); });
+    next.addEventListener('click', e => { e.stopPropagation(); i = (i + 1) % content.gallery.length; draw(); });
+    draw();
+    body.appendChild(stage);
+    const bar = document.createElement('div');
+    bar.className = 'gal-bar';
+    bar.appendChild(cap); bar.appendChild(count);
+    body.appendChild(bar);
+    overlay.classList.add('active');
+    body.scrollTop = 0;
+  }
+
   function openMediaPopup(content, catKey) {
     openPanelKey = null;
     const cat = CAT_MAP[catKey];
@@ -1869,6 +1990,22 @@
         p.className = 'm-text';
         p.textContent = L(content.full || content.txt);
         mNotesBody.appendChild(p); rendered++;
+      } else if (content && content.gallery) {
+        const strip = document.createElement('div');
+        strip.className = 'm-strip';
+        content.gallery.forEach(g => {
+          const fig = document.createElement('figure');
+          const im = document.createElement('img');
+          im.src = g.src; im.alt = L(g.alt) || ''; im.loading = 'lazy';
+          fig.appendChild(im);
+          if (L(g.alt)) {
+            const c = document.createElement('figcaption');
+            c.className = 'm-caption'; c.textContent = L(g.alt);
+            fig.appendChild(c);
+          }
+          strip.appendChild(fig);
+        });
+        mNotesBody.appendChild(strip); rendered++;
       } else if (content && content.goTo) {
         const btn = document.createElement('button');
         btn.className = 'm-link'; btn.type = 'button';
