@@ -144,7 +144,7 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4500px;
+      width: 4900px;
       height: 2300px;
       transform-origin: 0 0;
       will-change: transform;
@@ -682,7 +682,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4500" height="2300"
+      <svg id="linesSvg" width="4900" height="2300"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -774,9 +774,9 @@
   const CENTERS = {
     hypersea:    [ 510,  504],
     sargassum:   [1485,  599],
-    local:       [2258,  290],
-    speculative: [2797,  600],
-    future:      [3705,  410],
+    local:       [2430,  438],
+    speculative: [3141,  600],
+    future:      [4049,  410],
     workshop:    [ 936, 1795],
     drawings:    [1579, 1472],
     data:        [2147, 1862],
@@ -850,9 +850,20 @@
     [['hypersea', 'workshop'],   596, 762, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
 
     // ── LOCAL STORIES
-    [['local'],                  2100,  240, 100,  76, null, null],
-    [['local'],                  2240,  180,  82, 112, null, null],
-    [['local'],                 2310,  320, 106,  80, null, null],
+    // ── LOCAL STORIES — text column
+    [['local'], 2100,  180, 300,  70, null, { txt: { en: 'These are some stories our research group gleaned and experienced.', pt: 'Estas são algumas das histórias que o nosso grupo de investigação recolheu e viveu.' }, full: { en: 'These are some stories our research group gleaned and experienced.', pt: 'Estas são algumas das histórias que o nosso grupo de investigação recolheu e viveu.' } }],
+    [['local'], 2100,  262, 300, 150, null, { txt: { en: 'The tradition is still close here. In Apúlia the sargaço was gathered by the sargaceiros and the sargaceiras, dried on the sand for three days, and carried onto the masseira fields as fertiliser. By royal decision it carried no tax. Today it goes mostly to pharmacy, cosmetics and food.\n\nEveryone we spoke to had a version of it. A grandmother who gathered, a field that used to be a masseira, a beach that used to be full of carts.', pt: 'A tradição ainda está próxima daqui. Na Apúlia o sargaço era recolhido pelos sargaceiros e pelas sargaceiras, seco na areia durante três dias e levado para os campos de masseira como fertilizante. Por decisão régia não pagava imposto. Hoje segue sobretudo para a farmácia, a cosmética e a alimentação.\n\nTodas as pessoas com quem falámos tinham uma versão disto. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.' }, full: { en: 'The tradition is still close here. In Apúlia the sargaço was gathered by the sargaceiros and the sargaceiras, dried on the sand for three days, and carried onto the masseira fields as fertiliser. By royal decision it carried no tax. Today it goes mostly to pharmacy, cosmetics and food.\n\nEveryone we spoke to had a version of it. A grandmother who gathered, a field that used to be a masseira, a beach that used to be full of carts.', pt: 'A tradição ainda está próxima daqui. Na Apúlia o sargaço era recolhido pelos sargaceiros e pelas sargaceiras, seco na areia durante três dias e levado para os campos de masseira como fertilizante. Por decisão régia não pagava imposto. Hoje segue sobretudo para a farmácia, a cosmética e a alimentação.\n\nTodas as pessoas com quem falámos tinham uma versão disto. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://www.visitesposende.com/en/fazer/monumentos/sargasso-museum', label: { en: 'Museu do Sargaço, Esposende', pt: 'Museu do Sargaço, Esposende' } }], stackBelow: true, gap: 14 }],
+    [['local','sargassum'], 2100, 424, 250, 34, null, { goTo: 'sargassum', label: { en: 'The sargaço cluster →', pt: 'O grupo do sargaço →' }, stackBelow: true, gap: 12 }],
+    [['local'], 2100,  470, 300, 180, null, { txt: { en: 'Rio Neiva is the association hosting us in Esposende. It was founded on 17 November 1989, is based in Antas, and works for the defence of the environment and the conservation of the Neiva river valley.\n\nTheir work runs across environmental education, nature based sports and projects, from biodiversity and citizen science to coastal conservation. We have been working out of their space, and much of what we gleaned came through them.\n\nAn interview and more of this story are coming soon.', pt: 'A Rio Neiva é a associação que nos acolhe em Esposende. Foi fundada a 17 de novembro de 1989, tem sede em Antas e trabalha pela defesa do ambiente e pela conservação do vale do rio Neiva.\n\nO seu trabalho passa pela educação ambiental, pelos desportos de natureza e por projetos, da biodiversidade e da ciência cidadã à conservação costeira. Temos trabalhado a partir do seu espaço, e muito do que recolhemos chegou através deles.\n\nUma entrevista e mais desta história chegam em breve.' }, full: { en: 'Rio Neiva is the association hosting us in Esposende. It was founded on 17 November 1989, is based in Antas, and works for the defence of the environment and the conservation of the Neiva river valley.\n\nTheir work runs across environmental education, nature based sports and projects, from biodiversity and citizen science to coastal conservation. We have been working out of their space, and much of what we gleaned came through them.\n\nAn interview and more of this story are coming soon.', pt: 'A Rio Neiva é a associação que nos acolhe em Esposende. Foi fundada a 17 de novembro de 1989, tem sede em Antas e trabalha pela defesa do ambiente e pela conservação do vale do rio Neiva.\n\nO seu trabalho passa pela educação ambiental, pelos desportos de natureza e por projetos, da biodiversidade e da ciência cidadã à conservação costeira. Temos trabalhado a partir do seu espaço, e muito do que recolhemos chegou através deles.\n\nUma entrevista e mais desta história chegam em breve.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://rioneiva.com/', label: { en: 'Rio Neiva, Associação de Defesa do Ambiente', pt: 'Rio Neiva, Associação de Defesa do Ambiente' } }], stackBelow: true, gap: 16 }],
+    [['local','future'], 2100, 662, 290, 34, null, { goTo: 'future', label: { en: 'Our non human future products →', pt: 'Os nossos produtos futuros não humanos →' }, stackBelow: true, gap: 12 }],
+
+    // ── LOCAL STORIES — the gleaned material
+    [['local'], 2460,  180, 118, 158, 'A water memory', { img: 'la/local/gleaned-note.jpg', alt: { en: 'A water memory written by hand at one of the workshops', pt: 'Uma memória de água escrita à mão numa das oficinas' }, full: { en: 'The water flows through the river into the ocean.... with so many sounds and colours...\nIt whispers in the summer and it sings and roars in the winter\nIt incorporates the fragrances and smells of everything and everybody that goes by....', pt: 'A água corre pelo rio até ao oceano.... com tantos sons e tantas cores...\nSussurra no verão e canta e ruge no inverno\nIncorpora as fragrâncias e os cheiros de tudo e de todos os que passam....' } }],
+    [['local','workshop'], 2600, 180, 160,  95, 'Postcards', { img: 'la/local/postcards.jpg', alt: { en: 'Postcards drawn at the launch workshops, pinned to the wall', pt: 'Postais desenhados nas oficinas de lançamento, afixados na parede' }, full: { en: 'At the launch workshops at the Museu do Sargaço we handed out postcards. The ocean has been collecting stories longer than we have. Draw your water memory here.\n\nPeople drew white foamy plains and hard rock, dunes and a group of friends, an ear and a list, collect tinny, sand, record the wind. Somebody wrote an equation instead.', pt: 'Nas oficinas de lançamento no Museu do Sargaço distribuímos postais. O oceano recolhe histórias há mais tempo do que nós. Desenha aqui a tua memória de água.\n\nAs pessoas desenharam planícies de espuma branca e rocha dura, dunas e um grupo de amigas, uma orelha e uma lista, apanhar latas, areia, gravar o vento. Alguém escreveu antes uma equação.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' } }],
+    [['local'], 2620,  295, 130,  98, null, { img: 'la/local/fishing-lures.jpg', alt: { en: 'Fishing lures on a shop rack', pt: 'Iscas de pesca numa prateleira de loja' } }],
+    [['local'], 2450,  358, 150, 112, 'Looking for shells', { img: 'la/local/shore.jpg', alt: { en: 'The rocky shore at low tide near Esposende', pt: 'A costa rochosa na maré baixa perto de Esposende' }, full: { en: 'We went out to find shells. We walked the sand at low tide and found almost nothing, a few broken pieces, nothing whole.\n\nWe met fishermen along the way and asked them. They all said the same thing. Go up north. There are more there. Everyone pointed further along the coast, as if the shells had moved and everybody knew it except us.\n\nWe kept looking. We came back with sand, with recordings, with a story about not finding what we came for.', pt: 'Saímos à procura de conchas. Andámos pela areia na maré baixa e não encontrámos quase nada, alguns pedaços partidos, nada inteiro.\n\nPelo caminho encontrámos pescadores e perguntámos. Diziam todos o mesmo. Vão mais para norte. Lá há mais. Toda a gente apontava mais adiante na costa, como se as conchas se tivessem mudado e todos soubessem menos nós.\n\nContinuámos à procura. Voltámos com areia, com gravações, e com uma história sobre não encontrar aquilo que fomos procurar.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' }, sources: [{ href: 'https://www.noaa.gov/education/resource-collections/ocean-coasts/ocean-acidification', label: { en: 'NOAA. Ocean acidification and what it does to shells', pt: 'NOAA. A acidificação dos oceanos e o que faz às conchas' } }] }],
+    [['local','future'], 2450, 490, 100, 178, 'The lamprey', { img: 'la/local/lamprey.jpg', alt: { en: 'Sea lampreys in a tank, mouths pressed against the glass', pt: 'Lampreias num aquário, com as bocas contra o vidro' }, full: { en: 'We met a monster in a tank. A round mouth, a ring of teeth turning inwards, no jaw at all.\n\nIt is a sea lamprey, and it moves between the river and the ocean. It is born in fresh water, drifts downstream as a larva, grows at sea, and comes back up the river to spawn and die. It has been doing this for longer than there have been fish with jaws.\n\nHere it is also dinner. Lampreia is a season and a delicacy in the north, waited for every year.', pt: 'Encontrámos um monstro num aquário. Uma boca redonda, um anel de dentes virados para dentro, sem maxilar nenhum.\n\nÉ uma lampreia, e move-se entre o rio e o oceano. Nasce em água doce, desce como larva, cresce no mar e volta a subir o rio para desovar e morrer. Faz isto há mais tempo do que existem peixes com maxilares.\n\nAqui também é jantar. A lampreia é uma época e uma iguaria no norte, esperada todos os anos.' }, note: { en: 'Text written based on the sources below and edited with ML.', pt: 'Texto escrito com base nas fontes abaixo e editado com ML. Tradução automática.' } }],
+    [['local'], 2570,  470, 150, 100, 'Rio Neiva', { img: 'la/local/rio-neiva.jpg', alt: { en: 'A presentation at Rio Neiva in Antas, Esposende', pt: 'Uma apresentação na Rio Neiva, em Antas, Esposende' } }],
 
     // ── CROSS: Hypersea × Local Stories
     [['hypersea', 'local'],       596,  648,  88,  64, 'Field Notes', null],
@@ -874,11 +885,11 @@
     [['workshop', 'drawings'],   1080,  1720,  92,  78, 'Making Session', null],
 
     // ── SPECULATIVE FUTURES
-    [['speculative'],           2626,  496, 106,  82, null, null],
-    [['speculative'],           2772,  430,  86, 116, null, null],
-    [['speculative'],           2852,  622, 116,  78, null, null],
-    [['speculative'],           2690,  698,  96,  72, null, null],
-    [['speculative'],           2696,  560, 118,  84, 'Future Esposende', null],
+    [['speculative'],           2970,  496, 106,  82, null, null],
+    [['speculative'],           3116,  430,  86, 116, null, null],
+    [['speculative'],           3196,  622, 116,  78, null, null],
+    [['speculative'],           3034,  698,  96,  72, null, null],
+    [['speculative'],           3040,  560, 118,  84, 'Future Esposende', null],
 
     // ── CROSS: Drawings × Speculative Futures
     [['drawings', 'speculative'],1688,  1400,  88,  72, 'Drawn Futures', null],
@@ -927,19 +938,19 @@
     [['toolkit', 'data'],        2872,  1496, 102,  78, 'Methods & Measures', null],
 
     // ── FUTURE PRODUCT
-    [['future'],                 3922, 288, 106,  82, null, null],
-    [['future'],                 4056, 210,  90, 110, null, null],
-    [['future'],                 4116, 380, 116,  76, null, null],
+    [['future'],                 4266, 288, 106,  82, null, null],
+    [['future'],                 4400, 210,  90, 110, null, null],
+    [['future'],                 4460, 380, 116,  76, null, null],
 
     // ── NON-HUMAN
-    [['future'],              3570, 348,  96,  82, null, null],
-    [['future'],              3698, 286,  84, 110, null, null],
-    [['future'],              3776, 442, 106,  78, null, null],
-    [['future'],              3638, 522,  90,  88, null, null],
-    [['future'],              3584, 386, 110,  82, 'Non-Human Voices', null],
+    [['future'],              3914, 348,  96,  82, null, null],
+    [['future'],              4042, 286,  84, 110, null, null],
+    [['future'],              4120, 442, 106,  78, null, null],
+    [['future'],              3982, 522,  90,  88, null, null],
+    [['future'],              3928, 386, 110,  82, 'Non-Human Voices', null],
 
     // ── CROSS: Non-Human × Sargassum
-    [['future', 'sargassum'],   3178, 210,  98,  76, 'Seaweed Mapping', null],
+    [['future', 'sargassum'],   3522, 210,  98,  76, 'Seaweed Mapping', null],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -1042,7 +1053,9 @@
         }
       });
       onLang(() => { img.alt = L(content.alt) || ''; });
-      img.loading = 'lazy';
+      // no lazy loading here: the canvas is transformed, and moving a
+      // transformed ancestor does not re-trigger the intersection check, so
+      // cards in far clusters would never load.
       img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       card.appendChild(img);
     } else if (content && content.vid) {
@@ -1614,7 +1627,7 @@
       wrap.style.cssText = 'background:#f8f8f8;display:flex;align-items:center;justify-content:center;padding:1rem;';
       const img = document.createElement('img');
       img.src   = content.img;
-      img.alt   = content.alt || '';
+      img.alt   = L(content.alt) || '';
       img.style.cssText = 'max-width:100%;max-height:68vh;object-fit:contain;display:block;border-radius:4px;';
       wrap.appendChild(img);
       body.appendChild(wrap);
