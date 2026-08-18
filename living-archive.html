@@ -631,7 +631,7 @@
 
   /* ── Cluster center coordinates for drawing connection lines ── */
   const CENTERS = {
-    hypersea:    [ 510,  483],
+    hypersea:    [ 510,  504],
     local:       [1458,  260],
     workshop:    [2686,  297],
     drawings:    [3797,  294],
@@ -699,15 +699,15 @@
     [['hypersea'], 150, 695, 300, 48, null, { credits: '.credits: glass blown by @berlinglassworks and amazing @vivianestroede' }],
 
     // ── HYPERSEA — photos (scattered collage)
-    [['hypersea','sargassum'],  588, 478, 112, 152, null, { img: 'la/hypersea/dunes.jpg',    alt: 'Esposende dunes' }],
-    [['hypersea','workshop'],   470, 486, 132, 106, null, { img: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' }],
-    [['hypersea','workshop'],   476, 618, 112, 106, null, { img: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel' }],
-    [['hypersea','workshop'],   690, 500, 132, 106, null, { img: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere' }],
-    [['hypersea','sargassum'],  566, 706, 112, 106, null, { img: 'la/hypersea/IMG_7465.jpg', alt: 'Coastal landscape' }],
+    [['hypersea','sargassum'],  596, 470, 112, 152, null, { img: 'la/hypersea/dunes.jpg',    alt: 'Esposende dunes' }],
+    [['hypersea','workshop'],   470, 478, 132, 106, null, { img: 'la/hypersea/IMG_8729.jpg', alt: 'Glass blowing workshop' }],
+    [['hypersea','workshop'],   470, 616, 112, 106, null, { img: 'la/hypersea/IMG_8668.jpg', alt: 'Glass vessel' }],
+    [['hypersea','workshop'],   730, 494, 132, 106, null, { img: 'la/hypersea/IMG_8677.jpg', alt: 'Glass sphere' }],
+    [['hypersea','sargassum'],  470, 752, 112, 106, null, { img: 'la/hypersea/IMG_7465.jpg', alt: 'Coastal landscape' }],
 
     // ── HYPERSEA — videos (lazy-play)
-    [['hypersea','workshop'],   700, 630, 132, 96, null, { vid: 'la/hypersea/glass1.mp4' }],
-    [['hypersea','workshop'],   686, 720, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
+    [['hypersea','workshop'],   700, 636, 132, 96, null, { vid: 'la/hypersea/glass1.mp4' }],
+    [['hypersea','workshop'],   596, 762, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
 
     // ── LOCAL STORIES
     [['local'],                  1300,  210, 100,  76, null, null],
@@ -715,7 +715,7 @@
     [['local'],                 1510,  290, 106,  80, null, null],
 
     // ── CROSS: Hypersea × Local Stories
-    [['hypersea','local'],       600,  620,  88,  64, 'Field Notes', null],
+    [['hypersea','local'],       596,  648,  88,  64, 'Field Notes', null],
 
     // ── WORKSHOP
     [['workshop'],              2450,  198,  96,  92, null, null],
@@ -1109,18 +1109,24 @@
     const vw = viewport.clientWidth, vh = viewport.clientHeight;
     const legendW = document.getElementById('mapLegend')?.offsetWidth || 220;
     const usableW = vw - legendW;
-    const PAD = 100;
-    const targetScale = Math.min(
+    const PAD = 60;
+    // Fit the cluster if it is small, but never drop below MIN_READ: at the
+    // old fit-everything scale a cluster the size of Hypersea landed around
+    // 0.8x and the card text and photos were too small to read. Anything
+    // taller than the viewport can be reached by dragging.
+    const MIN_READ = 1.25, MAX_ZOOM = 1.8;
+    const fit = Math.min(
       usableW / (bounds.w + PAD * 2),
       vh      / (bounds.h + PAD * 2),
-      1.2
+      MAX_ZOOM
     );
+    const targetScale = Math.max(fit, MIN_READ);
     // Center within the usable area (right of legend)
     const centerX = legendW + usableW / 2;
     flyTo(
       centerX - bounds.cx * targetScale,
       vh / 2 - bounds.cy * targetScale,
-      Math.max(0.3, targetScale)
+      targetScale
     );
   }
 
