@@ -306,14 +306,16 @@ read properly.
 ## 9. Repository layout
 
 Fonts live in `Fonts/`, images in `img/`, page backgrounds in `Background/`,
-living archive media in `la/`. Nothing image or font shaped sits at the root any
+living archive media in `la/`, the film's sprite pages in `sprites/`. Nothing image or font shaped sits at the root any
 more, and every stylesheet link carries a `?v=` so a deploy cannot leave a
 visitor on a stale copy. Bump that number when you change the file.
 
 ## 10. Unrelated files in this repo
 
-Video-production assets for a film, sharing the repo and the local server but
-otherwise independent: `products-drop.html`, `high-tide.html`,
+All six live in `sprites/` now: `products-drop.html`, `high-tide.html`,
 `splash-sprite.html`, `acid-bubble-sprite.html`, `phone-ring-sprite.html`,
-`credits-card.html`. Rendered output lives on the Desktop. They *do* use
-rotation, deliberately — the no-rotation rule is about the map only.
+`credits-card.html`. They are video-production assets for a film, sharing the
+repo and the local server but otherwise independent of the site. Nothing links
+to them and they link to nothing but the fonts, one directory up. Rendered
+output lives on the Desktop. They *do* use rotation, deliberately, the
+no-rotation rule is about the map only.
