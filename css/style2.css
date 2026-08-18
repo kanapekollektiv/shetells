@@ -76,11 +76,11 @@ html, body {
   pointer-events: none;
 }
 /* Each background layer uses a pseudo or separate bg declaration */
-.page-bg               { background-image: url('../Background/Asset 15-100.jpg'); }
+.page-bg               { background-image: url('../Background/Asset_15_BG.jpg'); }
 .spiral-open    .page-bg { opacity: 1; }
-.shell-open     .page-bg { background-image: url('../Background/Asset_7_BG.png');  opacity: 1; }
-.o2-open        .page-bg { background-image: url('../Background/Asset_9_BG.png');  opacity: 1; }
-.sargassum-open .page-bg { background-image: url('../Background/Asset_14_BG.png'); opacity: 1; }
+.shell-open     .page-bg { background-image: url('../Background/Asset_7_BG.jpg');  opacity: 1; }
+.o2-open        .page-bg { background-image: url('../Background/Asset_9_BG.jpg');  opacity: 1; }
+.sargassum-open .page-bg { background-image: url('../Background/Asset_14_BG.jpg'); opacity: 1; }
 
 /* ── Header — 1rem (16px) from each corner ── */
 .header {
@@ -1216,7 +1216,7 @@ html, body {
 .acid-open .illus-acid img { filter: invert(1) brightness(10); }
 
 /* Background */
-.acid-open .page-bg { background-image: url('../Background/Asset_11_BG.png'); opacity: 1; }
+.acid-open .page-bg { background-image: url('../Background/Asset_11_BG.jpg'); opacity: 1; }
 
 /* UI colour flips */
 .acid-open .brand-title,

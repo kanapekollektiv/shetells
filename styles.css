@@ -40,7 +40,7 @@ body {
   position: relative;
   overflow-x: hidden;
   /* Fallback bg for overflowed/scrolled area */
-  background-image: url('shell.png');
+  background-image: url('img/shell.jpg');
   background-size: cover;
   background-position: center top;
   background-repeat: repeat-y;
@@ -54,7 +54,7 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url('shell.png');
+  background-image: url('img/shell.jpg');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;

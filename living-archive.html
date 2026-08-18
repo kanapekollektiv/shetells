@@ -407,6 +407,11 @@
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 15px; line-height: 1.78; color: #333; white-space: pre-line;
     }
+    .gal-title {
+      padding: 1rem 1.2rem 0; margin: 0;
+      font-family: 'Celescript', cursive; font-size: 16px;
+      letter-spacing: 0.05em; color: #111;
+    }
     .gal-entry { padding: 0 1.2rem 1.2rem; }
     .gal-entry h3 {
       font-family: 'Celescript', cursive; font-size: 14px;
@@ -1808,6 +1813,12 @@
     chip.style.background = cat.color;
     chip.style.color = LIGHT_TEXT_CATS.has(catKey) ? '#1a1200' : '#ffffff';
     body.innerHTML = '';
+    if (L(title)) {
+      const h = document.createElement('p');
+      h.className = 'gal-title';
+      h.textContent = L(title);
+      body.appendChild(h);
+    }
     let i = 0;
     const stage = document.createElement('div');
     stage.className = 'gal-stage';

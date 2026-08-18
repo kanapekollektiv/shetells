@@ -283,9 +283,15 @@ read properly.
 - **Images the user attaches in chat cannot be written to disk.** There is no
   tool for it, and the clipboard was empty when tried. They must save the file
   themselves; then it can be optimised in place.
-- **Optimise every image on the way in.** Convention is max 1400px, JPEG quality
-  ~55. The Sargassum set went 16MB → 1.2MB; a 22MB GIF became a 388KB mp4 via
-  ffmpeg (available). `la/` is 9.1MB total.
+- **Optimise every image on the way in**, with `tools/optimise_images.py`.
+  Convention is max 1400px at quality 55 for card media, 2560px at quality 72
+  for full page backgrounds. It refuses to flatten a PNG whose transparency is
+  actually used, and leaves the original in place so you can compare before
+  deleting. The Sargassum set went 16MB → 1.2MB; `Background/` went 26.8MB →
+  2.2MB; a 22MB GIF became a 388KB mp4 via ffmpeg (available).
+- **Check the assets after any move** with `tools/check_assets.py`. It resolves
+  every `url()`, `src` and `href` across the html, css and js, and also lists
+  files nothing references.
 - Standard verification after any change:
   ```
   overlaps within each cluster, in EN and PT
@@ -297,7 +303,14 @@ read properly.
 
 ---
 
-## 9. Unrelated files in this repo
+## 9. Repository layout
+
+Fonts live in `Fonts/`, images in `img/`, page backgrounds in `Background/`,
+living archive media in `la/`. Nothing image or font shaped sits at the root any
+more, and every stylesheet link carries a `?v=` so a deploy cannot leave a
+visitor on a stale copy. Bump that number when you change the file.
+
+## 10. Unrelated files in this repo
 
 Video-production assets for a film, sharing the repo and the local server but
 otherwise independent: `products-drop.html`, `high-tide.html`,
