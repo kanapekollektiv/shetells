@@ -144,8 +144,8 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4100px;
-      height: 2400px;
+      width: 4400px;
+      height: 2300px;
       transform-origin: 0 0;
       will-change: transform;
       -webkit-font-smoothing: antialiased;
@@ -676,7 +676,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4100" height="2400"
+      <svg id="linesSvg" width="4400" height="2300"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -767,15 +767,15 @@
   /* ── Cluster center coordinates for drawing connection lines ── */
   const CENTERS = {
     hypersea:    [ 510,  504],
-    sargassum:   [1282,  506],
-    local:       [1852,  290],
-    speculative: [2391,  600],
-    future:      [3299,  400],
-    workshop:    [ 936, 1907],
-    drawings:    [1579, 1584],
-    data:        [2147, 1974],
-    toolkit:     [2746, 1647],
-    exhibition:  [ 320, 1661],
+    sargassum:   [1415,  599],
+    local:       [2118,  290],
+    speculative: [2657,  600],
+    future:      [3565,  410],
+    workshop:    [ 936, 1795],
+    drawings:    [1579, 1472],
+    data:        [2147, 1862],
+    toolkit:     [2746, 1535],
+    exhibition:  [ 320, 1549],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -844,83 +844,97 @@
     [['hypersea', 'workshop'],   596, 762, 132, 96, null, { vid: 'la/hypersea/glass2.mp4' }],
 
     // ── LOCAL STORIES
-    [['local'],                  1694,  240, 100,  76, null, null],
-    [['local'],                  1834,  180,  82, 112, null, null],
-    [['local'],                 1904,  320, 106,  80, null, null],
+    [['local'],                  1960,  240, 100,  76, null, null],
+    [['local'],                  2100,  180,  82, 112, null, null],
+    [['local'],                 2170,  320, 106,  80, null, null],
 
     // ── CROSS: Hypersea × Local Stories
     [['hypersea', 'local'],       596,  648,  88,  64, 'Field Notes', null],
 
     // ── WORKSHOP
-    [['workshop'],              700,  1808,  96,  92, null, null],
-    [['workshop'],              836,  1760, 116,  76, null, null],
-    [['workshop'],              926,  1922,  90,  70, null, null],
-    [['workshop'],              776,  1972, 100,  82, null, null],
-    [['workshop'],              714,  1850, 108,  80, 'Workshop Archive', null],
+    [['workshop'],              700,  1696,  96,  92, null, null],
+    [['workshop'],              836,  1648, 116,  76, null, null],
+    [['workshop'],              926,  1810,  90,  70, null, null],
+    [['workshop'],              776,  1860, 100,  82, null, null],
+    [['workshop'],              714,  1738, 108,  80, 'Workshop Archive', null],
 
     // ── DRAWINGS
-    [['drawings'],              1382,  1502,  86, 112, null, null],
-    [['drawings'],              1510,  1440, 106,  80, null, null],
-    [['drawings'],              1576,  1608,  96,  82, null, null],
-    [['drawings'],              1418,  1658,  80,  70, null, null],
+    [['drawings'],              1382,  1390,  86, 112, null, null],
+    [['drawings'],              1510,  1328, 106,  80, null, null],
+    [['drawings'],              1576,  1496,  96,  82, null, null],
+    [['drawings'],              1418,  1546,  80,  70, null, null],
 
     // ── CROSS: Workshop × Drawings
-    [['workshop', 'drawings'],   1080,  1832,  92,  78, 'Making Session', null],
+    [['workshop', 'drawings'],   1080,  1720,  92,  78, 'Making Session', null],
 
     // ── SPECULATIVE FUTURES
-    [['speculative'],           2220,  496, 106,  82, null, null],
-    [['speculative'],           2366,  430,  86, 116, null, null],
-    [['speculative'],           2446,  622, 116,  78, null, null],
-    [['speculative'],           2284,  698,  96,  72, null, null],
-    [['speculative'],           2290,  560, 118,  84, 'Future Esposende', null],
+    [['speculative'],           2486,  496, 106,  82, null, null],
+    [['speculative'],           2632,  430,  86, 116, null, null],
+    [['speculative'],           2712,  622, 116,  78, null, null],
+    [['speculative'],           2550,  698,  96,  72, null, null],
+    [['speculative'],           2556,  560, 118,  84, 'Future Esposende', null],
 
     // ── CROSS: Drawings × Speculative Futures
-    [['drawings', 'speculative'],1688,  1512,  88,  72, 'Drawn Futures', null],
+    [['drawings', 'speculative'],1688,  1400,  88,  72, 'Drawn Futures', null],
 
     // ── SARGASSUM
-    [['sargassum'],              1080,  456, 116,  82, null, null],
-    [['sargassum'],              1216,  380,  82, 110, null, null],
-    [['sargassum'],              1286, 554, 100,  78, null, null],
+    // ── SARGASSUM — text column (each card stacks under the one before it,
+    //    so the column re-flows when the Portuguese runs longer)
+    [['sargassum'], 1080,  190, 250,  34, null, { link: 'https://www.visitesposende.com/en/fazer/monumentos/sargasso-museum', label: { en: 'Sargasso Museum →', pt: 'Museu do Sargaço →' } }],
+    [['sargassum'], 1080,  238, 300,  90, null, { txt: { en: 'Esposende has an entanglement with sargassum that goes years and years back.', pt: 'Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.' }, full: { en: 'Esposende has an entanglement with sargassum that goes years and years back.', pt: 'Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.' } }],
+    [['sargassum'], 1080,  342, 300, 150, null, { txt: { en: 'When we set out for the research project, we asked how an old tradition reflects on the future. Futures of creating speculative ways of creating rituals, as an act of care, an act of observation, an act of listening, an act of remembering the water ecology we cohabit.', pt: 'Quando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas especulativas de criar rituais, como um ato de cuidado, um ato de observação, um ato de escuta, um ato de recordar a ecologia aquática com a qual coabitamos.' }, full: { en: 'When we set out for the research project, we asked how an old tradition reflects on the future. Futures of creating speculative ways of creating rituals, as an act of care, an act of observation, an act of listening, an act of remembering the water ecology we cohabit.', pt: 'Quando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas especulativas de criar rituais, como um ato de cuidado, um ato de observação, um ato de escuta, um ato de recordar a ecologia aquática com a qual coabitamos.' }, stackBelow: true, gap: 14 }],
+    [['sargassum'], 1080,  506, 300, 165, null, { txt: { en: 'As SArgaceoro gleaned sargassum, today most interfaces glean data; we often think of this data as residing in an invisible cloud but forget the physical infrastructure it carries. As part of a speculative ritual, our project gleans memories of what has been and what could be for the futures of waters in Esposende.', pt: 'Tal como o SArgaceoro recolhia sargaço, hoje em dia a maioria das interfaces recolhe dados; muitas vezes pensamos que esses dados residem numa nuvem invisível, mas esquecemo-nos da infraestrutura física que os suporta. Como parte de um ritual especulativo, o nosso projeto recolhe memórias do que foi e do que poderá ser para o futuro das águas em Esposende.' }, full: { en: 'As SArgaceoro gleaned sargassum, today most interfaces glean data; we often think of this data as residing in an invisible cloud but forget the physical infrastructure it carries. As part of a speculative ritual, our project gleans memories of what has been and what could be for the futures of waters in Esposende.', pt: 'Tal como o SArgaceoro recolhia sargaço, hoje em dia a maioria das interfaces recolhe dados; muitas vezes pensamos que esses dados residem numa nuvem invisível, mas esquecemo-nos da infraestrutura física que os suporta. Como parte de um ritual especulativo, o nosso projeto recolhe memórias do que foi e do que poderá ser para o futuro das águas em Esposende.' }, stackBelow: true, gap: 14 }],
+    [['sargassum'], 1080,  685, 300, 165, null, { txt: { en: 'The rising temperatures heavily affect the Esposende coast, as they do in global network of water bodies. The changing water will also affect the kelp forests along the town\'s coast. We ask how we could speculate futures of tradition, how could the kelp, once the heart of the livelihood of Esposende, take its shape in a communal futures', pt: 'O aumento das temperaturas afeta fortemente a costa de Esposende, tal como acontece na rede global de massas de água. As alterações nas águas afetarão também as florestas de algas ao longo da costa da cidade. Questionamo-nos sobre como poderíamos especular sobre os futuros da tradição; como é que as algas, outrora o cerne do sustento de Esposende, poderiam assumir a sua forma num futuro comunitário' }, full: { en: 'The rising temperatures heavily affect the Esposende coast, as they do in global network of water bodies. The changing water will also affect the kelp forests along the town\'s coast. We ask how we could speculate futures of tradition, how could the kelp, once the heart of the livelihood of Esposende, take its shape in a communal futures', pt: 'O aumento das temperaturas afeta fortemente a costa de Esposende, tal como acontece na rede global de massas de água. As alterações nas águas afetarão também as florestas de algas ao longo da costa da cidade. Questionamo-nos sobre como poderíamos especular sobre os futuros da tradição; como é que as algas, outrora o cerne do sustento de Esposende, poderiam assumir a sua forma num futuro comunitário' }, stackBelow: true, gap: 14 }],
+    [['sargassum'], 1080, 868, 330,  34, null, { link: 'https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/', label: { en: 'Kelp forests in northern Portugal →', pt: 'Florestas de algas no norte de Portugal →' }, stackBelow: true, gap: 18 }],
+    [['sargassum','future'], 1080, 912, 300, 34, null, { goTo: 'future', label: { en: 'Our speculative products →', pt: 'Os nossos produtos especulativos →' }, stackBelow: true, gap: 10 }],
+    [['sargassum'], 1080, 960, 300,  48, null, { credits: { en: '.credits: museum photographs — Sargasso Museum, Esposende', pt: 'Créditos: fotografias do museu — Museu do Sargaço, Esposende' }, stackBelow: true, gap: 14, mtNotice: true }],
+
+    // ── SARGASSUM — images (the two museum photographs are credited above)
+    [['sargassum'], 1440,  190, 152, 104, null, { img: 'la/sargassum/shetells-48.jpg', alt: { en: 'Sargassum fronds draped over rock at low tide', pt: 'Algas de sargaço sobre a rocha na maré baixa' } }],
+    [['sargassum'], 1610,  210, 140, 104, null, { img: 'la/sargassum/IMG_5705.jpg', alt: { en: 'Bladderwrack covering the rocks along the Esposende shore', pt: 'Bodelha a cobrir as rochas na costa de Esposende' } }],
+    [['sargassum'], 1440,  310, 150, 100, null, { img: 'la/sargassum/museum-179232.jpg', alt: { en: 'Sargaceiro sculptures outside the Sargasso Museum, Esposende', pt: 'Esculturas de sargaceiros à entrada do Museu do Sargaço, Esposende' } }],
+    [['sargassum'], 1604,  330, 118, 158, null, { img: 'la/sargassum/museum-IMG_5775.jpg', alt: { en: 'Sargassum landscape protection display at the Sargasso Museum', pt: 'Exposição sobre a proteção da paisagem do sargaço no Museu do Sargaço' } }],
+    [['sargassum','hypersea'], 1444, 432, 116, 158, null, { img: 'la/sargassum/shetells-54.jpg', alt: { en: 'Glass sculpture resting on sargassum-covered rock', pt: 'Escultura de vidro pousada sobre rocha coberta de sargaço' } }],
 
     // ── EXHIBITION
-    [['exhibition'],             150,  1562, 106,  80, null, null],
-    [['exhibition'],             278,  1500,  90, 116, null, null],
-    [['exhibition'],             378,  1664, 112,  80, null, null],
-    [['exhibition'],             242, 1744,  96,  78, null, null],
-    [['exhibition'],             152,  1712,  78,  68, null, null],
-    [['exhibition'],             217,  1602, 130,  88, 'Documentation', null],
+    [['exhibition'],             150,  1450, 106,  80, null, null],
+    [['exhibition'],             278,  1388,  90, 116, null, null],
+    [['exhibition'],             378,  1552, 112,  80, null, null],
+    [['exhibition'],             242, 1632,  96,  78, null, null],
+    [['exhibition'],             152,  1600,  78,  68, null, null],
+    [['exhibition'],             217,  1490, 130,  88, 'Documentation', null],
 
     // ── CROSS: Sargassum × Exhibition
-    [['sargassum', 'exhibition'], 1390,  468,  94,  76, 'Tidal Archive', null],
+    [['sargassum', 'exhibition'], 1618,  620,  94,  76, 'Tidal Archive', null],
 
     // ── TOOLKIT
-    [['toolkit'],               2518,  1572,  96,  82, null, null],
-    [['toolkit'],               2640,  1520, 106,  74, null, null],
-    [['toolkit'],               2706,  1678,  90,  96, null, null],
+    [['toolkit'],               2518,  1460,  96,  82, null, null],
+    [['toolkit'],               2640,  1408, 106,  74, null, null],
+    [['toolkit'],               2706,  1566,  90,  96, null, null],
 
     // ── DATA
-    [['data'],                  1986,  1878, 106,  78, null, null],
-    [['data'],                  2118,  1820,  90, 110, null, null],
-    [['data'],                  2192,  1984, 116,  78, null, null],
-    [['data'],                  2052,  2056,  82,  72, null, null],
+    [['data'],                  1986,  1766, 106,  78, null, null],
+    [['data'],                  2118,  1708,  90, 110, null, null],
+    [['data'],                  2192,  1872, 116,  78, null, null],
+    [['data'],                  2052,  1944,  82,  72, null, null],
 
     // ── CROSS: Toolkit × Data
-    [['toolkit', 'data'],        2872,  1608, 102,  78, 'Methods & Measures', null],
+    [['toolkit', 'data'],        2872,  1496, 102,  78, 'Methods & Measures', null],
 
     // ── FUTURE PRODUCT
-    [['future'],                 3516, 278, 106,  82, null, null],
-    [['future'],                 3650, 200,  90, 110, null, null],
-    [['future'],                 3710, 370, 116,  76, null, null],
+    [['future'],                 3782, 288, 106,  82, null, null],
+    [['future'],                 3916, 210,  90, 110, null, null],
+    [['future'],                 3976, 380, 116,  76, null, null],
 
     // ── NON-HUMAN
-    [['future'],              3164, 338,  96,  82, null, null],
-    [['future'],              3292, 276,  84, 110, null, null],
-    [['future'],              3370, 432, 106,  78, null, null],
-    [['future'],              3232, 512,  90,  88, null, null],
-    [['future'],              3178, 376, 110,  82, 'Non-Human Voices', null],
+    [['future'],              3430, 348,  96,  82, null, null],
+    [['future'],              3558, 286,  84, 110, null, null],
+    [['future'],              3636, 442, 106,  78, null, null],
+    [['future'],              3498, 522,  90,  88, null, null],
+    [['future'],              3444, 386, 110,  82, 'Non-Human Voices', null],
 
     // ── CROSS: Non-Human × Sargassum
-    [['future', 'sargassum'],   2772, 200,  98,  76, 'Seaweed Mapping', null],
+    [['future', 'sargassum'],   3038, 210,  98,  76, 'Seaweed Mapping', null],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -1020,7 +1034,7 @@
       vid.playsInline = true; vid.preload = 'none';
       vid.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       card.appendChild(vid);
-    } else if (content && content.link) {
+    } else if (content && (content.link || content.goTo)) {
       card.className += ' card-link-pill';
       const span = document.createElement('span');
       span.className = 'card-link-text';
@@ -1106,7 +1120,9 @@
     }, { passive: true });
     wrap.addEventListener('pointerup', e => {
       if (Math.hypot(e.clientX - _spx, e.clientY - _spy) > 12 || Date.now() - _spt > 600) return;
-      if (content && content.img && content.link) {
+      if (content && content.goTo) {
+        flyToCluster(content.goTo);
+      } else if (content && content.img && content.link) {
         window.open(content.link, '_blank', 'noopener noreferrer');
       } else if (content && content.link) {
         window.open(content.link, '_blank', 'noopener noreferrer');
@@ -1757,7 +1773,7 @@
     const rank = c => {
       const k = c[6];
       if (k && k.txt) return 0;
-      if (k && k.link && !k.img) return 1;
+      if (k && ((k.link && !k.img) || k.goTo)) return 1;
       if (k && (k.img || k.vid)) return 2;
       if (!k) return 3;
       if (k && k.credits) return 4;
@@ -1782,6 +1798,12 @@
         p.className = 'm-text';
         p.textContent = L(content.full || content.txt);
         mNotesBody.appendChild(p); rendered++;
+      } else if (content && content.goTo) {
+        const btn = document.createElement('button');
+        btn.className = 'm-link'; btn.type = 'button';
+        btn.textContent = L(content.label);
+        btn.addEventListener('click', () => openNotes(content.goTo));
+        mNotesBody.appendChild(btn); rendered++;
       } else if (content && content.link && !content.img) {
         const a = document.createElement('a');
         a.className = 'm-link'; a.href = content.link;
