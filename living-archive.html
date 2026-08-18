@@ -624,7 +624,13 @@
         letter-spacing: 0.04em; color: #111; text-decoration: none;
       }
       .m-media { width: 100%; border-radius: 4px; display: block; }
+      /* several of these are tall portrait frames; uncapped they ran well over
+         a full screen each. The map crops them the same way. */
+      .m-figure:not(.m-figure-centred) .m-media,
+      video.m-media { max-height: 46vh; object-fit: cover; }
       .m-figure { margin: 0 0 1.15rem; }
+      .m-figure-centred { text-align: center; }
+      .m-figure-centred .m-media { margin: 0 auto; }
       .m-caption {
         font-family: system-ui, -apple-system, sans-serif;
         font-size: 11.5px; color: rgba(0,0,0,0.42); margin-top: 0.4rem;
@@ -816,7 +822,7 @@
     [['hypersea'], 272, 197, 422, 34, null, { link: 'https://www.researchgate.net/publication/335701988_The_ocean_in_excess_Towards_a_more-than-wet_ontology', label: 'The ocean in excess: Towards a more-than-wet ontology →' }],
 
     // ── HYPERSEA — book cover + link pill below
-    [['hypersea','local'], 272, 262, 125, 168, null, { img: 'la/hypersea/book.jpg', alt: 'Hypersea: Life on Land', link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C' }],
+    [['hypersea','local'], 272, 262, 125, 168, null, { img: 'la/hypersea/book.jpg', alt: 'Hypersea: Life on Land', link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', mWidth: 165 }],
     [['hypersea'], 272, 455, 172,  34, null, { link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C', label: { en: 'Link to the Book →', pt: 'Link para o livro →' } }],
 
     // ── HYPERSEA — intro text card (right of book, clear gap)
@@ -1790,6 +1796,12 @@
         const img = document.createElement('img');
         img.className = 'm-media'; img.src = content.img;
         img.alt = L(content.alt) || ''; img.loading = 'lazy';
+        // book covers and other objects read better small and centred than
+        // blown up to the full width of the phone
+        if (content.mWidth) {
+          fig.classList.add('m-figure-centred');
+          img.style.maxWidth = content.mWidth + 'px';
+        }
         if (content.link) {
           const a = document.createElement('a');
           a.href = content.link; a.target = '_blank'; a.rel = 'noopener';
