@@ -14,6 +14,7 @@ const TRANSLATIONS = {
     'archive.hint':         'drag to explore<br>scroll to zoom<br>press h to center',
     'archive.readmore':     '(click to read more)',
     'archive.read':         'read →',
+    'archive.back':         'all clusters',
     'archive.placeholder':  'content being woven',
     'nav.stream':           'tune in to the stream',
 
@@ -153,6 +154,7 @@ const TRANSLATIONS = {
     'archive.hint':         'arraste para explorar<br>desloque para ampliar<br>prima h para centrar',
     'archive.readmore':     '(clique para ler mais)',
     'archive.read':         'ler →',
+    'archive.back':         'todos os grupos',
     'archive.placeholder':  'conteúdo a ser tecido',
     'nav.stream':           'sintonize a transmissão',
 

@@ -561,6 +561,88 @@
       font-size: 12px; color: rgba(0,0,0,0.28);
       letter-spacing: 0.06em; margin-top: 1.6rem;
     }
+
+    /* ══ Mobile: list of clusters -> field notes ══════════════════════ */
+    .m-view { display: none; }
+
+    @media (max-width: 768px) {
+      .map-viewport, .map-legend { display: none !important; }
+      /* the map pins the page to the viewport; the list has to scroll */
+      html, body { overflow: auto !important; height: auto !important; }
+      .m-view { display: block; padding: 0 1.25rem 3rem; }
+      /* explicit display rules below would otherwise beat the hidden attribute */
+      .m-view [hidden] { display: none !important; }
+
+      .const-header { flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+      .const-nav { gap: 0.5rem; }
+      .const-nav .c-btn-filled { display: none; }   /* returns at the list foot */
+
+      .m-list { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+      .m-item {
+        display: flex; align-items: center; gap: 1rem;
+        padding: 1.15rem 0.25rem;
+        border-bottom: 1.5px solid var(--black, #111);
+        cursor: pointer; background: none; border-left: 0; border-right: 0; border-top: 0;
+        width: 100%; text-align: left;
+        font-family: 'Celescript', cursive; font-size: 15px;
+        letter-spacing: 0.06em; text-transform: uppercase; color: var(--black, #111);
+      }
+      .m-list li:last-child .m-item { border-bottom: 0; }
+      .m-item:active { opacity: 0.55; }
+      .m-dot { width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; }
+
+      .m-cta {
+        display: block; margin: 2rem 0 0; padding: 0.85rem 1.2rem;
+        border-radius: 999px; background: #111; color: #fff;
+        font-family: 'Celescript', cursive; font-size: 13px;
+        letter-spacing: 0.06em; text-transform: uppercase;
+        text-align: center; text-decoration: none;
+      }
+
+      /* ── field notes ── */
+      .m-notes { padding-top: 1.25rem; }
+      .m-back {
+        background: none; border: 0; padding: 0 0 1rem; cursor: pointer;
+        font-family: 'Celescript', cursive; font-size: 13px;
+        letter-spacing: 0.06em; color: rgba(0,0,0,0.5);
+      }
+      .m-notes-chip {
+        display: inline-block; padding: 7px 18px; border-radius: 999px;
+        font-family: 'Celescript', cursive; font-size: 13px;
+        letter-spacing: 0.05em; text-transform: uppercase;
+      }
+      .m-notes-body { margin-top: 1.4rem; }
+      .m-notes-body > * { margin: 0 0 1.15rem; }
+      .m-text {
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 15px; line-height: 1.72; color: #333;
+      }
+      .m-link {
+        display: block; padding: 0.72rem 1.1rem; border-radius: 999px;
+        border: 1.5px solid rgba(0,0,0,0.16); background: #fff;
+        font-family: 'Celescript', cursive; font-size: 12.5px;
+        letter-spacing: 0.04em; color: #111; text-decoration: none;
+      }
+      .m-media { width: 100%; border-radius: 4px; display: block; }
+      .m-figure { margin: 0 0 1.15rem; }
+      .m-caption {
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 11.5px; color: rgba(0,0,0,0.42); margin-top: 0.4rem;
+      }
+      .m-heading {
+        font-family: 'Celescript', cursive; font-size: 14px;
+        letter-spacing: 0.06em; text-transform: uppercase; color: #111;
+      }
+      .m-credits {
+        font-family: 'Celescript', cursive; font-size: 11px;
+        letter-spacing: 0.04em; color: rgba(0,0,0,0.4);
+        white-space: pre-line; line-height: 1.6;
+      }
+      .m-empty {
+        font-family: 'Celescript', cursive; font-size: 13px;
+        color: rgba(0,0,0,0.3);
+      }
+    }
   </style>
 </head>
 <body>
@@ -601,6 +683,18 @@
   </div>
 
   <footer class="map-legend" id="mapLegend"></footer>
+
+  <!-- Mobile: the map is unusable on a phone, so clusters become a plain list
+       and each one opens a field-notes reading view built from the same CARDS
+       data the map uses. -->
+  <div class="m-view" id="mView">
+    <ul class="m-list" id="mList"></ul>
+    <section class="m-notes" id="mNotes" hidden>
+      <button class="m-back" id="mBack"></button>
+      <span class="m-notes-chip" id="mNotesChip"></span>
+      <div class="m-notes-body" id="mNotesBody"></div>
+    </section>
+  </div>
 
   <div class="card-overlay" id="cardOverlay" role="dialog" aria-modal="true">
     <div class="card-popup">
@@ -1618,6 +1712,139 @@
   });
 
   /* ── Stream play/pause ── */
+  /* ═══════════════════════════════════════════════════
+     MOBILE — cluster list + field notes
+
+     Built from CATS and CARDS, the same data the map draws from, so a
+     cluster gains a mobile view as soon as its cards exist and translated
+     copy only has to be written once.
+  ═══════════════════════════════════════════════════ */
+  const mList = document.getElementById('mList');
+  const mNotes = document.getElementById('mNotes');
+  const mNotesBody = document.getElementById('mNotesBody');
+  const mNotesChip = document.getElementById('mNotesChip');
+  const mBack = document.getElementById('mBack');
+
+  CATS.forEach(({ key, label, color }) => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'm-item';
+    btn.type = 'button';
+    const dot = document.createElement('span');
+    dot.className = 'm-dot';
+    dot.style.background = color;
+    const txt = document.createElement('span');
+    onLang(() => { txt.textContent = L(label); });
+    btn.appendChild(dot); btn.appendChild(txt);
+    btn.addEventListener('click', () => openNotes(key));
+    li.appendChild(btn);
+    mList.appendChild(li);
+  });
+
+  const mCta = document.createElement('a');
+  mCta.className = 'm-cta';
+  mCta.href = 'memories.html';
+  onLang(() => { mCta.textContent = t('archive.contribute'); });
+  mList.parentNode.insertBefore(mCta, mNotes);
+
+  // The map places cards spatially; a phone needs a reading order, so group
+  // by kind: words first, then what to read next, then the images, then credits.
+  function notesOrder(cards) {
+    const rank = c => {
+      const k = c[6];
+      if (k && k.txt) return 0;
+      if (k && k.link && !k.img) return 1;
+      if (k && (k.img || k.vid)) return 2;
+      if (!k) return 3;
+      if (k && k.credits) return 4;
+      return 3;
+    };
+    return cards.map((c, i) => [c, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(p => p[0]);
+  }
+
+  function openNotes(key) {
+    const cat = CAT_MAP[key];
+    mNotesChip.textContent = L(cat.label);
+    mNotesChip.style.background = cat.color;
+    mNotesChip.style.color = YELLOW_CATS.has(key) ? '#1a1200' : '#ffffff';
+    mNotesBody.innerHTML = '';
+
+    const cards = notesOrder(CARDS.filter(([cats]) => cats[0] === key));
+    let rendered = 0;
+
+    cards.forEach(([, , , , , title, content]) => {
+      if (content && content.txt) {
+        const p = document.createElement('p');
+        p.className = 'm-text';
+        p.textContent = L(content.full || content.txt);
+        mNotesBody.appendChild(p); rendered++;
+      } else if (content && content.link && !content.img) {
+        const a = document.createElement('a');
+        a.className = 'm-link'; a.href = content.link;
+        a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = L(content.label);
+        mNotesBody.appendChild(a); rendered++;
+      } else if (content && content.img) {
+        const fig = document.createElement('figure');
+        fig.className = 'm-figure';
+        const img = document.createElement('img');
+        img.className = 'm-media'; img.src = content.img;
+        img.alt = L(content.alt) || ''; img.loading = 'lazy';
+        if (content.link) {
+          const a = document.createElement('a');
+          a.href = content.link; a.target = '_blank'; a.rel = 'noopener';
+          a.appendChild(img); fig.appendChild(a);
+        } else {
+          fig.appendChild(img);
+        }
+        if (L(content.alt)) {
+          const cap = document.createElement('figcaption');
+          cap.className = 'm-caption'; cap.textContent = L(content.alt);
+          fig.appendChild(cap);
+        }
+        mNotesBody.appendChild(fig); rendered++;
+      } else if (content && content.vid) {
+        const v = document.createElement('video');
+        v.className = 'm-media'; v.src = content.vid;
+        v.controls = true; v.playsInline = true; v.preload = 'metadata';
+        mNotesBody.appendChild(v); rendered++;
+      } else if (content && content.credits) {
+        const p = document.createElement('p');
+        p.className = 'm-credits';
+        const note = content.mtNotice ? L(MT_NOTICE) : '';
+        p.textContent = L(content.credits) + (note ? '\n' + note : '');
+        mNotesBody.appendChild(p); rendered++;
+      } else if (title) {
+        const h = document.createElement('p');
+        h.className = 'm-heading';
+        h.textContent = L(title);
+        mNotesBody.appendChild(h); rendered++;
+      }
+    });
+
+    if (!rendered) {
+      const p = document.createElement('p');
+      p.className = 'm-empty';
+      p.textContent = t('archive.placeholder');
+      mNotesBody.appendChild(p);
+    }
+
+    mList.hidden = true; mCta.hidden = true; mNotes.hidden = false;
+    window.scrollTo(0, 0);
+    openNotesKey = key;
+  }
+
+  function closeNotes() {
+    mNotes.hidden = true; mList.hidden = false; mCta.hidden = false;
+    openNotesKey = null;
+  }
+  let openNotesKey = null;
+  mBack.addEventListener('click', closeNotes);
+  onLang(() => {
+    mBack.textContent = '← ' + t('archive.back');
+    if (openNotesKey) openNotes(openNotesKey);   // redraw notes in the new language
+  });
+
   const streamAudio = document.getElementById('streamAudio');
   const btnStream   = document.getElementById('btnStream');
   let streamPlaying = false;
