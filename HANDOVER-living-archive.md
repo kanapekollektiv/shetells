@@ -187,6 +187,15 @@ order.
   captions, from an uncommitted file. Git could not help and the browser cache
   had already rolled over; it was rebuilt by hand. Cut from one section marker
   to the *next* section marker, and commit before large content edits.
+- **Measure the map at desktop width.** Below 768px the map is `display: none`
+  and every `offsetHeight` reads 0, so an overlap check will come back clean
+  and a `stackBelow` gap will read as a large negative number. Assert
+  `window.innerWidth` before trusting any layout measurement, and check for
+  cards with zero height as a canary.
+- **`stackBelow` anchors to the previous card in the CARDS array**, not to the
+  nearest card above it on the canvas. Put a stacked chain immediately after
+  the card it hangs from; anything placed between them becomes the anchor. This
+  is what put the toolkit links most of a screen below their text card.
 - **Always validate after a large edit.** Two syntax errors (doubled `}`) took
   the whole script out. Extract and check:
   ```bash
@@ -301,6 +310,12 @@ plays from what matches. The selection is the composition. The "Sound
 Relevance" column in the data document reads like a synthesis spec and is not
 one; a first draft of this cluster described filters and howling layers and had
 to be rewritten.
+
+**To do in the copy**
+
+1. **Connect the Hypersea and Sargassum content.** The Hypersea text should
+   reach across to the sargaço material rather than sitting on its own; the two
+   clusters are linked by a line on the map but not yet in the writing.
 
 **Blocking on the user:**
 

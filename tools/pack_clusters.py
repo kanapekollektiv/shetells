@@ -72,7 +72,7 @@ STAGGER = {
     'future':    170,
 
     'exhibition':  60,
-    'drawings':   360,
+    'drawings':   460,
     'data':       380,
     # workshop and toolkit are placed by hand, see FREE
     'toolkit':     80,
