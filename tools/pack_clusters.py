@@ -44,8 +44,17 @@ DEFAULT_HTML = Path(__file__).resolve().parent.parent / 'living-archive.html'
 # Drawings, Data beside Toolkit.
 ROWS = [
     ['hypersea', 'sargassum', 'local', 'future'],
-    ['exhibition', 'workshop', 'drawings', 'data', 'toolkit'],
+    ['exhibition', 'drawings', 'data'],
 ]
+
+# Clusters placed by hand rather than by row, as an explicit top left corner on
+# the canvas. Use this when a cluster belongs in the space between the rows and
+# the grid cannot say so. Nothing checks these for collisions, so check the
+# neighbours yourself after moving one.
+FREE = {
+    'workshop': (1290, 1050),
+    'toolkit':  (3474, 1015),
+}
 
 MARGIN_LEFT = 150   # x of the leftmost cluster in every row
 MARGIN_TOP  = 150   # y of the top line of the first row
@@ -62,11 +71,12 @@ STAGGER = {
     'local':      30,
     'future':    170,
 
-    'drawings':    0,
-    'exhibition': 60,
-    'toolkit':    80,
-    'workshop':  320,
-    'data':      380,
+    'exhibition':  60,
+    'drawings':   240,
+    'data':       380,
+    # workshop and toolkit are placed by hand, see FREE
+    'toolkit':     80,
+    'workshop':   320,
 }
 
 # ── Parsing ───────────────────────────────────────────────────────────────
@@ -121,24 +131,36 @@ def solve(boxes):
     """Work out the translation for each cluster. Returns {key: (dx, dy)}."""
     placed = set()
     offsets = {}
+
+    for key, (x, y) in FREE.items():
+        if key not in boxes:
+            print(f'  note: free cluster "{key}" has no cards, skipping', file=sys.stderr)
+            continue
+        x0, y0, _, _ = boxes[key]
+        offsets[key] = (x - x0, y - y0)
+        placed.add(key)
+
     row_top = MARGIN_TOP
 
     for row in ROWS:
-        present = [k for k in row if k in boxes]
+        present = [k for k in row if k in boxes and k not in FREE]
         for key in row:
-            if key not in boxes:
+            if key not in boxes and key not in FREE:
                 print(f'  note: cluster "{key}" has no cards, skipping', file=sys.stderr)
         if not present:
             continue
-        if min(STAGGER.get(k, 0) for k in present) != 0:
-            sys.exit(f'row {present} has no cluster at stagger 0, so its top line is undefined')
+        # The smallest stagger in the row defines its top line, so the values
+        # are relative to each other rather than to an absolute zero. That
+        # matters once clusters move in and out of rows: the row would
+        # otherwise shift bodily when the one cluster at zero left it.
+        base = min(STAGGER.get(k, 0) for k in present)
 
         pen_x = MARGIN_LEFT
         row_bottom = row_top
         for key in present:
             x0, y0, x1, y1 = boxes[key]
             target_x = pen_x
-            target_y = row_top + STAGGER.get(key, 0)
+            target_y = row_top + STAGGER.get(key, 0) - base
             offsets[key] = (target_x - x0, target_y - y0)
             pen_x = target_x + (x1 - x0) + GAP_X
             row_bottom = max(row_bottom, target_y + (y1 - y0))
@@ -147,7 +169,7 @@ def solve(boxes):
 
     missing = set(boxes) - placed
     if missing:
-        sys.exit('clusters have cards but no row in ROWS: ' + ', '.join(sorted(missing)))
+        sys.exit('clusters have cards but no row in ROWS and no place in FREE: ' + ', '.join(sorted(missing)))
     return offsets
 
 
@@ -212,14 +234,16 @@ def main():
     offsets = solve(boxes)
     width, height = canvas_size(boxes, offsets)
 
+    # Every cluster needs a centre, including the hand placed ones: the
+    # connection lines read CENTERS by key and throw on a missing one, which
+    # takes the whole script out.
     centers = {}
-    for row in ROWS:
-        for key in row:
-            if key not in boxes:
-                continue
-            dx, dy = offsets[key]
-            x0, y0, x1, y1 = boxes[key]
-            centers[key] = ((x0 + x1) // 2 + dx, (y0 + y1) // 2 + dy)
+    for key in [k for row in ROWS for k in row] + list(FREE):
+        if key not in boxes or key in centers:
+            continue
+        dx, dy = offsets[key]
+        x0, y0, x1, y1 = boxes[key]
+        centers[key] = ((x0 + x1) // 2 + dx, (y0 + y1) // 2 + dy)
 
     moved = 0
     for i, key, x, y, w, h in cards:

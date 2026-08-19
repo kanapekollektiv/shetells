@@ -133,7 +133,14 @@ python3 tools/pack_clusters.py --write    # apply
 ```
 
 Rows, margins, the 210px horizontal gap, the 320px row gap and the per-cluster
-vertical stagger are constants at the top of the file, each one commented. Every
+vertical stagger are constants at the top of the file, each one commented. A
+row's top line is its *smallest* stagger, so the values are relative to each
+other and a row does not shift bodily when one cluster leaves it. `FREE` places
+a cluster by hand, as an explicit top left corner, for the ones that belong in
+the space between rows; nothing checks those for collisions, so check the
+neighbours after moving one. A cluster in `FREE` still needs a centre, since the
+connection lines read `CENTERS` by key and throw on a missing one, which takes
+the whole script out. Every
 row needs at least one cluster at stagger 0, or it exits rather than guess. It
 takes an optional file path, which is how to try a layout change on a copy
 before touching the real page.
@@ -388,6 +395,10 @@ read properly.
   canvas and reading the ink bounds. Painting a *fresh* `Image()` gives a false
   reading: it captures the animation at time zero, where everything is
   deliberately transparent.
+- **Connection lines use `vector-effect: non-scaling-stroke`.** The canvas is
+  scaled by the viewport transform, so a plain stroke thins to nothing when
+  zoomed out, which is where the lines were disappearing. The stroke now holds
+  its width in device pixels at any zoom.
 - **Check the assets after any move** with `tools/check_assets.py`. It resolves
   every `url()`, `src` and `href` across the html, css and js, and also lists
   files nothing references.
