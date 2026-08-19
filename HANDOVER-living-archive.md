@@ -352,6 +352,19 @@ to be rewritten.
 5. **Google Drive links** on Deluxe O₂ and Sargassum City may not be publicly
    shared. Check, or swap for public citations.
 
+**To do:**
+
+- **Tie the Hypersea text to Sargassum.** The two clusters are joined by a line
+  on the map but the Hypersea copy never reaches across to the sargaço. A
+  sentence or two in the Hypersea intro connecting the concept to Esposende's
+  own entanglement with sargassum would make the link mean something. The
+  Sargassum cluster already carries the history, so this is a small edit at the
+  Hypersea end rather than new research.
+- **Main page and memories page still want updating**, per the user. The living
+  archive is not linked from `index.html` yet; that needs a `nav.archive` key in
+  `lang.js` and `.nav-buttons` given `flex-wrap: wrap` and `min-width: 0`, or the
+  header overflows.
+
 **Written by me, needs the user's eye:**
 
 - The Tidal Archive sargaço history (Sargassum).

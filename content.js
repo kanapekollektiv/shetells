@@ -1647,11 +1647,6 @@ const CONTENT = {
         alt: { en: `The sculpture set among sargaço covered rock`, pt: `A escultura entre rochas cobertas de sargaço` },
         caption: { en: `On the sargaço rocks`, pt: `Nas rochas de sargaço` },
       },
-      {
-        src: 'la/exhibition/shellphone-15.jpg',
-        alt: { en: `The shell inside the glass among the sargaço`, pt: `A concha dentro do vidro entre o sargaço` },
-        caption: { en: `On the sargaço rocks`, pt: `Nas rochas de sargaço` },
-      },
     ],
   },
 
