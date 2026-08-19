@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>she tells — the living archive</title>
   <script src="lang.js?v=9"></script>
-  <script src="content.js?v=21"></script>
+  <script src="content.js?v=22"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -145,7 +145,7 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 5500px;
+      width: 5800px;
       height: 2600px;
       transform-origin: 0 0;
       will-change: transform;
@@ -838,7 +838,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="5500" height="2600"
+      <svg id="linesSvg" width="5800" height="2600"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -920,7 +920,7 @@
     { key: 'workshop',    label: { en: 'Workshops',           pt: 'Oficinas' },              color: '#CCDE07' },
     { key: 'drawings',    label: { en: 'Drawings',            pt: 'Desenhos' },              color: '#92CEF8' },
     { key: 'data',        label: { en: 'Data & the Eternal Stream', pt: 'Dados e a Transmissão Eterna' }, color: '#32BE3A' },
-    { key: 'toolkit',     label: { en: 'Toolkit',             pt: 'Kit de Ferramentas' },    color: '#CB561D' },
+    { key: 'toolkit',     label: { en: 'DIY Shellphone Toolkit', pt: 'Kit do Shellphone Caseiro' }, color: '#CB561D' },
     { key: 'exhibition',  label: { en: 'Artwork & Exhibition', pt: 'Obra e Exposição' },     color: '#5B2915' },
   ];
   const CAT_MAP = Object.fromEntries(CATS.map(c => [c.key, c]));
@@ -935,7 +935,7 @@
     workshop:   [1980, 1856],
     drawings:   [3030, 1624],
     data:       [3950, 1931],
-    toolkit:    [4885, 1641],
+    toolkit:    [5035, 1641],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -1029,6 +1029,7 @@
 
     // ── TOOLKIT
     [['toolkit'],               4540, 1408, 360, 210, 'toolkit-intro'],
+    [['toolkit'],               5270, 1408, 260, 300, 'toolkit-current'],
     [['toolkit', 'exhibition'], 4930, 1408, 300, 215, 'toolkit-prototype'],
     [['toolkit', 'workshop'],   4930, 1660, 300, 215, 'toolkit-workshop'],
     [['toolkit', 'future'],     4540, 1644, 250,  34, 'toolkit-to-future', { stackBelow: true, gap: 16 }],
@@ -1070,7 +1071,6 @@
 
     // ── DRAWINGS
     [['drawings', 'workshop'],  2700, 1328, 340, 210, 'drawings-intro'],
-    [['drawings'],              3080, 1328, 280, 200, 'drawings-all'],
     [['drawings', 'workshop'],  3080, 1568, 280, 200, 'drawings-process'],
     [['drawings', 'future'],    2700, 1580, 340, 230, 'drawings-stories', { mapTitle: true }],
     [['drawings', 'future'],    2700, 1886, 280,  34, 'drawings-to-future'],

@@ -1015,196 +1015,6 @@ const CONTENT = {
     },
   },
 
-  'drawings-all': {
-    title: { en: `The drawings`, pt: `Os desenhos` },
-    gallery: [
-      {
-        src: 'la/drawings/drawing-01.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-02.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-03.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-04.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-05.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-06.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-07.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-08.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-09.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-10.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-11.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-12.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-13.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-14.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-15.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-16.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-17.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-18.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-19.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-20.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-21.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-22.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-23.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-24.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-25.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-26.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-27.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-28.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-29.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-30.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-31.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-32.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-33.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-34.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-35.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-36.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-      {
-        src: 'la/drawings/drawing-37.jpg',
-        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
-        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
-      },
-    ],
-  },
 
   'drawings-process': {
     title: { en: `In the classroom`, pt: `Na sala de aula` },
@@ -1465,6 +1275,22 @@ const CONTENT = {
       Joga um jogo, grava a tua voz, junta-te à transmissão eterna, escuta em qualquer lugar, e faz parte de uma comunidade que escuta quando a NATUREZA CHAMA.
 
       Mais informações em breve!`,
+    },
+  },
+
+  'toolkit-current': {
+    title: { en: `The current build`, pt: `A construção atual` },
+    img: 'la/toolkit/current-build.jpg',
+    caption: { en: `The shellphone as it stands`, pt: `O shellphone tal como está` },
+    alt: { en: `A conch with a small board and speaker wired inside it, connected by a USB cable`,
+           pt: `Uma concha com uma placa pequena e um altifalante ligados lá dentro, com um cabo USB` },
+    full: {
+      en: `This is the current state of the toolkit. What is missing is a small plexiglass case for the board.
+
+      We will share the laser cut files so people can make their own case, and the name of every component, so the whole thing can be built at home.`,
+      pt: `Este é o estado atual do kit. O que falta é uma pequena caixa de acrílico para a placa.
+
+      Vamos partilhar os ficheiros de corte a laser para que cada pessoa possa fazer a sua própria caixa, e o nome de cada componente, para que se possa construir tudo em casa.`,
     },
   },
 
