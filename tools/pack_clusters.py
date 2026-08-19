@@ -53,7 +53,7 @@ ROWS = [
 # neighbours yourself after moving one.
 FREE = {
     'workshop': (1290, 1050),
-    'toolkit':  (3474, 1015),
+    'toolkit':  (3050,  960),
 }
 
 MARGIN_LEFT = 150   # x of the leftmost cluster in every row
@@ -72,7 +72,7 @@ STAGGER = {
     'future':    170,
 
     'exhibition':  60,
-    'drawings':   240,
+    'drawings':   360,
     'data':       380,
     # workshop and toolkit are placed by hand, see FREE
     'toolkit':     80,

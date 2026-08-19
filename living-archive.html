@@ -145,7 +145,7 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4800px;
+      width: 4300px;
       height: 2500px;
       transform-origin: 0 0;
       will-change: transform;
@@ -838,7 +838,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4800" height="2500"
+      <svg id="linesSvg" width="4300" height="2500"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -932,10 +932,10 @@
     local:      [2430,  438],
     future:     [3425,  575],
     exhibition: [ 705, 1788],
-    drawings:   [1800, 1804],
+    drawings:   [1800, 1924],
     data:       [2720, 1871],
     workshop:   [1800, 1258],
-    toolkit:    [3969, 1248],
+    toolkit:    [3545, 1193],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -1028,13 +1028,13 @@
     // ── WORKSHOP
 
     // ── TOOLKIT
-    [['toolkit'],               3474, 1015, 360, 210, 'toolkit-intro'],
-    [['toolkit'],               4204, 1015, 260, 300, 'toolkit-current'],
-    [['toolkit', 'exhibition'], 3864, 1015, 300, 215, 'toolkit-prototype'],
-    [['toolkit', 'workshop'],   3864, 1267, 300, 215, 'toolkit-workshop'],
-    [['toolkit', 'future'],     3474, 1251, 250,  34, 'toolkit-to-future', { stackBelow: true, gap: 16 }],
-    [['toolkit', 'data'],       3474, 1299, 250,  34, 'toolkit-to-data', { stackBelow: true, gap: 10 }],
-    [['toolkit'],               3474, 1347, 250,  34, 'toolkit-live-stream', { stackBelow: true, gap: 10 }],
+    [['toolkit'],               3050,  960, 360, 210, 'toolkit-intro'],
+    [['toolkit'],               3780,  960, 260, 300, 'toolkit-current'],
+    [['toolkit', 'exhibition'], 3440,  960, 300, 215, 'toolkit-prototype'],
+    [['toolkit', 'workshop'],   3440, 1212, 300, 215, 'toolkit-workshop'],
+    [['toolkit', 'future'],     3050, 1196, 250,  34, 'toolkit-to-future', { stackBelow: true, gap: 16 }],
+    [['toolkit', 'data'],       3050, 1244, 250,  34, 'toolkit-to-data', { stackBelow: true, gap: 10 }],
+    [['toolkit'],               3050, 1292, 250,  34, 'toolkit-live-stream', { stackBelow: true, gap: 10 }],
 
     // ── DATA & THE ETERNAL STREAM
     [['data', 'exhibition'],    2340, 1648, 360, 210, 'data-stream'],
@@ -1070,10 +1070,10 @@
     [['sargassum', 'local'], 1744,  330, 118, 158, 'sargassum-museum-display'],
 
     // ── DRAWINGS
-    [['drawings', 'workshop'],  1470, 1508, 340, 210, 'drawings-intro'],
-    [['drawings', 'workshop'],  1850, 1748, 280, 200, 'drawings-process'],
-    [['drawings', 'future'],    1470, 1760, 340, 230, 'drawings-stories', { mapTitle: true }],
-    [['drawings', 'future'],    1470, 2066, 280,  34, 'drawings-to-future'],
+    [['drawings', 'workshop'],  1470, 1628, 340, 210, 'drawings-intro'],
+    [['drawings', 'workshop'],  1850, 1868, 280, 200, 'drawings-process'],
+    [['drawings', 'future'],    1470, 1880, 340, 230, 'drawings-stories', { mapTitle: true }],
+    [['drawings', 'future'],    1470, 2186, 280,  34, 'drawings-to-future'],
 
     // ── ARTWORK & EXHIBITION
     [['exhibition', 'workshop'],            400, 1328, 300, 215, 'exhibition-shellphone'],
