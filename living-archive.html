@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>she tells — the living archive</title>
-  <script src="lang.js?v=8"></script>
-  <script src="content.js?v=12"></script>
+  <script src="lang.js?v=9"></script>
+  <script src="content.js?v=21"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -145,7 +145,7 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4900px;
+      width: 5500px;
       height: 2600px;
       transform-origin: 0 0;
       will-change: transform;
@@ -832,13 +832,13 @@
       <button class="c-btn c-btn-circle" id="btnInfo" aria-label="About">?</button>
       <button class="c-btn c-btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
       <button class="c-btn c-btn-outline" id="btnStream">&#9654;</button>
-      <a href="memories.html" class="c-btn c-btn-filled" data-i18n="archive.contribute">contribute to the living archive</a>
+      <a href="memories.html" class="c-btn c-btn-filled" data-i18n="archive.contribute">send your stories today</a>
     </nav>
   </header>
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4900" height="2600"
+      <svg id="linesSvg" width="5500" height="2600"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -919,7 +919,7 @@
     { key: 'future',      label: { en: 'Speculative Futures & Products', pt: 'Futuros Especulativos e Produtos' }, color: '#FF5E33' },
     { key: 'workshop',    label: { en: 'Workshops',           pt: 'Oficinas' },              color: '#CCDE07' },
     { key: 'drawings',    label: { en: 'Drawings',            pt: 'Desenhos' },              color: '#92CEF8' },
-    { key: 'data',        label: { en: 'Data',                pt: 'Dados' },                 color: '#32BE3A' },
+    { key: 'data',        label: { en: 'Data & the Eternal Stream', pt: 'Dados e a Transmissão Eterna' }, color: '#32BE3A' },
     { key: 'toolkit',     label: { en: 'Toolkit',             pt: 'Kit de Ferramentas' },    color: '#CB561D' },
     { key: 'exhibition',  label: { en: 'Artwork & Exhibition', pt: 'Obra e Exposição' },     color: '#5B2915' },
   ];
@@ -934,8 +934,8 @@
     exhibition: [ 705, 1848],
     workshop:   [1980, 1856],
     drawings:   [3030, 1624],
-    data:       [3731, 1862],
-    toolkit:    [4330, 1535],
+    data:       [3950, 1931],
+    toolkit:    [4885, 1641],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -1027,6 +1027,23 @@
 
     // ── WORKSHOP
 
+    // ── TOOLKIT
+    [['toolkit'],               4540, 1408, 360, 210, 'toolkit-intro'],
+    [['toolkit', 'exhibition'], 4930, 1408, 300, 215, 'toolkit-prototype'],
+    [['toolkit', 'workshop'],   4930, 1660, 300, 215, 'toolkit-workshop'],
+    [['toolkit', 'future'],     4540, 1644, 250,  34, 'toolkit-to-future', { stackBelow: true, gap: 16 }],
+    [['toolkit', 'data'],       4540, 1692, 250,  34, 'toolkit-to-data', { stackBelow: true, gap: 10 }],
+    [['toolkit'],               4540, 1740, 250,  34, 'toolkit-live-stream', { stackBelow: true, gap: 10 }],
+
+    // ── DATA & THE ETERNAL STREAM
+    [['data', 'exhibition'],    3570, 1708, 360, 210, 'data-stream'],
+    [['data'],                  3570, 1944, 360, 210, 'data-listens', { stackBelow: true, gap: 18 }],
+    [['data', 'hypersea'],      3970, 1708, 360, 210, 'data-into-sound'],
+    [['data', 'exhibition'],    3970, 1944, 280,  34, 'data-to-exhibition', { stackBelow: true, gap: 16 }],
+    [['data', 'toolkit'],       3970, 1994, 340,  34, 'data-to-toolkit', { stackBelow: true, gap: 10 }],
+    [['data'],                  3970, 2038, 280,  34, 'data-live-stream', { stackBelow: true, gap: 10 }],
+    [['data'],                  3970, 2082, 250,  34, 'data-contribute', { stackBelow: true, gap: 10 }],
+
     // ── DRAWINGS
 
     // ── CROSS: Workshop × Drawings
@@ -1084,18 +1101,10 @@
     [['sargassum', 'local'], 1580,  502, 166, 118, 'sargassum-tidal-archive'],
 
     // ── TOOLKIT
-    [['toolkit'],               4102,  1460,  96,  82, null],
-    [['toolkit'],               4224,  1408, 106,  74, null],
-    [['toolkit'],               4290,  1566,  90,  96, null],
 
     // ── DATA
-    [['data'],                  3570,  1766, 106,  78, null],
-    [['data'],                  3702,  1708,  90, 110, null],
-    [['data'],                  3776,  1872, 116,  78, null],
-    [['data'],                  3636,  1944,  82,  72, null],
 
     // ── CROSS: Toolkit × Data
-    [['toolkit', 'data'],        4456,  1496, 102,  78, 'toolkit-methods-measures'],
 
     // ── FUTURE PRODUCT
     // FUTURE PRODUCTS: one card. The carousel carries every product and the

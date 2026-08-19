@@ -10,7 +10,7 @@ const TRANSLATIONS = {
     'nav.memories':         'Send your memories today!',
 
     /* ── living archive map ── */
-    'archive.contribute':   'contribute to the living archive',
+    'archive.contribute':   'send your stories today',
     'archive.hint':         'drag to explore<br>scroll to zoom<br>press h to center',
     'archive.readmore':     '(click to read more)',
     'archive.readless':     '(click to close)',
@@ -152,7 +152,7 @@ const TRANSLATIONS = {
     'nav.memories':         'Envia as tuas memórias hoje!',
 
     /* ── living archive map ── */
-    'archive.contribute':   'contribua para o arquivo vivo',
+    'archive.contribute':   'envia as tuas histórias hoje',
     'archive.hint':         'arraste para explorar<br>desloque para ampliar<br>prima h para centrar',
     'archive.readmore':     '(clique para ler mais)',
     'archive.readless':     '(clique para fechar)',

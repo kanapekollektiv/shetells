@@ -1295,6 +1295,12 @@ const CONTENT = {
 
           As crianças aprendem a lê-las. Quantas, a que profundidade, quão cedo chegaram. As alforrecas passam a ser a primeira coisa que a vila pergunta quando quer saber como está o mar, e a resposta vem sempre em luz.`,
         },
+        sources: [
+          {
+            href: 'https://doi.org/10.1016/j.tree.2009.01.010',
+            label: { en: `Jellyfish blooms in warming, overfished seas`, pt: `Explosões de alforrecas em mares mais quentes e sobrepescados` },
+          },
+        ],
       },
       {
         title: { en: `The day the shoals came back`, pt: `O dia em que os cardumes voltaram` },
@@ -1306,6 +1312,12 @@ const CONTENT = {
 
           Os adultos dizem que aconteceu porque as pessoas deixaram de levar tudo. As crianças dizem que aconteceu porque alguém finalmente se lembrou de pedir aos peixes que voltassem. As duas versões ficam escritas, e ninguém decidiu qual é a verdadeira.`,
         },
+        sources: [
+          {
+            href: 'https://doi.org/10.3989/scimar.2003.67s1245',
+            label: { en: `The Iberian sardine stock off Portugal`, pt: `O stock de sardinha ibérica ao largo de Portugal` },
+          },
+        ],
       },
       {
         title: { en: `The net that lets go`, pt: `A rede que se solta` },
@@ -1317,6 +1329,12 @@ const CONTENT = {
 
           Os barcos continuam a sair. A diferença é que nada do que deixam para trás continua a pescar depois de eles irem para casa.`,
         },
+        sources: [
+          {
+            href: 'https://doi.org/10.1016/j.marpol.2015.06.016',
+            label: { en: `Ghost fishing by lost and discarded gear`, pt: `Pesca fantasma por artes perdidas e abandonadas` },
+          },
+        ],
       },
       {
         title: { en: `The snail who grew legs`, pt: `O caracol que ganhou pernas` },
@@ -1328,6 +1346,12 @@ const CONTENT = {
 
           Quando chega, os outros já lá estão, a descansar à sombra de uma árvore que antes não existia. Ninguém tem pressa. Têm a tarde toda, e a água está exatamente à temperatura certa.`,
         },
+        sources: [
+          {
+            href: 'https://doi.org/10.1038/nclimate1958',
+            label: { en: `Marine species shifting range as the sea warms`, pt: `Espécies marinhas a mudar de área com o aquecimento do mar` },
+          },
+        ],
       },
     ],
     note: {
@@ -1336,12 +1360,184 @@ const CONTENT = {
     },
   },
 
-  /* ══ TOOLKIT ══ */
+  /* ══ DATA & THE ETERNAL STREAM ══ */
 
-  'toolkit-methods-measures': {
-    title: `Methods & Measures`,
+  'data-stream': {
+    title: { en: `The eternal stream`, pt: `A transmissão eterna` },
+    txt: {
+      en: `The eternal stream is the part of the work that does not stop. It plays the field recordings, the performers' voices, the advertisements and the stories, and it decides what to play by listening to Esposende.
+
+      A small system reads the town's own weather and water. The wind at ten metres, the swell, the tide, the pressure falling before a storm. None of this is a general model of the sea. The numbers are Esposende's numbers, taken from its own coast, and they are what chooses which voice surfaces next.
+
+      That choice is deliberate. The stream runs on a handful of local readings rather than on a large platform, so it stays small enough to explain, cheap enough to keep running, and honest about where its material comes from.
+
+      Sargaço was gleaned on this coast in season, by hand, according to what the water gave that day. The stream gathers the same way. It takes what the day gives and works with that, which makes it a ritual as much as an algorithm.`,
+      pt: `A transmissão eterna é a parte do trabalho que não para. Toca as gravações de campo, as vozes das performers, os anúncios e as histórias, e decide o que tocar escutando Esposende.
+
+      Um sistema pequeno lê o tempo e a água da própria vila. O vento a dez metros, a ondulação, a maré, a pressão a descer antes de uma tempestade. Nada disto é um modelo geral do mar. Os números são os números de Esposende, recolhidos na sua própria costa, e são eles que escolhem que voz surge a seguir.
+
+      Esta escolha é deliberada. A transmissão funciona com um punhado de leituras locais e não com uma grande plataforma, para se manter pequena o suficiente para ser explicada, barata o suficiente para continuar a correr, e honesta sobre a proveniência do seu material.
+
+      O sargaço era recolhido nesta costa na época própria, à mão, conforme o que a água dava nesse dia. A transmissão recolhe da mesma maneira. Fica com o que o dia lhe der e trabalha com isso, o que faz dela tanto um ritual como um algoritmo.`,
+    },
+    note: {
+      en: `Written from the project's data documentation and edited with ML.`,
+      pt: `Escrito a partir da documentação de dados do projeto e editado com ML. Tradução automática.`,
+    },
   },
 
+  'data-listens': {
+    title: { en: `What the stream listens to`, pt: `O que a transmissão escuta` },
+    txt: {
+      en: `Fourteen readings come in continuously: air temperature, water temperature, wind speed, wind gusts, wind direction, wave height, wave period, sea level, cloud cover, humidity, visibility, atmospheric pressure, apparent temperature, and whether it is day or night.
+
+      Four more are worked out from those. Whether the wind is onshore, since Esposende faces roughly west and anything between 200 and 340 degrees carries the surf inland. Sea energy, which folds wave height and wind speed into one measure of how hard the ocean is working. Tide phase, rising or falling, high or low. And storm proximity, read from how fast the pressure is dropping.
+
+      Then the weather itself arrives as an event: clear, cloudy, overcast, fog, drizzle, rain, thunderstorm. On this coast that is mostly clear or cloudy, rain about a quarter of the time and more between October and February, fog on perhaps one summer morning in ten, thunder a handful of days a year, and snow essentially never.`,
+      pt: `Catorze leituras chegam de forma contínua: temperatura do ar, temperatura da água, velocidade do vento, rajadas, direção do vento, altura da ondulação, período da ondulação, nível do mar, nebulosidade, humidade, visibilidade, pressão atmosférica, temperatura aparente, e se é dia ou noite.
+
+      Outras quatro são calculadas a partir destas. Se o vento sopra de mar para terra, já que Esposende está virada sensivelmente a oeste e qualquer direção entre 200 e 340 graus traz o som das ondas para dentro. A energia do mar, que junta a altura da ondulação e a velocidade do vento numa única medida do esforço do oceano. A fase da maré, a encher ou a vazar, cheia ou seca. E a proximidade de tempestade, lida na rapidez com que a pressão desce.
+
+      Depois o tempo chega como acontecimento: céu limpo, nublado, encoberto, nevoeiro, chuvisco, chuva, trovoada. Nesta costa é sobretudo limpo ou nublado, chuva cerca de um quarto do tempo e mais entre outubro e fevereiro, nevoeiro talvez numa manhã de verão em cada dez, trovoada alguns dias por ano, e neve praticamente nunca.`,
+    },
+    note: {
+      en: `Written from the project's data documentation and edited with ML.`,
+      pt: `Escrito a partir da documentação de dados do projeto e editado com ML. Tradução automática.`,
+    },
+  },
+
+  'data-into-sound': {
+    title: { en: `How the weather chooses a voice`, pt: `Como o tempo escolhe uma voz` },
+    txt: {
+      en: `How do you upload your stories, and how does the eternal stream select the appropriate clip?
+
+      The stream's selection is based on the weather conditions, which are tagged with categories like sunny, windy, cloudy, or foggy. Live weather readings from Esposende determine which tags are accurate at any moment, and the stream plays clips that match these conditions.
+
+      When you upload your stories and include your voice recording reflecting its content, the eternal stream will choose which clip to play based on Esposende's current weather data.`,
+      pt: `Como carregas as tuas histórias, e como é que a transmissão eterna escolhe o excerto certo?
+
+      A seleção da transmissão baseia-se nas condições meteorológicas, que estão etiquetadas com categorias como sol, vento, nuvens ou nevoeiro. As leituras meteorológicas ao vivo de Esposende determinam que etiquetas são verdadeiras a cada momento, e a transmissão toca os excertos que correspondem a essas condições.
+
+      Quando carregas as tuas histórias e incluis a tua gravação de voz a refletir o seu conteúdo, a transmissão eterna escolherá que excerto tocar com base nos dados meteorológicos atuais de Esposende.`,
+    },
+  },
+
+  'data-to-exhibition': {
+    goTo: 'exhibition',
+    label: { en: `Where the stream was heard →`, pt: `Onde a transmissão foi ouvida →` },
+  },
+
+  'data-to-toolkit': {
+    goTo: 'toolkit',
+    label: { en: `Hear it through the DIY shellphone →`, pt: `Ouve-a através do shellphone caseiro →` },
+  },
+
+  'data-live-stream': {
+    link: 'stream.html',
+    label: { en: `Listen to the live stream →`, pt: `Ouve a transmissão ao vivo →` },
+  },
+
+  'data-contribute': {
+    link: 'memories.html',
+    label: { en: `Send your stories today! →`, pt: `Envia as tuas histórias hoje! →` },
+  },
+
+  /* ══ TOOLKIT ══ */
+
+  'toolkit-intro': {
+    title: { en: `The DIY shellphone toolkit`, pt: `O kit do shellphone caseiro` },
+    txt: {
+      en: `The DIY shellphone toolkit lets you listen to the sound of the eternal stream wherever you go!
+
+      You can get your own shell. If you cannot find any, maybe check our bioplastic recipe and build a shell on your own!
+
+      Learn about the DIY technologies, how to access an online stream, and the local stories and ecological belongings of Esposende. The 3D print files for the shell will be released with the toolkit.
+
+      Play a game, record your voice, join the eternal stream, listen anywhere, and be part of a community that listens when NATURE CALLS.
+
+      More information coming soon!`,
+      pt: `O kit do shellphone caseiro deixa-te ouvir o som da transmissão eterna onde quer que vás!
+
+      Podes arranjar a tua própria concha. Se não encontrares nenhuma, vê a nossa receita de bioplástico e constrói uma concha tu mesma!
+
+      Aprende sobre as tecnologias caseiras, como aceder a uma transmissão online, e sobre as histórias locais e os pertences ecológicos de Esposende. Os ficheiros de impressão 3D da concha serão publicados com o kit.
+
+      Joga um jogo, grava a tua voz, junta-te à transmissão eterna, escuta em qualquer lugar, e faz parte de uma comunidade que escuta quando a NATUREZA CHAMA.
+
+      Mais informações em breve!`,
+    },
+  },
+
+  'toolkit-prototype': {
+    title: { en: `The prototype`, pt: `O protótipo` },
+    full: {
+      en: `The shellphone is a small board, a speaker and a shell. A found shell works, and so does a printed one, which is why the 3D print files will be released alongside the toolkit for anyone without a shell to hand.`,
+      pt: `O shellphone é uma placa pequena, um altifalante e uma concha. Serve uma concha encontrada, e serve uma concha impressa, e por isso os ficheiros de impressão 3D serão publicados junto com o kit para quem não tiver uma concha à mão.`,
+    },
+    gallery: [
+      {
+        src: 'la/toolkit/prototype-01.jpg',
+        alt: { en: `A 3D printed shell held in one hand with a small speaker set inside it`, pt: `Uma concha impressa em 3D segurada numa mão com um pequeno altifalante lá dentro` },
+        caption: { en: `The 3D printed shell`, pt: `A concha impressa em 3D` },
+      },
+      {
+        src: 'la/toolkit/prototype-02.jpg',
+        alt: { en: `Two shells wired to a circuit board beside a screen playing water`, pt: `Duas conchas ligadas a uma placa ao lado de um ecrã com água` },
+        caption: { en: `Testing the prototype`, pt: `A testar o protótipo` },
+      },
+      {
+        src: 'la/toolkit/prototype-03.jpg',
+        alt: { en: `A printed shell and a found shell wired to the board with clip leads`, pt: `Uma concha impressa e uma concha encontrada ligadas à placa com pinças` },
+        caption: { en: `Testing the prototype`, pt: `A testar o protótipo` },
+      },
+      {
+        src: 'la/toolkit/prototype-04.jpg',
+        alt: { en: `A sketch of the glass sculpture holding the shell, speaker and board`, pt: `Um esboço da escultura de vidro a segurar a concha, o altifalante e a placa` },
+        caption: { en: `The sculpture as a holder`, pt: `A escultura como suporte` },
+      },
+    ],
+  },
+
+  'toolkit-workshop': {
+    title: { en: `Building them together`, pt: `A construí-los em conjunto` },
+    gallery: [
+      {
+        src: 'la/toolkit/workshop-01.jpg',
+        alt: { en: `A shell on the worktable among glue, paper and tape`, pt: `Uma concha na mesa de trabalho entre cola, papel e fita` },
+        caption: { en: `At the toolkit workshop`, pt: `Na oficina do kit` },
+      },
+      {
+        src: 'la/toolkit/workshop-02.jpg',
+        alt: { en: `Shells and a speaker cone laid out with a ruler and folded paper`, pt: `Conchas e um altifalante dispostos com uma régua e papel dobrado` },
+        caption: { en: `At the toolkit workshop`, pt: `Na oficina do kit` },
+      },
+      {
+        src: 'la/toolkit/workshop-03.jpg',
+        alt: { en: `Shells and a stone with clip leads across the table`, pt: `Conchas e uma pedra com pinças sobre a mesa` },
+        caption: { en: `Wiring the shells`, pt: `A ligar as conchas` },
+      },
+      {
+        src: 'la/toolkit/workshop-04.jpg',
+        alt: { en: `Hands clipping a lead onto a small board, shells and leads around`, pt: `Mãos a prender um fio a uma placa pequena, conchas e fios à volta` },
+        caption: { en: `Wiring the shells`, pt: `A ligar as conchas` },
+      },
+    ],
+  },
+
+  'toolkit-to-future': {
+    goTo: 'future',
+    label: { en: `The bioplastic recipe →`, pt: `A receita de bioplástico →` },
+  },
+
+  'toolkit-to-data': {
+    goTo: 'data',
+    label: { en: `How the stream chooses →`, pt: `Como a transmissão escolhe →` },
+  },
+
+  'toolkit-live-stream': {
+    link: 'stream.html',
+    label: { en: `Listen to the live stream →`, pt: `Ouve a transmissão ao vivo →` },
+  },
 
   /* ══ ARTWORK & EXHIBITION ══ */
 
@@ -1377,8 +1573,6 @@ const CONTENT = {
       – Stay salty.`,
     },
   },
-
-
 
   'exhibition-process': {
     title: { en: `Process`, pt: `Processo` },
@@ -1424,7 +1618,6 @@ const CONTENT = {
     goTo: 'data',
     label: { en: `The data we are collecting →`, pt: `Os dados que estamos a recolher →` },
   },
-
 
   'exhibition-to-future': {
     goTo: 'future',
@@ -1563,13 +1756,6 @@ const CONTENT = {
     ],
   },
 
-  'exhibition-listening': {
-    img: 'la/exhibition/listening.jpg',
-    caption: { en: `Listening on the rocks at Esposende`, pt: `À escuta nas rochas de Esposende` },
-    alt: { en: `Standing on the rocks with a shell held to one ear, looking out to sea`,
-           pt: `De pé nas rochas com uma concha encostada ao ouvido, a olhar o mar` },
-  },
-
   'exhibition-shellphone': {
     title: { en: `The shellphone`, pt: `O shellphone` },
     gallery: [
@@ -1632,20 +1818,27 @@ const CONTENT = {
       },
       {
         src: 'la/exhibition/shellphone-13.jpg',
-        alt: { en: `The sculpture set among sargaco covered rock`, pt: `A escultura entre rochas cobertas de sargaço` },
-        caption: { en: `On the sargaco rocks`, pt: `Nas rochas de sargaço` },
+        alt: { en: `The sculpture set among sargaço covered rock`, pt: `A escultura entre rochas cobertas de sargaço` },
+        caption: { en: `On the sargaço rocks`, pt: `Nas rochas de sargaço` },
       },
       {
         src: 'la/exhibition/shellphone-14.jpg',
-        alt: { en: `The glass against the sargaco`, pt: `O vidro contra o sargaço` },
-        caption: { en: `On the sargaco rocks`, pt: `Nas rochas de sargaço` },
+        alt: { en: `The glass against the sargaço`, pt: `O vidro contra o sargaço` },
+        caption: { en: `On the sargaço rocks`, pt: `Nas rochas de sargaço` },
       },
       {
         src: 'la/exhibition/shellphone-15.jpg',
-        alt: { en: `The shell inside the glass among the sargaco`, pt: `A concha dentro do vidro entre o sargaço` },
-        caption: { en: `On the sargaco rocks`, pt: `Nas rochas de sargaço` },
+        alt: { en: `The shell inside the glass among the sargaço`, pt: `A concha dentro do vidro entre o sargaço` },
+        caption: { en: `On the sargaço rocks`, pt: `Nas rochas de sargaço` },
       },
     ],
+  },
+
+  'exhibition-listening': {
+    img: 'la/exhibition/listening.jpg',
+    caption: { en: `Listening on the rocks at Esposende`, pt: `À escuta nas rochas de Esposende` },
+    alt: { en: `Standing on the rocks with a shell held to one ear, looking out to sea`,
+           pt: `De pé nas rochas com uma concha encostada ao ouvido, a olhar o mar` },
   },
 
 };

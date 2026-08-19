@@ -174,6 +174,12 @@ order.
   behind a read more; two or fewer is left alone, since folding two sentences
   only adds a tap. The fold is a class on a wrapper, not a measured height,
   because a height set from script is one more thing that can be raced.
+- **Never slice content.js from a section marker to the end of the file.** The
+  sections are not in a fixed order, and writing the Toolkit block that way
+  deleted the whole Artwork & Exhibition section, eight entries and forty three
+  captions, from an uncommitted file. Git could not help and the browser cache
+  had already rolled over; it was rebuilt by hand. Cut from one section marker
+  to the *next* section marker, and commit before large content edits.
 - **Always validate after a large edit.** Two syntax errors (doubled `}`) took
   the whole script out. Extract and check:
   ```bash
@@ -211,8 +217,8 @@ Nine clusters. `CATS` order drives the legend and the mobile list.
 | Speculative Futures & Products | 6 | done | Bilingual. Carousel + all five products in one card, plus the drawing loop |
 | Workshops | 5 | done | Bilingual. Intro, a coming soon line, and three carousels: launch, children, Rio Neiva |
 | Drawings | 4 | done | Bilingual. Intro, 37 drawings, 7 process photographs, and four speculative products written from four of the drawings |
-| Data | 4 | **placeholders** | |
-| Toolkit | 4 | **placeholders** | Bioplastic card points at it; moulds/prints belong here |
+| Data & the Eternal Stream | 7 | done | Bilingual. Three text cards and four links: exhibition, toolkit, the stream page, the memories form |
+| Toolkit | 6 | done | Bilingual. Intro, the prototype and workshop carousels, three links. 3D print files promised with the toolkit |
 | Artwork & Exhibition | 8 | done | Bilingual. Wall text, a Process card, two cluster links, three carousels, one single image |
 
 66 cards total. `SECTIONS` still only has `hypersea`.
@@ -243,6 +249,12 @@ Drawings; Data beside Toolkit.
   that wrong is what made the products and bioplastic sections look empty.
 - **Carousel** (`gallery`) with arrows, counter and video frames, the same on
   phone and desktop. Single-frame galleries hide their arrows and counter.
+- **Every speculative story names the ecological problem it answers**, as a
+  `sources` entry under it: the label states the problem in plain words and the
+  link goes to the paper. Verify a DOI through the CrossRef API
+  (`api.crossref.org/works/<doi>`) rather than by opening it. Two of the
+  citations picked by title lookup on this page turned out to be a COVID
+  finance paper and a poplar commission report, and only CrossRef caught it.
 - **`mapTitle: true`** prints a card's title under it on the map, so a carousel
   says what it is without being opened. It is opt in because the line adds
   height the packer cannot see: the packer measures the authored `h`, so author
@@ -273,6 +285,15 @@ Drawings; Data beside Toolkit.
 ---
 
 ## 7. Open items
+
+**How the eternal stream actually works**, since it is easy to get wrong: it
+does not synthesise anything. It plays recordings, and every clip is tagged
+with the conditions it belongs to, sunny, windy, cloudy, foggy. The live
+readings from Esposende decide which tags are true right now, and the stream
+plays from what matches. The selection is the composition. The "Sound
+Relevance" column in the data document reads like a synthesis spec and is not
+one; a first draft of this cluster described filters and howling layers and had
+to be rewritten.
 
 **Blocking on the user:**
 
