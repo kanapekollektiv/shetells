@@ -210,7 +210,7 @@ Nine clusters. `CATS` order drives the legend and the mobile list.
 | Local Stories | 11 | done | Bilingual. Rio Neiva, lamprey, shell hunt, postcards |
 | Speculative Futures & Products | 6 | done | Bilingual. Carousel + all five products in one card, plus the drawing loop |
 | Workshops | 5 | done | Bilingual. Intro, a coming soon line, and three carousels: launch, children, Rio Neiva |
-| Drawings | 5 | **placeholders** | "kids drawings" per the user |
+| Drawings | 4 | done | Bilingual. Intro, 37 drawings, 7 process photographs, and four speculative products written from four of the drawings |
 | Data | 4 | **placeholders** | |
 | Toolkit | 4 | **placeholders** | Bioplastic card points at it; moulds/prints belong here |
 | Artwork & Exhibition | 8 | done | Bilingual. Wall text, a Process card, two cluster links, three carousels, one single image |
@@ -243,6 +243,20 @@ Drawings; Data beside Toolkit.
   that wrong is what made the products and bioplastic sections look empty.
 - **Carousel** (`gallery`) with arrows, counter and video frames, the same on
   phone and desktop. Single-frame galleries hide their arrows and counter.
+- **`mapTitle: true`** prints a card's title under it on the map, so a carousel
+  says what it is without being opened. It is opt in because the line adds
+  height the packer cannot see: the packer measures the authored `h`, so author
+  that box about 40px taller than the card or whatever sits below will end up
+  a couple of pixels away.
+- **The popup names every cluster a card belongs to**, one chip per tag, the
+  owning cluster first. Pass the whole `cats` array to `openGalleryPopup`.
+- **`entries` follow their frame when there is one each.** A gallery whose
+  `entries` count equals its `gallery` count shows the entry for the current
+  image, under that image, changing as you move through it. Any other ratio
+  means the notes are about the whole set, and they stack underneath as before.
+  The products carousel, 10 frames against 5 entries, still stacks. A per frame
+  gallery also moves its `full` introduction above the carousel, so it is said
+  once at the top rather than trailing under whichever story you stopped on.
 - **`caption` vs `alt`.** `alt` describes the image for a screen reader and is
   never shown. `caption` is what a reader sees under it, and wins when present.
   **A caption says where you were, not what the photograph contains.** *Workshop
@@ -261,6 +275,11 @@ Drawings; Data beside Toolkit.
 ## 7. Open items
 
 **Blocking on the user:**
+
+0. **The children's drawings carry their names.** At least one is signed in the
+   corner, and the set comes from a named school class. Publishing a minor's
+   name on a public site is the kind of thing to decide deliberately rather
+   than by default. Cropping the signatures is easy if the answer is no.
 
 0. **Two things to check in Workshops.** The line about the kids says the open
    workshop was *in Rio Neiva*, but those photographs are plainly a school

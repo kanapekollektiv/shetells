@@ -979,10 +979,362 @@ const CONTENT = {
 
   /* ══ DRAWINGS ══ */
 
-  'drawings-drawn-futures': {
-    title: `Drawn Futures`,
+  'drawings-intro': {
+    title: { en: `Drawings`, pt: `Desenhos` },
+    txt: {
+      en: `These drawings were made during a workshop at the local school, led together with Rui Santos, a teacher in Esposende. It was thanks to him that we were able to work with his students.
+
+      The students followed the Hypersea prompts, which we used as a method for making the drawings. Each one drew a memory of water they carry, thought through the Hypersea idea.
+
+      The drawings then came to life through a DIY shellphone prototype. When a shell was held, the drawing it belonged to would emerge. Some of them can be heard on the eternal stream.
+
+      As sargaço was once gleaned along this coast, we gleaned memories together, to remember our connection to the ecosystem we are part of.
+
+      These workshops are also a way of building a method: working with children on technology they can open, wire and change, so that the future reads as something they make rather than something that arrives. Climate anxiety is easy to hand to a child and hard to take back. The aim is to turn it into agency, by giving them tools they can hold and futures they get to write.
+
+      Through this work, we aim to remember our connection to the ocean and foster awareness and cultural belonging within the ecosystems we are part of.
+
+      The ritual is simple. Draw, record, upload. Those are the motions a platform uses to extract from you, and here they are turned around and put to ecological care, to speculative story, and to hope.`,
+      pt: `Estes desenhos foram feitos durante uma oficina na escola local, orientada em conjunto com o Rui Santos, professor em Esposende. Foi graças a ele que conseguimos trabalhar com os seus alunos.
+
+      Os alunos seguiram as propostas do Hypersea, que usámos como método para fazer os desenhos. Cada um desenhou uma memória de água que carrega, pensada a partir da ideia do Hypersea.
+
+      Depois os desenhos ganharam vida através de um protótipo caseiro do shellphone. Quando se segurava uma concha, o desenho a que pertencia emergia. Alguns podem ser ouvidos na transmissão eterna.
+
+      Tal como o sargaço era outrora recolhido nesta costa, recolhemos memórias em conjunto, para recordar a nossa ligação ao ecossistema de que fazemos parte.
+
+      Estas oficinas são também uma forma de construir um método: trabalhar com crianças sobre tecnologia que podem abrir, ligar e alterar, para que o futuro se leia como algo que fazem e não como algo que chega. A ansiedade climática é fácil de entregar a uma criança e difícil de retomar. O objetivo é transformá-la em agência, dando-lhes ferramentas que possam segurar e futuros que lhes cabe escrever.
+
+      Com este trabalho, queremos recordar a nossa ligação ao oceano e fomentar a consciência e o pertencimento cultural dentro dos ecossistemas de que fazemos parte.
+
+      O ritual é simples. Desenhar, gravar, carregar. São os mesmos gestos que uma plataforma usa para extrair de nós, e aqui são virados do avesso e postos ao serviço do cuidado ecológico, da história especulativa e da esperança.`,
+    },
+    note: {
+      en: `Written from the group's notes and edited with ML.`,
+      pt: `Escrito a partir das notas do grupo e editado com ML. Tradução automática.`,
+    },
   },
 
+  'drawings-all': {
+    title: { en: `The drawings`, pt: `Os desenhos` },
+    gallery: [
+      {
+        src: 'la/drawings/drawing-01.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-02.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-03.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-04.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-05.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-06.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-07.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-08.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-09.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-10.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-11.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-12.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-13.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-14.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-15.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-16.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-17.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-18.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-19.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-20.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-21.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-22.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-23.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-24.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-25.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-26.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-27.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-28.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-29.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-30.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-31.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-32.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-33.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-34.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-35.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-36.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-37.jpg',
+        alt: { en: `A water memory drawn at the school workshop`, pt: `Uma memória de água desenhada na oficina da escola` },
+        caption: { en: `From the school workshop`, pt: `Da oficina na escola` },
+      },
+    ],
+  },
+
+  'drawings-process': {
+    title: { en: `In the classroom`, pt: `Na sala de aula` },
+    gallery: [
+      {
+        src: 'la/drawings/process-01.jpg',
+        alt: { en: `Colouring in at the desk`, pt: `Colouring in at the desk` },
+        caption: { en: `In the classroom`, pt: `Na sala de aula` },
+      },
+      {
+        src: 'la/drawings/process-02.jpg',
+        alt: { en: `A pufferfish among whales`, pt: `A pufferfish among whales` },
+        caption: { en: `In the classroom`, pt: `Na sala de aula` },
+      },
+      {
+        src: 'la/drawings/process-03.jpg',
+        alt: { en: `Drawing seagrass in yellow`, pt: `Drawing seagrass in yellow` },
+        caption: { en: `In the classroom`, pt: `Na sala de aula` },
+      },
+      {
+        src: 'la/drawings/process-04.jpg',
+        alt: { en: `Wiring a drawing on green paper`, pt: `Wiring a drawing on green paper` },
+        caption: { en: `Wiring the drawings`, pt: `A ligar os desenhos` },
+      },
+      {
+        src: 'la/drawings/process-05.jpg',
+        alt: { en: `Clips and leads laid out beside a drawing`, pt: `Clips and leads laid out beside a drawing` },
+        caption: { en: `Wiring the drawings`, pt: `A ligar os desenhos` },
+      },
+      {
+        src: 'la/drawings/process-06.jpg',
+        alt: { en: `The snail drawing beside a real shell`, pt: `The snail drawing beside a real shell` },
+        caption: { en: `The drawing and the shell`, pt: `O desenho e a concha` },
+      },
+      {
+        src: 'la/drawings/process-07.jpg',
+        alt: { en: `Fixing a circuit onto a drawing`, pt: `Fixing a circuit onto a drawing` },
+        caption: { en: `Wiring the drawings`, pt: `A ligar os desenhos` },
+      },
+    ],
+  },
+
+  'drawings-to-future': {
+    goTo: 'future',
+    label: { en: `Our speculative products →`, pt: `Os nossos produtos especulativos →` },
+  },
+
+  'drawings-stories': {
+    title: { en: `Speculative stories for Esposende`, pt: `Histórias especulativas para Esposende` },
+    full: {
+      en: `Four of the drawings were read as beginnings. Each one names something that is already happening off this coast, and each was written on into a future where it turns out well. They are speculative, and they are hopeful on purpose.
+
+      We will return for the final workshops and speculate these futures together with the children. What they make will go into this living archive, and into the eternal stream, where anyone can listen through a DIY shellphone.`,
+      pt: `Quatro dos desenhos foram lidos como princípios. Cada um nomeia algo que já está a acontecer ao largo desta costa, e cada um foi continuado até um futuro onde as coisas correm bem. São especulativos, e são esperançosos de propósito.
+
+      Vamos regressar para as oficinas finais e especular estes futuros em conjunto com as crianças. O que fizerem entrará neste arquivo vivo e na transmissão eterna, onde qualquer pessoa poderá escutar através de um shellphone caseiro.`,
+    },
+    gallery: [
+      {
+        src: 'la/drawings/drawing-02.jpg',
+        alt: { en: `A jellyfish drawn large in blue, with shoals of small fish and seagrass`, pt: `Uma alforreca desenhada em grande a azul, com cardumes de peixes pequenos e ervas marinhas` },
+        caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-13.jpg',
+        alt: { en: `Two children on an orange beach beside blue water, with fish`, pt: `Duas crianças numa praia laranja junto a água azul, com peixes` },
+        caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-14.jpg',
+        alt: { en: `A fishing boat hauling a net, a whale alongside, rain and sun`, pt: `Um barco de pesca a puxar uma rede, uma baleia ao lado, chuva e sol` },
+        caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
+      },
+      {
+        src: 'la/drawings/drawing-30.jpg',
+        alt: { en: `A snail with a large spiral shell walking on legs, under a palm and a sun`, pt: `Um caracol com uma grande concha em espiral a andar sobre pernas, sob uma palmeira e um sol` },
+        caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
+      },
+    ],
+    entries: [
+      {
+        title: { en: `The lamps of the bay`, pt: `As lanternas da baía` },
+        text: {
+          en: `In this future the jellyfish are the lamps of the bay. When the water warms they arrive in their thousands, and instead of closing the beach, Esposende goes down to watch them.
+
+          Children learn to read them. How many, how deep, how early they came. The jellyfish become the first thing the town asks when it wants to know how the sea is doing, and the answer is always given in light.`,
+          pt: `Neste futuro as alforrecas são as lanternas da baía. Quando a água aquece chegam aos milhares e, em vez de fecharem a praia, Esposende desce para as ver.
+
+          As crianças aprendem a lê-las. Quantas, a que profundidade, quão cedo chegaram. As alforrecas passam a ser a primeira coisa que a vila pergunta quando quer saber como está o mar, e a resposta vem sempre em luz.`,
+        },
+      },
+      {
+        title: { en: `The day the shoals came back`, pt: `O dia em que os cardumes voltaram` },
+        text: {
+          en: `In this future the fish come back. Not all at once and not everywhere, but enough that a child can stand on the sand with a line and wait, and something silver arrives.
+
+          The grown ups say it happened because people stopped taking everything. The children say it happened because somebody finally remembered to ask the fish to return. Both are written down, and nobody has decided which one is the real reason.`,
+          pt: `Neste futuro os peixes voltam. Não todos de uma vez nem em todo o lado, mas o suficiente para uma criança poder ficar na areia com uma linha e esperar, e chegar alguma coisa prateada.
+
+          Os adultos dizem que aconteceu porque as pessoas deixaram de levar tudo. As crianças dizem que aconteceu porque alguém finalmente se lembrou de pedir aos peixes que voltassem. As duas versões ficam escritas, e ninguém decidiu qual é a verdadeira.`,
+        },
+      },
+      {
+        title: { en: `The net that lets go`, pt: `A rede que se solta` },
+        text: {
+          en: `In this future the nets are made of something the sea can eat. When one is lost it softens, and then it is gone, and the whale swims through the place where it used to be without noticing anything at all.
+
+          The boats still go out. The difference is that nothing they leave behind keeps fishing after they have gone home.`,
+          pt: `Neste futuro as redes são feitas de algo que o mar consegue comer. Quando uma se perde, amolece e depois desaparece, e a baleia atravessa o sítio onde ela esteve sem dar por nada.
+
+          Os barcos continuam a sair. A diferença é que nada do que deixam para trás continua a pescar depois de eles irem para casa.`,
+        },
+      },
+      {
+        title: { en: `The snail who grew legs`, pt: `O caracol que ganhou pernas` },
+        text: {
+          en: `In this future the snail grows legs, because the cool water moved north and the snail wanted to follow. The whole house comes along, spiral and all.
+
+          When it arrives, the others are already there, resting in the shade of a tree that was not there before. Nobody is in a hurry. They have all afternoon, and the water is exactly the right temperature.`,
+          pt: `Neste futuro o caracol ganha pernas, porque a água fresca foi para norte e o caracol quis segui-la. A casa inteira vai com ele, espiral e tudo.
+
+          Quando chega, os outros já lá estão, a descansar à sombra de uma árvore que antes não existia. Ninguém tem pressa. Têm a tarde toda, e a água está exatamente à temperatura certa.`,
+        },
+      },
+    ],
+    note: {
+      en: `Stories written from the children's drawings and edited with ML.`,
+      pt: `Histórias escritas a partir dos desenhos das crianças e editadas com ML. Tradução automática.`,
+    },
+  },
 
   /* ══ TOOLKIT ══ */
 

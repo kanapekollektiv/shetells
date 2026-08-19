@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>she tells — the living archive</title>
   <script src="lang.js?v=8"></script>
-  <script src="content.js?v=8"></script>
+  <script src="content.js?v=12"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -145,7 +145,7 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4600px;
+      width: 4900px;
       height: 2600px;
       transform-origin: 0 0;
       will-change: transform;
@@ -217,6 +217,16 @@
       font-size: 10px;
       color: rgba(0,0,0,0.5);
       line-height: 1.3;
+    }
+
+    /* Opt in with mapTitle. A carousel is a stack of images and nothing on the
+       map says what it is, so a card can carry its name underneath. Off by
+       default: it adds height below the card, which the packer does not know
+       about. */
+    .card-maptitle {
+      display: block; margin-top: 7px; text-align: center;
+      font-family: 'Celescript', cursive; font-size: 11px;
+      letter-spacing: 0.04em; color: rgba(0,0,0,0.5); line-height: 1.35;
     }
 
     .card-cats-dots {
@@ -528,6 +538,7 @@
       border-bottom: 1px solid rgba(0,0,0,0.07);
       flex-shrink: 0;
     }
+    .dp-chip-set { display: inline-flex; flex-wrap: wrap; gap: 6px; }
     .dp-chip {
       font-family: 'Celescript', cursive;
       font-size: 11px;
@@ -827,7 +838,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4600" height="2600"
+      <svg id="linesSvg" width="4900" height="2600"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -922,9 +933,9 @@
     future:     [3425,  575],
     exhibition: [ 705, 1848],
     workshop:   [1980, 1856],
-    drawings:   [2897, 1472],
-    data:       [3465, 1862],
-    toolkit:    [4064, 1535],
+    drawings:   [3030, 1624],
+    data:       [3731, 1862],
+    toolkit:    [4330, 1535],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -1017,10 +1028,6 @@
     // ── WORKSHOP
 
     // ── DRAWINGS
-    [['drawings'],              2700,  1390,  86, 112, null],
-    [['drawings'],              2828,  1328, 106,  80, null],
-    [['drawings'],              2894,  1496,  96,  82, null],
-    [['drawings'],              2736,  1546,  80,  70, null],
 
     // ── CROSS: Workshop × Drawings
 
@@ -1028,7 +1035,6 @@
     [['future'], 3580, 600, 300, 120, 'future-interview-coming'],
 
     // ── CROSS: Drawings × Speculative Futures
-    [['drawings', 'future'],3006,  1400,  88,  72, 'drawings-drawn-futures'],
 
     // ── SARGASSUM
     // ── SARGASSUM — text column (each card stacks under the one before it,
@@ -1044,6 +1050,13 @@
     [['sargassum', 'local'], 1750,  210, 140, 104, 'sargassum-bladderwrack'],
     [['sargassum', 'local'], 1580,  310, 150, 100, 'sargassum-museum-sculptures'],
     [['sargassum', 'local'], 1744,  330, 118, 158, 'sargassum-museum-display'],
+
+    // ── DRAWINGS
+    [['drawings', 'workshop'],  2700, 1328, 340, 210, 'drawings-intro'],
+    [['drawings'],              3080, 1328, 280, 200, 'drawings-all'],
+    [['drawings', 'workshop'],  3080, 1568, 280, 200, 'drawings-process'],
+    [['drawings', 'future'],    2700, 1580, 340, 230, 'drawings-stories', { mapTitle: true }],
+    [['drawings', 'future'],    2700, 1886, 280,  34, 'drawings-to-future'],
 
     // ── ARTWORK & EXHIBITION
     [['exhibition', 'workshop'],            400, 1388, 300, 215, 'exhibition-shellphone'],
@@ -1071,18 +1084,18 @@
     [['sargassum', 'local'], 1580,  502, 166, 118, 'sargassum-tidal-archive'],
 
     // ── TOOLKIT
-    [['toolkit'],               3836,  1460,  96,  82, null],
-    [['toolkit'],               3958,  1408, 106,  74, null],
-    [['toolkit'],               4024,  1566,  90,  96, null],
+    [['toolkit'],               4102,  1460,  96,  82, null],
+    [['toolkit'],               4224,  1408, 106,  74, null],
+    [['toolkit'],               4290,  1566,  90,  96, null],
 
     // ── DATA
-    [['data'],                  3304,  1766, 106,  78, null],
-    [['data'],                  3436,  1708,  90, 110, null],
-    [['data'],                  3510,  1872, 116,  78, null],
-    [['data'],                  3370,  1944,  82,  72, null],
+    [['data'],                  3570,  1766, 106,  78, null],
+    [['data'],                  3702,  1708,  90, 110, null],
+    [['data'],                  3776,  1872, 116,  78, null],
+    [['data'],                  3636,  1944,  82,  72, null],
 
     // ── CROSS: Toolkit × Data
-    [['toolkit', 'data'],        4190,  1496, 102,  78, 'toolkit-methods-measures'],
+    [['toolkit', 'data'],        4456,  1496, 102,  78, 'toolkit-methods-measures'],
 
     // ── FUTURE PRODUCT
     // FUTURE PRODUCTS: one card. The carousel carries every product and the
@@ -1381,6 +1394,12 @@
     });
 
     wrap.appendChild(card);
+    if (content && content.mapTitle && L(title)) {
+      const mt = document.createElement('span');
+      mt.className = 'card-maptitle';
+      onLang(() => { mt.textContent = L(title); });
+      wrap.appendChild(mt);
+    }
     // Dots mark cross-cluster relationships, so only show them when a card
     // actually carries more than one tag. Credits cards never show them.
     if (cats.length > 1 && !(content && content.credits)) {
@@ -1403,7 +1422,7 @@
     wrap.addEventListener('pointerup', e => {
       if (Math.hypot(e.clientX - _spx, e.clientY - _spy) > 12 || Date.now() - _spt > 600) return;
       if (content && content.gallery) {
-        openGalleryPopup(content, cats[0], title);
+        openGalleryPopup(content, cats[0], title, cats);
       } else if (content && content.goTo) {
         flyToCluster(content.goTo);
       } else if (content && content.img && content.link) {
@@ -1892,15 +1911,30 @@
 
   // A gallery opens as a carousel: one image at a time, with arrows and a
   // counter, rather than a long column of photographs.
-  function openGalleryPopup(content, catKey, title) {
+  // A card can belong to more than one cluster, and the popup should say so.
+  // The first chip is the cluster that owns it, the rest are its cross links.
+  function setChips(cats) {
+    const chip = document.getElementById('dpChip');
+    chip.textContent = '';
+    chip.className = 'dp-chip-set';
+    cats.forEach(k => {
+      const cat = CAT_MAP[k];
+      if (!cat) return;
+      const c = document.createElement('span');
+      c.className = 'dp-chip';
+      c.textContent = L(cat.label);
+      c.style.background = cat.color;
+      c.style.color = LIGHT_TEXT_CATS.has(k) ? '#1a1200' : '#ffffff';
+      chip.appendChild(c);
+    });
+  }
+
+  function openGalleryPopup(content, catKey, title, cats) {
     openPanelKey = null;
     const cat = CAT_MAP[catKey];
     const overlay = document.getElementById('cardOverlay');
-    const chip = document.getElementById('dpChip');
     const body = document.getElementById('dpBody');
-    chip.textContent = L(cat.label);
-    chip.style.background = cat.color;
-    chip.style.color = LIGHT_TEXT_CATS.has(catKey) ? '#1a1200' : '#ffffff';
+    setChips(cats && cats.length ? cats : [catKey]);
     body.innerHTML = '';
     if (L(title)) {
       const h = document.createElement('p');
@@ -1925,6 +1959,30 @@
     cap.className = 'gal-cap';
     const count = document.createElement('span');
     count.className = 'gal-count';
+    // One entry per frame means the entry belongs to that image, so it sits
+    // under it and changes with it. A gallery with fewer entries than frames
+    // is a set of photographs with notes about the whole set, and those still
+    // stack underneath.
+    const perFrame = content.entries && content.entries.length === content.gallery.length;
+    const entryBox = document.createElement('div');
+    entryBox.className = 'gal-entry';
+    const fillEntry = (n) => {
+      entryBox.innerHTML = '';
+      const en = content.entries[n];
+      if (!en) return;
+      const h = document.createElement('h3');
+      h.textContent = L(en.title);
+      entryBox.appendChild(h);
+      const p = document.createElement('p');
+      p.textContent = L(en.text);
+      entryBox.appendChild(p);
+      (en.sources || []).forEach(sr => {
+        const a = document.createElement('a');
+        a.href = sr.href; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = '↗ ' + L(sr.label);
+        entryBox.appendChild(a);
+      });
+    };
     const draw = () => {
       const g = content.gallery[i];
       const isVid = /\.mp4$/.test(g.src);
@@ -1934,7 +1992,17 @@
       else { vid.pause(); img.src = g.src; img.alt = L(g.alt) || ''; }
       cap.textContent = L(g.caption) || '';
       count.textContent = (i + 1) + ' / ' + content.gallery.length;
+      if (perFrame) fillEntry(i);
     };
+    // When each frame carries its own story, the introduction opens the popup
+    // and is said once, rather than trailing under whichever story you happen
+    // to have arrived at.
+    if (perFrame && L(content.full)) {
+      const intro = document.createElement('div');
+      intro.className = 'gal-intro';
+      intro.textContent = L(content.full);
+      body.appendChild(intro);
+    }
     if (content.gallery.length < 2) {
       prev.style.display = 'none'; next.style.display = 'none'; count.style.display = 'none';
     }
@@ -1946,13 +2014,14 @@
     bar.className = 'gal-bar';
     bar.appendChild(cap); bar.appendChild(count);
     body.appendChild(bar);
-    if (L(content.full)) {
+    if (perFrame) body.appendChild(entryBox);
+    if (!perFrame && L(content.full)) {
       const intro = document.createElement('div');
       intro.className = 'gal-intro';
       intro.textContent = L(content.full);
       body.appendChild(intro);
     }
-    (content.entries || []).forEach(en => {
+    (perFrame ? [] : (content.entries || [])).forEach(en => {
       const sec = document.createElement('div');
       sec.className = 'gal-entry';
       const h = document.createElement('h3');
@@ -2316,6 +2385,26 @@
         count.className = 'm-gal-count';
         bar.appendChild(cap); bar.appendChild(count);
         let gi = 0;
+        // Same rule as the popup: one entry per frame belongs under its frame.
+        const perFrame = content.entries && content.entries.length === content.gallery.length;
+        const entryBox = document.createElement('div');
+        entryBox.className = 'm-entry';
+        const fillEntry = (n) => {
+          entryBox.innerHTML = '';
+          const en = content.entries[n];
+          if (!en) return;
+          const h = document.createElement('h3');
+          h.textContent = L(en.title);
+          entryBox.appendChild(h);
+          entryBox.appendChild(mobileBlock(en.text, ''));
+          (en.sources || []).forEach(sr => {
+            const a = document.createElement('a');
+            a.className = 'm-link'; a.href = sr.href;
+            a.target = '_blank'; a.rel = 'noopener';
+            a.textContent = '↗ ' + L(sr.label);
+            entryBox.appendChild(a);
+          });
+        };
         const drawFrame = () => {
           const g = content.gallery[gi];
           const isVid = /\.mp4$/.test(g.src);
@@ -2325,6 +2414,7 @@
           else { vd.pause(); im.src = g.src; im.alt = L(g.alt) || ''; }
           cap.textContent = L(g.caption) || '';
           count.textContent = (gi + 1) + ' / ' + content.gallery.length;
+          if (perFrame) fillEntry(gi);
         };
         if (content.gallery.length < 2) {
           prev.style.display = 'none'; next.style.display = 'none'; count.style.display = 'none';
@@ -2337,12 +2427,13 @@
         });
         drawFrame();
         wrap.appendChild(stage); wrap.appendChild(bar);
+        if (perFrame) wrap.appendChild(entryBox);
         mNotesBody.appendChild(wrap); rendered++;
 
         // Everything the desktop popup shows under the carousel: the intro,
         // one section per product, the sources and the ML note.
         if (L(content.full)) mNotesBody.appendChild(mobileBlock(content.full, 'm-text'));
-        (content.entries || []).forEach(en => {
+        (perFrame ? [] : (content.entries || [])).forEach(en => {
           const sec = document.createElement('div');
           sec.className = 'm-entry';
           const h = document.createElement('h3');
