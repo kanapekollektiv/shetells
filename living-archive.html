@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>she tells — the living archive</title>
-  <script src="lang.js?v=7"></script>
-  <script src="content.js?v=1"></script>
+  <script src="lang.js?v=8"></script>
+  <script src="content.js?v=8"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -145,8 +145,8 @@
     .canvas-inner {
       position: absolute;
       top: 0; left: 0;
-      width: 4200px;
-      height: 2300px;
+      width: 4600px;
+      height: 2600px;
       transform-origin: 0 0;
       will-change: transform;
       -webkit-font-smoothing: antialiased;
@@ -174,6 +174,18 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
+    }
+
+    /* Some cards are the drawing itself rather than an object on the map, so
+       they carry no box: no shadow, no hairline, nothing but the artwork. */
+    .card-bare {
+      box-shadow: none;
+      border-radius: 0;
+      background: transparent;
+    }
+    .card-bare:hover {
+      box-shadow: none;
+      transform: translateY(-4px) scale(1.04);
     }
 
     .card:hover {
@@ -441,6 +453,18 @@
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 11px; line-height: 1.52; color: #333;
       white-space: pre-line;
+      /* A card opens with about seven lines and the rest slides down when the
+         reader asks for it. This is a max-height rather than a line clamp
+         because a clamp cannot be animated, and 117px is seven lines at this
+         size, so the cut still lands on a line. */
+      max-height: 117px;
+      overflow: hidden;
+      transition: max-height 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .card-text-title {
+      font-family: 'Celescript', cursive;
+      font-size: 12px; letter-spacing: 0.05em; color: #111; margin: 0;
     }
     .card-text-hint {
       font-family: 'Celescript', cursive;
@@ -747,6 +771,21 @@
         font-family: system-ui, -apple-system, sans-serif;
         font-size: 11.5px; color: rgba(0,0,0,0.42); margin-top: 0.4rem;
       }
+      /* A long block is a wall on a phone. The first paragraph stands, and
+         the rest slides down when asked for. Only worth folding when there is
+         real length behind it, so the cut is decided per block, not by class. */
+      .m-fold {
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .m-fold.open { max-height: 4000px; }
+      .m-fold p { margin: 1.05rem 0 0; }
+      .m-readmore {
+        display: block; margin-top: 0.55rem; padding: 0;
+        background: none; border: 0; cursor: pointer; text-align: left;
+        font-family: 'Celescript', cursive; font-size: 12px;
+        letter-spacing: 0.05em; color: rgba(0,0,0,0.45);
+      }
       .m-heading {
         font-family: 'Celescript', cursive; font-size: 14px;
         letter-spacing: 0.06em; text-transform: uppercase; color: #111;
@@ -788,7 +827,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4200" height="2300"
+      <svg id="linesSvg" width="4600" height="2600"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -871,7 +910,7 @@
     { key: 'drawings',    label: { en: 'Drawings',            pt: 'Desenhos' },              color: '#92CEF8' },
     { key: 'data',        label: { en: 'Data',                pt: 'Dados' },                 color: '#32BE3A' },
     { key: 'toolkit',     label: { en: 'Toolkit',             pt: 'Kit de Ferramentas' },    color: '#CB561D' },
-    { key: 'exhibition',  label: { en: 'Exhibition',          pt: 'Exposição' },             color: '#5B2915' },
+    { key: 'exhibition',  label: { en: 'Artwork & Exhibition', pt: 'Obra e Exposição' },     color: '#5B2915' },
   ];
   const CAT_MAP = Object.fromEntries(CATS.map(c => [c.key, c]));
 
@@ -880,12 +919,12 @@
     hypersea:   [ 510,  504],
     sargassum:  [1485,  599],
     local:      [2430,  438],
-    future:     [3425,  525],
-    exhibition: [ 320, 1549],
-    workshop:   [ 936, 1795],
-    drawings:   [1579, 1472],
-    data:       [2147, 1862],
-    toolkit:    [2746, 1535],
+    future:     [3425,  575],
+    exhibition: [ 705, 1848],
+    workshop:   [1980, 1856],
+    drawings:   [2897, 1472],
+    data:       [3465, 1862],
+    toolkit:    [4064, 1535],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -976,26 +1015,20 @@
     [['hypersea', 'local'],       596,  648,  88,  64, 'hypersea-field-notes'],
 
     // ── WORKSHOP
-    [['workshop'],              700,  1696,  96,  92, null],
-    [['workshop'],              836,  1648, 116,  76, null],
-    [['workshop'],              926,  1810,  90,  70, null],
-    [['workshop'],              776,  1860, 100,  82, null],
-    [['workshop'],              714,  1738, 108,  80, 'workshop-workshop-archive'],
 
     // ── DRAWINGS
-    [['drawings'],              1382,  1390,  86, 112, null],
-    [['drawings'],              1510,  1328, 106,  80, null],
-    [['drawings'],              1576,  1496,  96,  82, null],
-    [['drawings'],              1418,  1546,  80,  70, null],
+    [['drawings'],              2700,  1390,  86, 112, null],
+    [['drawings'],              2828,  1328, 106,  80, null],
+    [['drawings'],              2894,  1496,  96,  82, null],
+    [['drawings'],              2736,  1546,  80,  70, null],
 
     // ── CROSS: Workshop × Drawings
-    [['workshop', 'drawings'],   1080,  1720,  92,  78, 'workshop-making-session'],
 
     // ── SPECULATIVE FUTURES
     [['future'], 3580, 600, 300, 120, 'future-interview-coming'],
 
     // ── CROSS: Drawings × Speculative Futures
-    [['drawings', 'future'],1688,  1400,  88,  72, 'drawings-drawn-futures'],
+    [['drawings', 'future'],3006,  1400,  88,  72, 'drawings-drawn-futures'],
 
     // ── SARGASSUM
     // ── SARGASSUM — text column (each card stacks under the one before it,
@@ -1012,13 +1045,24 @@
     [['sargassum', 'local'], 1580,  310, 150, 100, 'sargassum-museum-sculptures'],
     [['sargassum', 'local'], 1744,  330, 118, 158, 'sargassum-museum-display'],
 
+    // ── ARTWORK & EXHIBITION
+    [['exhibition', 'workshop'],            400, 1388, 300, 215, 'exhibition-shellphone'],
+    [['exhibition'],                        150, 1656, 360, 210, 'exhibition-wall-text'],
+    [['exhibition'],                        550, 1656, 360, 210, 'exhibition-process'],
+    [['exhibition', 'data'],                550, 1882, 270,  34, 'exhibition-to-data', { stackBelow: true, gap: 14 }],
+    [['exhibition', 'future'],              550, 1930, 250,  34, 'exhibition-to-future', { stackBelow: true, gap: 12 }],
+    [['exhibition', 'sargassum'],           960, 1656, 300, 215, 'exhibition-opening'],
+    [['exhibition'],                        960, 1908, 300, 215, 'exhibition-details'],
+    [['exhibition', 'hypersea'],            700, 2018, 220, 290, 'exhibition-listening'],
+
+    // ── WORKSHOPS
+    [['workshop'],              1470, 1648, 400, 320, 'workshop-intro'],
+    [['workshop'],              1470, 1982, 400,  40, 'workshop-more-coming', { stackBelow: true, gap: 14 }],
+    [['workshop'],              1920, 1648, 270, 190, 'workshop-museum'],
+    [['workshop', 'drawings'],  1920, 1875, 270, 190, 'workshop-children'],
+    [['workshop', 'hypersea'],  2230, 1760, 260, 185, 'workshop-rioneiva'],
+
     // ── EXHIBITION
-    [['exhibition'],             150,  1450, 106,  80, null],
-    [['exhibition'],             278,  1388,  90, 116, null],
-    [['exhibition'],             378,  1552, 112,  80, null],
-    [['exhibition'],             242, 1632,  96,  78, null],
-    [['exhibition'],             152,  1600,  78,  68, null],
-    [['exhibition'],             217,  1490, 130,  88, 'exhibition-documentation'],
 
     // ── CROSS: Sargassum × Exhibition
     // Tidal Archive — historical photograph opens the sargaco story.
@@ -1027,18 +1071,18 @@
     [['sargassum', 'local'], 1580,  502, 166, 118, 'sargassum-tidal-archive'],
 
     // ── TOOLKIT
-    [['toolkit'],               2518,  1460,  96,  82, null],
-    [['toolkit'],               2640,  1408, 106,  74, null],
-    [['toolkit'],               2706,  1566,  90,  96, null],
+    [['toolkit'],               3836,  1460,  96,  82, null],
+    [['toolkit'],               3958,  1408, 106,  74, null],
+    [['toolkit'],               4024,  1566,  90,  96, null],
 
     // ── DATA
-    [['data'],                  1986,  1766, 106,  78, null],
-    [['data'],                  2118,  1708,  90, 110, null],
-    [['data'],                  2192,  1872, 116,  78, null],
-    [['data'],                  2052,  1944,  82,  72, null],
+    [['data'],                  3304,  1766, 106,  78, null],
+    [['data'],                  3436,  1708,  90, 110, null],
+    [['data'],                  3510,  1872, 116,  78, null],
+    [['data'],                  3370,  1944,  82,  72, null],
 
     // ── CROSS: Toolkit × Data
-    [['toolkit', 'data'],        2872,  1496, 102,  78, 'toolkit-methods-measures'],
+    [['toolkit', 'data'],        4190,  1496, 102,  78, 'toolkit-methods-measures'],
 
     // ── FUTURE PRODUCT
     // FUTURE PRODUCTS: one card. The carousel carries every product and the
@@ -1050,6 +1094,7 @@
 
     // ── CROSS: Non-Human × Sargassum
     [['future', 'sargassum', 'toolkit'], 3350, 320, 300, 200, 'future-bioplastic-futures-at-home'],
+    [['future', 'drawings'], 3285, 710, 100, 120, 'future-drawings', { bare: true, mWidth: 170 }],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -1183,6 +1228,7 @@
   const canvasInner = document.getElementById('canvasInner');
 
   let prevWrap = null;   // previous card, for content.stackBelow
+  const stacks = [];     // cards to place under their neighbour, once laid out
   CARDS.forEach(([cats, x, y, w, h, title, content]) => {
     const colors = cats.map(k => CAT_MAP[k].color);
 
@@ -1193,7 +1239,7 @@
     wrap.style.cssText = `left:${x}px; top:${y}px; width:${w}px; cursor:pointer;`;
 
     const card = document.createElement('div');
-    card.className = 'card';
+    card.className = 'card' + (content && content.bare ? ' card-bare' : '');
     // Text and credits cards hug their content; everything else keeps its authored height
     const hugsContent = !!(content && (content.txt || content.credits));
     card.style.cssText = `width:${w}px;` + (hugsContent ? '' : ` height:${h}px;`);
@@ -1263,19 +1309,34 @@
       card.appendChild(span);
     } else if (content && content.txt) {
       card.className += ' card-text-box';
+      if (L(title)) {
+        const h = document.createElement('p');
+        h.className = 'card-text-title';
+        onLang(() => { h.textContent = L(title); });
+        card.appendChild(h);
+      }
       const pre = document.createElement('p');
       pre.className = 'card-text-preview';
-      // separate text node so the inline hint survives a language swap
       const preText = document.createTextNode('');
+      pre.appendChild(preText);
+      // The hint is a sibling, not inline: the preview is cut off, and
+      // anything inside it would be clipped along with the overflowing text.
       const hint = document.createElement('span');
       hint.className = 'card-text-hint';
-      pre.appendChild(preText);
-      pre.appendChild(hint);
       onLang(() => {
-        preText.nodeValue = L(content.txt) + ' ';
+        preText.nodeValue = L(content.txt);
         hint.textContent = t('archive.readmore');
       });
+      // Copy that already fits has nothing to open, and the Portuguese often
+      // overflows where the English did not. Measured on a change of size
+      // rather than now, because right now everything measures zero.
+      if (window.ResizeObserver) {
+        new ResizeObserver(() => {
+          hint.style.display = pre.scrollHeight > pre.clientHeight + 2 ? '' : 'none';
+        }).observe(pre);
+      }
       card.appendChild(pre);
+      card.appendChild(hint);
     } else if (content && content.credits) {
       card.className += ' card-credits-box';
       const span = document.createElement('span');
@@ -1354,7 +1415,7 @@
       } else if (content && content.vid) {
         openMediaPopup({ vid: content.vid, title }, cats[0]);
       } else if (content && content.txt) {
-        openTextPopup(content.full || content.txt, cats[0]);
+        openTextPopup(content.full || content.txt, cats[0], title);
       } else if (!content || (!content.credits)) {
         openPanel(cats[0]);
       }
@@ -1364,17 +1425,39 @@
 
     // A card marked stackBelow sits directly under the previous card rather
     // than at a fixed y. Text cards hug their content, so their height
-    // changes with the language — anything pinned underneath them would
+    // changes with the language, and anything pinned underneath them would
     // otherwise collide once the copy gets longer in translation.
     if (content && content.stackBelow) {
-      const anchor = prevWrap;
-      const gap = content.gap ?? 6;
-      // registered after the anchor's own text updater, so it measures the
-      // height the anchor has *after* the language swap
-      onLang(() => { wrap.style.top = (anchor.offsetTop + anchor.offsetHeight + gap) + 'px'; });
+      stacks.push({ wrap, anchor: prevWrap, gap: content.gap ?? 6 });
     }
     prevWrap = wrap;
   });
+
+  // Placing these while the cards were still being built measured the anchor
+  // as zero and left every stacked card at its own gap value, piled in the
+  // corner of the canvas, until something happened to re-run it. They can only
+  // be placed once the cards above them have actually been laid out. Order
+  // matters: a chain of stacked cards resolves top down.
+  function layoutStacks() {
+    stacks.forEach(({ wrap, anchor, gap }) => {
+      wrap.style.top = (anchor.offsetTop + anchor.offsetHeight + gap) + 'px';
+    });
+  }
+  layoutStacks();
+  onLang(layoutStacks);          // the copy changes length between languages
+  window.addEventListener('load', layoutStacks);
+  // A webfont landing late reflows the text cards under it.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutStacks);
+  // The above are all guesses about when the anchors will have a real height,
+  // and every one of them can fire too early. Watching the anchors instead is
+  // the only version that cannot be raced: whenever one changes size, for any
+  // reason, whatever sits under it moves. Observing fires once on registration
+  // too, which is what places them in the first place. Anchors do not resize
+  // when we move the cards below them, so this cannot loop.
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(layoutStacks);
+    stacks.forEach(({ anchor }) => ro.observe(anchor));
+  }
 
   /* ═══════════════════════════════════════════════════
      BUILD CLUSTER LABELS
@@ -1782,7 +1865,7 @@
     },
   };
 
-  function openTextPopup(txt, catKey) {
+  function openTextPopup(txt, catKey, title) {
     openPanelKey = null;
     const cat = CAT_MAP[catKey];
     const overlay = document.getElementById('cardOverlay');
@@ -1793,6 +1876,12 @@
     chip.style.background = cat.color;
     chip.style.color = darkText ? '#1a1200' : '#ffffff';
     body.innerHTML = '';
+    if (L(title)) {
+      const h = document.createElement('p');
+      h.className = 'gal-title';
+      h.textContent = L(title);
+      body.appendChild(h);
+    }
     const div = document.createElement('div');
     div.style.cssText = 'padding:1.5rem 1.6rem 2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;white-space:pre-line;';
     div.textContent = L(txt);
@@ -1843,7 +1932,7 @@
       vid.style.display = isVid ? 'block' : 'none';
       if (isVid) { if (vid.getAttribute('src') !== g.src) vid.src = g.src; vid.play().catch(() => {}); }
       else { vid.pause(); img.src = g.src; img.alt = L(g.alt) || ''; }
-      cap.textContent = L(g.caption) || L(g.alt) || '';
+      cap.textContent = L(g.caption) || '';
       count.textContent = (i + 1) + ' / ' + content.gallery.length;
     };
     if (content.gallery.length < 2) {
@@ -1928,7 +2017,7 @@
       img.style.cssText = 'max-width:100%;max-height:68vh;object-fit:contain;display:block;border-radius:4px;';
       wrap.appendChild(img);
       body.appendChild(wrap);
-      const capText = L(content.caption) || L(content.title) || L(content.alt);
+      const capText = L(content.caption) || L(content.title) || '';
       const credText = L(content.credit);
       if (capText || credText) {
         const cap = document.createElement('p');
@@ -2150,6 +2239,38 @@
     return cards.map((c, i) => [c, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(p => p[0]);
   }
 
+  // A block of more than two paragraphs is folded: the first paragraph shows,
+  // the rest slides down behind a read more. Anything shorter is left alone,
+  // since folding two sentences only adds a tap.
+  function mobileBlock(str, cls) {
+    const text = L(str) || '';
+    const box = document.createElement('div');
+    const paras = text.split(/\n\s*\n/).filter(p => p.trim());
+    const first = document.createElement('p');
+    first.className = cls;
+    if (paras.length <= 2) {
+      first.textContent = text;
+      box.appendChild(first);
+      return box;
+    }
+    first.textContent = paras[0];
+    const fold = document.createElement('div');
+    fold.className = 'm-fold';
+    const rest = document.createElement('p');
+    rest.className = cls;
+    rest.textContent = paras.slice(1).join('\n\n');
+    fold.appendChild(rest);
+    const btn = document.createElement('button');
+    btn.className = 'm-readmore';
+    btn.type = 'button';
+    let open = false;
+    const label = () => { btn.textContent = t(open ? 'archive.readless' : 'archive.readmore'); };
+    label();
+    btn.addEventListener('click', () => { open = !open; fold.classList.toggle('open', open); label(); });
+    box.appendChild(first); box.appendChild(fold); box.appendChild(btn);
+    return box;
+  }
+
   function openNotes(key) {
     const cat = CAT_MAP[key];
     mNotesChip.textContent = L(cat.label);
@@ -2171,10 +2292,7 @@
         mNotesBody.appendChild(h); rendered++;
       }
       if (content && content.txt) {
-        const p = document.createElement('p');
-        p.className = 'm-text';
-        p.textContent = L(content.full || content.txt);
-        mNotesBody.appendChild(p); rendered++;
+        mNotesBody.appendChild(mobileBlock(content.full || content.txt, 'm-text')); rendered++;
       } else if (content && content.gallery) {
         const wrap = document.createElement('div');
         wrap.className = 'm-gal';
@@ -2205,7 +2323,7 @@
           vd.style.display = isVid ? 'block' : 'none';
           if (isVid) { if (vd.getAttribute('src') !== g.src) vd.src = g.src; }
           else { vd.pause(); im.src = g.src; im.alt = L(g.alt) || ''; }
-          cap.textContent = L(g.caption) || L(g.alt) || '';
+          cap.textContent = L(g.caption) || '';
           count.textContent = (gi + 1) + ' / ' + content.gallery.length;
         };
         if (content.gallery.length < 2) {
@@ -2223,21 +2341,14 @@
 
         // Everything the desktop popup shows under the carousel: the intro,
         // one section per product, the sources and the ML note.
-        if (L(content.full)) {
-          const intro = document.createElement('p');
-          intro.className = 'm-text';
-          intro.textContent = L(content.full);
-          mNotesBody.appendChild(intro);
-        }
+        if (L(content.full)) mNotesBody.appendChild(mobileBlock(content.full, 'm-text'));
         (content.entries || []).forEach(en => {
           const sec = document.createElement('div');
           sec.className = 'm-entry';
           const h = document.createElement('h3');
           h.textContent = L(en.title);
           sec.appendChild(h);
-          const p = document.createElement('p');
-          p.textContent = L(en.text);
-          sec.appendChild(p);
+          sec.appendChild(mobileBlock(en.text, ''));
           (en.sources || []).forEach(sr => {
             const a = document.createElement('a');
             a.className = 'm-link'; a.href = sr.href;
@@ -2292,10 +2403,10 @@
         } else {
           fig.appendChild(img);
         }
-        if (L(content.caption) || L(content.alt) || L(content.credit)) {
+        if (L(content.caption) || L(content.credit)) {
           const cap = document.createElement('figcaption');
           cap.className = 'm-caption';
-          cap.textContent = L(content.caption) || L(content.alt) || '';
+          cap.textContent = L(content.caption) || '';
           if (L(content.credit)) {
             const cr = document.createElement('span');
             cr.style.cssText = 'display:block;opacity:0.75;';
@@ -2305,12 +2416,7 @@
           fig.appendChild(cap);
         }
         mNotesBody.appendChild(fig); rendered++;
-        if (L(content.full)) {
-          const st = document.createElement('p');
-          st.className = 'm-text';
-          st.textContent = L(content.full);
-          mNotesBody.appendChild(st);
-        }
+        if (L(content.full)) mNotesBody.appendChild(mobileBlock(content.full, 'm-text'));
         if (L(content.note)) {
           const nt = document.createElement('p');
           nt.className = 'm-caption';

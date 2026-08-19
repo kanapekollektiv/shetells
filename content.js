@@ -74,26 +74,31 @@ const CONTENT = {
 
   'hypersea-dunes': {
     img: 'la/hypersea/dunes.jpg',
+    caption: { en: `The dunes at Esposende`, pt: `As dunas de Esposende` },
     alt: `Esposende dunes`,
   },
 
   'hypersea-glassblowing': {
     img: 'la/hypersea/IMG_8729.jpg',
+    caption: { en: `At the glass workshop`, pt: `Na oficina de vidro` },
     alt: `Glass blowing workshop`,
   },
 
   'hypersea-glass-vessel': {
     img: 'la/hypersea/IMG_8668.jpg',
+    caption: { en: `At the glass workshop`, pt: `Na oficina de vidro` },
     alt: `Glass vessel`,
   },
 
   'hypersea-glass-sphere': {
     img: 'la/hypersea/IMG_8677.jpg',
+    caption: { en: `At the glass workshop`, pt: `Na oficina de vidro` },
     alt: `Glass sphere`,
   },
 
   'hypersea-coast': {
     img: 'la/hypersea/IMG_7465.jpg',
+    caption: { en: `On the coast at Esposende`, pt: `Na costa de Esposende` },
     alt: `Coastal landscape`,
   },
 
@@ -167,6 +172,7 @@ const CONTENT = {
 
   'sargassum-fronds': {
     img: 'la/sargassum/shetells-48.jpg',
+    caption: { en: `Sargaço at low tide`, pt: `Sargaço na maré baixa` },
     alt: {
       en: `Sargassum fronds draped over rock at low tide`,
       pt: `Algas de sargaço sobre a rocha na maré baixa`,
@@ -175,6 +181,7 @@ const CONTENT = {
 
   'sargassum-bladderwrack': {
     img: 'la/sargassum/IMG_5705.jpg',
+    caption: { en: `On the rocks at Esposende`, pt: `Nas rochas de Esposende` },
     alt: {
       en: `Bladderwrack covering the rocks along the Esposende shore`,
       pt: `Bodelha a cobrir as rochas na costa de Esposende`,
@@ -183,6 +190,7 @@ const CONTENT = {
 
   'sargassum-museum-sculptures': {
     img: 'la/sargassum/museum-179232.jpg',
+    caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
     alt: {
       en: `Sargaceiro sculptures outside the Sargasso Museum, Esposende`,
       pt: `Esculturas de sargaceiros à entrada do Museu do Sargaço, Esposende`,
@@ -192,6 +200,7 @@ const CONTENT = {
 
   'sargassum-museum-display': {
     img: 'la/sargassum/museum-IMG_5775.jpg',
+    caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
     alt: {
       en: `Sargassum landscape protection display at the Sargasso Museum`,
       pt: `Exposição sobre a proteção da paisagem do sargaço no Museu do Sargaço`,
@@ -218,6 +227,7 @@ const CONTENT = {
       A questão que a tradição deixa em aberto não é, portanto, se o sargaço continuará a ser recolhido, mas o que passará a significar recolhê-lo.`,
     },
     img: 'la/sargassum/sargaceiro-historico.jpg',
+    caption: { en: `Gathering sargaço`, pt: `A apanhar sargaço` },
     alt: {
       en: `A sargaceiro pulling a net of sargaço onto the sand`,
       pt: `Um sargaceiro a puxar uma rede de sargaço para a areia`,
@@ -361,6 +371,7 @@ const CONTENT = {
       Incorpora as fragrâncias e os cheiros de tudo e de todos os que passam....`,
     },
     img: 'la/local/gleaned-note.jpg',
+    caption: { en: `Written at a workshop`, pt: `Escrito numa oficina` },
     alt: {
       en: `A water memory written by hand at one of the workshops`,
       pt: `Uma memória de água escrita à mão numa das oficinas`,
@@ -378,6 +389,7 @@ const CONTENT = {
       As pessoas desenharam planícies de espuma branca e rocha dura, dunas e um grupo de amigas, uma orelha e uma lista, apanhar latas, areia, gravar o vento. Alguém escreveu antes uma equação.`,
     },
     img: 'la/local/postcards.jpg',
+    caption: { en: `Postcards at the Sargassum Museum`, pt: `Postais no Museu do Sargaço` },
     alt: {
       en: `Postcards drawn at the launch workshops, pinned to the wall`,
       pt: `Postais desenhados nas oficinas de lançamento, afixados na parede`,
@@ -387,6 +399,7 @@ const CONTENT = {
 
   'local-fishing-lures': {
     img: 'la/local/fishing-lures.jpg',
+    caption: { en: `In a fishing shop`, pt: `Numa loja de pesca` },
     alt: { en: `Fishing lures on a shop rack`, pt: `Iscas de pesca numa prateleira de loja` },
   },
 
@@ -405,6 +418,7 @@ const CONTENT = {
       Continuámos à procura. Voltámos com areia, com gravações, e com uma história sobre não encontrar aquilo que fomos procurar.`,
     },
     img: 'la/local/shore.jpg',
+    caption: { en: `On the shore at low tide`, pt: `Na costa na maré baixa` },
     alt: {
       en: `The rocky shore at low tide near Esposende`,
       pt: `A costa rochosa na maré baixa perto de Esposende`,
@@ -436,6 +450,7 @@ const CONTENT = {
       Aqui também é jantar. A lampreia é uma época e uma iguaria no norte, esperada todos os anos.`,
     },
     img: 'la/local/lamprey.jpg',
+    caption: { en: `At the lamprey tanks`, pt: `Nos tanques das lampreias` },
     alt: {
       en: `Sea lampreys in a tank, mouths pressed against the glass`,
       pt: `Lampreias num aquário, com as bocas contra o vidro`,
@@ -446,6 +461,7 @@ const CONTENT = {
   'local-workshop-at-rio-neiva': {
     title: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
     img: 'la/local/rio-neiva.jpg',
+    caption: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
     alt: {
       en: `A workshop at Rio Neiva, the association hosting us in Antas, Esposende`,
       pt: `Uma oficina na Rio Neiva, a associação que nos acolhe em Antas, Esposende`,
@@ -692,6 +708,7 @@ const CONTENT = {
     gallery: [
       {
         src: 'la/future/bioplastic-cast.jpg',
+        caption: { en: `Casting bioplastic`, pt: `A moldar bioplástico` },
         alt: {
           en: `A cast piece of sargaço bioplastic, deep red and still wet`,
           pt: `Uma peça moldada de bioplástico de sargaço, vermelho escuro e ainda húmida`,
@@ -738,17 +755,227 @@ const CONTENT = {
     },
   },
 
+  'future-drawings': {
+    title: { en: `The drawings`, pt: `Os desenhos` },
+    img: 'la/future/drawings.svg',
+    alt: {
+      en: `The She Tells drawings in turn: seaweed, a shell, the airship, bubbles, a spiral shell, a line`,
+      pt: `Os desenhos da She Tells, um a um: algas, uma concha, o dirigível, bolhas, uma concha em espiral, uma linha`,
+    },
+    caption: { en: `The drawings, one after another`, pt: `Os desenhos, um após o outro` },
+  },
+
 
   /* ══ WORKSHOPS ══ */
 
-  'workshop-workshop-archive': {
-    title: `Workshop Archive`,
+  'workshop-intro': {
+    txt: {
+      en: `A series of workshops we have held as part of community engagement, aiming to create impact with DIY technologies, creating and giving agency on tech for listening to local water stories and speculative futures
+
+      The aim is to remember being part of an ecology, to imagine futures and pasts together, and to understand and critically engage with how tech plays a part in these ecosystems by learning DIY tools and shelphone`,
+      pt: `Uma série de oficinas que realizámos como parte do trabalho com a comunidade, procurando criar impacto com tecnologias DIY, criando e dando autonomia sobre a tecnologia para escutar histórias de água locais e futuros especulativos
+
+      O objetivo é recordar que fazemos parte de uma ecologia, imaginar futuros e passados em conjunto, e compreender e questionar criticamente o papel que a tecnologia tem nestes ecossistemas, aprendendo ferramentas DIY e o shelphone`,
+    },
   },
 
-  'workshop-making-session': {
-    title: `Making Session`,
+  'workshop-more-coming': {
+    txt: {
+      en: `More on each workshop is coming, and will be gathered here.`,
+      pt: `Mais sobre cada oficina está a caminho, e será reunido aqui.`,
+    },
   },
 
+  'workshop-museum': {
+    title: { en: `Workshop at Sargassum Museum`, pt: `Oficina no Museu do Sargaço` },
+    gallery: [
+      {
+        src: 'la/workshop/opening-101.jpg',
+        alt: { en: `Postcards pinned in a grid on a concrete wall`, pt: `Postais afixados numa grelha numa parede de betão` },
+        caption: { en: `Postcards at the museum`, pt: `Postais no museu` },
+      },
+      {
+        src: 'la/workshop/opening-116.jpg',
+        alt: { en: `A printed postcard with tick boxes, close up`, pt: `Um postal impresso com quadrados para assinalar, em grande plano` },
+      },
+      {
+        src: 'la/workshop/opening-141.jpg',
+        alt: { en: `The group presenting to an audience seated on the floor`, pt: `O grupo a apresentar perante uma assistência sentada no chão` },
+        caption: { en: `Workshop at the Sargassum Museum`, pt: `Oficina no Museu do Sargaço` },
+      },
+      {
+        src: 'la/workshop/opening-144.jpg',
+        alt: { en: `People seated listening, one wearing headphones`, pt: `Pessoas sentadas a escutar, uma delas com auscultadores` },
+        caption: { en: `Workshop at the Sargassum Museum`, pt: `Oficina no Museu do Sargaço` },
+      },
+      {
+        src: 'la/workshop/opening-147.jpg',
+        alt: { en: `The group walking down to the water`, pt: `O grupo a descer até à água` },
+        caption: { en: `Walking on the beach`, pt: `A caminhar na praia` },
+      },
+      {
+        src: 'la/workshop/opening-149.jpg',
+        alt: { en: `Someone crouching over the sand`, pt: `Alguém agachado sobre a areia` },
+        caption: { en: `Gleaning on the beach`, pt: `A recolher na praia` },
+      },
+      {
+        src: 'la/workshop/opening-153.jpg',
+        alt: { en: `Someone sitting on the beach, writing`, pt: `Alguém sentado na praia, a escrever` },
+        caption: { en: `Writing on the beach`, pt: `A escrever na praia` },
+      },
+      {
+        src: 'la/workshop/opening-156.jpg',
+        alt: { en: `A figure on the sand with the buildings behind`, pt: `Uma figura na areia com os edifícios ao fundo` },
+        caption: { en: `Walking back`, pt: `A caminhar de volta` },
+      },
+      {
+        src: 'la/workshop/opening-159.jpg',
+        alt: { en: `The room, with drawings along the wall`, pt: `A sala, com desenhos ao longo da parede` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/workshop/opening-179.jpg',
+        alt: { en: `Three people seated in conversation`, pt: `Três pessoas sentadas em conversa` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/workshop/opening-180.jpg',
+        alt: { en: `A shell held up to the mouth`, pt: `Uma concha levada à boca` },
+        caption: { en: `Trying the shellphone`, pt: `A experimentar o shellphone` },
+      },
+      {
+        src: 'la/workshop/opening-181.jpg',
+        alt: { en: `Three people talking after the workshop`, pt: `Três pessoas a conversar depois da oficina` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+    ],
+  },
+
+  'workshop-rioneiva': {
+    title: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
+    gallery: [
+      {
+        src: 'la/workshop/rioneiva-17.jpg',
+        alt: { en: `A shell on a red tray, hands working beside it`, pt: `Uma concha num tabuleiro vermelho, mãos a trabalhar ao lado` },
+        caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
+      },
+      {
+        src: 'la/workshop/rioneiva-19.jpg',
+        alt: { en: `People standing and talking as the laptops are set up`, pt: `Pessoas de pé a conversar enquanto se montam os portáteis` },
+        caption: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
+      },
+      {
+        src: 'la/workshop/rioneiva-20.jpg',
+        alt: { en: `Working at the long window, the dunes outside`, pt: `A trabalhar junto à janela comprida, as dunas lá fora` },
+        caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
+      },
+      {
+        src: 'la/workshop/rioneiva-21.jpg',
+        alt: { en: `Three people around one laptop`, pt: `Três pessoas à volta de um portátil` },
+        caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
+      },
+      {
+        src: 'la/workshop/rioneiva-22.jpg',
+        alt: { en: `Wiring a shell to a board, yellow leads across the table`, pt: `A ligar uma concha a uma placa, fios amarelos sobre a mesa` },
+        caption: { en: `Building the shellphone`, pt: `A construir o shellphone` },
+      },
+      {
+        src: 'la/workshop/rioneiva-23.jpg',
+        alt: { en: `The long table, everyone at work`, pt: `A mesa comprida, toda a gente a trabalhar` },
+        caption: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
+      },
+      {
+        src: 'la/workshop/rioneiva-28.jpg',
+        alt: { en: `Recording at the shoreline, arm outstretched over the water`, pt: `A gravar à beira de água, o braço estendido sobre o mar` },
+        caption: { en: `Recording at the shore`, pt: `A gravar à beira-mar` },
+      },
+      {
+        src: 'la/workshop/rioneiva-30.jpg',
+        alt: { en: `Out on the dunes with a recorder`, pt: `Nas dunas com um gravador` },
+        caption: { en: `Recording on the dunes`, pt: `A gravar nas dunas` },
+      },
+      {
+        src: 'la/workshop/rioneiva-31.jpg',
+        alt: { en: `The shadow a wired object throws on the wall`, pt: `A sombra que um objeto ligado projeta na parede` },
+        caption: { en: `At Rio Neiva`, pt: `Na Rio Neiva` },
+      },
+      {
+        src: 'la/workshop/rioneiva-32.jpg',
+        alt: { en: `Wired objects laid out on the table`, pt: `Objetos ligados dispostos sobre a mesa` },
+        caption: { en: `Building the shellphone`, pt: `A construir o shellphone` },
+      },
+      {
+        src: 'la/workshop/rioneiva-33.jpg',
+        alt: { en: `A laptop running the patch, hands at the breadboard`, pt: `Um portátil a correr o programa, mãos na placa de ensaio` },
+        caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
+      },
+    ],
+  },
+
+  'workshop-children': {
+    title: { en: `Workshop with children`, pt: `Oficina com crianças` },
+    full: {
+      en: `Kids at an open workshop in Rio Neiva were learning about teaching and listening, remembering, and using a DIY shellphone prototype.`,
+      pt: `Crianças numa oficina aberta na Rio Neiva a aprender sobre ensinar e escutar, a recordar, e a usar um protótipo caseiro do shellphone.`,
+    },
+    gallery: [
+      {
+        src: 'la/workshop/children-1.jpg',
+        alt: { en: `The introduction on the classroom screen`, pt: `A introdução no ecrã da sala de aula` },
+        caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
+      },
+      {
+        src: 'la/workshop/children-2.jpg',
+        alt: { en: `The class gathered at the board`, pt: `A turma reunida junto ao quadro` },
+        caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
+      },
+      {
+        src: 'la/workshop/children-3.jpg',
+        alt: { en: `Children at their desks`, pt: `Crianças nas suas carteiras` },
+        caption: { en: `In the classroom`, pt: `Na sala de aula` },
+      },
+      {
+        src: 'la/workshop/children-4.jpg',
+        alt: { en: `Talking with the class`, pt: `A conversar com a turma` },
+        caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
+      },
+      {
+        src: 'la/workshop/children-5.jpg',
+        alt: { en: `Drawing at the desk`, pt: `A desenhar na carteira` },
+        caption: { en: `Drawing`, pt: `A desenhar` },
+      },
+      {
+        src: 'la/workshop/children-7.jpg',
+        alt: { en: `A shell held to the ear, listening`, pt: `Uma concha encostada ao ouvido, à escuta` },
+        caption: { en: `Listening to a shell`, pt: `À escuta de uma concha` },
+      },
+      {
+        src: 'la/workshop/children-8.jpg',
+        alt: { en: `A drawing open on a laptop screen`, pt: `Um desenho aberto no ecrã de um portátil` },
+        caption: { en: `Working on the drawings`, pt: `A trabalhar nos desenhos` },
+      },
+      {
+        src: 'la/workshop/children-9.jpg',
+        alt: { en: `Two hands, one holding the other`, pt: `Duas mãos, uma a segurar a outra` },
+        caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
+      },
+      {
+        src: 'la/workshop/children-10.jpg',
+        alt: { en: `Drawings wired with yellow leads into paper circuits`, pt: `Desenhos ligados com fios amarelos em circuitos de papel` },
+        caption: { en: `Making paper circuits`, pt: `A fazer circuitos de papel` },
+      },
+      {
+        src: 'la/workshop/children-11.jpg',
+        alt: { en: `A shell beside a drawing of a snail`, pt: `Uma concha ao lado de um desenho de um caracol` },
+        caption: { en: `Drawing`, pt: `A desenhar` },
+      },
+      {
+        src: 'la/workshop/children-12.jpg',
+        alt: { en: `Hands wiring a circuit into a drawing`, pt: `Mãos a ligar um circuito a um desenho` },
+        caption: { en: `Making paper circuits`, pt: `A fazer circuitos de papel` },
+      },
+    ],
+  },
 
   /* ══ DRAWINGS ══ */
 
@@ -764,9 +991,309 @@ const CONTENT = {
   },
 
 
-  /* ══ EXHIBITION ══ */
+  /* ══ ARTWORK & EXHIBITION ══ */
 
-  'exhibition-documentation': {
-    title: `Documentation`,
+  'exhibition-wall-text': {
+    txt: {
+      en: `she tells,sea shells
+      Mixed media installation
+      Glass, organic material, multi-channel audio, video
+
+      The installation emerges from the familiar gesture of holding a shell to the ear, listening for the ocean, a gesture that becomes a portal to the hypersea, a speculative ecology that extends beyond the ocean itself. Visitors are invited to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. The work interrogates the ways in which nature is mediated, observed, and ultimately commodified through technological apparatuses and late-capitalist structures, translating the organic into objects of acquisition. Within this speculative fiction, the 'she tells - sea shells' entity operates as both organisation and archive, a structure with its own logics of revelation and secrets.
+
+      The installation invites visitors within a constructed showroom, a threshold space for the speculative launch of she tells artefacts. At its core, Mother Memory Atmosphere 01, a blown-glass sculpture, is configured to listen and absorb; it transmits both ambient and mimetic sounds. With field recordings and human imitation interwoven, producing a soundscape that oscillates between the natural and the performed. A video component accompanies the ambient sound and operates as a visual placeholder, amplifying the gestures of mimicry. Memory Atmosphere 1.5, a companion sculpture, is connected to the two-channel audio system: one channel enacts the She Tells hotline, a recursive waiting line that gestures toward connection yet resolves into absence; the other channel transmits narratives, sourced from Esposende's entanglements with Sargassum and the speculative hypersea.
+
+      A line of imaginary products is articulated within the installation: shell cream, acid tabs, sexy dunes, deluxe o₂, each conceived for non-human recipients and other water bodies. These artifacts operate as both satirical gestures and interventions, surfacing the paradoxes and urgencies embedded in contemporary environmental crises traced through Sargassum and the Esposende region, rising temperatures, proliferating waste, and ocean acidification.
+
+      Participants are invited to upload their own water memories into the distributed 'eternal stream', a digital archive that circulates these fragments. In the next phases of the work, these memories will be audible through open-source DIY shell phones and through an online audio stream, extending the work's infrastructure beyond the installation and into the distributed networks of its contributors.
+
+      Take one of the flyers or postcards, upload and share your memories of water; we don't want to be the only ones talking, honey!
+      – Stay salty.`,
+      pt: `she tells,sea shells
+      Instalação de técnica mista
+      Vidro, matéria orgânica, áudio multicanal, vídeo
+
+      A instalação nasce do gesto familiar de encostar uma concha ao ouvido, à escuta do oceano, um gesto que se torna um portal para o hypersea, uma ecologia especulativa que se estende para lá do próprio oceano. Quem visita é convidado a reconsiderar a sua relação com a água, a recordar a liquidez parcial do seu próprio corpo e a sentir o tecido conjuntivo que a água forma entre os ecossistemas. A obra interroga as formas como a natureza é mediada, observada e, por fim, transformada em mercadoria através de aparelhos tecnológicos e de estruturas do capitalismo tardio, traduzindo o orgânico em objetos de aquisição. Dentro desta ficção especulativa, a entidade «she tells - sea shells» funciona ao mesmo tempo como organização e como arquivo, uma estrutura com as suas próprias lógicas de revelação e de segredo.
+
+      A instalação acolhe quem visita dentro de um showroom construído, um espaço de limiar para o lançamento especulativo dos artefactos da she tells. No seu centro, Mother Memory Atmosphere 01, uma escultura de vidro soprado, está configurada para escutar e absorver; transmite sons ambientes e miméticos. Com gravações de campo e imitação humana entrelaçadas, produz uma paisagem sonora que oscila entre o natural e o representado. Uma componente de vídeo acompanha o som ambiente e funciona como marcador visual, amplificando os gestos de imitação. Memory Atmosphere 1.5, uma escultura companheira, está ligada ao sistema de áudio de dois canais: um canal encena a linha de apoio da She Tells, uma fila de espera recursiva que aponta para a ligação mas se resolve em ausência; o outro transmite narrativas, vindas das relações de Esposende com o sargaço e com o hypersea especulativo.
+
+      Uma linha de produtos imaginários articula-se dentro da instalação: shell cream, acid tabs, sexy dunes, deluxe o₂, cada um pensado para destinatários não humanos e outros corpos de água. Estes artefactos funcionam como gestos satíricos e como intervenções, trazendo à superfície os paradoxos e as urgências das crises ambientais contemporâneas, seguidas através do sargaço e da região de Esposende, o aumento das temperaturas, a multiplicação dos resíduos e a acidificação dos oceanos.
+
+      Quem participa é convidado a carregar as suas próprias memórias de água na «transmissão eterna» distribuída, um arquivo digital que faz circular estes fragmentos. Nas próximas fases do trabalho, estas memórias poderão ser ouvidas através de shell phones caseiros de código aberto e de uma transmissão de áudio online, estendendo a infraestrutura da obra para lá da instalação, até às redes distribuídas de quem contribui.
+
+      Pega num dos folhetos ou postais, carrega e partilha as tuas memórias de água; não queremos ser as únicas a falar, querida!
+      – Stay salty.`,
+    },
   },
+
+
+
+  'exhibition-process': {
+    title: { en: `Process`, pt: `Processo` },
+    txt: {
+      en: `Initial showing of the piece in prototype stage at the Sargassum Museum.
+
+      We had two glass sculptures, artistic versions of the DIY shellphone in its prototype state, that held three audio streams. Both play the audio that is also accessible via an online stream through the DIY shellphone.. The work invites visitors to engage with the artwork while prompting them to collect /stories for the device/stream.
+
+      The sculpture with the organic shell holds audio from field recordings overlaid with performers' voices, creating the ambience and world-building of the She Tells entity.
+
+      The second sculpture holds two audio streams: one with stories of sargassum in Esposende, reflections on its future, and Hypersea, a core concept in the workshops for memory retrieval; the other with ads for speculative products based on Esposende's local ecological issues(4 products sargasuum related issues & 1 on dunes), collected from discussions during the residency with local scientists and from the research process. These also appear in the flyers, prompting visitors to submit memories (also including a transcript of audio) while the performer-recorded sections and audio pieces created for the project play on headphones, with cabling coming from the sculpture. Alongside them, we have postcards where people can draw their memories, with a QR code to upload to the website and add their voice to the audio stream.
+
+      Both audio streams invite visitors to submit their memories/stories to the stream, so they can become part of the work and be heard through the DIY shellphones.
+
+      For the prototype, we chose to play a prerecorded stream through headphones rather than have visitors lift the shell to their ear. This kept the work dependable and light for the host museum across its stay: it ran without needing a constant internet connection, on-site supervision, or ongoing upkeep of the custom chip-based playback, and seated listening through headphones suited the space, letting the piece hold its atmosphere reliably for the length of the exhibition.
+
+      We included weather conditions in the prerecording, which we also use for the live version, such as tides, wind, and other ecological points we are taking from Esposende.
+
+      The final piece will include the electronics for the shell to be held to the ear, with the glass sculpture as its holder, holding the ocean inside, the Hypersea. We already have a 3D printed shell to pair with it.
+
+      The stream carries playful ads based on Esposende's related ecological situation for non-human body of water actors and their futures, Esposende's water stories, scientific reflections and speculations on the future, the children's stories, and speculations for Esposende's future, alongside the water's feelings, the tides, winds, weather, and other ecological data we are collecting from Esposende.`,
+      pt: `Primeira apresentação da peça em estado de protótipo no Museu do Sargaço.
+
+      Tínhamos duas esculturas de vidro, versões artísticas do shellphone caseiro no seu estado de protótipo, que continham três fluxos de áudio. Ambas reproduzem o áudio que também está acessível através de uma transmissão online pelo shellphone caseiro. A obra convida quem visita a envolver-se com o trabalho, ao mesmo tempo que a incentiva a recolher histórias para o dispositivo e para a transmissão.
+
+      A escultura com a concha orgânica contém áudio de gravações de campo sobrepostas às vozes das performers, criando o ambiente e a construção do mundo da entidade She Tells.
+
+      A segunda escultura contém dois fluxos de áudio: um com histórias do sargaço em Esposende, reflexões sobre o seu futuro e o Hypersea, um conceito central nas oficinas para a recuperação de memórias; o outro com anúncios de produtos especulativos baseados nos problemas ecológicos locais de Esposende (quatro produtos ligados ao sargaço e um às dunas), recolhidos em conversas durante a residência com cientistas locais e ao longo do processo de investigação. Estes aparecem também nos folhetos, incentivando quem visita a partilhar memórias (incluindo uma transcrição do áudio), enquanto as secções gravadas pelas performers e as peças sonoras criadas para o projeto tocam em auscultadores, com os cabos a sair da escultura. Ao lado, temos postais onde as pessoas podem desenhar as suas memórias, com um código QR para as carregar no site e juntar a sua voz à transmissão.
+
+      Ambos os fluxos de áudio convidam quem visita a enviar as suas memórias e histórias para a transmissão, para que possam passar a fazer parte da obra e ser ouvidas através dos shellphones caseiros.
+
+      Para o protótipo, escolhemos reproduzir uma gravação em auscultadores em vez de pedir a quem visita que levasse a concha ao ouvido. Isto manteve a obra fiável e leve para o museu que a acolheu durante toda a sua estadia: funcionou sem precisar de ligação constante à internet, de supervisão no local ou de manutenção contínua da reprodução feita no chip que construímos, e a escuta sentada com auscultadores adequava-se ao espaço, deixando a peça manter a sua atmosfera de forma fiável durante toda a exposição.
+
+      Incluímos as condições meteorológicas na gravação, que usamos também na versão ao vivo, como as marés, o vento e outros dados ecológicos que estamos a recolher em Esposende.
+
+      A peça final incluirá a eletrónica para que a concha possa ser levada ao ouvido, com a escultura de vidro como suporte, a guardar o oceano lá dentro, o Hypersea. Já temos uma concha impressa em 3D para juntar a ela.
+
+      A transmissão leva anúncios divertidos baseados na situação ecológica de Esposende para corpos de água não humanos e os seus futuros, histórias de água de Esposende, reflexões e especulações científicas sobre o futuro, as histórias das crianças e especulações para o futuro de Esposende, a par dos sentimentos da água, das marés, dos ventos, do tempo e de outros dados ecológicos que estamos a recolher em Esposende.`,
+    },
+  },
+
+  'exhibition-to-data': {
+    goTo: 'data',
+    label: { en: `The data we are collecting →`, pt: `Os dados que estamos a recolher →` },
+  },
+
+
+  'exhibition-to-future': {
+    goTo: 'future',
+    label: { en: `The speculative products →`, pt: `Os produtos especulativos →` },
+  },
+
+  'exhibition-opening': {
+    title: { en: `The opening`, pt: `A inauguração` },
+    gallery: [
+      {
+        src: 'la/exhibition/opening-01.jpg',
+        alt: { en: `The exhibition room, vitrines along the windows`, pt: `A sala da exposição, vitrinas junto às janelas` },
+      },
+      {
+        src: 'la/exhibition/opening-02.jpg',
+        alt: { en: `Visitors gathered around the vitrines`, pt: `Visitantes reunidos à volta das vitrinas` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/exhibition/opening-03.jpg',
+        alt: { en: `Two visitors seated on the bench with headphones on`, pt: `Dois visitantes sentados no banco com auscultadores` },
+        caption: { en: `Listening on headphones`, pt: `À escuta com auscultadores` },
+      },
+      {
+        src: 'la/exhibition/opening-04.jpg',
+        alt: { en: `A visitor in front of the wall display`, pt: `Um visitante em frente ao painel na parede` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/exhibition/opening-05.jpg',
+        alt: { en: `The glass sculpture with visitors behind it`, pt: `A escultura de vidro com visitantes por detrás` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/exhibition/opening-06.jpg',
+        alt: { en: `The group presenting at the opening`, pt: `O grupo a apresentar na inauguração` },
+        caption: { en: `The opening`, pt: `A inauguração` },
+      },
+      {
+        src: 'la/exhibition/opening-07.jpg',
+        alt: { en: `Sargaço drying on the rock`, pt: `Sargaço a secar na pedra` },
+      },
+      {
+        src: 'la/exhibition/opening-08.jpg',
+        alt: { en: `Two visitors listening on the bench`, pt: `Dois visitantes à escuta no banco` },
+        caption: { en: `Listening on headphones`, pt: `À escuta com auscultadores` },
+      },
+      {
+        src: 'la/exhibition/opening-09.jpg',
+        alt: { en: `Visitors looking out through the window wall`, pt: `Visitantes a olhar através da parede de vidro` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/exhibition/opening-10.jpg',
+        alt: { en: `A group of visitors in the room`, pt: `Um grupo de visitantes na sala` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/exhibition/opening-11.jpg',
+        alt: { en: `The room with the postcards along the wall`, pt: `A sala com os postais ao longo da parede` },
+        caption: { en: `Postcards at the museum`, pt: `Postais no museu` },
+      },
+    ],
+  },
+
+  'exhibition-details': {
+    title: { en: `Artwork installation details`, pt: `Detalhes da instalação` },
+    gallery: [
+      {
+        src: 'la/exhibition/details-01.jpg',
+        alt: { en: `A glass sculpture in its vitrine at the Sargassum Museum`, pt: `Uma escultura de vidro na sua vitrina no Museu do Sargaço` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/exhibition/details-02.jpg',
+        alt: { en: `The glass sculpture on its mirrored plinth, a rock below`, pt: `A escultura de vidro no seu plinto espelhado, uma pedra por baixo` },
+      },
+      {
+        src: 'la/exhibition/details-03.jpg',
+        alt: { en: `The blue glass form, close`, pt: `A forma de vidro azul, de perto` },
+      },
+      {
+        src: 'la/exhibition/details-04.jpg',
+        alt: { en: `The glass form with the dunes beyond the window`, pt: `A forma de vidro com as dunas para lá da janela` },
+      },
+      {
+        src: 'la/exhibition/details-05.jpg',
+        alt: { en: `Two glass forms resting one on the other`, pt: `Duas formas de vidro apoiadas uma na outra` },
+      },
+      {
+        src: 'la/exhibition/details-06.jpg',
+        alt: { en: `A rock with white cabling wound around it`, pt: `Uma pedra com cabos brancos enrolados` },
+      },
+      {
+        src: 'la/exhibition/details-07.jpg',
+        alt: { en: `The vitrine holding a built dune of sand`, pt: `A vitrina com uma duna de areia construída` },
+      },
+      {
+        src: 'la/exhibition/details-08.jpg',
+        alt: { en: `The built dune with its plants`, pt: `A duna construída com as suas plantas` },
+      },
+      {
+        src: 'la/exhibition/details-09.jpg',
+        alt: { en: `The Sexy Dunes flyer lying in the sand of the vitrine`, pt: `O folheto do Sexy Dunes na areia da vitrina` },
+      },
+      {
+        src: 'la/exhibition/details-10.jpg',
+        alt: { en: `The built dune with a pink flower`, pt: `A duna construída com uma flor cor de rosa` },
+      },
+      {
+        src: 'la/exhibition/details-11.jpg',
+        alt: { en: `The glass form above the vitrine, a rock inside it`, pt: `A forma de vidro sobre a vitrina, uma pedra lá dentro` },
+      },
+      {
+        src: 'la/exhibition/details-12.jpg',
+        alt: { en: `The amber glass form, close`, pt: `A forma de vidro âmbar, de perto` },
+      },
+      {
+        src: 'la/exhibition/details-13.jpg',
+        alt: { en: `The amber glass form against the light`, pt: `A forma de vidro âmbar contra a luz` },
+      },
+      {
+        src: 'la/exhibition/details-14.jpg',
+        alt: { en: `A rock carrying yellow sargaço`, pt: `Uma pedra com sargaço amarelo` },
+      },
+      {
+        src: 'la/exhibition/details-15.jpg',
+        alt: { en: `The vitrine with the glass sphere above and the rock below`, pt: `A vitrina com a esfera de vidro em cima e a pedra em baixo` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+      {
+        src: 'la/exhibition/details-16.jpg',
+        alt: { en: `The glass sphere with the speaker above it`, pt: `A esfera de vidro com o altifalante por cima` },
+        caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
+      },
+    ],
+  },
+
+  'exhibition-listening': {
+    img: 'la/exhibition/listening.jpg',
+    caption: { en: `Listening on the rocks at Esposende`, pt: `À escuta nas rochas de Esposende` },
+    alt: { en: `Standing on the rocks with a shell held to one ear, looking out to sea`,
+           pt: `De pé nas rochas com uma concha encostada ao ouvido, a olhar o mar` },
+  },
+
+  'exhibition-shellphone': {
+    title: { en: `The shellphone`, pt: `O shellphone` },
+    gallery: [
+      {
+        src: 'la/exhibition/shellphone.mp4',
+        alt: { en: `The sculpture filmed on the shore`, pt: `A escultura filmada na costa` },
+        caption: { en: `The sculpture on the shore`, pt: `A escultura na costa` },
+      },
+      {
+        src: 'la/exhibition/shellphone-01.jpg',
+        alt: { en: `The glass sculpture on a mirror among the rocks`, pt: `A escultura de vidro sobre um espelho entre as rochas` },
+        caption: { en: `The sculpture on the shore`, pt: `A escultura na costa` },
+      },
+      {
+        src: 'la/exhibition/shellphone-02.jpg',
+        alt: { en: `A conch resting on the glass sculpture, the sea behind`, pt: `Uma concha pousada na escultura de vidro, o mar ao fundo` },
+      },
+      {
+        src: 'la/exhibition/shellphone-03.jpg',
+        alt: { en: `The conch on the pale green glass, close`, pt: `A concha sobre o vidro verde claro, de perto` },
+      },
+      {
+        src: 'la/exhibition/shellphone-04.jpg',
+        alt: { en: `The sculpture and its shell on the rocks`, pt: `A escultura e a sua concha nas rochas` },
+        caption: { en: `The sculpture on the shore`, pt: `A escultura na costa` },
+      },
+      {
+        src: 'la/exhibition/shellphone-05.jpg',
+        alt: { en: `A conch held inside the clear glass`, pt: `Uma concha dentro do vidro transparente` },
+      },
+      {
+        src: 'la/exhibition/shellphone-06.jpg',
+        alt: { en: `The clear sculpture on a mirror on the sand`, pt: `A escultura transparente sobre um espelho na areia` },
+        caption: { en: `On the beach at Esposende`, pt: `Na praia de Esposende` },
+      },
+      {
+        src: 'la/exhibition/shellphone-07.jpg',
+        alt: { en: `Two shells held above the mirror`, pt: `Duas conchas seguradas sobre o espelho` },
+      },
+      {
+        src: 'la/exhibition/shellphone-08.jpg',
+        alt: { en: `A hand reaching to the sculpture on the sand`, pt: `Uma mão a chegar à escultura na areia` },
+        caption: { en: `On the beach at Esposende`, pt: `Na praia de Esposende` },
+      },
+      {
+        src: 'la/exhibition/shellphone-09.jpg',
+        alt: { en: `The shell inside the glass, the shoreline behind`, pt: `A concha dentro do vidro, a linha de costa ao fundo` },
+      },
+      {
+        src: 'la/exhibition/shellphone-10.jpg',
+        alt: { en: `The shell inside the glass, close`, pt: `A concha dentro do vidro, de perto` },
+      },
+      {
+        src: 'la/exhibition/shellphone-11.jpg',
+        alt: { en: `Hands lifting the green glass sculpture`, pt: `Mãos a levantar a escultura de vidro verde` },
+      },
+      {
+        src: 'la/exhibition/shellphone-12.jpg',
+        alt: { en: `The shell seen through the curve of the glass`, pt: `A concha vista através da curva do vidro` },
+      },
+      {
+        src: 'la/exhibition/shellphone-13.jpg',
+        alt: { en: `The sculpture set among sargaco covered rock`, pt: `A escultura entre rochas cobertas de sargaço` },
+        caption: { en: `On the sargaco rocks`, pt: `Nas rochas de sargaço` },
+      },
+      {
+        src: 'la/exhibition/shellphone-14.jpg',
+        alt: { en: `The glass against the sargaco`, pt: `O vidro contra o sargaço` },
+        caption: { en: `On the sargaco rocks`, pt: `Nas rochas de sargaço` },
+      },
+      {
+        src: 'la/exhibition/shellphone-15.jpg',
+        alt: { en: `The shell inside the glass among the sargaco`, pt: `A concha dentro do vidro entre o sargaço` },
+        caption: { en: `On the sargaco rocks`, pt: `Nas rochas de sargaço` },
+      },
+    ],
+  },
+
 };
