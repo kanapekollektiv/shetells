@@ -1,0 +1,92 @@
+/* card */
+.card{width:min(80vw,318px);aspect-ratio:62/100;perspective:1600px;cursor:pointer;
+  background:none;border:0;padding:0;font:inherit;color:inherit;display:block;text-align:left;
+  container-type:inline-size}
+.card:focus-visible{outline:2.5px solid var(--orange);outline-offset:5px;border-radius:4px}
+.inner{position:relative;width:100%;height:100%;transition:transform .72s cubic-bezier(.5,.05,.2,1);
+  transform-style:preserve-3d}
+.card.flipped .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:4px;overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 12px 30px rgba(17,17,17,.17)}
+.face.back{transform:rotateY(180deg)}
+/* Two separate problems with the face that is turned away.
+   1. backface-visibility does not remove it from hit testing, so it swallows taps.
+   2. Safari ignores backface-visibility here and paints the far face mirrored over
+      the near one. Relying on it is not safe, so the far face is faded out at the
+      halfway point of the turn instead. */
+.face{pointer-events:none;transition:opacity 0s linear .36s}
+.card:not(.flipped) .front{pointer-events:auto}
+.card.flipped .back{pointer-events:auto}
+.card:not(.flipped) .back{opacity:0}
+.card.flipped .front{opacity:0}
+
+/* front: white ground, black type, the product green carrying the pills */
+.front{background:#fff;color:var(--ink);background-size:cover;background-position:center}
+.card.photo .front{background-image:var(--bgimg);color:#fff}
+.front .body{position:relative;flex:1;padding:6cqw 5.4cqw 17cqw 5.4cqw;display:flex;flex-direction:column}
+.wordmark{display:flex;align-items:center;gap:2.2cqw;font-family:var(--hand);font-size:3.1cqw;
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.4cqw;color:var(--cream)}
+.card.photo .wordmark{color:#fff}
+.wordmark::before{content:"";width:8.4cqw;height:1px;background:currentColor;flex:none}
+.pname{font-weight:200;font-size:15cqw;line-height:1;letter-spacing:-.03em;text-transform:lowercase;
+  white-space:nowrap}
+.pname.long{font-size:13cqw}   /* sargassum city and any 13+ character name */
+.pills{position:absolute;left:3.2cqw;top:34cqw;display:flex;align-items:flex-start;gap:2cqw}
+.pill{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--hand);font-size:2.76cqw;
+  letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--cream);color:var(--cream);
+  border-radius:999px;padding:2.4cqw 1.5cqw;white-space:nowrap}
+.pill.solid{background:var(--cream);border-color:var(--cream);color:#fff}
+.card.photo .pill{border-color:#fff;color:#fff}
+.card.photo .pill.solid{background:var(--cream);border-color:var(--cream);color:#fff}
+.art{flex:none;height:40cqw;position:relative;margin:20.6cqw 0 28cqw 26cqw}
+.art svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.card.photo .art svg{filter:drop-shadow(0 2px 5px rgba(0,0,0,.22))}
+.saycaps{font-family:var(--hand);font-size:3.9cqw;line-height:1.4;letter-spacing:.045em;
+  text-transform:uppercase;margin-left:36cqw;text-align:left}
+.tagline{font-weight:700;font-size:4.4cqw;line-height:1.24;text-decoration:underline;
+  text-underline-offset:2.5px;text-decoration-color:var(--cream);margin:1.8cqw 0 0 auto;max-width:20ch}
+.card.photo .tagline{text-decoration-color:#fff}
+.flipcue{position:absolute;left:5.4cqw;bottom:6cqw;font-family:var(--hand);font-size:3.1cqw;
+  letter-spacing:.1em;text-transform:uppercase;background:var(--cream);color:#fff;
+  padding:1.7cqw 3.4cqw;border-radius:999px}
+
+/* back: the product green, unchanged ground, louder call to action */
+.back{background:var(--cream);color:#fff}
+.back .body{flex:1;padding:6cqw 5.6cqw 4.4cqw;display:flex;flex-direction:column;
+  justify-content:space-between;gap:4cqw;position:relative}
+.cond-label{font-family:var(--hand);font-size:2.9cqw;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow)}
+.btop{display:flex;flex-direction:column;gap:2.8cqw}
+.cond{font-size:3.9cqw;line-height:1.48;color:#fff}
+.src{font-family:var(--hand);font-size:2.6cqw;letter-spacing:.05em;line-height:1.4;opacity:.85;
+  border-top:1px solid rgba(255,255,255,.34);padding-top:1.9cqw}
+.brief{display:flex;flex-direction:column;gap:2.6cqw}
+.brief .q{font-weight:700;font-size:4.6cqw;line-height:1.24}
+.cta-label{font-family:var(--hand);font-size:2.7cqw;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--yellow)}
+.lanes{display:flex;gap:2.2cqw}
+.lane{flex:1;border-radius:999px;padding:3.2cqw 1.6cqw 3cqw;text-align:center;
+  display:flex;flex-direction:column;gap:.4cqw;background:#fff;color:var(--cream);
+  box-shadow:0 2px 0 rgba(0,0,0,.16)}
+.lane b{font-weight:700;font-size:4.3cqw;line-height:1;letter-spacing:-.01em}
+.lane span{font-family:var(--hand);font-size:2.4cqw;letter-spacing:.06em;text-transform:uppercase;opacity:.72}
+.lane.fill{background:var(--yellow);color:var(--cream)}
+.foot{background:rgba(0,0,0,.2);color:#fff;font-size:2.72cqw;line-height:1.32;padding:2.6cqw 3.9cqw}
+
+/* anatomy */
+.anat{display:grid;gap:11px;margin-top:26px;grid-template-columns:repeat(auto-fit,minmax(212px,1fr))}
+.anat li{list-style:none;background:#fff;border:1px solid var(--rule);border-left:2.5px solid var(--blue);
+  border-radius:2px;padding:13px 15px}
+.anat li.b{border-left-color:var(--orange)}
+.anat b{display:block;font-size:14px;margin-bottom:2px}
+.anat span{font-size:13.5px;line-height:1.48;color:var(--ink-soft)}
+
+/* deck strip */
+.strip{display:flex;gap:11px;margin-top:26px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin}
+.mini{flex:none;width:132px;aspect-ratio:62/100;border-radius:3px;overflow:hidden;position:relative;
+  color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:11px 10px;
+  background-size:cover;background-position:center;box-shadow:0 5px 14px rgba(17,17,17,.15)}
+.mini .mn{font-weight:200;font-size:19px;line-height:.87;letter-spacing:-.02em;text-transform:lowercase}
+.mini .mc{font-family:var(--hand);font-size:7.6px;letter-spacing:.07em;line-height:1.35;text-transform:uppercase}
+.mini .sw{position:absolute;right:8px;top:8px;width:11px;height:11px;border-radius:999px;border:1.5px solid #fff}
+

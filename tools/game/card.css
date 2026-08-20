@@ -1,0 +1,48 @@
+/* the connecting line */
+.squiggle{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.squiggle path{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.front .body{z-index:1}
+.card.photo .squiggle path{stroke:#fff}
+.card.opener .squiggle path{stroke:var(--open-accent)}
+
+/* opener: behaves like the deck, white front and a coloured back.
+   The pale blue is only ever a fill, never ink: on white it is 1.7:1.
+   Purple carries the type at 7.9:1 on white and 7.9:1 with white on it. */
+.card.opener .front{background:#fff;color:var(--ink)}
+.card.opener .wordmark{color:var(--open-accent)}
+.card.opener .pname{color:var(--open-accent)}
+.card.opener .pname em{font-style:normal;color:var(--open-accent)}
+.card.opener .squiggle path{stroke:var(--open-accent)}
+.card.opener .pill.solid{background:var(--open-ground);border-color:var(--open-ground);color:var(--open-accent)}
+.card.opener .tagline{text-decoration-color:var(--open-accent)}
+.card.opener .flipcue{background:var(--open-accent);color:#fff}
+.card.opener .back{background:var(--open-accent);color:#fff}
+.card.opener .cond-label{color:var(--open-ground)}
+.card.opener .cta-label{color:var(--open-ground)}
+.card.opener .lane.fill{background:var(--open-ground);color:var(--open-accent)}
+.card.opener .foot{background:rgba(0,0,0,.22)}
+.card.opener .pname{white-space:normal;font-size:13cqw;line-height:.92}
+.card.opener .pills{top:48cqw}
+.card.opener .art{height:31cqw}
+
+/* ingredient cards: drawn only in the invent lane, in the future cluster orange */
+.ings{display:flex;flex-wrap:wrap;gap:13px;margin-top:26px}
+.ing{width:200px;aspect-ratio:62/44;border-radius:4px;background:#fff;border:1.5px solid var(--orange);
+  padding:15px 16px 14px;display:flex;flex-direction:column;justify-content:space-between;
+  container-type:inline-size;box-shadow:0 5px 15px rgba(17,17,17,.1)}
+.ing .lab{font-family:var(--hand);font-size:5.2cqw;letter-spacing:.15em;text-transform:uppercase;color:var(--orange)}
+.ing .word{font-weight:200;font-size:15cqw;line-height:.94;letter-spacing:-.025em;text-transform:lowercase}
+.ing .note{font-size:5.6cqw;line-height:1.34;color:var(--ink-soft)}
+
+/* two lanes */
+.lanesplit{display:grid;gap:14px;margin-top:26px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.ln{border:1px solid var(--rule);border-radius:3px;background:#fff;padding:20px 19px;
+  display:flex;flex-direction:column;gap:9px}
+.ln.rem{border-top:3px solid var(--cream)}
+.ln.inv{border-top:3px solid var(--orange)}
+.ln h3{font-size:19px;font-weight:700}
+.ln .tagsm{font-family:var(--hand);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft)}
+.ln ol{margin:4px 0 0 0;padding-left:17px;display:flex;flex-direction:column;gap:6px}
+.ln li{font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
+.ln li b{color:var(--ink)}
+
