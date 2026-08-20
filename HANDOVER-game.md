@@ -175,11 +175,9 @@ email within two weeks.
 
 ## 8. Open decisions
 
-- **The opener headline.** "now hiring" no longer fits: it was a joke about a
-  *corp*, and the name is now *she tells entity*. Four alternatives were drawn
-  up; "she tells listens" was recommended and nothing has been chosen. **If it
-  changes, the pill "no experience necessary" has to change with it** — it is a
-  job-advert line.
+- **Opener headline: decided.** It is now **she listens**, with the pill
+  *"there is no right answer"* and the question *"Shall we begin?"*. In
+  Portuguese: *ela escuta*, *não há resposta certa*, *Começamos?*.
 - **Portuguese needs a native speaker.** Machine translated, swept for Brazilian
   forms, but unread by anyone who speaks it.
 - **The card fronts are unread by anyone who was in Esposende**, in both
@@ -218,7 +216,35 @@ strip both remote URLs and let the `osxkeychain` helper hold the credential.
 
 ---
 
-## 10. Companion documents
+## 10. Where this session left off
+
+**Everything is committed and pushed.** `kanape/main` is at `fdc308d`. Nothing
+is outstanding in the working tree.
+
+Two things were being checked when the session ended:
+
+- **GitHub Pages was still rebuilding** after the final push. If the live page
+  still shows the old copy, wait a minute and load with a fresh query string.
+- **A report that the NaN font was not loading.** All four font files return
+  HTTP 200 from `shetells.stream` at the exact paths `game.html` requests, and
+  the page requests them correctly, so this looks like a cached copy rather
+  than a real fault. Worth confirming once Pages has caught up. If it is real,
+  check the response `content-type` on the `.ttf` files.
+
+**On the connecting line and the opener header:** verified clear in both
+languages. Be careful how this is tested. Measuring a text element's bounding
+box gives a false positive, because a two-line heading's box spans the width of
+the *longer* line, so the empty space beside the short line counts as a
+collision. Use `Range.getClientRects()` for one box per line.
+
+**No processes need stopping.** A local `python3 -m http.server` on port 8791
+was used for testing and can be killed with `lsof -ti:8791 | xargs kill`, or
+left to die with the terminal. Nothing else is running, nothing is scheduled,
+and no background jobs were created.
+
+---
+
+## 11. Companion documents
 
 Three artifacts, all published from this session:
 
