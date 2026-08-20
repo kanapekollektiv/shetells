@@ -36,9 +36,9 @@ img,svg{max-width:100%;display:block}
 .hud{width:min(420px,100%);display:flex;align-items:center;justify-content:space-between;gap:10px;
   font-family:var(--hand);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
 .pips{display:flex;gap:5px}
-.pip{width:9px;height:9px;border-radius:999px;border:1.4px solid var(--rule);background:transparent}
+.pip{width:10px;height:10px;border-radius:999px;border:1.5px solid var(--rule);background:transparent;transition:background .2s,border-color .2s,transform .2s}
 .pip.done{background:var(--cream);border-color:var(--cream)}
-.pip.now{border-color:var(--ink);border-width:2px}
+.pip.now{border-width:2.5px;transform:scale(1.25)}
 
 .screen{width:min(420px,100%);display:none;flex-direction:column;align-items:center;gap:16px;
   animation:rise .34s cubic-bezier(.3,0,.2,1)}
@@ -167,6 +167,14 @@ code.url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px
 .mlnote:empty{display:none}
 #feedbackBtn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 
+/* back control */
+.hudleft{display:flex;align-items:center;gap:10px;min-width:0}
+.backbtn{font-size:16px;line-height:1;background:transparent;border:1.4px solid var(--rule);
+  border-radius:999px;width:30px;height:30px;display:grid;place-items:center;cursor:pointer;
+  color:var(--soft);flex:none;transition:border-color .15s,color .15s}
+.backbtn:hover{border-color:var(--ink);color:var(--ink)}
+.backbtn:focus-visible{outline:2.5px solid var(--orange);outline-offset:2px}
+
 /* card */
 .card{width:min(80vw,318px);aspect-ratio:62/100;perspective:1600px;cursor:pointer;
   background:none;border:0;padding:0;font:inherit;color:inherit;display:block;text-align:left;
@@ -179,11 +187,16 @@ code.url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px
   border-radius:4px;overflow:hidden;display:flex;flex-direction:column;
   box-shadow:0 12px 30px rgba(17,17,17,.17)}
 .face.back{transform:rotateY(180deg)}
-/* backface-visibility hides a face but does NOT remove it from hit testing, so the
-   face turned away still swallows taps meant for the one in front. */
-.face{pointer-events:none}
+/* Two separate problems with the face that is turned away.
+   1. backface-visibility does not remove it from hit testing, so it swallows taps.
+   2. Safari ignores backface-visibility here and paints the far face mirrored over
+      the near one. Relying on it is not safe, so the far face is faded out at the
+      halfway point of the turn instead. */
+.face{pointer-events:none;transition:opacity 0s linear .36s}
 .card:not(.flipped) .front{pointer-events:auto}
 .card.flipped .back{pointer-events:auto}
+.card:not(.flipped) .back{opacity:0}
+.card.flipped .front{opacity:0}
 
 /* front: white ground, black type, the product green carrying the pills */
 .front{background:#fff;color:var(--ink);background-size:cover;background-position:center}
@@ -312,7 +325,10 @@ code.url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px
 </style>
 
 <div class="hud">
-  <span id="hudLabel" data-i18n="corp">she tells corp</span>
+  <span class="hudleft">
+    <button class="backbtn" id="backBtn" type="button" aria-label="Back" hidden>&#8592;</button>
+    <span id="hudLabel" data-i18n="corp">she tells corp</span>
+  </span>
   <span class="hudright">
     <span class="pips" id="pips"></span>
     <button class="langbtn" id="langBtn" type="button" aria-label="Mudar para portugues">PT</button>
@@ -475,14 +491,40 @@ code.url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px
   var order = CARDS.map(function(_,i){ return i; });   // bottom .. top
 
   function $(id){ return document.getElementById(id); }
-  function show(id){
+  var history = [];
+  function show(id, isBack){
+    var current = currentScreen();
+    if (!isBack && current && current !== id) history.push(current);
     document.querySelectorAll('.screen').forEach(function(s){ s.classList.toggle('on', s.id===id); });
     window.scrollTo(0,0);
+    updateBack();
   }
+  function currentScreen(){
+    var s = [].filter.call(document.querySelectorAll('.screen'), function(x){
+      return x.classList.contains('on'); })[0];
+    return s ? s.id : null;
+  }
+  function updateBack(){
+    // no going back out of the opener, and not once a recording is on its way
+    var here = currentScreen();
+    var blocked = (here === 's-open' || here === 's-thanks' || here === 's-done');
+    $('backBtn').hidden = blocked || history.length === 0;
+  }
+  $('backBtn').addEventListener('click', function(){
+    if (!history.length) return;
+    var prev = history.pop();
+    // stepping back out of the recorder should drop the take, not keep it half made
+    if (currentScreen() === 's-brief') resetRecorder();
+    show(prev, true);
+  });
   function pips(){
-    $('pips').innerHTML = CARDS.map(function(c,i){
-      var cls = answered.indexOf(c.key)>-1 ? 'pip done' : 'pip';
-      return '<span class="'+cls+'" style="'+(answered.indexOf(c.key)>-1?'background:'+c.colour+';border-color:'+c.colour:'')+'"></span>';
+    $('pips').innerHTML = CARDS.map(function(c){
+      var done = answered.indexOf(c.key) > -1;
+      var here = cur && cur.key === c.key && !done;
+      var cls = 'pip' + (done ? ' done' : '') + (here ? ' now' : '');
+      var st = done ? 'background:' + c.colour + ';border-color:' + c.colour
+             : here ? 'border-color:' + c.colour : '';
+      return '<span class="' + cls + '" style="' + st + '"></span>';
     }).join('');
     $('hudLabel').innerHTML = answered.length ? answered.length + ' ' + T('answered') : T('corp');
   }
@@ -548,6 +590,7 @@ code.url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px
     card.classList.remove('flipped');
     bindCard(card);
     i18n(card);
+    pips();
     show('s-card');
   }
   $('stack').addEventListener('click', takeTop);
@@ -829,6 +872,7 @@ code.url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px
   $('thanksNext').addEventListener('click', function(){ resetRecorder(); finish(); });
 
   function finish(){
+    history = [];
     if (answered.indexOf(cur.key) < 0) {
       answered.push(cur.key);
       var ci = CARDS.indexOf(cur), at = order.indexOf(ci);
@@ -838,7 +882,7 @@ code.url{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px
     if (answered.length >= CARDS.length) { summarise(); show('s-done'); }
     else { refreshDeck(); show('s-deck'); }
   }
-  $('backToDeck').addEventListener('click', function(){ refreshDeck(); show('s-deck'); });
+  $('backToDeck').addEventListener('click', function(){ cur = null; refreshDeck(); show('s-deck'); });
   $('skipToDone').addEventListener('click', function(){ summarise(); show('s-done'); });
 
   function summarise(){
