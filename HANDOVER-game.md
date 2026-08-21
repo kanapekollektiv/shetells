@@ -1,9 +1,13 @@
 # Handover — the card game (`game.html`)
 
-Written 2026-08-20. Every fact below was checked against the files on disk or
-against a running copy at that moment, not recalled. Companion to
-`HANDOVER-living-archive.md`, which covers the archive map and is corrected in
-§9 below.
+Written 2026-08-20, extended 2026-08-21. Every fact below was checked against
+the files on disk or against a running copy at that moment, not recalled.
+Companion to `HANDOVER-living-archive.md`, which covers the archive map and is
+corrected in §9 below.
+
+**§11 is the 21 August work**: the hotline on the cards, the adverts deck and
+the `?` box in the archive. §4 and §10 have been corrected where the 20 August
+text turned out to be wrong or dangerous.
 
 ---
 
@@ -102,6 +106,18 @@ next time anyone runs `build.py`.** Change the source and rebuild.
   `sarga-231-o`. Slugs are precomputed in Python.
 - **`timeout` is not a macOS command.** A check using it silently does nothing
   and returns success, which produced a wrong "the token is dead" conclusion.
+- **A query string on the HTML does nothing for `lang.js` or `content.js`.**
+  They are loaded by plain `<script src>` with no version, and Pages serves
+  them with `cache-control: max-age=600`. `living-archive.html?v=2` therefore
+  gets you a fresh page that then loads a ten-minute-old `lang.js`. This is the
+  §2 caching warning one layer deeper, and it cost time on 21 Aug: the deploy
+  was correct and the browser was lying. Hard refresh (**&#8984;&#8679;R**), or
+  wait ten minutes, or check the bytes with `curl` instead of the browser.
+- **A server started in the worktree serves the worktree.** The
+  `.claude/worktrees/*` checkouts hold `index.html` and nothing else, so
+  `python3 -m http.server` started from one 404s on every real page. Twice on
+  21 Aug this looked like a broken site. Check with
+  `lsof -a -p $(lsof -ti:8791 -sTCP:LISTEN) -d cwd`.
 
 ---
 
@@ -221,15 +237,14 @@ strip both remote URLs and let the `osxkeychain` helper hold the credential.
 **Everything is committed and pushed.** `kanape/main` is at `fdc308d`. Nothing
 is outstanding in the working tree.
 
-Two things were being checked when the session ended:
+Two things were being checked when the session ended. **Both were resolved on
+21 Aug and neither was a fault:**
 
-- **GitHub Pages was still rebuilding** after the final push. If the live page
-  still shows the old copy, wait a minute and load with a fresh query string.
-- **A report that the NaN font was not loading.** All four font files return
-  HTTP 200 from `shetells.stream` at the exact paths `game.html` requests, and
-  the page requests them correctly, so this looks like a cached copy rather
-  than a real fault. Worth confirming once Pages has caught up. If it is real,
-  check the response `content-type` on the `.ttf` files.
+- **GitHub Pages had caught up.** The deployed `game.html` was byte-identical
+  to the local build.
+- **The NaN font was never broken.** All four files return HTTP 200 as
+  `font/ttf`, and on a fresh load `document.fonts` reports all four `loaded`
+  with no fallback to Georgia. It was a cached copy, as suspected.
 
 **On the connecting line and the opener header:** verified clear in both
 languages. Be careful how this is tested. Measuring a text element's bounding
@@ -238,13 +253,73 @@ the *longer* line, so the empty space beside the short line counts as a
 collision. Use `Range.getClientRects()` for one box per line.
 
 **No processes need stopping.** A local `python3 -m http.server` on port 8791
-was used for testing and can be killed with `lsof -ti:8791 | xargs kill`, or
-left to die with the terminal. Nothing else is running, nothing is scheduled,
-and no background jobs were created.
+was used for testing and can be killed with
+`lsof -ti:8791 -sTCP:LISTEN | xargs kill`, or left to die with the terminal.
+
+**Do not drop the `-sTCP:LISTEN`.** Plain `lsof -ti:8791` matches every socket
+on the port, not just the listener. On 21 Aug it returned two PIDs, the server
+and Chrome's network service, so the command as it was first written here would
+have killed part of Chrome.
 
 ---
 
-## 11. Companion documents
+## 11. The hotline, and what changed on 21 August
+
+Everything in this section is live on `shetells.stream` and verified there, not
+locally.
+
+**Every card front carries a phone**, bottom right, opposite the flip cue.
+Tapping it plays that product's advert in a player *underneath* the card, so the
+call survives turning the card over. The five recordings are the
+`Hotline_final_player` WAVs from Helin's desktop, encoded to AAC 96k stereo:
+11MB in `audio/hotline/{key}.m4a`, one file per card key.
+
+Three things that had to be got right, all of them §4 traps in new clothes:
+
+- The flip guard is now `closest('.lane, .hotline')`. Without the phone in that
+  list, calling the hotline also turns the card over.
+- Nothing is fetched until somebody actually calls. The takes run to four
+  minutes; `preload` is `none` and `hotStop()` calls `load()` after clearing
+  `src`, which stops the download and not only the sound.
+- The call is dropped when you leave the card, in `show()` and again in
+  `takeTop()`, because drawing a new card does not change screen.
+
+**`hlang` in `cards.py`** is the language a card's take was actually recorded
+in, which is *not* always the language being read: acid tabs and sexy dunes are
+Portuguese, the other three English. There is one take each, so the player says
+which. A card with no `hlang` gets no phone.
+
+**The living archive** gained two things:
+
+- **An adverts deck** in `future-the-range`, under the introduction, in both the
+  popup and the mobile notes. Same five recordings. `buildAudioDeck()` is
+  generic: any card with an `audio: {title, note, tracks}` block gets one.
+  Decks register themselves in `audioDecks` so closing either view can silence
+  them, and the deck and the eternal stream pause each other.
+- **The `?` finally does something.** `btnInfo` had sat in the header since the
+  beginning with **no handler at all**. It now opens the project text from
+  `archive.about.body` in `lang.js`.
+
+**On the Portuguese in `archive.about.body`:** it is machine translation and
+carries its own notice saying a translator has still to see it. It deliberately
+does *not* reuse `MT_NOTICE`, which claims the DeepL output was already edited
+by a translator. When someone has read it, switch to the standard notice.
+
+**Left undecided**, all cosmetic, none blocking:
+
+- The phone is a 34px tap target, under the 44px a thumb wants. The fix is to
+  keep the circle and extend the hit area with a pseudo-element, not to grow
+  the circle.
+- The same five recordings are called **the hotline** in the game and **the
+  adverts** in the archive.
+- `Esposende'sers` in Helin's about copy was corrected to `Esposenders`; the
+  Portuguese says `esposendenses`. The two do not match.
+- `follow the keyboard`, in the about copy, is left exactly as written because
+  its meaning was not clear enough to correct.
+
+---
+
+## 12. Companion documents
 
 Three artifacts, all published from this session:
 
