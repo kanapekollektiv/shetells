@@ -506,6 +506,23 @@ const CONTENT = {
 
       Esta é a linha de produtos especulativos. Podem ouvi-la, e por vezes ouvir os anúncios, na nossa transmissão eterna.`,
     },
+    // The five radio spots for the product line. Same recordings the card game
+    // dials when you tap the phone on a card front. There is one take each, in
+    // whichever language it was recorded in, so the deck says which.
+    audio: {
+      title: { en: `The adverts`, pt: `Os anúncios` },
+      note: {
+        en: `One spot per product, as broadcast by She Tells Entity. Skip between them, or let the line play through.`,
+        pt: `Um anúncio por produto, tal como transmitido pela She Tells Entity. Salta entre eles, ou deixa a gama tocar até ao fim.`,
+      },
+      tracks: [
+        { src: 'audio/hotline/shell-cream.m4a',    label: `Shell Cream`,    lang: 'en' },
+        { src: 'audio/hotline/acid-tabs.m4a',      label: `Acid Tabs`,      lang: 'pt' },
+        { src: 'audio/hotline/sexy-dunes.m4a',     label: `Sexy Dunes`,     lang: 'pt' },
+        { src: 'audio/hotline/sargassum-city.m4a', label: `Sargassum City`, lang: 'en' },
+        { src: 'audio/hotline/deluxe-o2.m4a',      label: `Deluxe O2`,      lang: 'en' },
+      ],
+    },
     gallery: [
       {
         src: 'la/future/products-6.jpg',

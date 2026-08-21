@@ -449,6 +449,83 @@
       font-size: 12.5px; line-height: 1.6; color: #3a3a3a; margin-bottom: 0.25rem;
     }
 
+    /* ── Audio deck ──
+       Sits under a card's introduction in both the popup and the mobile
+       notes, so one set of rules dresses both. */
+    .adeck {
+      margin: 0 1.2rem 1.4rem; padding: 0.95rem 1rem 1rem;
+      border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px; background: #fff;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .adeck-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+    .adeck-head h3 {
+      font-family: 'Celescript', cursive; font-size: 14px;
+      letter-spacing: 0.05em; color: #111; margin: 0;
+    }
+    .adeck-count {
+      font-family: 'Celescript', cursive; font-size: 11px;
+      color: rgba(0,0,0,0.4); white-space: nowrap;
+    }
+    .adeck-note {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px; line-height: 1.6; color: #555; margin: 0;
+    }
+    .adeck-now { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+    .adeck-name {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 15px; font-weight: 600; color: #111;
+    }
+    .adeck-lang {
+      font-family: 'Celescript', cursive; font-size: 11px;
+      letter-spacing: 0.05em; color: rgba(0,0,0,0.42);
+    }
+    .adeck-row { display: flex; align-items: center; gap: 0.55rem; }
+    .adeck-nav, .adeck-play {
+      flex: none; border-radius: 50%; cursor: pointer; line-height: 1;
+      display: grid; place-items: center;
+    }
+    .adeck-nav {
+      width: 34px; height: 34px; font-size: 18px;
+      border: 1.5px solid rgba(0,0,0,0.12); background: #fff; color: #222;
+    }
+    .adeck-nav:hover { background: #f4f4f4; }
+    .adeck-play {
+      width: 42px; height: 42px; font-size: 14px;
+      border: 0; background: #111; color: #fff;
+    }
+    /* the rail is thin but takes the click across its whole height, to be seekable */
+    .adeck-bar { flex: 1; padding: 10px 0; cursor: pointer; min-width: 40px; }
+    .adeck-bar .track {
+      display: block; height: 5px; border-radius: 999px;
+      background: rgba(0,0,0,0.1); overflow: hidden;
+    }
+    .adeck-bar .fill { display: block; height: 100%; width: 0; border-radius: 999px; background: #111; }
+    .adeck-time {
+      flex: none; font-family: 'Celescript', cursive; font-size: 11px;
+      color: rgba(0,0,0,0.45); font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+    .adeck-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .adeck-chip {
+      font-family: system-ui, -apple-system, sans-serif; font-size: 12px;
+      padding: 5px 11px; border-radius: 999px; cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.12); background: #fff; color: #444;
+    }
+    .adeck-chip:hover { background: #f4f4f4; }
+    .adeck-chip.on { background: #111; border-color: #111; color: #fff; }
+    @media (max-width: 900px) {
+      .adeck { margin: 0 0 1.2rem; }
+      .adeck-time { font-size: 10px; }
+    }
+
+    .info-body {
+      padding: 0.6rem 1.2rem 1.6rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 15px; line-height: 1.78; color: #333;
+    }
+    .info-body p { margin: 0 0 1rem; }
+    .info-body p:last-child { margin-bottom: 0; }
+    .info-body a { color: inherit; }
+
     /* ── Text preview card ── */
     .card-text-box {
       border-radius: 12px !important;
@@ -862,6 +939,19 @@
       <span class="m-notes-chip" id="mNotesChip"></span>
       <div class="m-notes-body" id="mNotesBody"></div>
     </section>
+  </div>
+
+  <div class="card-overlay" id="infoOverlay" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+    <div class="card-popup">
+      <div class="dp-header">
+        <span class="dp-chip" id="infoChip"></span>
+        <button class="dp-close" id="btnCloseInfo" aria-label="Close">✕</button>
+      </div>
+      <div class="dp-body">
+        <p class="gal-title" id="infoTitle"></p>
+        <div class="info-body" id="infoBody"></div>
+      </div>
+    </div>
   </div>
 
   <div class="card-overlay" id="cardOverlay" role="dialog" aria-modal="true">
@@ -1899,6 +1989,141 @@
     },
   };
 
+  /* ── Audio deck ────────────────────────────────────────────────────────
+     A small player for a card that carries a set of recordings. Skip with
+     the arrows or jump straight to one by name. The line plays through on
+     its own once started, so an exhibition visitor can set it going and
+     listen. Nothing is fetched until somebody presses play: these run to
+     four minutes each.
+     Every deck built registers itself, so closing a popup or the mobile
+     notes can silence whatever is still talking. */
+  const audioDecks = [];
+  function stopAudioDecks() { audioDecks.forEach(d => d.stop()); audioDecks.length = 0; }
+
+  function buildAudioDeck(spec, prefix) {
+    const tracks = spec.tracks || [];
+    if (!tracks.length) return null;
+    const p = prefix || 'adeck';
+    const wrap = document.createElement('div');
+    wrap.className = p;
+
+    const head = document.createElement('div');
+    head.className = p + '-head';
+    const h = document.createElement('h3');
+    h.textContent = L(spec.title) || '';
+    const count = document.createElement('span');
+    count.className = p + '-count';
+    head.appendChild(h); head.appendChild(count);
+    wrap.appendChild(head);
+
+    if (L(spec.note)) {
+      const n = document.createElement('p');
+      n.className = p + '-note';
+      n.textContent = L(spec.note);
+      wrap.appendChild(n);
+    }
+
+    const now = document.createElement('div');
+    now.className = p + '-now';
+    const nowName = document.createElement('span');
+    nowName.className = p + '-name';
+    const nowLang = document.createElement('span');
+    nowLang.className = p + '-lang';
+    now.appendChild(nowName); now.appendChild(nowLang);
+    wrap.appendChild(now);
+
+    const row = document.createElement('div');
+    row.className = p + '-row';
+    const mk = (cls, txt) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = p + '-' + cls; b.textContent = txt;
+      return b;
+    };
+    const prev = mk('nav', '‹'), play = mk('play', '▶'), next = mk('nav', '›');
+    const bar = document.createElement('span');
+    bar.className = p + '-bar';
+    const track = document.createElement('i');
+    track.className = 'track';
+    const fill = document.createElement('i');
+    fill.className = 'fill';
+    track.appendChild(fill); bar.appendChild(track);
+    const time = document.createElement('span');
+    time.className = p + '-time';
+    time.textContent = '0:00';
+    row.appendChild(prev); row.appendChild(play); row.appendChild(next);
+    row.appendChild(bar); row.appendChild(time);
+    wrap.appendChild(row);
+
+    const list = document.createElement('div');
+    list.className = p + '-list';
+    const chips = tracks.map((tr, n) => {
+      const c = document.createElement('button');
+      c.type = 'button'; c.className = p + '-chip';
+      c.textContent = L(tr.label);
+      c.addEventListener('click', () => { go(n, true); });
+      list.appendChild(c);
+      return c;
+    });
+    wrap.appendChild(list);
+
+    const au = new Audio();
+    au.preload = 'none';
+    let i = 0;
+
+    const fmt = (sec) => {
+      if (!isFinite(sec) || sec < 0) return '0:00';
+      sec = Math.floor(sec);
+      const m = Math.floor(sec / 60), r = sec % 60;
+      return m + ':' + (r < 10 ? '0' : '') + r;
+    };
+    const paint = () => {
+      const tr = tracks[i];
+      nowName.textContent = L(tr.label);
+      nowLang.textContent = t(tr.lang === 'pt' ? 'archive.audio.pt' : 'archive.audio.en');
+      count.textContent = (i + 1) + ' / ' + tracks.length;
+      chips.forEach((c, n) => c.classList.toggle('on', n === i));
+      play.textContent = au.paused ? '▶' : '❙❙';
+      play.setAttribute('aria-label', t(au.paused ? 'archive.audio.play' : 'archive.audio.pause'));
+    };
+    const go = (n, andPlay) => {
+      i = (n + tracks.length) % tracks.length;
+      au.src = tracks[i].src;
+      fill.style.width = '0';
+      time.textContent = '0:00';
+      if (andPlay) start(); else paint();
+    };
+    const start = () => {
+      if (typeof pauseStream === 'function') pauseStream();   // one voice at a time
+      if (!au.getAttribute('src')) au.src = tracks[i].src;
+      const pr = au.play();
+      if (pr && pr['catch']) pr['catch'](() => paint());
+      paint();
+    };
+
+    play.addEventListener('click', () => { if (au.paused) start(); else { au.pause(); paint(); } });
+    prev.addEventListener('click', () => go(i - 1, !au.paused));
+    next.addEventListener('click', () => go(i + 1, !au.paused));
+    bar.addEventListener('click', e => {
+      if (!au.duration || !isFinite(au.duration)) return;
+      const r = bar.getBoundingClientRect();
+      au.currentTime = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * au.duration;
+    });
+    au.addEventListener('timeupdate', () => {
+      if (!au.duration || !isFinite(au.duration)) return;
+      fill.style.width = (au.currentTime / au.duration * 100) + '%';
+      time.textContent = fmt(au.currentTime) + ' / ' + fmt(au.duration);
+    });
+    au.addEventListener('play', paint);
+    au.addEventListener('pause', paint);
+    // the line plays through, so the whole range can be heard without touching it
+    au.addEventListener('ended', () => { go(i + 1, true); });
+
+    const deck = { stop() { au.pause(); au.currentTime = 0; paint(); } };
+    audioDecks.push(deck);
+    go(0, false);
+    return wrap;
+  }
+
   function openTextPopup(txt, catKey, title) {
     openPanelKey = null;
     const cat = CAT_MAP[catKey];
@@ -2035,6 +2260,10 @@
       intro.className = 'gal-intro';
       intro.textContent = L(content.full);
       body.appendChild(intro);
+    }
+    if (content.audio) {
+      const deck = buildAudioDeck(content.audio, 'adeck');
+      if (deck) body.appendChild(deck);
     }
     (perFrame ? [] : (content.entries || [])).forEach(en => {
       const sec = document.createElement('div');
@@ -2260,6 +2489,7 @@
 
   function closePanel() {
     document.getElementById('cardOverlay').classList.remove('active');
+    stopAudioDecks();
     openPanelKey = null;
   }
 
@@ -2268,8 +2498,24 @@
     if (e.target === document.getElementById('cardOverlay')) closePanel();
   });
 
+  /* ── About, behind the ? ── */
+  const infoOverlay = document.getElementById('infoOverlay');
+  function openInfo() {
+    document.getElementById('infoChip').textContent = t('archive.about');
+    document.getElementById('infoTitle').textContent = t('archive.about.title');
+    document.getElementById('infoBody').innerHTML = t('archive.about.body');
+    infoOverlay.classList.add('active');
+    infoOverlay.querySelector('.dp-body').scrollTop = 0;
+  }
+  function closeInfo() { infoOverlay.classList.remove('active'); }
+  document.getElementById('btnInfo').addEventListener('click', openInfo);
+  document.getElementById('btnCloseInfo').addEventListener('click', closeInfo);
+  infoOverlay.addEventListener('click', e => { if (e.target === infoOverlay) closeInfo(); });
+  // rewrite it in place if the language changes while it is open
+  onLang(() => { if (infoOverlay.classList.contains('active')) openInfo(); });
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closePanel();
+    if (e.key === 'Escape') { closePanel(); closeInfo(); }
   });
 
   /* ── Stream play/pause ── */
@@ -2448,6 +2694,10 @@
         // Everything the desktop popup shows under the carousel: the intro,
         // one section per product, the sources and the ML note.
         if (L(content.full)) mNotesBody.appendChild(mobileBlock(content.full, 'm-text'));
+        if (content.audio) {
+          const deck = buildAudioDeck(content.audio, 'adeck');
+          if (deck) mNotesBody.appendChild(deck);
+        }
         (perFrame ? [] : (content.entries || [])).forEach(en => {
           const sec = document.createElement('div');
           sec.className = 'm-entry';
@@ -2570,20 +2820,31 @@
 
   function closeNotes() {
     mNotes.hidden = true; mList.hidden = false; mCta.hidden = false;
+    stopAudioDecks();
     openNotesKey = null;
   }
   let openNotesKey = null;
   mBack.addEventListener('click', closeNotes);
   onLang(() => {
     mBack.textContent = '← ' + t('archive.back');
-    if (openNotesKey) openNotes(openNotesKey);   // redraw notes in the new language
+    if (openNotesKey) { stopAudioDecks(); openNotes(openNotesKey); }   // redraw in the new language
   });
 
   const streamAudio = document.getElementById('streamAudio');
   const btnStream   = document.getElementById('btnStream');
   let streamPlaying = false;
 
+  // called by an audio deck before it starts, so only one voice is ever on
+  function pauseStream() {
+    if (!streamPlaying) return;
+    streamAudio.pause();
+    btnStream.innerHTML = '&#9654;';
+    btnStream.classList.remove('playing');
+    streamPlaying = false;
+  }
+
   btnStream.addEventListener('click', () => {
+    if (!streamPlaying) stopAudioDecks();
     if (streamPlaying) {
       streamAudio.pause();
       btnStream.innerHTML = '&#9654;';
