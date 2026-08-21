@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 # Side A copy is reproduced from the printed flyers. Side B is the archive's own text
 # from content.js. Nothing here is rewritten.
+#
+# hlang is the language the card's hotline recording was actually made in, which is not
+# always the language the player is reading. There is only one take per card. The file
+# itself is audio/hotline/{key}.m4a; a card with no hlang gets no phone on its front.
 
 CARDS = [
- dict(hint1='How would you use Shell Cream in 2040?', hint2='If shells stop forming, what else could a body put on?', example='Shell Cream is made out of the acid, for people whose shells are dissolving.', key='shell-cream', name='shell cream', colour='#00652E', svg='CREAM', native='#396535', audio='02',
+ dict(hint1='How would you use Shell Cream in 2040?', hint2='If shells stop forming, what else could a body put on?', example='Shell Cream is made out of the acid, for people whose shells are dissolving.', key='shell-cream', name='shell cream', colour='#00652E', svg='CREAM', native='#396535', audio='02', hlang='en',
    pill='outlast the acid era...',
    caps="The ocean doesn't care about your insides.",
    tag='But we do.',
@@ -13,7 +17,7 @@ CARDS = [
    src='Ocean acidification &middot; Iberian upwelling system',
    q='So what does Esposende need instead?'),
 
- dict(hint1='What other tabs will the water in Esposende need to fight the acid?', hint2='If the kelp forests thin out, what would you sell the sea?', example='Acid Tabs bottle the sour sea, for anyone who wants it under control.', key='acid-tabs', name='acid tabs', colour='#6e00b0', svg='ACID', native='#b35c91', audio='01',
+ dict(hint1='What other tabs will the water in Esposende need to fight the acid?', hint2='If the kelp forests thin out, what would you sell the sea?', example='Acid Tabs bottle the sour sea, for anyone who wants it under control.', key='acid-tabs', name='acid tabs', colour='#6e00b0', svg='ACID', native='#b35c91', audio='01', hlang='pt',
    pill='dissolve with dignity.',
    caps='Keep your acid under control. Now in dimethyl sulfide flavour!',
    tag='Ocean will never leave you now.',
@@ -25,7 +29,7 @@ CARDS = [
    src='Falling pH &middot; kelp and sarga&#231;o forests &middot; blue carbon',
    q='What would you sell to a sea that is turning sour?'),
 
- dict(hint1='What would Sexy Dunes look like in 2040?', hint2='What would make people stop leaving things on the sand?', example='Sexy Dunes sells the dune as something desirable, so nobody drops litter on it.', key='sexy-dunes', name='sexy dunes', colour='#C0511B', svg='DUNES', native='#522d1d', audio='03',
+ dict(hint1='What would Sexy Dunes look like in 2040?', hint2='What would make people stop leaving things on the sand?', example='Sexy Dunes sells the dune as something desirable, so nobody drops litter on it.', key='sexy-dunes', name='sexy dunes', colour='#C0511B', svg='DUNES', native='#522d1d', audio='03', hlang='pt',
    pill="dunes don't lie baby!",
    caps='Research shows that dunes which look sexy have a 25% less chance of getting littered.',
    tag='We got you covered.',
@@ -35,7 +39,7 @@ CARDS = [
    src='Coastal erosion &middot; littering &middot; microplastics',
    q='What would make people leave the dunes alone?'),
 
- dict(hint1='If Sargassum City got built, who would live there?', hint2='What would the sarga&#231;o sell back to us, if it could?', example='Sargassum City sells flats in the seaweed, to anyone who fancies the neighbourhood.', key='sargassum-city', name='sargassum city', colour='#238528', svg='CITY', native='#98de7f', audio='04',
+ dict(hint1='If Sargassum City got built, who would live there?', hint2='What would the sarga&#231;o sell back to us, if it could?', example='Sargassum City sells flats in the seaweed, to anyone who fancies the neighbourhood.', key='sargassum-city', name='sargassum city', colour='#238528', svg='CITY', native='#98de7f', audio='04', hlang='en',
    pill='@the big sea-ty life', longname=True,
    caps='Take me down to Sargassum City. Where the grass is green and the fish are pretty.',
    tag='Get your prime location now.',
@@ -46,7 +50,7 @@ CARDS = [
    src='Sarga&#231;o as habitat &middot; sarga&#231;o as commodity',
    q='Who should the sarga&#231;o belong to?'),
 
- dict(hint1='What would Deluxe O&#8322; cost in 2040?', hint2='If the water stopped making oxygen, what would take its place?', example='Deluxe O2 bottles the oxygen the seaweed makes, for people bored of ordinary air.', key='deluxe-o2', name='deluxe o&#8322;', colour='#0046FF', svg='O2', native='#ccbb00', audio='05',
+ dict(hint1='What would Deluxe O&#8322; cost in 2040?', hint2='If the water stopped making oxygen, what would take its place?', example='Deluxe O2 bottles the oxygen the seaweed makes, for people bored of ordinary air.', key='deluxe-o2', name='deluxe o&#8322;', colour='#0046FF', svg='O2', native='#ccbb00', audio='05', hlang='en',
    pill='you will oooh too...',
    caps='Are you bored of your old, landy oxygen, coming from those ugly green trees?',
    tag='Breathe better darling!',

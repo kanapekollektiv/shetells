@@ -58,6 +58,11 @@ def drawing(c):
     """each drawing recoloured to its own card colour; one occurrence each, verified"""
     return A['SVG_' + c['svg']].replace(c['native'], c['colour'])
 
+HANDSET = ('<svg class="hs" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+  '<path d="M6.6 10.9c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1'
+  'V20c0 .6-.4 1-1 1C11.1 21 3 12.9 3 3c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1'
+  'l-2.2 2.3z"/></svg>')
+
 def card_html(c, lang='en'):
     import re as _re
     _vb = _re.search(r'viewBox="([^"]+)"', A['SVG_'+c['svg']]).group(1)
@@ -66,6 +71,15 @@ def card_html(c, lang='en'):
     if lang == 'pt': d.update(CARD_PT[c['key']])
     c = d
     longcls = ' long' if c.get('longname') else ''
+    # the hotline: an advert with a number to call. Silent for a card with no take.
+    # The handset is drawn rather than typed: no font here carries a reliable phone
+    # glyph, and the emoji fallback would arrive in colour.
+    _phone = ''
+    if c.get('hlang'):
+        _lab = (UI_PT if lang == 'pt' else UI_EN)['hotlineCall']
+        _phone = ('<button type="button" class="hotline" data-hotline="{k}" data-hlang="{h}" '
+                  'aria-label="{lab}"><span class="ring" aria-hidden="true"></span>{hs}</button>'
+                  ).format(k=c['key'], h=c['hlang'], lab=_lab, hs=HANDSET)
     capscls = ' small' if len(re.sub('&[^;]+;','x',c['caps'])) > 62 else ''
     return f'''<div class="inner">
   <div class="face front">{_sq}
@@ -77,6 +91,7 @@ def card_html(c, lang='en'):
       <p class="saycaps{capscls}">{c['caps']}</p>
       <p class="tagline">{c['tag']}</p>
       <span class="flipcue" data-i18n="flip">tap to turn &rarr;</span>
+      {_phone}
     </div>
   </div>
   <div class="face back">
@@ -188,6 +203,17 @@ page = f'''<title>The Sixth Product</title>
 
 <div class="screen" id="s-card">
   <div class="card" id="playCard" role="button" tabindex="0" aria-label="Card, tap to turn"></div>
+  <div class="hotplayer" id="hotPlayer" hidden>
+    <div class="hothead">
+      <span class="hotlab" id="hotLab"></span>
+      <button class="hotclose" id="hotClose" type="button">&times;</button>
+    </div>
+    <div class="hotrow">
+      <button class="hotplay" id="hotBtn" type="button">&#9654;</button>
+      <span class="hotbar" id="hotBar"><i class="track"><i class="fill" id="hotFill"></i></i></span>
+      <span class="hottime" id="hotTime">0:00</span>
+    </div>
+  </div>
   <button class="btn ghost" id="backToDeck" data-i18n="putBack">put it back</button>
 </div>
 
@@ -302,6 +328,7 @@ page = f'''<title>The Sixth Product</title>
   function show(id, isBack){{
     var current = currentScreen();
     if (!isBack && current && current !== id && current !== 's-open') history.push(current);
+    if (id !== 's-card') hotStop();                 // the line does not follow you off the card
     if (id === 's-deck') {{ cur = null; }}          // no card in hand on the deck
     document.querySelectorAll('.screen').forEach(function(s){{ s.classList.toggle('on', s.id===id); }});
     window.scrollTo(0,0);
@@ -345,7 +372,7 @@ page = f'''<title>The Sixth Product</title>
   function flipOn(el){{
     var handled = 0;
     function toggle(ev){{
-      if (ev.target.closest('.lane')) return;          // real buttons keep their own job
+      if (ev.target.closest('.lane, .hotline')) return; // real buttons keep their own job
       if (ev.type === 'click' && Date.now() - handled < 500) return;
       if (ev.type === 'pointerup') handled = Date.now();
       el.classList.toggle('flipped');
@@ -394,6 +421,7 @@ page = f'''<title>The Sixth Product</title>
     var ci = order[order.length - 1];
     cur = CARDS[ci];
     var card = $('playCard');
+    hotStop();
     card.className = 'card';
     card.style.setProperty('--cream', cur.colour);
     card.innerHTML = HTML[ci];
@@ -412,6 +440,9 @@ page = f'''<title>The Sixth Product</title>
   }});
 
   function bindCard(card){{
+    card.querySelectorAll('.hotline').forEach(function(h){{
+      h.addEventListener('click', function(ev){{ ev.stopPropagation(); hotCall(h); }});
+    }});
     card.querySelectorAll('.lane').forEach(function(l){{
       l.addEventListener('click', function(ev){{
         ev.stopPropagation();
@@ -425,6 +456,123 @@ page = f'''<title>The Sixth Product</title>
       }});
     }});
   }}
+
+  // ── the hotline ──────────────────────────────────────────────────────────
+  // One take per card, in the language it happened to be recorded in, so the
+  // player says which. They run to four minutes: nothing is fetched until
+  // somebody actually calls, and the call is dropped on leaving the card.
+  var hot = new Audio(), hotKey = null, hotSeek = false;
+  hot.preload = 'none';
+
+  function hotFmt(s){{
+    if (!isFinite(s) || s < 0) return '0:00';
+    s = Math.floor(s); var m = Math.floor(s/60), r = s%60;
+    return m + ':' + (r<10?'0':'') + r;
+  }}
+  function hotPhone(){{ return document.querySelector('#playCard .hotline'); }}
+
+  function hotRelabel(){{
+    if (!hotKey) return;
+    var ph = hotPhone();
+    if (ph && ph.dataset.hotline === hotKey) ph.classList.add('playing');
+    $('hotLab').innerHTML = '<b>' + ((cur && cur.name) || '') + '</b> ' + T('hotlineLab') +
+                            ' &middot; <i>' + T('hotIn_' + (ph ? ph.dataset.hlang : 'en')) + '</i>';
+    $('hotClose').setAttribute('aria-label', T('hotlineHang'));
+    $('hotBtn').setAttribute('aria-label', T(hot.paused ? 'hotlinePlay' : 'hotlinePause'));
+  }}
+
+  function hotStop(){{
+    hot.pause();
+    hot.removeAttribute('src');
+    hot.load();                                  // stop the download, not just the sound
+    hotKey = null; hotSeek = false;
+    $('hotPlayer').hidden = true;
+    $('hotFill').style.width = '0';
+    $('hotBtn').innerHTML = '&#9654;';
+    document.querySelectorAll('.hotline.playing').forEach(function(b){{
+      b.classList.remove('playing');
+    }});
+  }}
+
+  function hotPlay(){{
+    $('hotBtn').innerHTML = '&#10073;&#10073;';
+    $('hotBtn').setAttribute('aria-label', T('hotlinePause'));
+    var pr = hot.play();
+    if (pr && pr['catch']) pr['catch'](function(){{ hotPause(); }});
+  }}
+  function hotPause(){{
+    hot.pause();
+    $('hotBtn').innerHTML = '&#9654;';
+    $('hotBtn').setAttribute('aria-label', T('hotlinePlay'));
+  }}
+
+  function hotCall(btn){{
+    var key = btn.dataset.hotline;
+    if (hotKey === key) {{ if (hot.paused) hotPlay(); else hotPause(); return; }}
+    hotStop();
+    hotKey = key;
+    hot.src = 'audio/hotline/' + key + '.m4a';
+    var pl = $('hotPlayer');
+    pl.hidden = false;
+    pl.style.setProperty('--cream', (cur && cur.colour) || '#111');
+    $('hotTime').textContent = T('hotlineConnect');
+    btn.classList.add('playing');
+    hotRelabel();
+    hotPlay();
+  }}
+
+  function hotTick(){{
+    if (hotSeek) return;
+    var d = hot.duration;
+    if (!d || !isFinite(d)) return;
+    $('hotFill').style.width = (hot.currentTime / d * 100) + '%';
+    $('hotTime').textContent = hotFmt(hot.currentTime) + ' / ' + hotFmt(d);
+  }}
+  hot.addEventListener('timeupdate', hotTick);
+  hot.addEventListener('loadedmetadata', hotTick);
+  hot.addEventListener('ended', function(){{
+    hotPause();
+    hot.currentTime = 0;
+    $('hotFill').style.width = '0';
+    var ph = hotPhone(); if (ph) ph.classList.remove('playing');
+  }});
+  hot.addEventListener('error', function(){{
+    if (hotKey) $('hotTime').textContent = T('hotlineFail');
+  }});
+
+  $('hotBtn').addEventListener('click', function(){{
+    if (!hotKey) return;
+    if (hot.paused) hotPlay(); else hotPause();
+  }});
+  $('hotClose').addEventListener('click', hotStop);
+
+  // scrubbing: the track is 5px but the strip takes the pointer across its full height
+  (function(){{
+    var bar = $('hotBar');
+    function frac(ev){{
+      var r = bar.getBoundingClientRect();
+      return Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width));
+    }}
+    function paint(ev){{
+      var f = frac(ev), d = hot.duration;
+      $('hotFill').style.width = (f * 100) + '%';
+      if (d && isFinite(d)) $('hotTime').textContent = hotFmt(f * d) + ' / ' + hotFmt(d);
+    }}
+    bar.addEventListener('pointerdown', function(ev){{
+      if (!hotKey || !hot.duration || !isFinite(hot.duration)) return;
+      hotSeek = true;
+      if (bar.setPointerCapture) bar.setPointerCapture(ev.pointerId);
+      paint(ev); ev.preventDefault();
+    }});
+    bar.addEventListener('pointermove', function(ev){{ if (hotSeek) paint(ev); }});
+    bar.addEventListener('pointerup', function(ev){{
+      if (!hotSeek) return;
+      hotSeek = false;
+      hot.currentTime = frac(ev) * hot.duration;
+      hotTick();
+    }});
+    bar.addEventListener('pointercancel', function(){{ hotSeek = false; hotTick(); }});
+  }})();
 
   var hintsShown = 0;
   function renderEgs(){{
@@ -730,6 +878,7 @@ page = f'''<title>The Sixth Product</title>
         bindCard(card);
         if (wasFlipped) card.classList.add('flipped');
         i18n(card);
+        hotRelabel();
       }}
     }}
     if ($('hints').children.length) {{

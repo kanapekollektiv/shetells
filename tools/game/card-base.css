@@ -90,3 +90,19 @@
 .mini .mc{font-family:var(--hand);font-size:7.6px;letter-spacing:.07em;line-height:1.35;text-transform:uppercase}
 .mini .sw{position:absolute;right:8px;top:8px;width:11px;height:11px;border-radius:999px;border:1.5px solid #fff}
 
+
+/* the hotline: a number to call on the advert, opposite the flip cue.
+   It sits inside .front, so it only takes taps while the front is facing;
+   the flip handler skips anything inside it. */
+.hotline{position:absolute;right:5.4cqw;bottom:5.4cqw;width:10.4cqw;height:10.4cqw;
+  border:0;padding:0;border-radius:999px;background:var(--cream);color:#fff;cursor:pointer;
+  display:grid;place-items:center;box-shadow:0 2px 0 rgba(0,0,0,.16)}
+.card.photo .hotline{background:var(--cream)}
+.hotline .hs{width:5.6cqw;height:5.6cqw;fill:currentColor;display:block}
+.hotline:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
+/* one ring on arrival, so the phone is noticed and then leaves you alone */
+.hotline .ring{position:absolute;inset:0;border-radius:999px;border:1.5px solid var(--cream);
+  animation:hotring 2.2s ease-out 3;pointer-events:none}
+@keyframes hotring{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(2.1);opacity:0}}
+.hotline.playing .ring{animation:none}
+@media (prefers-reduced-motion:reduce){.hotline .ring{animation:none}}
