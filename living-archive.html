@@ -2503,7 +2503,16 @@
   function openInfo() {
     document.getElementById('infoChip').textContent = t('archive.about');
     document.getElementById('infoTitle').textContent = t('archive.about.title');
-    document.getElementById('infoBody').innerHTML = t('archive.about.body');
+    const ib = document.getElementById('infoBody');
+    ib.innerHTML = t('archive.about.body');
+    // the English is the original, so the notice is empty there and nothing renders
+    const mt = t('archive.about.mt');
+    if (mt) {
+      const n = document.createElement('p');
+      n.className = 'dp-mt-notice';
+      n.textContent = mt;
+      ib.appendChild(n);
+    }
     infoOverlay.classList.add('active');
     infoOverlay.querySelector('.dp-body').scrollTop = 0;
   }
