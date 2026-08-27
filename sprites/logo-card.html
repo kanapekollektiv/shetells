@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>she tells — logo card</title>
+<style>
+  @font-face {
+    font-family: 'NaNTresor';
+    src: url('../Fonts/NaNTresor/NaNTresorM-Regular.ttf') format('truetype');
+    font-weight: 400; font-display: block;
+  }
+
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: transparent; overflow: hidden;
+  }
+
+  /* Same 1920x1080 authoring space as the credits card, captured at
+     deviceScaleFactor 2 for 4K — the two cards must cut together. */
+  #stage {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1920px; height: 1080px;
+    transform: translate(-50%, -50%) scale(var(--fit, 1));
+    transform-origin: center center;
+    color: #fff;
+  }
+
+  /* Funder lockups: the programme mark and the EU emblem carry equal weight,
+     so they are matched on cap height rather than on box height. */
+  #funders {
+    position: absolute;
+    top: 150px; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 130px;
+  }
+  #funders img { display: block; }
+  #starts { height: 92px; }
+  #eu     { height: 104px; }
+
+  #disclaimer {
+    position: absolute;
+    top: 372px; left: 50%; transform: translateX(-50%);
+    width: 1420px;
+    text-align: center;
+    font-family: 'NaNTresor', -apple-system, Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1.62;
+    letter-spacing: 0.01em;
+  }
+
+  /* Partner marks, two rows of six. Each cell is a fixed box and the logo is
+     contained inside it, so wide wordmarks and tall stacked marks stay
+     optically even instead of one bullying the row. */
+  #partners {
+    position: absolute;
+    left: 130px; right: 130px; bottom: 132px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    row-gap: 92px;
+    align-items: center;
+    justify-items: center;
+  }
+  .cell {
+    width: 100%; height: 128px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cell img {
+    max-width: 78%; max-height: 100%;
+    width: auto; height: auto;
+    display: block;
+  }
+  /* Marks that read small at a shared height get a touch more room. */
+  .cell.wide img { max-width: 88%; }
+
+  #bar {
+    position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+    font: 500 12px/1 -apple-system, Helvetica, Arial, sans-serif;
+    color: #fff; background: rgba(0,0,0,.6);
+    padding: 7px 13px; border-radius: 999px; z-index: 10;
+  }
+  body.rendering #bar { display: none; }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="funders">
+    <img id="starts" src="logos/starts-aquamotion-white.png" alt="S+T+ARTS Aqua Motion">
+    <img id="eu" src="logos/eu-cofunded-white.png" alt="Co-funded by the European Union">
+  </div>
+
+  <div id="disclaimer">
+    STARTSAQUAMOTION is co-funded by the European Union under the STARTS — Science,
+    Technology and Arts initiative of DG CNECT (GA no. LC-03568055). Views and opinions
+    expressed are those of the author(s) only and do not necessarily reflect those of the
+    European Union or DG CNECT. Neither the European Union nor the granting authority can
+    be held responsible for them.
+  </div>
+
+  <div id="partners"></div>
+</div>
+<div id="bar">logo card</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   she tells — logo card
+
+   The end card that follows the credits. White marks on transparent,
+   so it keys straight over the final shot in Premiere.
+
+   Preview:  logo-card.html
+   Options:  ?render=1   hide UI chrome (for PNG export)
+
+   The partner marks are cut from the consortium's own reversed banner
+   (Partners' Logos Banner - White Background.png) by tools/split_logo_banner.py.
+   ───────────────────────────────────────────────────────────── */
+
+const Q = new URLSearchParams(location.search);
+
+/* Consortium order, as the banner supplies them. `wide` flags the marks whose
+   artwork is mostly whitespace and would otherwise read a size too small. */
+const PARTNERS = [
+  ['inova',            false],
+  ['aircentre',        false],
+  ['colab-atlantic',   false],
+  ['rio-neiva',        false],
+  ['waag',             true ],
+  ['hortimare',        false],
+  ['ars-electronica',  true ],
+  ['tu-wien',          false],
+  ['water-museums',    false],
+  ['muse',             false],
+  ['pro-progressione', false],
+  ['kikk',             false],
+];
+
+document.getElementById('partners').innerHTML = PARTNERS.map(([n, wide]) =>
+  `<div class="cell${wide ? ' wide' : ''}"><img src="logos/partners/${n}.png" alt=""></div>`
+).join('');
+
+function fit() {
+  const s = Q.has('render') ? Math.min(innerWidth / 1920, innerHeight / 1080)
+                            : Math.min(innerWidth / 1920, innerHeight / 1080) * 0.94;
+  document.documentElement.style.setProperty('--fit', s);
+}
+fit();
+addEventListener('resize', fit);
+
+if (Q.has('render')) document.body.classList.add('rendering');
+
+/* The capture script waits on this, so it must not fire until every mark has
+   decoded — otherwise the shot catches half an empty grid. */
+Promise.all([
+  document.fonts.ready,
+  ...[...document.images].map(i => i.decode().catch(() => {})),
+]).then(() => {
+  document.body.dataset.frameReady = '1';
+});
+</script>
+
+</body>
+</html>
