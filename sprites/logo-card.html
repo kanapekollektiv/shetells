@@ -5,6 +5,11 @@
 <title>she tells — logo card</title>
 <style>
   @font-face {
+    font-family: 'Celescript';
+    src: url('../Fonts/Celescript.ttf') format('truetype');
+    font-weight: 400; font-display: block;
+  }
+  @font-face {
     font-family: 'NaNTresor';
     src: url('../Fonts/NaNTresor/NaNTresorM-Regular.ttf') format('truetype');
     font-weight: 400; font-display: block;
@@ -30,23 +35,23 @@
      so they are matched on cap height rather than on box height. */
   #funders {
     position: absolute;
-    top: 150px; left: 0; right: 0;
+    top: var(--funders-top, 150px); left: 0; right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 130px;
   }
   #funders img { display: block; }
-  #starts { height: 92px; }
-  #eu     { height: 104px; }
+  #starts { height: var(--starts-h, 92px); }
+  #eu     { height: var(--eu-h, 104px); }
 
   #disclaimer {
     position: absolute;
-    top: 372px; left: 50%; transform: translateX(-50%);
+    top: var(--disc-top, 372px); left: 50%; transform: translateX(-50%);
     width: 1420px;
     text-align: center;
     font-family: 'NaNTresor', -apple-system, Helvetica, Arial, sans-serif;
-    font-size: 24px;
+    font-size: var(--disc-size, 24px);
     line-height: 1.62;
     letter-spacing: 0.01em;
   }
@@ -56,15 +61,15 @@
      optically even instead of one bullying the row. */
   #partners {
     position: absolute;
-    left: 130px; right: 130px; bottom: 132px;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    row-gap: 92px;
-    align-items: center;
-    justify-items: center;
+    left: 130px; right: 130px; bottom: var(--part-bottom, 132px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: var(--part-gap, 92px);
   }
   .cell {
-    width: 100%; height: 128px;
+    flex: 0 0 calc(100% / 6);
+    height: var(--cell-h, 128px);
     display: flex; align-items: center; justify-content: center;
   }
   .cell img {
@@ -74,6 +79,36 @@
   }
   /* Marks that read small at a shared height get a touch more room. */
   .cell.wide img { max-width: 88%; }
+
+  /* Rio Neiva hosted the residency, so on this variant they sit on their own
+     line under the funders rather than reading as one partner among twelve. */
+  #host { display: none; }
+  body.with-host #host {
+    display: block;
+    position: absolute;
+    top: 258px; left: 0; right: 0;
+    text-align: center;
+  }
+  #host .cap {
+    font-family: 'Celescript', cursive;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 26px;
+    opacity: .92;
+  }
+  #host img { height: 148px; display: inline-block; }
+
+  /* Tighter rhythm to buy the host line its room. */
+  body.with-host {
+    --funders-top: 104px;
+    --starts-h: 84px;
+    --eu-h: 94px;
+    --disc-top: 508px;
+    --disc-size: 23px;
+    --part-bottom: 96px;
+    --part-gap: 62px;
+    --cell-h: 112px;
+  }
 
   #bar {
     position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
@@ -90,6 +125,11 @@
   <div id="funders">
     <img id="starts" src="logos/starts-aquamotion-white.png" alt="S+T+ARTS Aqua Motion">
     <img id="eu" src="logos/eu-cofunded-white.png" alt="Co-funded by the European Union">
+  </div>
+
+  <div id="host">
+    <div class="cap">residency host</div>
+    <img src="logos/rio-neiva-white.png" alt="Rio Neiva">
   </div>
 
   <div id="disclaimer">
@@ -113,6 +153,7 @@
 
    Preview:  logo-card.html
    Options:  ?render=1   hide UI chrome (for PNG export)
+             ?host=1     give Rio Neiva their own residency-host line
 
    The partner marks are cut from the consortium's own reversed banner
    (Partners' Logos Banner - White Background.png) by tools/split_logo_banner.py.
@@ -137,7 +178,11 @@ const PARTNERS = [
   ['kikk',             false],
 ];
 
-document.getElementById('partners').innerHTML = PARTNERS.map(([n, wide]) =>
+const shown = Q.has('host')
+  ? PARTNERS.filter(([n]) => n !== 'rio-neiva')
+  : PARTNERS;
+
+document.getElementById('partners').innerHTML = shown.map(([n, wide]) =>
   `<div class="cell${wide ? ' wide' : ''}"><img src="logos/partners/${n}.png" alt=""></div>`
 ).join('');
 
@@ -150,6 +195,7 @@ fit();
 addEventListener('resize', fit);
 
 if (Q.has('render')) document.body.classList.add('rendering');
+if (Q.has('host'))   document.body.classList.add('with-host');
 
 /* The capture script waits on this, so it must not fire until every mark has
    decoded — otherwise the shot catches half an empty grid. */
