@@ -88,13 +88,10 @@
   body.with-host #host {
     display: block;
     position: absolute;
-    top: 288px; left: 0; right: 0;
+    top: 245px; left: 130px; right: 130px;
     text-align: center;
   }
-  /* Shrinks to the mark's own width, so the tag can hang off its left edge
-     while the mark itself stays centred on the card. */
-  #host .inner { position: relative; display: inline-block; }
-  #host img { height: var(--host-h, 120px); display: block; }
+  #host img { height: var(--host-h, 120px); display: inline-block; }
 
   /* Section labels, shared by the host line and the partner rows so the two
      read as a pair. Celescript ties them to the credits card headings. */
@@ -106,12 +103,7 @@
     text-align: left;
     opacity: .9;
   }
-  #host .cap {
-    position: absolute;
-    bottom: 100%; left: 0;
-    margin-bottom: 18px;
-    white-space: nowrap;
-  }
+  #host .cap { margin-bottom: 26px; }
   #partners-sect .cap { margin-bottom: var(--cap-gap, 38px); }
 
   /* Tighter rhythm to buy the host line its room. */
@@ -146,10 +138,8 @@
   </div>
 
   <div id="host">
-    <div class="inner">
-      <div class="cap">residency host</div>
-      <img src="logos/rio-neiva-white.png" alt="Rio Neiva">
-    </div>
+    <div class="cap">residency host</div>
+    <img src="logos/rio-neiva-white.png" alt="Rio Neiva">
   </div>
 
   <div id="disclaimer">
