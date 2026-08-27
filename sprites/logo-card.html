@@ -35,7 +35,7 @@
      so they are matched on cap height rather than on box height. */
   #funders {
     position: absolute;
-    top: var(--funders-top, 150px); left: 0; right: 0;
+    top: var(--funders-top, 120px); left: 0; right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +47,7 @@
 
   #disclaimer {
     position: absolute;
-    top: var(--disc-top, 372px); left: 50%; transform: translateX(-50%);
+    top: var(--disc-top, 330px); left: 50%; transform: translateX(-50%);
     width: 1420px;
     text-align: center;
     font-family: 'NaNTresor', -apple-system, Helvetica, Arial, sans-serif;
@@ -59,17 +59,19 @@
   /* Partner marks, two rows of six. Each cell is a fixed box and the logo is
      contained inside it, so wide wordmarks and tall stacked marks stay
      optically even instead of one bullying the row. */
-  #partners {
+  #partners-sect {
     position: absolute;
-    left: 130px; right: 130px; bottom: var(--part-bottom, 132px);
+    left: 130px; right: 130px; bottom: var(--part-bottom, 108px);
+  }
+  #partners {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: var(--part-gap, 92px);
+    row-gap: var(--part-gap, 74px);
   }
   .cell {
     flex: 0 0 calc(100% / 6);
-    height: var(--cell-h, 128px);
+    height: var(--cell-h, 122px);
     display: flex; align-items: center; justify-content: center;
   }
   .cell img {
@@ -86,28 +88,36 @@
   body.with-host #host {
     display: block;
     position: absolute;
-    top: 258px; left: 0; right: 0;
-    text-align: center;
+    top: 240px; left: 130px; right: 130px;
+    text-align: left;
   }
-  #host .cap {
-    font-family: 'Celescript', cursive;
-    font-size: 36px;
+  #host img { height: var(--host-h, 120px); display: inline-block; }
+
+  /* Section labels, shared by the host line and the partner rows so the two
+     read as a pair. Celescript ties them to the credits card headings. */
+  .cap {
+    font-family: 'NaNTresor', -apple-system, Helvetica, Arial, sans-serif;
+    font-size: var(--cap-size, 25px);
     line-height: 1;
-    margin-bottom: 26px;
-    opacity: .92;
+    letter-spacing: 0.06em;
+    text-align: left;
+    opacity: .9;
   }
-  #host img { height: 148px; display: inline-block; }
+  #host .cap { margin-bottom: 24px; }
+  #partners-sect .cap { margin-bottom: var(--cap-gap, 38px); }
 
   /* Tighter rhythm to buy the host line its room. */
   body.with-host {
-    --funders-top: 104px;
-    --starts-h: 84px;
-    --eu-h: 94px;
-    --disc-top: 508px;
+    --funders-top: 100px;
+    --starts-h: 80px;
+    --eu-h: 90px;
+    --host-h: 120px;
+    --disc-top: 452px;
     --disc-size: 23px;
-    --part-bottom: 96px;
-    --part-gap: 62px;
-    --cell-h: 112px;
+    --cap-gap: 34px;
+    --part-bottom: 88px;
+    --part-gap: 56px;
+    --cell-h: 108px;
   }
 
   #bar {
@@ -140,7 +150,10 @@
     be held responsible for them.
   </div>
 
-  <div id="partners"></div>
+  <div id="partners-sect">
+    <div class="cap">consortium partners</div>
+    <div id="partners"></div>
+  </div>
 </div>
 <div id="bar">logo card</div>
 
