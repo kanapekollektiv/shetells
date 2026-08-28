@@ -1319,3 +1319,23 @@ html, body {
   }
   #acid-corner-btn { top: 0.75rem !important; right: 0.75rem !important; }
 }
+
+
+/* ── The joke's evidence ──
+   Each product panel carries the paper the joke is actually about. Same
+   citations the living archive uses. Quiet enough not to compete with the
+   advert copy, big enough to be a real tap target. */
+.panel-source {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-family: 'CeleScript', cursive;
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.72);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255,255,255,0.35);
+  padding: 4px 0;
+}
+.panel-source:hover { color: #ffffff; text-decoration-color: rgba(255,255,255,0.8); }
