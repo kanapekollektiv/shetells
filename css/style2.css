@@ -1208,7 +1208,11 @@ html, body {
 ══════════════════════════════════════════════════════ */
 :root { --pink: #d0429c; }
 
-.illus-acid { pointer-events: auto; cursor: pointer; }
+/* nudged right of its flex slot. Margin and not transform: the transform is
+   animated, so anything set there is overwritten on the next frame. Moving the
+   layout box carries the panel and the CTA with it, since both are positioned
+   from this element's rect, so open and closed stay in step. */
+.illus-acid { pointer-events: auto; cursor: pointer; margin-left: 5vw; }
 .illus-acid img { transition: filter 0.3s ease, opacity 0.3s ease; }
 .illus-acid:hover img { filter: drop-shadow(0 0 10px rgba(208,66,156,0.4)); opacity: 0.85; }
 
