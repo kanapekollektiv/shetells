@@ -32,7 +32,7 @@ const CONTENT = {
   },
 
   'hypersea-book': {
-    img: 'la/hypersea/book.jpg',
+    img: 'living-archive-images/hypersea/book.jpg',
     alt: `Hypersea: Life on Land`,
     link: 'https://www.sciencedirect.com/science/article/abs/pii/030326479390043C',
   },
@@ -73,41 +73,41 @@ const CONTENT = {
   },
 
   'hypersea-dunes': {
-    img: 'la/hypersea/dunes.jpg',
+    img: 'living-archive-images/hypersea/dunes.jpg',
     caption: { en: `The dunes at Esposende`, pt: `As dunas de Esposende` },
     alt: `Esposende dunes`,
   },
 
   'hypersea-glassblowing': {
-    img: 'la/hypersea/IMG_8729.jpg',
+    img: 'living-archive-images/hypersea/IMG_8729.jpg',
     caption: { en: `At the glass workshop`, pt: `Na oficina de vidro` },
     alt: `Glass blowing workshop`,
   },
 
   'hypersea-glass-vessel': {
-    img: 'la/hypersea/IMG_8668.jpg',
+    img: 'living-archive-images/hypersea/IMG_8668.jpg',
     caption: { en: `At the glass workshop`, pt: `Na oficina de vidro` },
     alt: `Glass vessel`,
   },
 
   'hypersea-glass-sphere': {
-    img: 'la/hypersea/IMG_8677.jpg',
+    img: 'living-archive-images/hypersea/IMG_8677.jpg',
     caption: { en: `At the glass workshop`, pt: `Na oficina de vidro` },
     alt: `Glass sphere`,
   },
 
   'hypersea-coast': {
-    img: 'la/hypersea/IMG_7465.jpg',
+    img: 'living-archive-images/hypersea/IMG_7465.jpg',
     caption: { en: `On the coast at Esposende`, pt: `Na costa de Esposende` },
     alt: `Coastal landscape`,
   },
 
   'hypersea-glass-video-1': {
-    vid: 'la/hypersea/glass1.mp4',
+    vid: 'living-archive-images/hypersea/glass1.mp4',
   },
 
   'hypersea-glass-video-2': {
-    vid: 'la/hypersea/glass2.mp4',
+    vid: 'living-archive-images/hypersea/glass2.mp4',
   },
 
   'hypersea-field-notes': {
@@ -171,7 +171,7 @@ const CONTENT = {
   },
 
   'sargassum-fronds': {
-    img: 'la/sargassum/shetells-48.jpg',
+    img: 'living-archive-images/sargassum/shetells-48.jpg',
     caption: { en: `Sargaço at low tide`, pt: `Sargaço na maré baixa` },
     alt: {
       en: `Sargassum fronds draped over rock at low tide`,
@@ -180,7 +180,7 @@ const CONTENT = {
   },
 
   'sargassum-bladderwrack': {
-    img: 'la/sargassum/IMG_5705.jpg',
+    img: 'living-archive-images/sargassum/IMG_5705.jpg',
     caption: { en: `On the rocks at Esposende`, pt: `Nas rochas de Esposende` },
     alt: {
       en: `Bladderwrack covering the rocks along the Esposende shore`,
@@ -189,7 +189,7 @@ const CONTENT = {
   },
 
   'sargassum-museum-sculptures': {
-    img: 'la/sargassum/museum-179232.jpg',
+    img: 'living-archive-images/sargassum/museum-179232.jpg',
     caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
     alt: {
       en: `Sargaceiro sculptures outside the Sargasso Museum, Esposende`,
@@ -199,7 +199,7 @@ const CONTENT = {
   },
 
   'sargassum-museum-display': {
-    img: 'la/sargassum/museum-IMG_5775.jpg',
+    img: 'living-archive-images/sargassum/museum-IMG_5775.jpg',
     caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
     alt: {
       en: `Sargassum landscape protection display at the Sargasso Museum`,
@@ -226,7 +226,7 @@ const CONTENT = {
 
       A questão que a tradição deixa em aberto não é, portanto, se o sargaço continuará a ser recolhido, mas o que passará a significar recolhê-lo.`,
     },
-    img: 'la/sargassum/sargaceiro-historico.jpg',
+    img: 'living-archive-images/sargassum/sargaceiro-historico.jpg',
     caption: { en: `Gathering sargaço`, pt: `A apanhar sargaço` },
     alt: {
       en: `A sargaceiro pulling a net of sargaço onto the sand`,
@@ -370,7 +370,7 @@ const CONTENT = {
       Sussurra no verão e canta e ruge no inverno
       Incorpora as fragrâncias e os cheiros de tudo e de todos os que passam....`,
     },
-    img: 'la/local/gleaned-note.jpg',
+    img: 'living-archive-images/local/gleaned-note.jpg',
     caption: { en: `Written at a workshop`, pt: `Escrito numa oficina` },
     alt: {
       en: `A water memory written by hand at one of the workshops`,
@@ -388,7 +388,7 @@ const CONTENT = {
 
       As pessoas desenharam planícies de espuma branca e rocha dura, dunas e um grupo de amigas, uma orelha e uma lista, apanhar latas, areia, gravar o vento. Alguém escreveu antes uma equação.`,
     },
-    img: 'la/local/postcards.jpg',
+    img: 'living-archive-images/local/postcards.jpg',
     caption: { en: `Postcards at the Sargassum Museum`, pt: `Postais no Museu do Sargaço` },
     alt: {
       en: `Postcards drawn at the launch workshops, pinned to the wall`,
@@ -398,7 +398,7 @@ const CONTENT = {
   },
 
   'local-fishing-lures': {
-    img: 'la/local/fishing-lures.jpg',
+    img: 'living-archive-images/local/fishing-lures.jpg',
     caption: { en: `In a fishing shop`, pt: `Numa loja de pesca` },
     alt: { en: `Fishing lures on a shop rack`, pt: `Iscas de pesca numa prateleira de loja` },
   },
@@ -417,7 +417,7 @@ const CONTENT = {
 
       Continuámos à procura. Voltámos com areia, com gravações, e com uma história sobre não encontrar aquilo que fomos procurar.`,
     },
-    img: 'la/local/shore.jpg',
+    img: 'living-archive-images/local/shore.jpg',
     caption: { en: `On the shore at low tide`, pt: `Na costa na maré baixa` },
     alt: {
       en: `The rocky shore at low tide near Esposende`,
@@ -449,7 +449,7 @@ const CONTENT = {
 
       Aqui também é jantar. A lampreia é uma época e uma iguaria no norte, esperada todos os anos.`,
     },
-    img: 'la/local/lamprey.jpg',
+    img: 'living-archive-images/local/lamprey.jpg',
     caption: { en: `At the lamprey tanks`, pt: `Nos tanques das lampreias` },
     alt: {
       en: `Sea lampreys in a tank, mouths pressed against the glass`,
@@ -460,7 +460,7 @@ const CONTENT = {
 
   'local-workshop-at-rio-neiva': {
     title: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
-    img: 'la/local/rio-neiva.jpg',
+    img: 'living-archive-images/local/rio-neiva.jpg',
     caption: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
     alt: {
       en: `A workshop at Rio Neiva, the association hosting us in Antas, Esposende`,
@@ -525,7 +525,7 @@ const CONTENT = {
     },
     gallery: [
       {
-        src: 'la/future/products-6.jpg',
+        src: 'living-archive-images/future/products-6.jpg',
         caption: { en: `Installation view, Shell Cream`, pt: `Vista da instalação, Shell Cream` },
         alt: {
           en: `Shell Cream, a shell dissolving into cream`,
@@ -533,7 +533,7 @@ const CONTENT = {
         },
       },
       {
-        src: 'la/future/products-9.jpg',
+        src: 'living-archive-images/future/products-9.jpg',
         caption: { en: `Installation view, Acid Tabs`, pt: `Vista da instalação, Acid Tabs` },
         alt: {
           en: `Acid Tabs, white tablets in a corked vial`,
@@ -541,12 +541,12 @@ const CONTENT = {
         },
       },
       {
-        src: 'la/future/products-7.jpg',
+        src: 'living-archive-images/future/products-7.jpg',
         caption: { en: `Installation view, Sexy Dunes`, pt: `Vista da instalação, Sexy Dunes` },
         alt: { en: `Sexy Dunes, a vial of dune sand`, pt: `Sexy Dunes, um frasco de areia de duna` },
       },
       {
-        src: 'la/future/products-8.jpg',
+        src: 'living-archive-images/future/products-8.jpg',
         caption: { en: `Installation view, Deluxe O2`, pt: `Vista da instalação, Deluxe O2` },
         alt: {
           en: `Deluxe O2, a corked vial of oxygen`,
@@ -554,7 +554,7 @@ const CONTENT = {
         },
       },
       {
-        src: 'la/future/products-5.jpg',
+        src: 'living-archive-images/future/products-5.jpg',
         caption: { en: `Installation view, Sargassum City`, pt: `Vista da instalação, Sargassum City` },
         alt: {
           en: `Sargassum City, sargaço suspended in liquid`,
@@ -562,22 +562,22 @@ const CONTENT = {
         },
       },
       {
-        src: 'la/future/products.jpg',
+        src: 'living-archive-images/future/products.jpg',
         caption: { en: `Installation view, the full range`, pt: `Vista da instalação, a gama completa` },
         alt: { en: `The five products lined up`, pt: `Os cinco produtos alinhados` },
       },
       {
-        src: 'la/future/products-3.jpg',
+        src: 'living-archive-images/future/products-3.jpg',
         caption: { en: `Installation view, Shell Cream and the range`, pt: `Vista da instalação, o Shell Cream e a gama` },
         alt: { en: `Shell Cream in front of the range`, pt: `O Shell Cream à frente da gama` },
       },
       {
-        src: 'la/future/products-4.jpg',
+        src: 'living-archive-images/future/products-4.jpg',
         caption: { en: `Installation view, Acid Tabs at the window`, pt: `Vista da instalação, os Acid Tabs à janela` },
         alt: { en: `Acid Tabs against the window`, pt: `Os Acid Tabs contra a janela` },
       },
       {
-        src: 'la/future/dune-a.jpg',
+        src: 'living-archive-images/future/dune-a.jpg',
         caption: { en: `Installation view, the Sexy Dunes vitrine`, pt: `Vista da instalação, a vitrina do Sexy Dunes` },
         alt: {
           en: `The dune built in a vitrine, installation view`,
@@ -585,7 +585,7 @@ const CONTENT = {
         },
       },
       {
-        src: 'la/future/dune-b.jpg',
+        src: 'living-archive-images/future/dune-b.jpg',
         caption: { en: `Installation view, the Sexy Dunes flyer`, pt: `Vista da instalação, o folheto do Sexy Dunes` },
         alt: {
           en: `The Sexy Dunes flyer in front of the dune`,
@@ -688,8 +688,8 @@ const CONTENT = {
 
   'future-the-flyers': {
     title: { en: `The flyers`, pt: `Os folhetos` },
-    vid: 'la/future/prints.mp4',
-    poster: 'la/future/prints-poster.jpg',
+    vid: 'living-archive-images/future/prints.mp4',
+    poster: 'living-archive-images/future/prints-poster.jpg',
   },
 
   'future-non-human-voices': {
@@ -724,7 +724,7 @@ const CONTENT = {
     },
     gallery: [
       {
-        src: 'la/future/bioplastic-cast.jpg',
+        src: 'living-archive-images/future/bioplastic-cast.jpg',
         caption: { en: `Casting bioplastic`, pt: `A moldar bioplástico` },
         alt: {
           en: `A cast piece of sargaço bioplastic, deep red and still wet`,
@@ -774,7 +774,7 @@ const CONTENT = {
 
   'future-drawings': {
     title: { en: `The drawings`, pt: `Os desenhos` },
-    img: 'la/future/drawings.svg',
+    img: 'living-archive-images/future/drawings.svg',
     alt: {
       en: `The She Tells drawings in turn: seaweed, a shell, the airship, bubbles, a spiral shell, a line`,
       pt: `Os desenhos da She Tells, um a um: algas, uma concha, o dirigível, bolhas, uma concha em espiral, uma linha`,
@@ -807,61 +807,61 @@ const CONTENT = {
     title: { en: `Workshop at Sargassum Museum`, pt: `Oficina no Museu do Sargaço` },
     gallery: [
       {
-        src: 'la/workshop/opening-101.jpg',
+        src: 'living-archive-images/workshop/opening-101.jpg',
         alt: { en: `Postcards pinned in a grid on a concrete wall`, pt: `Postais afixados numa grelha numa parede de betão` },
         caption: { en: `Postcards at the museum`, pt: `Postais no museu` },
       },
       {
-        src: 'la/workshop/opening-116.jpg',
+        src: 'living-archive-images/workshop/opening-116.jpg',
         alt: { en: `A printed postcard with tick boxes, close up`, pt: `Um postal impresso com quadrados para assinalar, em grande plano` },
       },
       {
-        src: 'la/workshop/opening-141.jpg',
+        src: 'living-archive-images/workshop/opening-141.jpg',
         alt: { en: `The group presenting to an audience seated on the floor`, pt: `O grupo a apresentar perante uma assistência sentada no chão` },
         caption: { en: `Workshop at the Sargassum Museum`, pt: `Oficina no Museu do Sargaço` },
       },
       {
-        src: 'la/workshop/opening-144.jpg',
+        src: 'living-archive-images/workshop/opening-144.jpg',
         alt: { en: `People seated listening, one wearing headphones`, pt: `Pessoas sentadas a escutar, uma delas com auscultadores` },
         caption: { en: `Workshop at the Sargassum Museum`, pt: `Oficina no Museu do Sargaço` },
       },
       {
-        src: 'la/workshop/opening-147.jpg',
+        src: 'living-archive-images/workshop/opening-147.jpg',
         alt: { en: `The group walking down to the water`, pt: `O grupo a descer até à água` },
         caption: { en: `Walking on the beach`, pt: `A caminhar na praia` },
       },
       {
-        src: 'la/workshop/opening-149.jpg',
+        src: 'living-archive-images/workshop/opening-149.jpg',
         alt: { en: `Someone crouching over the sand`, pt: `Alguém agachado sobre a areia` },
         caption: { en: `Gleaning on the beach`, pt: `A recolher na praia` },
       },
       {
-        src: 'la/workshop/opening-153.jpg',
+        src: 'living-archive-images/workshop/opening-153.jpg',
         alt: { en: `Someone sitting on the beach, writing`, pt: `Alguém sentado na praia, a escrever` },
         caption: { en: `Writing on the beach`, pt: `A escrever na praia` },
       },
       {
-        src: 'la/workshop/opening-156.jpg',
+        src: 'living-archive-images/workshop/opening-156.jpg',
         alt: { en: `A figure on the sand with the buildings behind`, pt: `Uma figura na areia com os edifícios ao fundo` },
         caption: { en: `Walking back`, pt: `A caminhar de volta` },
       },
       {
-        src: 'la/workshop/opening-159.jpg',
+        src: 'living-archive-images/workshop/opening-159.jpg',
         alt: { en: `The room, with drawings along the wall`, pt: `A sala, com desenhos ao longo da parede` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/workshop/opening-179.jpg',
+        src: 'living-archive-images/workshop/opening-179.jpg',
         alt: { en: `Three people seated in conversation`, pt: `Três pessoas sentadas em conversa` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/workshop/opening-180.jpg',
+        src: 'living-archive-images/workshop/opening-180.jpg',
         alt: { en: `A shell held up to the mouth`, pt: `Uma concha levada à boca` },
         caption: { en: `Trying the shellphone`, pt: `A experimentar o shellphone` },
       },
       {
-        src: 'la/workshop/opening-181.jpg',
+        src: 'living-archive-images/workshop/opening-181.jpg',
         alt: { en: `Three people talking after the workshop`, pt: `Três pessoas a conversar depois da oficina` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
@@ -872,57 +872,57 @@ const CONTENT = {
     title: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
     gallery: [
       {
-        src: 'la/workshop/rioneiva-17.jpg',
+        src: 'living-archive-images/workshop/rioneiva-17.jpg',
         alt: { en: `A shell on a red tray, hands working beside it`, pt: `Uma concha num tabuleiro vermelho, mãos a trabalhar ao lado` },
         caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
       },
       {
-        src: 'la/workshop/rioneiva-19.jpg',
+        src: 'living-archive-images/workshop/rioneiva-19.jpg',
         alt: { en: `People standing and talking as the laptops are set up`, pt: `Pessoas de pé a conversar enquanto se montam os portáteis` },
         caption: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
       },
       {
-        src: 'la/workshop/rioneiva-20.jpg',
+        src: 'living-archive-images/workshop/rioneiva-20.jpg',
         alt: { en: `Working at the long window, the dunes outside`, pt: `A trabalhar junto à janela comprida, as dunas lá fora` },
         caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
       },
       {
-        src: 'la/workshop/rioneiva-21.jpg',
+        src: 'living-archive-images/workshop/rioneiva-21.jpg',
         alt: { en: `Three people around one laptop`, pt: `Três pessoas à volta de um portátil` },
         caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
       },
       {
-        src: 'la/workshop/rioneiva-22.jpg',
+        src: 'living-archive-images/workshop/rioneiva-22.jpg',
         alt: { en: `Wiring a shell to a board, yellow leads across the table`, pt: `A ligar uma concha a uma placa, fios amarelos sobre a mesa` },
         caption: { en: `Building the shellphone`, pt: `A construir o shellphone` },
       },
       {
-        src: 'la/workshop/rioneiva-23.jpg',
+        src: 'living-archive-images/workshop/rioneiva-23.jpg',
         alt: { en: `The long table, everyone at work`, pt: `A mesa comprida, toda a gente a trabalhar` },
         caption: { en: `Workshop at Rio Neiva`, pt: `Oficina na Rio Neiva` },
       },
       {
-        src: 'la/workshop/rioneiva-28.jpg',
+        src: 'living-archive-images/workshop/rioneiva-28.jpg',
         alt: { en: `Recording at the shoreline, arm outstretched over the water`, pt: `A gravar à beira de água, o braço estendido sobre o mar` },
         caption: { en: `Recording at the shore`, pt: `A gravar à beira-mar` },
       },
       {
-        src: 'la/workshop/rioneiva-30.jpg',
+        src: 'living-archive-images/workshop/rioneiva-30.jpg',
         alt: { en: `Out on the dunes with a recorder`, pt: `Nas dunas com um gravador` },
         caption: { en: `Recording on the dunes`, pt: `A gravar nas dunas` },
       },
       {
-        src: 'la/workshop/rioneiva-31.jpg',
+        src: 'living-archive-images/workshop/rioneiva-31.jpg',
         alt: { en: `The shadow a wired object throws on the wall`, pt: `A sombra que um objeto ligado projeta na parede` },
         caption: { en: `At Rio Neiva`, pt: `Na Rio Neiva` },
       },
       {
-        src: 'la/workshop/rioneiva-32.jpg',
+        src: 'living-archive-images/workshop/rioneiva-32.jpg',
         alt: { en: `Wired objects laid out on the table`, pt: `Objetos ligados dispostos sobre a mesa` },
         caption: { en: `Building the shellphone`, pt: `A construir o shellphone` },
       },
       {
-        src: 'la/workshop/rioneiva-33.jpg',
+        src: 'living-archive-images/workshop/rioneiva-33.jpg',
         alt: { en: `A laptop running the patch, hands at the breadboard`, pt: `Um portátil a correr o programa, mãos na placa de ensaio` },
         caption: { en: `Working at Rio Neiva`, pt: `A trabalhar na Rio Neiva` },
       },
@@ -937,57 +937,57 @@ const CONTENT = {
     },
     gallery: [
       {
-        src: 'la/workshop/children-1.jpg',
+        src: 'living-archive-images/workshop/children-1.jpg',
         alt: { en: `The introduction on the classroom screen`, pt: `A introdução no ecrã da sala de aula` },
         caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
       },
       {
-        src: 'la/workshop/children-2.jpg',
+        src: 'living-archive-images/workshop/children-2.jpg',
         alt: { en: `The class gathered at the board`, pt: `A turma reunida junto ao quadro` },
         caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
       },
       {
-        src: 'la/workshop/children-3.jpg',
+        src: 'living-archive-images/workshop/children-3.jpg',
         alt: { en: `Children at their desks`, pt: `Crianças nas suas carteiras` },
         caption: { en: `In the classroom`, pt: `Na sala de aula` },
       },
       {
-        src: 'la/workshop/children-4.jpg',
+        src: 'living-archive-images/workshop/children-4.jpg',
         alt: { en: `Talking with the class`, pt: `A conversar com a turma` },
         caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
       },
       {
-        src: 'la/workshop/children-5.jpg',
+        src: 'living-archive-images/workshop/children-5.jpg',
         alt: { en: `Drawing at the desk`, pt: `A desenhar na carteira` },
         caption: { en: `Drawing`, pt: `A desenhar` },
       },
       {
-        src: 'la/workshop/children-7.jpg',
+        src: 'living-archive-images/workshop/children-7.jpg',
         alt: { en: `A shell held to the ear, listening`, pt: `Uma concha encostada ao ouvido, à escuta` },
         caption: { en: `Listening to a shell`, pt: `À escuta de uma concha` },
       },
       {
-        src: 'la/workshop/children-8.jpg',
+        src: 'living-archive-images/workshop/children-8.jpg',
         alt: { en: `A drawing open on a laptop screen`, pt: `Um desenho aberto no ecrã de um portátil` },
         caption: { en: `Working on the drawings`, pt: `A trabalhar nos desenhos` },
       },
       {
-        src: 'la/workshop/children-9.jpg',
+        src: 'living-archive-images/workshop/children-9.jpg',
         alt: { en: `Two hands, one holding the other`, pt: `Duas mãos, uma a segurar a outra` },
         caption: { en: `Workshop with children`, pt: `Oficina com crianças` },
       },
       {
-        src: 'la/workshop/children-10.jpg',
+        src: 'living-archive-images/workshop/children-10.jpg',
         alt: { en: `Drawings wired with yellow leads into paper circuits`, pt: `Desenhos ligados com fios amarelos em circuitos de papel` },
         caption: { en: `Making paper circuits`, pt: `A fazer circuitos de papel` },
       },
       {
-        src: 'la/workshop/children-11.jpg',
+        src: 'living-archive-images/workshop/children-11.jpg',
         alt: { en: `A shell beside a drawing of a snail`, pt: `Uma concha ao lado de um desenho de um caracol` },
         caption: { en: `Drawing`, pt: `A desenhar` },
       },
       {
-        src: 'la/workshop/children-12.jpg',
+        src: 'living-archive-images/workshop/children-12.jpg',
         alt: { en: `Hands wiring a circuit into a drawing`, pt: `Mãos a ligar um circuito a um desenho` },
         caption: { en: `Making paper circuits`, pt: `A fazer circuitos de papel` },
       },
@@ -1037,37 +1037,37 @@ const CONTENT = {
     title: { en: `In the classroom`, pt: `Na sala de aula` },
     gallery: [
       {
-        src: 'la/drawings/process-01.jpg',
+        src: 'living-archive-images/drawings/process-01.jpg',
         alt: { en: `Colouring in at the desk`, pt: `Colouring in at the desk` },
         caption: { en: `In the classroom`, pt: `Na sala de aula` },
       },
       {
-        src: 'la/drawings/process-02.jpg',
+        src: 'living-archive-images/drawings/process-02.jpg',
         alt: { en: `A pufferfish among whales`, pt: `A pufferfish among whales` },
         caption: { en: `In the classroom`, pt: `Na sala de aula` },
       },
       {
-        src: 'la/drawings/process-03.jpg',
+        src: 'living-archive-images/drawings/process-03.jpg',
         alt: { en: `Drawing seagrass in yellow`, pt: `Drawing seagrass in yellow` },
         caption: { en: `In the classroom`, pt: `Na sala de aula` },
       },
       {
-        src: 'la/drawings/process-04.jpg',
+        src: 'living-archive-images/drawings/process-04.jpg',
         alt: { en: `Wiring a drawing on green paper`, pt: `Wiring a drawing on green paper` },
         caption: { en: `Wiring the drawings`, pt: `A ligar os desenhos` },
       },
       {
-        src: 'la/drawings/process-05.jpg',
+        src: 'living-archive-images/drawings/process-05.jpg',
         alt: { en: `Clips and leads laid out beside a drawing`, pt: `Clips and leads laid out beside a drawing` },
         caption: { en: `Wiring the drawings`, pt: `A ligar os desenhos` },
       },
       {
-        src: 'la/drawings/process-06.jpg',
+        src: 'living-archive-images/drawings/process-06.jpg',
         alt: { en: `The snail drawing beside a real shell`, pt: `The snail drawing beside a real shell` },
         caption: { en: `The drawing and the shell`, pt: `O desenho e a concha` },
       },
       {
-        src: 'la/drawings/process-07.jpg',
+        src: 'living-archive-images/drawings/process-07.jpg',
         alt: { en: `Fixing a circuit onto a drawing`, pt: `Fixing a circuit onto a drawing` },
         caption: { en: `Wiring the drawings`, pt: `A ligar os desenhos` },
       },
@@ -1091,22 +1091,22 @@ const CONTENT = {
     },
     gallery: [
       {
-        src: 'la/drawings/drawing-02.jpg',
+        src: 'living-archive-images/drawings/drawing-02.jpg',
         alt: { en: `A jellyfish drawn large in blue, with shoals of small fish and seagrass`, pt: `Uma alforreca desenhada em grande a azul, com cardumes de peixes pequenos e ervas marinhas` },
         caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
       },
       {
-        src: 'la/drawings/drawing-13.jpg',
+        src: 'living-archive-images/drawings/drawing-13.jpg',
         alt: { en: `Two children on an orange beach beside blue water, with fish`, pt: `Duas crianças numa praia laranja junto a água azul, com peixes` },
         caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
       },
       {
-        src: 'la/drawings/drawing-14.jpg',
+        src: 'living-archive-images/drawings/drawing-14.jpg',
         alt: { en: `A fishing boat hauling a net, a whale alongside, rain and sun`, pt: `Um barco de pesca a puxar uma rede, uma baleia ao lado, chuva e sol` },
         caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
       },
       {
-        src: 'la/drawings/drawing-30.jpg',
+        src: 'living-archive-images/drawings/drawing-30.jpg',
         alt: { en: `A snail with a large spiral shell walking on legs, under a palm and a sun`, pt: `Um caracol com uma grande concha em espiral a andar sobre pernas, sob uma palmeira e um sol` },
         caption: { en: `A drawing from the school workshop`, pt: `Um desenho da oficina na escola` },
       },
@@ -1297,7 +1297,7 @@ const CONTENT = {
 
   'toolkit-current': {
     title: { en: `The current build`, pt: `A construção atual` },
-    img: 'la/toolkit/current-build.jpg',
+    img: 'living-archive-images/toolkit/current-build.jpg',
     caption: { en: `The shellphone as it stands`, pt: `O shellphone tal como está` },
     alt: { en: `A conch with a small board and speaker wired inside it, connected by a USB cable`,
            pt: `Uma concha com uma placa pequena e um altifalante ligados lá dentro, com um cabo USB` },
@@ -1319,24 +1319,63 @@ const CONTENT = {
     },
     gallery: [
       {
-        src: 'la/toolkit/prototype-01.jpg',
+        src: 'living-archive-images/toolkit/prototype-01.jpg',
         alt: { en: `A 3D printed shell held in one hand with a small speaker set inside it`, pt: `Uma concha impressa em 3D segurada numa mão com um pequeno altifalante lá dentro` },
         caption: { en: `The 3D printed shell`, pt: `A concha impressa em 3D` },
       },
       {
-        src: 'la/toolkit/prototype-02.jpg',
+        src: 'living-archive-images/toolkit/prototype-02.jpg',
         alt: { en: `Two shells wired to a circuit board beside a screen playing water`, pt: `Duas conchas ligadas a uma placa ao lado de um ecrã com água` },
         caption: { en: `Testing the prototype`, pt: `A testar o protótipo` },
       },
       {
-        src: 'la/toolkit/prototype-03.jpg',
+        src: 'living-archive-images/toolkit/prototype-03.jpg',
         alt: { en: `A printed shell and a found shell wired to the board with clip leads`, pt: `Uma concha impressa e uma concha encontrada ligadas à placa com pinças` },
         caption: { en: `Testing the prototype`, pt: `A testar o protótipo` },
       },
       {
-        src: 'la/toolkit/prototype-04.jpg',
+        src: 'living-archive-images/toolkit/prototype-04.jpg',
         alt: { en: `A sketch of the glass sculpture holding the shell, speaker and board`, pt: `Um esboço da escultura de vidro a segurar a concha, o altifalante e a placa` },
         caption: { en: `The sculpture as a holder`, pt: `A escultura como suporte` },
+      },
+    ],
+  },
+
+  'toolkit-pcb': {
+    title: { en: `The board`, pt: `A placa` },
+    full: {
+      en: `The DIY Shellphone toolkit offers a custom PCB board and do-it-yourself technology.
+
+      Here are some sketches of our boards, and you can find all the instructions on how to build one yourself on the GitHub page, all open-sourced!`,
+      pt: `O kit do DIY Shellphone traz uma placa PCB feita à medida e tecnologia para fazeres tu mesmo.
+
+      Aqui ficam alguns esboços das nossas placas, e podes encontrar todas as instruções para construíres a tua na página do GitHub, tudo em código aberto!`,
+    },
+    gallery: [
+      {
+        src: 'living-archive-images/toolkit/PCB_front_image_shellphone.png',
+        alt: {
+          en: `The front of the board, a green wave-shaped PCB with a yellow edge reading shetells.stream`,
+          pt: `A frente da placa, um PCB verde em forma de onda com um rebordo amarelo onde se lê shetells.stream`,
+        },
+        caption: { en: `The front of the board`, pt: `A frente da placa` },
+      },
+      {
+        src: 'living-archive-images/toolkit/PCB_back_image_shellphone.png',
+        alt: {
+          en: `The back of the board, showing where the Raspberry Pi Zero, the amplifier, the resistors and the LEDs sit`,
+          pt: `As costas da placa, a mostrar onde ficam o Raspberry Pi Zero, o amplificador, as resistências e os LEDs`,
+        },
+        caption: { en: `The back, with the components placed`, pt: `As costas, com os componentes colocados` },
+      },
+    ],
+    sources: [
+      {
+        href: 'https://github.com/marioguzzzman/dyi-shell.phone',
+        label: {
+          en: `Build one yourself: the toolkit on GitHub`,
+          pt: `Constrói o teu: o kit no GitHub`,
+        },
       },
     ],
   },
@@ -1345,22 +1384,22 @@ const CONTENT = {
     title: { en: `Building them together`, pt: `A construí-los em conjunto` },
     gallery: [
       {
-        src: 'la/toolkit/workshop-01.jpg',
+        src: 'living-archive-images/toolkit/workshop-01.jpg',
         alt: { en: `A shell on the worktable among glue, paper and tape`, pt: `Uma concha na mesa de trabalho entre cola, papel e fita` },
         caption: { en: `At the toolkit workshop`, pt: `Na oficina do kit` },
       },
       {
-        src: 'la/toolkit/workshop-02.jpg',
+        src: 'living-archive-images/toolkit/workshop-02.jpg',
         alt: { en: `Shells and a speaker cone laid out with a ruler and folded paper`, pt: `Conchas e um altifalante dispostos com uma régua e papel dobrado` },
         caption: { en: `At the toolkit workshop`, pt: `Na oficina do kit` },
       },
       {
-        src: 'la/toolkit/workshop-03.jpg',
+        src: 'living-archive-images/toolkit/workshop-03.jpg',
         alt: { en: `Shells and a stone with clip leads across the table`, pt: `Conchas e uma pedra com pinças sobre a mesa` },
         caption: { en: `Wiring the shells`, pt: `A ligar as conchas` },
       },
       {
-        src: 'la/toolkit/workshop-04.jpg',
+        src: 'living-archive-images/toolkit/workshop-04.jpg',
         alt: { en: `Hands clipping a lead onto a small board, shells and leads around`, pt: `Mãos a prender um fio a uma placa pequena, conchas e fios à volta` },
         caption: { en: `Wiring the shells`, pt: `A ligar as conchas` },
       },
@@ -1471,55 +1510,55 @@ const CONTENT = {
     title: { en: `The opening`, pt: `A inauguração` },
     gallery: [
       {
-        src: 'la/exhibition/opening-01.jpg',
+        src: 'living-archive-images/exhibition/opening-01.jpg',
         alt: { en: `The exhibition room, vitrines along the windows`, pt: `A sala da exposição, vitrinas junto às janelas` },
       },
       {
-        src: 'la/exhibition/opening-02.jpg',
+        src: 'living-archive-images/exhibition/opening-02.jpg',
         alt: { en: `Visitors gathered around the vitrines`, pt: `Visitantes reunidos à volta das vitrinas` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/exhibition/opening-03.jpg',
+        src: 'living-archive-images/exhibition/opening-03.jpg',
         alt: { en: `Two visitors seated on the bench with headphones on`, pt: `Dois visitantes sentados no banco com auscultadores` },
         caption: { en: `Listening on headphones`, pt: `À escuta com auscultadores` },
       },
       {
-        src: 'la/exhibition/opening-04.jpg',
+        src: 'living-archive-images/exhibition/opening-04.jpg',
         alt: { en: `A visitor in front of the wall display`, pt: `Um visitante em frente ao painel na parede` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/exhibition/opening-05.jpg',
+        src: 'living-archive-images/exhibition/opening-05.jpg',
         alt: { en: `The glass sculpture with visitors behind it`, pt: `A escultura de vidro com visitantes por detrás` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/exhibition/opening-06.jpg',
+        src: 'living-archive-images/exhibition/opening-06.jpg',
         alt: { en: `The group presenting at the opening`, pt: `O grupo a apresentar na inauguração` },
         caption: { en: `The opening`, pt: `A inauguração` },
       },
       {
-        src: 'la/exhibition/opening-07.jpg',
+        src: 'living-archive-images/exhibition/opening-07.jpg',
         alt: { en: `Sargaço drying on the rock`, pt: `Sargaço a secar na pedra` },
       },
       {
-        src: 'la/exhibition/opening-08.jpg',
+        src: 'living-archive-images/exhibition/opening-08.jpg',
         alt: { en: `Two visitors listening on the bench`, pt: `Dois visitantes à escuta no banco` },
         caption: { en: `Listening on headphones`, pt: `À escuta com auscultadores` },
       },
       {
-        src: 'la/exhibition/opening-09.jpg',
+        src: 'living-archive-images/exhibition/opening-09.jpg',
         alt: { en: `Visitors looking out through the window wall`, pt: `Visitantes a olhar através da parede de vidro` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/exhibition/opening-10.jpg',
+        src: 'living-archive-images/exhibition/opening-10.jpg',
         alt: { en: `A group of visitors in the room`, pt: `Um grupo de visitantes na sala` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/exhibition/opening-11.jpg',
+        src: 'living-archive-images/exhibition/opening-11.jpg',
         alt: { en: `The room with the postcards along the wall`, pt: `A sala com os postais ao longo da parede` },
         caption: { en: `Postcards at the museum`, pt: `Postais no museu` },
       },
@@ -1530,69 +1569,69 @@ const CONTENT = {
     title: { en: `Artwork installation details`, pt: `Detalhes da instalação` },
     gallery: [
       {
-        src: 'la/exhibition/details-01.jpg',
+        src: 'living-archive-images/exhibition/details-01.jpg',
         alt: { en: `A glass sculpture in its vitrine at the Sargassum Museum`, pt: `Uma escultura de vidro na sua vitrina no Museu do Sargaço` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/exhibition/details-02.jpg',
+        src: 'living-archive-images/exhibition/details-02.jpg',
         alt: { en: `The glass sculpture on its mirrored plinth, a rock below`, pt: `A escultura de vidro no seu plinto espelhado, uma pedra por baixo` },
       },
       {
-        src: 'la/exhibition/details-03.jpg',
+        src: 'living-archive-images/exhibition/details-03.jpg',
         alt: { en: `The blue glass form, close`, pt: `A forma de vidro azul, de perto` },
       },
       {
-        src: 'la/exhibition/details-04.jpg',
+        src: 'living-archive-images/exhibition/details-04.jpg',
         alt: { en: `The glass form with the dunes beyond the window`, pt: `A forma de vidro com as dunas para lá da janela` },
       },
       {
-        src: 'la/exhibition/details-05.jpg',
+        src: 'living-archive-images/exhibition/details-05.jpg',
         alt: { en: `Two glass forms resting one on the other`, pt: `Duas formas de vidro apoiadas uma na outra` },
       },
       {
-        src: 'la/exhibition/details-06.jpg',
+        src: 'living-archive-images/exhibition/details-06.jpg',
         alt: { en: `A rock with white cabling wound around it`, pt: `Uma pedra com cabos brancos enrolados` },
       },
       {
-        src: 'la/exhibition/details-07.jpg',
+        src: 'living-archive-images/exhibition/details-07.jpg',
         alt: { en: `The vitrine holding a built dune of sand`, pt: `A vitrina com uma duna de areia construída` },
       },
       {
-        src: 'la/exhibition/details-08.jpg',
+        src: 'living-archive-images/exhibition/details-08.jpg',
         alt: { en: `The built dune with its plants`, pt: `A duna construída com as suas plantas` },
       },
       {
-        src: 'la/exhibition/details-09.jpg',
+        src: 'living-archive-images/exhibition/details-09.jpg',
         alt: { en: `The Sexy Dunes flyer lying in the sand of the vitrine`, pt: `O folheto do Sexy Dunes na areia da vitrina` },
       },
       {
-        src: 'la/exhibition/details-10.jpg',
+        src: 'living-archive-images/exhibition/details-10.jpg',
         alt: { en: `The built dune with a pink flower`, pt: `A duna construída com uma flor cor de rosa` },
       },
       {
-        src: 'la/exhibition/details-11.jpg',
+        src: 'living-archive-images/exhibition/details-11.jpg',
         alt: { en: `The glass form above the vitrine, a rock inside it`, pt: `A forma de vidro sobre a vitrina, uma pedra lá dentro` },
       },
       {
-        src: 'la/exhibition/details-12.jpg',
+        src: 'living-archive-images/exhibition/details-12.jpg',
         alt: { en: `The amber glass form, close`, pt: `A forma de vidro âmbar, de perto` },
       },
       {
-        src: 'la/exhibition/details-13.jpg',
+        src: 'living-archive-images/exhibition/details-13.jpg',
         alt: { en: `The amber glass form against the light`, pt: `A forma de vidro âmbar contra a luz` },
       },
       {
-        src: 'la/exhibition/details-14.jpg',
+        src: 'living-archive-images/exhibition/details-14.jpg',
         alt: { en: `A rock carrying yellow sargaço`, pt: `Uma pedra com sargaço amarelo` },
       },
       {
-        src: 'la/exhibition/details-15.jpg',
+        src: 'living-archive-images/exhibition/details-15.jpg',
         alt: { en: `The vitrine with the glass sphere above and the rock below`, pt: `A vitrina com a esfera de vidro em cima e a pedra em baixo` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
       {
-        src: 'la/exhibition/details-16.jpg',
+        src: 'living-archive-images/exhibition/details-16.jpg',
         alt: { en: `The glass sphere with the speaker above it`, pt: `A esfera de vidro com o altifalante por cima` },
         caption: { en: `At the Sargassum Museum`, pt: `No Museu do Sargaço` },
       },
@@ -1603,64 +1642,64 @@ const CONTENT = {
     title: { en: `The shellphone`, pt: `O shellphone` },
     gallery: [
       {
-        src: 'la/exhibition/shellphone.mp4',
+        src: 'living-archive-images/exhibition/shellphone.mp4',
         alt: { en: `The sculpture filmed on the shore`, pt: `A escultura filmada na costa` },
         caption: { en: `The sculpture on the shore`, pt: `A escultura na costa` },
       },
       {
-        src: 'la/exhibition/shellphone-01.jpg',
+        src: 'living-archive-images/exhibition/shellphone-01.jpg',
         alt: { en: `The glass sculpture on a mirror among the rocks`, pt: `A escultura de vidro sobre um espelho entre as rochas` },
         caption: { en: `The sculpture on the shore`, pt: `A escultura na costa` },
       },
       {
-        src: 'la/exhibition/shellphone-02.jpg',
+        src: 'living-archive-images/exhibition/shellphone-02.jpg',
         alt: { en: `A conch resting on the glass sculpture, the sea behind`, pt: `Uma concha pousada na escultura de vidro, o mar ao fundo` },
       },
       {
-        src: 'la/exhibition/shellphone-03.jpg',
+        src: 'living-archive-images/exhibition/shellphone-03.jpg',
         alt: { en: `The conch on the pale green glass, close`, pt: `A concha sobre o vidro verde claro, de perto` },
       },
       {
-        src: 'la/exhibition/shellphone-04.jpg',
+        src: 'living-archive-images/exhibition/shellphone-04.jpg',
         alt: { en: `The sculpture and its shell on the rocks`, pt: `A escultura e a sua concha nas rochas` },
         caption: { en: `The sculpture on the shore`, pt: `A escultura na costa` },
       },
       {
-        src: 'la/exhibition/shellphone-05.jpg',
+        src: 'living-archive-images/exhibition/shellphone-05.jpg',
         alt: { en: `A conch held inside the clear glass`, pt: `Uma concha dentro do vidro transparente` },
       },
       {
-        src: 'la/exhibition/shellphone-06.jpg',
+        src: 'living-archive-images/exhibition/shellphone-06.jpg',
         alt: { en: `The clear sculpture on a mirror on the sand`, pt: `A escultura transparente sobre um espelho na areia` },
         caption: { en: `On the beach at Esposende`, pt: `Na praia de Esposende` },
       },
       {
-        src: 'la/exhibition/shellphone-07.jpg',
+        src: 'living-archive-images/exhibition/shellphone-07.jpg',
         alt: { en: `Two shells held above the mirror`, pt: `Duas conchas seguradas sobre o espelho` },
       },
       {
-        src: 'la/exhibition/shellphone-08.jpg',
+        src: 'living-archive-images/exhibition/shellphone-08.jpg',
         alt: { en: `A hand reaching to the sculpture on the sand`, pt: `Uma mão a chegar à escultura na areia` },
         caption: { en: `On the beach at Esposende`, pt: `Na praia de Esposende` },
       },
       {
-        src: 'la/exhibition/shellphone-09.jpg',
+        src: 'living-archive-images/exhibition/shellphone-09.jpg',
         alt: { en: `The shell inside the glass, the shoreline behind`, pt: `A concha dentro do vidro, a linha de costa ao fundo` },
       },
       {
-        src: 'la/exhibition/shellphone-10.jpg',
+        src: 'living-archive-images/exhibition/shellphone-10.jpg',
         alt: { en: `The shell inside the glass, close`, pt: `A concha dentro do vidro, de perto` },
       },
       {
-        src: 'la/exhibition/shellphone-11.jpg',
+        src: 'living-archive-images/exhibition/shellphone-11.jpg',
         alt: { en: `Hands lifting the green glass sculpture`, pt: `Mãos a levantar a escultura de vidro verde` },
       },
       {
-        src: 'la/exhibition/shellphone-12.jpg',
+        src: 'living-archive-images/exhibition/shellphone-12.jpg',
         alt: { en: `The shell seen through the curve of the glass`, pt: `A concha vista através da curva do vidro` },
       },
       {
-        src: 'la/exhibition/shellphone-13.jpg',
+        src: 'living-archive-images/exhibition/shellphone-13.jpg',
         alt: { en: `The sculpture set among sargaço covered rock`, pt: `A escultura entre rochas cobertas de sargaço` },
         caption: { en: `On the sargaço rocks`, pt: `Nas rochas de sargaço` },
       },
@@ -1668,7 +1707,7 @@ const CONTENT = {
   },
 
   'exhibition-listening': {
-    img: 'la/exhibition/listening.jpg',
+    img: 'living-archive-images/exhibition/listening.jpg',
     caption: { en: `Listening on the rocks at Esposende`, pt: `À escuta nas rochas de Esposende` },
     alt: { en: `Standing on the rocks with a shell held to one ear, looking out to sea`,
            pt: `De pé nas rochas com uma concha encostada ao ouvido, a olhar o mar` },

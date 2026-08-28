@@ -58,7 +58,7 @@ called `kanape-pr`, which nothing serves. The live site is `kanape/main`.
 **Do not use the worktree.** A previous session opened
 `.claude/worktrees/finish-constellation-page-674add` on branch
 `claude/finish-constellation-page-674add`, which has an **unrelated history**
-(landing page only, no `living-archive.html`, no `la/` media). `git merge-base`
+(landing page only, no `living-archive.html`, no `living-archive-images/` media). `git merge-base`
 between them returns nothing. All work has been done directly in the main repo.
 
 **Security, unresolved:** both git remotes have a GitHub OAuth token embedded in
@@ -417,7 +417,7 @@ to be rewritten.
    more material is wanted, sit on the Desktop at
    `~/Desktop/shetells/Living Archive/`.
 3. **Merged cluster colour** — orange or pink, unanswered.
-4. **The 1936 photograph's copyright.** `la/sargassum/sargaceiro-historico.jpg`
+4. **The 1936 photograph's copyright.** `living-archive-images/sargassum/sargaceiro-historico.jpg`
    is credited *Esposende, 1936. Biblioteca Municipal Manuel de Boaventura*, but
    that came from a Reddit caption, not the library. It carries a visible
    signature, so it has a named author; EU copyright runs 70 years after death.
@@ -524,7 +524,7 @@ read properly.
   ```
   overlaps within each cluster, in EN and PT
   overlaps between clusters
-  every la/ asset referenced exists and serves 200
+  every living-archive-images/ asset referenced exists and serves 200
   no "[object Object]" in document.body.innerHTML
   node --check on the extracted script
   ```
@@ -534,7 +534,7 @@ read properly.
 ## 9. Repository layout
 
 Fonts live in `Fonts/`, images in `img/`, page backgrounds in `Background/`,
-living archive media in `la/`, the film's sprite pages in `sprites/`, and the
+living archive media in `living-archive-images/`, the film's sprite pages in `sprites/`, and the
 product hotline recordings in `audio/hotline/` **[added 21 Aug]**. Nothing image
 or font shaped sits at the root any more, and every stylesheet link carries a
 `?v=` so a deploy cannot leave a visitor on a stale copy. Bump that number when

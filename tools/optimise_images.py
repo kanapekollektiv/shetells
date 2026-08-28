@@ -7,14 +7,14 @@ PNG. This resizes to a sensible longest edge and re-encodes as JPEG, and it
 refuses to touch a PNG whose transparency is actually used, because that one
 needs to stay a PNG.
 
-    python3 tools/optimise_images.py la/workshop/*.jpg          # the la/ default
+    python3 tools/optimise_images.py living-archive-images/workshop/*.jpg          # the living-archive-images/ default
     python3 tools/optimise_images.py --max 2560 -q 72 Background/*.png
     python3 tools/optimise_images.py --dry-run Background/*.png
 
 Converting a .png writes a .jpg beside it and leaves the original alone, so
 you can look at both before deleting anything and updating the references.
 
-Conventions: card media in la/ is 1400px at quality 55, which is where the
+Conventions: card media in living-archive-images/ is 1400px at quality 55, which is where the
 Sargassum set went from 16MB to 1.2MB. Full page backgrounds are 2560px at
 quality 72, since they fill the screen and JPEG artefacts show on a gradient.
 """

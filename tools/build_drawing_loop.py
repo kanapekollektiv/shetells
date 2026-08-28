@@ -9,7 +9,7 @@ paths, and the result would be a mess. This namespaces each drawing's classes
 and ids, fits it into a shared frame, and cross fades between them with a CSS
 animation.
 
-    python3 tools/build_drawing_loop.py drawings/*.svg -o la/future/drawings.svg
+    python3 tools/build_drawing_loop.py drawings/*.svg -o living-archive-images/future/drawings.svg
 
 Why an SVG and not a GIF: the map zooms, and this stays sharp at any zoom for
 a fraction of the size. CSS animation inside an SVG runs when the file is used
