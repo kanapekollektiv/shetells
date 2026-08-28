@@ -73,6 +73,60 @@
       display: block;
       flex-shrink: 0;
     }
+
+    /* ── Funders ──
+       The team list is capped at 640px, which left the right of the page
+       empty. The funder block fills it on a wide screen and drops underneath
+       on a narrow one. */
+    .team-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(32px, 5vw, 72px);
+      flex-wrap: wrap;
+    }
+    .team-wrap .team-list { flex: 1 1 520px; }
+    .funders {
+      flex: 0 1 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      padding-top: 14px;
+    }
+    .funders-label {
+      font-family: 'Celescript', cursive;
+      font-size: 12pt;
+      color: #0046FF;
+      opacity: 0.6;
+    }
+    .funders-note {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 200;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #0046FF;
+    }
+    .funders-note a { color: inherit; }
+    .funders img { display: block; width: 100%; height: auto; }
+    .funders .eu   { max-width: 250px; }
+    .funders .sta  { max-width: 215px; }
+    /* The strip is one official artwork, never cut up here. It is roughly 19:1,
+       so in the 360px column its marks came out 19px tall and unreadable. It
+       gets the full content width underneath instead. */
+    .consortium {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: clamp(40px, 6vw, 72px);
+      max-width: 1100px;
+    }
+    .consortium img { display: block; width: 100%; height: auto; }
+    .consortium-scroll { overflow-x: auto; }
+    @media (max-width: 900px) {
+      .funders { flex-basis: 100%; padding-top: 8px; }
+      /* At 375px the strip comes out 18px tall and the marks are unreadable.
+         Hold it at a legible size and let it scroll sideways instead. */
+      .consortium img { width: 900px; max-width: none; }
+    }
   </style>
 </head>
 <body>
@@ -93,6 +147,7 @@
 
       <div class="mem-question">our team</div>
 
+      <div class="team-wrap">
       <div class="team-list">
 
         <div class="team-row">
@@ -144,6 +199,28 @@
           <div class="team-names"><a href="https://www.baerenglas.com/about" target="_blank" class="name-link">Alan Horsley, Bärenglas</a></div>
         </div>
 
+      </div>
+
+      <aside class="funders">
+        <div class="funders-label">funded by</div>
+        <img class="eu" src="img/logos/eu-cofunded.png"
+             alt="Co-funded by the European Union" />
+        <img class="sta" src="img/logos/starts-aquamotion.png"
+             alt="S+T+ARTS Aqua Motion" />
+        <p class="funders-note">The project is realised within the framework of the
+          <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener">S+T+ARTS Aqua Motion</a>
+          artistic residency program, an initiative co-funded by the European Commission and hosted by
+          <a href="https://rioneiva.com/" target="_blank" rel="noopener">Rio Neiva</a>, Esposende, Portugal.</p>
+      </aside>
+
+      </div>
+
+      <div class="consortium">
+        <div class="funders-label">consortium partners</div>
+        <div class="consortium-scroll">
+          <img src="img/logos/partners-banner.png"
+               alt="The S+T+ARTS Aqua Motion consortium partners" />
+        </div>
       </div>
 
     </div>
