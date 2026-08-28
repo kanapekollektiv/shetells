@@ -327,6 +327,11 @@
     }
     .zoom-btn:hover { background: #111111; color: #fff; border-color: #111111; }
 
+    /* The canvas is not shown until initView has fitted it, so an unfitted
+       first frame can never be seen. */
+    .canvas-inner { opacity: 0; }
+    .canvas-inner.view-ready { opacity: 1; transition: opacity 0.25s ease; }
+
     .map-hint {
       position: absolute;
       bottom: 16px; right: 16px;
@@ -1860,6 +1865,7 @@
     tx = LEGEND_GUTTER + (availW - b.w * scale) / 2 - b.x * scale;
     ty = (vh - b.h * scale) / 2 - b.y * scale;
     applyTransform();
+    canvasInner.classList.add('view-ready');
   }
 
   viewport.addEventListener('pointerdown', e => {
@@ -1948,7 +1954,13 @@
   document.getElementById('btnZoomIn').addEventListener('click',  () => zoomToCenter(1.3));
   document.getElementById('btnZoomOut').addEventListener('click', () => zoomToCenter(0.77));
 
-  // Init once layout is fully painted (requestAnimationFrame ensures flex heights are settled)
+  // Fit before the first paint. The old code only did this on load, which waits
+  // for all 33 map images: until then the canvas sat at tx/ty 0 and scale 0.36,
+  // which is Hypersea at the canvas origin, and it visibly jumped to the
+  // overview once the images finished. Card geometry is authored and
+  // layoutStacks() has already run, so the bounds are good this early.
+  initView();
+  // and again once everything has settled, to pick up any late reflow
   if (document.readyState === 'complete') {
     requestAnimationFrame(initView);
   } else {
