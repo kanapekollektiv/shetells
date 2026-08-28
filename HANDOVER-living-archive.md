@@ -250,7 +250,10 @@ order.
    can fin some related reading" in the Hypersea intro. Exception: they gave
    explicit permission for the Sargassum text, where spelling was corrected.
 3. **No dashes in prose.** No em dashes, no hyphenated compounds where avoidable.
-   Applies to both languages.
+   Applies to both languages. **[exception, 21 Aug]** The about copy in
+   `archive.about.body` and `archive.about.more` keeps its spaced hyphens,
+   because Helin asked explicitly for the punctuation to stand as written. Rule
+   2 wins over rule 3 where the two collide: it is their copy.
 4. **Portuguese is European (pt-PT), addressing the reader as *tu*.** The whole
    of `lang.js` was converted. `document.documentElement.lang` is `pt-PT`.
 5. **Text I write carries the ML note**, via `note:`. Copy supplied by the user
@@ -353,6 +356,12 @@ Drawings; Data beside Toolkit.
   opens the project text in a second `.card-overlay`, closing on the cross, the
   backdrop or Escape. The copy is in `lang.js` under `archive.about.title`,
   `archive.about.body` and `archive.about.mt`.
+- **The about box is in two parts.** `archive.about.body` is what you see;
+  `archive.about.more` is behind a **Read more about the project** button that
+  slides it open. The slide is `grid-template-rows: 0fr` to `1fr`, not a
+  max-height guess, so it opens to whatever height the text actually needs. The
+  button labels are `archive.about.morebtn` and `archive.about.lessbtn`, and
+  switching language rebuilds the box, which re-collapses it.
 - **`archive.about.mt` is a second, separate ML notice.** The Portuguese of the
   about text is machine translation that no translator has read, so it carries
   *"Tradução automática. Será revista por um tradutor."* It deliberately does
