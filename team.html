@@ -106,29 +106,25 @@
       color: #0046FF;
     }
     .funders-note a { color: inherit; }
+    /* The funder's own wording, verbatim. Set quieter than the credit above,
+       but not so quiet it stops being readable. */
+    .funders-legal {
+      font-family: 'NaNTresorM', serif;
+      font-weight: 200;
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #0046FF;
+      opacity: 0.62;
+      max-width: 44ch;
+    }
     .funders img { display: block; width: 100%; height: auto; }
     .funders .eu   { max-width: 250px; }
     .funders .sta  { max-width: 215px; }
     /* Rio Neiva hosted the residency, so they get their own line, the same way
        the video end card lifts them out of the partner strip. */
     .funders .rio  { max-width: 130px; }
-    /* The strip is one official artwork, never cut up here. It is roughly 19:1,
-       so in the 360px column its marks came out 19px tall and unreadable. It
-       gets the full content width underneath instead. */
-    .consortium {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: clamp(40px, 6vw, 72px);
-      max-width: 1100px;
-    }
-    .consortium img { display: block; width: 100%; height: auto; }
-    .consortium-scroll { overflow-x: auto; }
     @media (max-width: 900px) {
       .funders { flex-basis: 100%; padding-top: 8px; }
-      /* At 375px the strip comes out 18px tall and the marks are unreadable.
-         Hold it at a legible size and let it scroll sideways instead. */
-      .consortium img { width: 900px; max-width: none; }
     }
   </style>
 </head>
@@ -214,19 +210,17 @@
           <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener">S+T+ARTS Aqua Motion</a>
           artistic residency program, an initiative co-funded by the European Commission and hosted by
           <a href="https://rioneiva.com/" target="_blank" rel="noopener">Rio Neiva</a>, Esposende, Portugal.</p>
+        <p class="funders-legal">S+T+ARTS AQUA MOTION is co-funded by the European Union under the
+          S+T+ARTS &mdash; Science, Technology and Arts initiative of DG CNECT (GA no. LC-03568055).
+          Views and opinions expressed are those of the author(s) only and do not necessarily
+          reflect those of the European Union or DG CNECT. Neither the European Union nor the
+          granting authority can be held responsible for them.</p>
         <div class="funders-label">residency host</div>
         <img class="rio" src="img/logos/rio-neiva.png" alt="Rio Neiva" />
       </aside>
 
       </div>
 
-      <div class="consortium">
-        <div class="funders-label">consortium partners</div>
-        <div class="consortium-scroll">
-          <img src="img/logos/partners-banner.png"
-               alt="The S+T+ARTS Aqua Motion consortium partners" />
-        </div>
-      </div>
 
     </div>
   </div>
