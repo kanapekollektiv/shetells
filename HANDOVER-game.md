@@ -107,12 +107,18 @@ next time anyone runs `build.py`.** Change the source and rebuild.
 - **`timeout` is not a macOS command.** A check using it silently does nothing
   and returns success, which produced a wrong "the token is dead" conclusion.
 - **A query string on the HTML does nothing for `lang.js` or `content.js`.**
-  They are loaded by plain `<script src>` with no version, and Pages serves
-  them with `cache-control: max-age=600`. `living-archive.html?v=2` therefore
-  gets you a fresh page that then loads a ten-minute-old `lang.js`. This is the
-  §2 caching warning one layer deeper, and it cost time on 21 Aug: the deploy
-  was correct and the browser was lying. Hard refresh (**&#8984;&#8679;R**), or
-  wait ten minutes, or check the bytes with `curl` instead of the browser.
+  Pages serves them with `cache-control: max-age=600`, so
+  `living-archive.html?v=2` gets you a fresh page that then loads a
+  ten-minute-old `lang.js` from cache. This is the §2 caching warning one layer
+  deeper, and it cost time on 21 Aug: the deploy was correct and the browser was
+  lying. Hard refresh (**&#8984;&#8679;R**), or check the bytes with `curl`
+  instead of the browser.
+  **The real fix is the site's own `?v=` convention, which had stopped being
+  followed.** Those scripts *do* carry version numbers, but they had drifted to
+  9, 7 and 2 on different pages and were missing entirely from `index.html` and
+  `stream.html`. Editing the file without bumping them means every page keeps
+  asking for the URL it already has. They were unified to `lang.js?v=10` and
+  `content.js?v=25`. See `HANDOVER-living-archive.md` §8.
 - **A server started in the worktree serves the worktree.** The
   `.claude/worktrees/*` checkouts hold `index.html` and nothing else, so
   `python3 -m http.server` started from one 404s on every real page. Twice on

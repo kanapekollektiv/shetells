@@ -1,8 +1,14 @@
 # Handover — the living archive (formerly constellation.html)
 
-Written 2026-08-18. Every fact below was checked against the files on disk at
-that moment, not recalled. Supersedes `HANDOVER-constellation.md`, which is now
-out of date in almost every particular.
+Written 2026-08-18, corrected 2026-08-21. Every fact below was checked against
+the files on disk at that moment, not recalled. Supersedes
+`HANDOVER-constellation.md`, which is now out of date in almost every
+particular.
+
+**The 21 August pass rechecked this document against the files and found it had
+drifted.** Corrections are marked **[corrected 21 Aug]** where they sit. The new
+work of that day, the adverts deck and the `?` box, is in §6. `HANDOVER-game.md`
+§11 covers the game side of the same session.
 
 ---
 
@@ -17,6 +23,20 @@ Then open `http://localhost:8770/living-archive.html`.
 The port doesn't matter; nothing hardcodes it. If a server starts returning 404
 for everything, kill it and start a fresh one rather than debugging it.
 
+**[corrected 21 Aug] A server returning 404 for everything is usually rooted in
+the wrong directory, not broken.** The `.claude/worktrees/*` checkouts contain
+`index.html` and nothing else, so a server started from one 404s on every real
+page while looking perfectly healthy. This happened twice on 21 Aug. Check
+before debugging:
+
+```bash
+lsof -a -p $(lsof -ti:8770 -sTCP:LISTEN) -d cwd
+```
+
+Keep `-sTCP:LISTEN`. Plain `lsof -ti:<port>` matches every socket on the port,
+including the browser's, and piping that to `kill` will take out part of
+Chrome.
+
 **The file was renamed.** `constellation.html` → `living-archive.html`. The back
 link in `hypersea.html` follows it. Nothing on the main site links to it yet —
 see §7.
@@ -28,8 +48,12 @@ see §7.
 | | |
 |---|---|
 | Branch | `kanape-pr` in the **main repo**, `/Users/helinulas/Documents/GitHub/Shetells-website` |
-| Tracks | `kanape/main` → `github.com/kanapekollektiv/shetells` (the live site, shetells.stream) |
-| Last commit | `d78aa16` |
+| Its upstream | `kanape/living-archive` **[corrected 21 Aug]**, not `kanape/main` |
+| Deploy | `git push kanape kanape-pr:main` **[added 21 Aug]** |
+| Last commit | moves constantly; see `git log`. It was `d78aa16` on 18 Aug and far past it by 21 Aug |
+
+**`git push kanape kanape-pr` does not deploy.** It pushes to a remote branch
+called `kanape-pr`, which nothing serves. The live site is `kanape/main`.
 
 **Do not use the worktree.** A previous session opened
 `.claude/worktrees/finish-constellation-page-674add` on branch
@@ -39,8 +63,14 @@ between them returns nothing. All work has been done directly in the main repo.
 
 **Security, unresolved:** both git remotes have a GitHub OAuth token embedded in
 plaintext in the URL, visible in `git remote -v` and `.git/config`. It has been
-printed to at least one session transcript. It should be revoked and the remotes
-re-added without it.
+printed to several session transcripts. It should be revoked and the remotes
+re-added without it, letting the `osxkeychain` helper hold the credential.
+
+**[corrected 21 Aug] It was never published.** It is not in any tracked file and
+not in any commit; it lives only in `.git/config`, which is never pushed. The
+exposure is this machine plus transcripts. Being an *OAuth* token it is not
+under Developer settings: revoke it at **github.com/settings/applications** →
+Authorized OAuth Apps.
 
 ---
 
@@ -82,9 +112,12 @@ For whoever edits the copy:
 * An id with no entry, or an entry no card uses, is reported in the browser
   console at load. Neither is visible on the map otherwise.
 
-The migration was verified by resolving all 66 cards and deep-comparing them
+The migration was verified by resolving all cards and deep-comparing them
 against the pre-migration array: identical. Re-verified after the ids were
-renamed to readable slugs.
+renamed to readable slugs. (It was 66 cards at the time of that check; **there
+are 73 as of 21 Aug** — count them with
+`grep -c "^\s*\[\[" living-archive.html` rather than trusting a number
+written down here.)
 
 ### Card content types
 
@@ -97,6 +130,11 @@ The 7th element decides what renders. All of these are live and in use:
 - `{ link, label }` — external link pill
 - `{ goTo: 'clusterkey', label }` — internal pill, flies to another cluster
 - `{ txt, full }` — text card; `txt` on the card, `full` in the popup
+- `{ audio: { title, note, tracks:[{src, label, lang}] } }` **[added 21 Aug]** —
+  a small player, built by `buildAudioDeck()`, rendered under the card's
+  introduction in both the popup and the mobile notes. Arrows and a chip per
+  track; the line plays through on its own. `lang` is `en` or `pt` and says
+  which language that recording is actually in
 - `{ credits }` + optional `mtNotice: true`
 - `null` with a `title` — plain placeholder card
 - `null` with no title — coloured band placeholder
@@ -230,14 +268,16 @@ Nine clusters. `CATS` order drives the legend and the mobile list.
 | Hypersea | 15 | done | Bilingual. Staggered layout, overlapping photo collage |
 | Sargassum | 10 | done | Bilingual. Tidal Archive carries the sargaço history |
 | Local Stories | 11 | done | Bilingual. Rio Neiva, lamprey, shell hunt, postcards |
-| Speculative Futures & Products | 6 | done | Bilingual. Carousel + all five products in one card, plus the drawing loop |
+| Speculative Futures & Products | 6 | done | Bilingual. Carousel + all five products in one card, plus the drawing loop. **The adverts deck lives on `future-the-range`** |
 | Workshops | 5 | done | Bilingual. Intro, a coming soon line, and three carousels: launch, children, Rio Neiva |
 | Drawings | 4 | done | Bilingual. Intro, 37 drawings, 7 process photographs, and four speculative products written from four of the drawings |
 | Data & the Eternal Stream | 7 | done | Bilingual. Three text cards and four links: exhibition, toolkit, the stream page, the memories form |
-| Toolkit | 6 | done | Bilingual. Intro, the prototype and workshop carousels, three links. 3D print files promised with the toolkit |
+| Toolkit | 7 | done | Bilingual. Intro, the prototype and workshop carousels, three links. 3D print files promised with the toolkit |
 | Artwork & Exhibition | 8 | done | Bilingual. Wall text, a Process card, two cluster links, three carousels, one single image |
 
-66 cards total. `SECTIONS` still only has `hypersea`.
+**73 cards total [corrected 21 Aug]**, and the counts above are the live ones:
+hypersea 15, local 11, sargassum 10, exhibition 8, toolkit 7, data 7, future 6,
+workshop 5, drawings 4. `SECTIONS` still only has `hypersea`.
 
 **Two merges happened.** *Non Human* was folded into *Future Products*, then
 *Speculative Futures* was folded in too, giving **Speculative Futures &
@@ -298,13 +338,38 @@ Drawings; Data beside Toolkit.
 - Map zoom on cluster click raised to a **1.25 minimum**; tall clusters land at
   their top rather than centred.
 
+**Added 21 August:**
+
+- **The adverts deck.** `future-the-range` carries the five product spots, the
+  same recordings the card game dials from the phone on each card front. Files
+  are `audio/hotline/{key}.m4a`, AAC 96k, about 11MB for thirteen minutes.
+  `buildAudioDeck()` is generic: any card with an `audio` block gets a player,
+  in the popup and the mobile notes alike. Decks register themselves in
+  `audioDecks` so `closePanel()` and `closeNotes()` can silence them, and the
+  deck and the eternal stream pause each other so only one voice is ever on.
+  Nothing is fetched until play is pressed: the takes run to four minutes.
+- **The `?` finally does something.** `btnInfo` had sat in the header since the
+  page was built with **no handler at all**, so the button was inert. It now
+  opens the project text in a second `.card-overlay`, closing on the cross, the
+  backdrop or Escape. The copy is in `lang.js` under `archive.about.title`,
+  `archive.about.body` and `archive.about.mt`.
+- **`archive.about.mt` is a second, separate ML notice.** The Portuguese of the
+  about text is machine translation that no translator has read, so it carries
+  *"Tradução automática. Será revista por um tradutor."* It deliberately does
+  **not** reuse `MT_NOTICE`, which claims the DeepL output was already edited by
+  a translator. When someone has been through it, switch to the standard notice.
+  It renders in Portuguese only; the English is the original.
+
 ---
 
 ## 7. Open items
 
 **How the eternal stream actually works**, since it is easy to get wrong: it
 does not synthesise anything. It plays recordings, and every clip is tagged
-with the conditions it belongs to, sunny, windy, cloudy, foggy. The live
+with the conditions it belongs to: **sunny, cloudy, stormy, normy [corrected
+21 Aug]**, which is what `recorder.html` actually offers. This document
+previously said *sunny, windy, cloudy, foggy*, and neither windy nor foggy
+exists. The live
 readings from Esposende decide which tags are true right now, and the stream
 plays from what matches. The selection is the composition. The "Sound
 Relevance" column in the data document reads like a synthesis spec and is not
@@ -337,10 +402,11 @@ to be rewritten.
    lands, `index.html` nav + a `nav.archive` key in `lang.js`. A previous attempt
    overflowed the header — `.nav-buttons` needs `flex-wrap: wrap` and
    `min-width: 0`, and the label must be short.
-2. **Five clusters still placeholders** — Workshops, Drawings, Data, Toolkit,
-   Exhibition. Source folders sit on the Desktop at
-   `~/Desktop/shetells/Living Archive/` (`Non-human`, `speculativefutures`, and
-   the already-used `Sargassum`, `LocalStpries`, `Future-products`).
+2. ~~**Five clusters still placeholders**~~ — **done. [corrected 21 Aug]** §5
+   marks all nine clusters complete and there are no placeholder entries left in
+   `content.js`. This line was the stale one; §5 is right. Source folders, if
+   more material is wanted, sit on the Desktop at
+   `~/Desktop/shetells/Living Archive/`.
 3. **Merged cluster colour** — orange or pink, unanswered.
 4. **The 1936 photograph's copyright.** `la/sargassum/sargaceiro-historico.jpg`
    is credited *Esposende, 1936. Biblioteca Municipal Manuel de Boaventura*, but
@@ -399,6 +465,21 @@ read properly.
   a session: the browser kept an old copy, the new card found no entry, and it
   rendered as the coloured band placeholder, which looks like a layout bug
   rather than a caching one. The console said so, under a warning nobody read.
+- **The same rule applies to `lang.js`, and it was not being followed.
+  [corrected 21 Aug]** On 21 Aug the numbers had drifted apart across the site:
+  `living-archive.html` asked for `lang.js?v=9`, `hypersea`, `memories` and
+  `recorder` for `?v=7`, `thankyou` for `?v=2`, and **`index.html` and
+  `stream.html` carried no version at all**. Editing `lang.js` without touching
+  those numbers means every page keeps requesting the URL it already has cached,
+  and Pages serves these files with `cache-control: max-age=600`, so the change
+  simply does not appear. This cost time that day: a correct, verified deploy
+  looked broken in the browser, twice. All of them were unified to `?v=10`, and
+  `content.js` to `?v=25`.
+- **A query string on the *page* does nothing for its scripts.**
+  `living-archive.html?v=2` gets you a fresh page which then loads whatever
+  `lang.js?v=<old>` it asks for, straight from cache. Bump the script's own
+  number, hard refresh (**&#8984;&#8679;R**), or check the bytes with `curl`
+  rather than trusting the browser.
 - **`drawings/Asset 16.svg` is stroked in white** and is invisible on anything
   pale. It belongs on the landing page's coloured backgrounds. Leave it out of
   anything that sits on a white card.
@@ -444,9 +525,19 @@ read properly.
 ## 9. Repository layout
 
 Fonts live in `Fonts/`, images in `img/`, page backgrounds in `Background/`,
-living archive media in `la/`, the film's sprite pages in `sprites/`. Nothing image or font shaped sits at the root any
-more, and every stylesheet link carries a `?v=` so a deploy cannot leave a
-visitor on a stale copy. Bump that number when you change the file.
+living archive media in `la/`, the film's sprite pages in `sprites/`, and the
+product hotline recordings in `audio/hotline/` **[added 21 Aug]**. Nothing image
+or font shaped sits at the root any more, and every stylesheet link carries a
+`?v=` so a deploy cannot leave a visitor on a stale copy. Bump that number when
+you change the file.
+
+**[corrected 21 Aug]** That was true of the stylesheets but *not* of `lang.js`
+and `content.js`, whose numbers had drifted or gone missing entirely. See §8.
+When you change either file, bump it in **every** page that loads it:
+
+```bash
+grep -n 'src="\(lang\|content\)\.js' *.html
+```
 
 ## 10. Unrelated files in this repo
 
