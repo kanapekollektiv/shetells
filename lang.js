@@ -12,6 +12,7 @@ const TRANSLATIONS = {
     /* ── living archive map ── */
     'archive.contribute':   'send your stories today',
     'archive.hint':         'drag to explore<br>scroll to zoom<br>press h to center',
+    'archive.legendhint':   'press the tags to navigate',
     'archive.readmore':     '(click to read more)',
     'archive.readless':     '(click to close)',
     'archive.read':         'read →',
@@ -165,6 +166,7 @@ const TRANSLATIONS = {
     /* ── living archive map ── */
     'archive.contribute':   'envia as tuas histórias hoje',
     'archive.hint':         'arraste para explorar<br>desloque para ampliar<br>prima h para centrar',
+    'archive.legendhint':   'carrega nas etiquetas para navegar',
     'archive.readmore':     '(clique para ler mais)',
     'archive.readless':     '(clique para fechar)',
     'archive.read':         'ler →',

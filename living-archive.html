@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>she tells — the living archive</title>
-  <script src="lang.js?v=11"></script>
+  <script src="lang.js?v=12"></script>
   <script src="content.js?v=26"></script>
   <style>
     @font-face {
@@ -281,6 +281,23 @@
       color: #111111;
       letter-spacing: 0.04em;
       white-space: nowrap;
+    }
+
+    /* the legend is clickable and nothing said so. Wraps rather than widening
+       the panel, whose width is set by the longest cluster name. */
+    .legend-hint {
+      margin-top: 0.35rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      font-family: 'Celescript', cursive;
+      font-size: 10px;
+      line-height: 1.5;
+      letter-spacing: 0.06em;
+      color: rgba(0,0,0,0.5);
+      /* width:0 keeps it out of the panel's intrinsic width, min-width fills what
+         the cluster names already set. A max-width guess wrapped it to 3 lines. */
+      width: 0;
+      min-width: 100%;
     }
 
     /* ── Controls ── */
@@ -1678,6 +1695,11 @@
       }
     });
   });
+
+  const legendHint = document.createElement('p');
+  legendHint.className = 'legend-hint';
+  onLang(() => { legendHint.textContent = t('archive.legendhint'); });
+  legendEl.appendChild(legendHint);
 
   function applyFilter(key) {
     document.querySelectorAll('.legend-item').forEach(el => {
