@@ -597,8 +597,8 @@ const CONTENT = {
       {
         title: { en: `Shell Cream`, pt: `Shell Cream` },
         text: {
-          en: `As the ocean takes up more carbon its pH drops, and the animals that build shells lose the carbonate they need to build them. Shells grow thinner, and some begin to dissolve. Shell Cream is sold as skincare for exactly that. Outlast the acid era. We went looking for shells on this coast and came back with almost nothing.`,
-          pt: `À medida que o oceano absorve mais carbono, o seu pH desce, e os animais que constroem conchas perdem o carbonato de que precisam para as construir. As conchas ficam mais finas e algumas começam a dissolver-se. O Shell Cream é vendido como cosmética para isso mesmo. Sobreviva à era ácida. Fomos à procura de conchas nesta costa e voltámos quase sem nada.`,
+          en: `As the ocean takes up more carbon it slowly turns more acidic. That is bad news for every animal that builds a shell: the more acidic the water, the harder it is to make one. Shell Cream is sold as skincare for exactly that. Outlast the acid era.`,
+          pt: `À medida que o oceano absorve mais carbono, vai ficando mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O Shell Cream é vendido como cosmética para isso mesmo. Sobrevive à era ácida.`,
         },
         sources: [
           {
@@ -613,38 +613,59 @@ const CONTENT = {
       {
         title: { en: `Acid Tabs`, pt: `Acid Tabs` },
         text: {
-          en: `The same problem from the other side. The long record of falling pH in the Iberian upwelling system covers this coast, and the north of Portugal, Esposende included, is its most exposed part. Marina told us acidification is a serious threat to the sargaço and the kelp forests here, and pointed us to the blue carbon research to understand what is at stake as those forests degrade. So we packaged the acid as a supplement.`,
-          pt: `O mesmo problema pelo outro lado. O longo registo da descida do pH no sistema de afloramento ibérico cobre esta costa, e o norte de Portugal, incluindo Esposende, é a sua parte mais exposta. A Marina disse-nos que a acidificação é uma ameaça séria ao sargaço e às florestas de algas daqui, e encaminhou-nos para a investigação sobre carbono azul para percebermos o que está em jogo à medida que essas florestas se degradam. Por isso embalámos o ácido como suplemento.`,
+          en: `Heat and acid come from the same carbon. The sea soaks up most of the extra heat our carbon traps, and about a quarter of the carbon itself, which turns it more acidic. Just north of here, off Galicia, records from the Iberian upwelling show the pH falling year after year, fastest near the coast. Our research shows that on this coast, acidification is more a problem still to come, and that warming is slower here too: in summer, cold deep water rises along the shore and keeps it cool, making it a refuge, for now, for seaweeds that cannot live further south. So we packaged the acid as a supplement.`,
+          pt: `O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor a mais que o nosso carbono retém, e cerca de um quarto do próprio carbono, o que o torna mais ácido. Um pouco a norte daqui, na Galiza, os registos do afloramento ibérico mostram o pH a descer ano após ano, mais depressa junto à costa. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir, e que o aquecimento também é mais lento aqui: no verão, a água fria e profunda sobe junto à costa e mantém-na fresca, fazendo dela um refúgio, por agora, para algas que não conseguem viver mais a sul. Por isso embalámos o ácido como suplemento.`,
         },
         sources: [
           {
             href: 'https://essd.copernicus.org/articles/12/2647/2020/',
             label: {
-              en: `The pH record of the Iberian upwelling system`,
-              pt: `O registo de pH do sistema de afloramento ibérico`,
+              en: `Falling pH off Galicia, in the Iberian upwelling, 1976 to 2018`,
+              pt: `A descida do pH na Galiza, no afloramento ibérico, de 1976 a 2018`,
+            },
+          },
+          {
+            href: 'https://doi.org/10.1098/rsta.2011.0003',
+            label: {
+              en: `Warming, acidification and oxygen loss, together`,
+              pt: `Aquecimento, acidificação e perda de oxigénio, em conjunto`,
+            },
+          },
+          {
+            href: 'https://doi.org/10.1007/s10531-019-01716-9',
+            label: {
+              en: `Seaweed forests and a warming Iberian sea`,
+              pt: `As florestas de algas e o aquecimento do mar ibérico`,
+            },
+          },
+          {
+            href: 'https://doi.org/10.3389/fmars.2019.00104',
+            label: {
+              en: `Upwelling keeps this coast cooler as the ocean warms`,
+              pt: `O afloramento mantém esta costa mais fresca enquanto o oceano aquece`,
             },
           },
         ],
       },
       {
-        title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
+title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         text: {
-          en: `The northern Portuguese coast carries some of the highest erosion and flooding risk in the country, and the dunes take it alongside litter and everything else we leave on them. Plastic left on the sand becomes microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.`,
-          pt: `A costa norte portuguesa apresenta alguns dos maiores riscos de erosão e de galgamento do país, e as dunas suportam-nos a par do lixo e de tudo o resto que lá deixamos. O plástico deixado na areia torna-se microplástico na água. O Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de receber lixo.`,
+          en: `Dunes hold the coast together, standing between the sea and the land, and they carry everything we leave on them. Plastic left on the sand breaks down into microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.`,
+          pt: `As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. O plástico deixado na areia desfaz-se em microplástico na água. O Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de receber lixo.`,
         },
         sources: [
           {
             href: 'https://www.mdpi.com/2071-1050/16/20/8891',
             label: {
-              en: `Coastal erosion and flooding risk on the Portuguese coast`,
-              pt: `Erosão costeira e risco de galgamento na costa portuguesa`,
+              en: `The shoreline at Ofir, Esposende, 2010 to 2023`,
+              pt: `A linha de costa em Ofir, Esposende, de 2010 a 2023`,
             },
           },
           {
             href: 'https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2',
             label: {
-              en: `Litter and pressures on the dune environment`,
-              pt: `Lixo e pressões sobre o ambiente dunar`,
+              en: `How marine litter breaks down and travels`,
+              pt: `Como o lixo marinho se fragmenta e circula`,
             },
           },
         ],
@@ -652,21 +673,25 @@ const CONTENT = {
       {
         title: { en: `Deluxe O2`, pt: `Deluxe O2` },
         text: {
-          en: `Sargaço and the marine algae make oxygen by photosynthesis, the other half of the carbon story. That cycle is real, and warming water makes it less steady: it shifts, and in dense bloom conditions it can run the other way and strip oxygen out. Deluxe O2 bottles that specific oxygen and sells it back. Blue oxygen, our own term, next to the blue carbon everyone already trades in.`,
-          pt: `O sargaço e as algas marinhas produzem oxigénio por fotossíntese, a outra metade da história do carbono. Esse ciclo é real, e a água mais quente torna-o menos estável: altera-se e, em condições de floração densa, pode inverter-se e retirar oxigénio. O Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.`,
+          en: `The seaweeds off this coast, kelp among them, make oxygen as they grow, and draw down carbon as they do. The sea is warming, and warm water holds less oxygen, the way a drink left in the sun goes flat. Deluxe O2 bottles that oxygen and sells it back. Blue oxygen, our own term, next to the blue carbon everyone already trades in.`,
+          pt: `As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás. O Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.`,
         },
         sources: [
           {
             href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing',
             label: { en: `Blue carbon reading`, pt: `Leitura sobre carbono azul` },
           },
+          {
+            href: 'https://doi.org/10.1126/science.aam7240',
+            label: { en: `Less oxygen in a warming ocean`, pt: `Menos oxigénio num oceano mais quente` },
+          },
         ],
       },
       {
         title: { en: `Sargassum City`, pt: `Sargassum City` },
         text: {
-          en: `Sargaço is being used more and will likely be commercialised further, as a resource, for oxygen, for material, for the pharmacy shelf. It is also, first, a habitat that marine life needs in order to exist at all. Sargassum City takes the commodification to its end and builds a whole speculative economy on harvesting it. The joke is that the weed was already a city, with residents, before anyone thought to sell it.`,
-          pt: `O sargaço é cada vez mais utilizado e será provavelmente mais comercializado, como recurso, para oxigénio, para material, para a prateleira da farmácia. É também, antes disso, um habitat de que a vida marinha precisa para simplesmente existir. A Sargassum City leva a mercantilização até ao fim e constrói uma economia especulativa inteira sobre a sua apanha. A piada é que a alga já era uma cidade, com habitantes, antes de alguém pensar em vendê-la.`,
+          en: `Sargaço is a mix of seaweeds, kelps like Laminaria and Saccorhiza among them, pulled loose by the sea and brought ashore. Before it reached the sand, it was a forest. Off the north of Portugal, at the southern edge of where some of these kelps can live, marine forests sway in the cool water, most of all just north of here, around Viana do Castelo. They shelter, feed and cradle countless marine lives. Sargassum City offers that neighbourhood as prime real estate, though the weed was already a city, with its own residents, long before anyone thought to sell it.`,
+          pt: `O sargaço é uma mistura de algas, entre elas laminárias como a Laminaria e a Saccorhiza, que o mar arranca e traz para a costa. Antes de chegar à areia, era uma floresta. Ao largo do norte de Portugal, no limite sul onde algumas destas algas conseguem viver, as florestas marinhas ondulam na água fria, sobretudo um pouco a norte daqui, perto de Viana do Castelo. Abrigam, alimentam e embalam inúmeras vidas marinhas. A Sargassum City oferece esse bairro como localização privilegiada, mas a alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em vendê-la.`,
         },
         sources: [
           {
@@ -676,6 +701,14 @@ const CONTENT = {
           {
             href: 'https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing',
             label: { en: `Sargassum as habitat`, pt: `O sargaço como habitat` },
+          },
+          {
+            href: 'https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/',
+            label: { en: `CIIMAR. The kelp forests of northern Portugal`, pt: `CIIMAR. As florestas de laminárias do norte de Portugal` },
+          },
+          {
+            href: 'https://doi.org/10.1071/MF14318',
+            label: { en: `Kelp beds along the Portuguese coast, most common at Viana do Castelo`, pt: `Florestas de laminárias na costa portuguesa, mais comuns em Viana do Castelo` },
           },
         ],
       },
@@ -1238,12 +1271,12 @@ const CONTENT = {
     txt: {
       en: `How do you upload your stories, and how does the eternal stream select the appropriate clip?
 
-      The stream's selection is based on the weather conditions, which are tagged with categories like sunny, windy, cloudy, or foggy. Live weather readings from Esposende determine which tags are accurate at any moment, and the stream plays clips that match these conditions.
+      The stream's selection is based on the weather conditions, which are tagged with categories like sunny, cloudy, stormy, or normy. Live weather readings from Esposende determine which tags are accurate at any moment, and the stream plays clips that match these conditions.
 
       When you upload your stories and include your voice recording reflecting its content, the eternal stream will choose which clip to play based on Esposende's current weather data.`,
       pt: `Como carregas as tuas histórias, e como é que a transmissão eterna escolhe o excerto certo?
 
-      A seleção da transmissão baseia-se nas condições meteorológicas, que estão etiquetadas com categorias como sol, vento, nuvens ou nevoeiro. As leituras meteorológicas ao vivo de Esposende determinam que etiquetas são verdadeiras a cada momento, e a transmissão toca os excertos que correspondem a essas condições.
+      A seleção da transmissão baseia-se nas condições meteorológicas, que estão etiquetadas com categorias como ensolarado, nublado, tempestuoso ou normy. As leituras meteorológicas ao vivo de Esposende determinam que etiquetas são verdadeiras a cada momento, e a transmissão toca os excertos que correspondem a essas condições.
 
       Quando carregas as tuas histórias e incluis a tua gravação de voz a refletir o seu conteúdo, a transmissão eterna escolherá que excerto tocar com base nos dados meteorológicos atuais de Esposende.`,
     },

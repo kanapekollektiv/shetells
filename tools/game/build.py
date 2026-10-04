@@ -129,15 +129,14 @@ OPENER = f'''<div class="inner">
   <div class="face back">
     <div class="body">
       <div class="btop">
-        <p class="cond-label" data-i18n="openerLabel">how this works</p>
-        <p class="cond" data-i18n="openerCond">You get a card. The front sells you something
-          ridiculous. Turn it over and it tells you what is really happening in the water here.</p>
+        <p class="cond-label" data-i18n="openerLabel">what this is</p>
+        <p class="cond" data-i18n="openerCond">A card game from Sea Shells, She Tells.</p>
         <p class="src" data-i18n="openerSrc">Five cards in the deck &middot; answer them in any order</p>
       </div>
       <div class="brief">
         <p class="q" data-i18n="openerQ">Shall we begin?</p>
         <p class="cta-label" data-i18n="openerCta">deal me in</p>
-        <div class="lanes"><button class="lane fill" id="dealBtn"><b data-i18n="openerDeal">draw a card</b><span data-i18n="openerDealSub">any of the five</span></button></div>
+        <div class="lanes"><button class="lane fill" id="dealBtn"><b data-i18n="openerDeal">show me how</b><span data-i18n="openerDealSub">four steps, then a card</span></button></div>
       </div>
     </div>
     <p class="foot" data-i18n="openerFoot">Nothing to install. Your voice joins the eternal stream.</p>
@@ -187,6 +186,19 @@ page = f'''<title>The Sixth Product</title>
 
 <div class="screen on" id="s-open">
   <div class="card opener" id="openerCard" role="button" tabindex="0" aria-label="Opener card, tap to turn">{OPENER}</div>
+</div>
+
+<div class="screen" id="s-how">
+  <h1 class="big" data-i18n="howTitle">how to play</h1>
+  <p class="sub" data-i18n="howLead"></p>
+  <div class="consent howto">
+    <p data-i18n="how1"></p>
+    <p data-i18n="how2"></p>
+    <p data-i18n="how3"></p>
+    <p data-i18n="how4"></p>
+  </div>
+  <p class="sub" data-i18n="howNote"></p>
+  <button class="btn solid wide" id="howGo" data-i18n="howGo">got it, deal me in</button>
 </div>
 
 <div class="screen" id="s-deck">
@@ -386,7 +398,10 @@ page = f'''<title>The Sixth Product</title>
   flipOn($('openerCard'));
   flipOn($('playCard'));   // persistent element, bound once
   $('dealBtn').addEventListener('click', function(e){{
-    e.stopPropagation(); shuffle(order); show('s-deck'); renderStack();
+    e.stopPropagation(); show('s-how');
+  }});
+  $('howGo').addEventListener('click', function(){{
+    shuffle(order); show('s-deck'); renderStack();
   }});
 
   function shuffle(a){{
