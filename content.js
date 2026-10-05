@@ -1454,6 +1454,11 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
     label: { en: `Listen to the live stream →`, pt: `Ouve a transmissão ao vivo →` },
   },
 
+  'toolkit-page': {
+    link: 'diytoolkit.html',
+    label: { en: `Visit the toolkit page →`, pt: `Visita a página do kit →` },
+  },
+
   /* ══ ARTWORK & EXHIBITION ══ */
 
   'exhibition-wall-text': {

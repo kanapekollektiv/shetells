@@ -36,6 +36,7 @@ const TRANSLATIONS = {
     'archive.audio.pause':  'Pause',
     'archive.placeholder':  'content being woven',
     'nav.stream':           'tune in to the stream',
+    'nav.toolkit':          'the DIY toolkit',
 
     /* ── stream.html player ── */
     'player.label':         'stream',
@@ -224,6 +225,7 @@ const TRANSLATIONS = {
     'archive.audio.pause':  'Pausa',
     'archive.placeholder':  'conteúdo a ser tecido',
     'nav.stream':           'sintonize a transmissão',
+    'nav.toolkit':          'o kit DIY',
 
     /* ── stream.html player ── */
     'player.label':         'transmissão',
