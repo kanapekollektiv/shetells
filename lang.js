@@ -162,6 +162,35 @@ const TRANSLATIONS = {
 
     /* ── thankyou.html ── */
     'ty.text': 'Your memory is now part of the current.\nOur team will listen closely and follow its course. We\'ll let you know when your voice joins the stream.\nThank you for adding your drop to this shared body of memories.',
+
+    /* ── diytoolkit.html ── */
+    "kit.title":           "DIY Shellphone Toolkit",
+    "kit.tagline":         "a toolkit for gathering",
+    "kit.lead":            "Hold a shell to your ear.",
+    "kit.what.label":      "what this is",
+    "kit.what":            "The DIY Shell Phone is the toolkit of Sea Shells, She Tells, an artistic research project in Esposende. It begins with the simple, almost childlike gesture of holding a shell to the ear and hearing the ocean. Through field recordings, performed voices, local stories and speculative futures, we extend a playful voice to the waters of Esposende, and invite the people who live alongside them to answer.",
+    "kit.gather.label":    "a toolkit to gather",
+    "kit.gather":          "Once, <i>sargaço</i> was gathered along this coast by the <i>sargaceiras</i>, by hand, in season, according to what the water gave. The toolkit carries that gesture on. What we gather now are memories and speculative futures: a way to remember, to belong, to imagine together, to learn about the tools we listen through, to observe and attune to the environment around us, and to share what we hear.",
+    "kit.inIt.label":      "what is in it",
+    "kit.inIt":            "A small board, a speaker and a shell. Use one found on the shore, print one from our 3D files, or cast one from sargaço bioplastic with our recipe. The toolkit walks you through building it and tuning it to the stream.",
+    "kit.play.label":      "play and record",
+    "kit.play":            "Five products from 2040, presented by the She Tells Entity and addressed to other ocean bodies. Draw a card, turn it over to find the lived reality of Esposende behind it, and answer with your voice: a water memory, or a speculative future.",
+    "kit.hear.label":      "what you hear",
+    "kit.hear":            "Hold the shell to your ear and you hear the eternal stream, a mixture of many voices. There are field recordings of the waters themselves, the sea, the river and the dunes. There are the audio tracks we made as the She Tells Entity: performed voices, imitations of the water, and adverts for speculative products. And there are the memories and speculative futures of the people of Esposende, yours too once you send it. What plays is chosen by Esposende’s own environmental data. The wind, the tide, the swell and the pressure falling before a storm decide which voices surface. When you record, you describe your memory as sunny, cloudy, stormy or normy, and it plays when the day matches.",
+    "kit.soon":            "The build guide and the 3D print files for the shell are coming soon.",
+    "kit.voice.title":     "add your voice",
+    "kit.voice.sub":       "Share a water memory, or a speculative future for Esposende. Your voice joins the eternal stream.",
+    "kit.btn.game":        "play the game",
+    "kit.btn.stream":      "listen to the stream",
+    "kit.btn.archive":     "explore the living archive",
+    "kit.consent":         "Your voice will be public. It will never be used to train AI.",
+    "kit.cap1":            "The shellphone as it stands",
+    "kit.cap2":            "The 3D printed shell",
+    "kit.cap3":            "At the toolkit workshop",
+    "kit.funded":          "funded by",
+    "kit.host":            "residency host",
+    "kit.credit":          "The project is realised within the framework of the <a href=\"https://starts.eu/what-we-do/residences/startsaquamotion/\" target=\"_blank\" rel=\"noopener\">S+T+ARTS Aqua Motion</a> artistic residency program, an initiative co-funded by the European Commission and hosted by <a href=\"https://rioneiva.com/\" target=\"_blank\" rel=\"noopener\">Rio Neiva</a>, Esposende, Portugal.",
+    "kit.mt":              "",
   },
 
   pt: {
@@ -322,6 +351,35 @@ const TRANSLATIONS = {
 
     /* ── thankyou.html ── */
     'ty.text': 'A tua memória agora faz parte da corrente.\nA nossa equipa vai ouvir com atenção e acompanhar o teu percurso. Vamos avisar-te quando a tua voz se juntar ao stream.\nObrigada por adicionares a tua gota a este corpo partilhado de memórias.',
+
+    /* ── diytoolkit.html ── */
+    "kit.title":           "Kit do Shellphone Caseiro",
+    "kit.tagline":         "um kit para recolher",
+    "kit.lead":            "Encosta uma concha ao ouvido.",
+    "kit.what.label":      "o que é",
+    "kit.what":            "O DIY Shell Phone é o kit do Sea Shells, She Tells, um projeto de investigação artística em Esposende. Começa com o gesto simples, quase infantil, de encostar uma concha ao ouvido e ouvir o oceano. Através de gravações de campo, vozes encenadas, histórias locais e futuros especulativos, estendemos uma voz lúdica às águas de Esposende e convidamos quem vive junto a elas a responder.",
+    "kit.gather.label":    "um kit para recolher",
+    "kit.gather":          "Em tempos, o sargaço era recolhido ao longo desta costa pelas sargaceiras, à mão, na época própria, conforme o que a água dava. O kit continua esse gesto. O que recolhemos agora são memórias e futuros especulativos: uma forma de lembrar, de pertencer, de imaginar em conjunto, de aprender sobre as ferramentas através das quais escutamos, de observar e sintonizar com o ambiente à nossa volta, e de partilhar o que ouvimos.",
+    "kit.inIt.label":      "o que tem dentro",
+    "kit.inIt":            "Uma pequena placa, um altifalante e uma concha. Usa uma que encontres na praia, imprime uma a partir dos nossos ficheiros 3D, ou molda uma em bioplástico de sargaço com a nossa receita. O kit guia-te na construção e na ligação à transmissão.",
+    "kit.play.label":      "joga e grava",
+    "kit.play":            "Cinco produtos de 2040, apresentados pela She Tells Entity e dirigidos a outros corpos oceânicos. Tira uma carta, vira-a para descobrires a realidade vivida de Esposende por trás dela, e responde com a tua voz: uma memória de água, ou um futuro especulativo.",
+    "kit.hear.label":      "o que ouves",
+    "kit.hear":            "Encosta a concha ao ouvido e ouves a transmissão eterna, uma mistura de muitas vozes. Há gravações de campo das próprias águas, o mar, o rio e as dunas. Há as faixas de áudio que criámos como She Tells Entity: vozes encenadas, imitações da água e anúncios de produtos especulativos. E há as memórias e os futuros especulativos das pessoas de Esposende, incluindo a tua, assim que a enviares. O que toca é escolhido pelos próprios dados ambientais de Esposende. O vento, a maré, a ondulação e a pressão a descer antes de uma tempestade decidem que vozes vêm à superfície. Quando gravas, descreves a tua memória como ensolarada, nublada, tempestuosa ou normy, e ela toca quando o dia corresponde.",
+    "kit.soon":            "O guia de construção e os ficheiros de impressão 3D da concha estão para breve.",
+    "kit.voice.title":     "junta a tua voz",
+    "kit.voice.sub":       "Partilha uma memória de água, ou um futuro especulativo para Esposende. A tua voz junta-se à transmissão eterna.",
+    "kit.btn.game":        "joga o jogo",
+    "kit.btn.stream":      "ouve a transmissão",
+    "kit.btn.archive":     "explora o arquivo vivo",
+    "kit.consent":         "A tua voz será pública. Nunca será usada para treinar IA.",
+    "kit.cap1":            "O shellphone tal como está",
+    "kit.cap2":            "A concha impressa em 3D",
+    "kit.cap3":            "Na oficina do kit",
+    "kit.funded":          "financiado por",
+    "kit.host":            "acolhimento da residência",
+    "kit.credit":          "O projeto é realizado no âmbito do programa de residências artísticas <a href=\"https://starts.eu/what-we-do/residences/startsaquamotion/\" target=\"_blank\" rel=\"noopener\">S+T+ARTS Aqua Motion</a>, uma iniciativa cofinanciada pela Comissão Europeia e acolhida pelo <a href=\"https://rioneiva.com/\" target=\"_blank\" rel=\"noopener\">Rio Neiva</a>, Esposende, Portugal.",
+    "kit.mt":              "Tradução automática. Em revisão.",
   }
 };
 
