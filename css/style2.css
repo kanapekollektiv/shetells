@@ -204,6 +204,11 @@ html, body {
 .o2-open #btn-dunes,
 .sargassum-open #btn-dunes,
 .acid-open #btn-dunes { display: inline-block; }
+/* On desktop the memories pill steps aside while a panel is open, which
+   leaves room for the slogan back in the row, side by side with the toolkit. */
+@media (min-width: 769px) {
+  #btn-dunes { position: static; }
+}
 
 .btn {
   font-family: 'CeleScript', cursive;
