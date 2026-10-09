@@ -159,6 +159,14 @@ html, body {
 .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
 .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
 
+/* The speech bubble by the drawing already asks for memories, so the nav
+   pill steps aside while a panel is open. */
+.spiral-open #btn-memories,
+.shell-open #btn-memories,
+.o2-open #btn-memories,
+.sargassum-open #btn-memories,
+.acid-open #btn-memories { display: none; }
+
 /* The toolkit goes solid in the panel's colour, like the memories button, so
    it reads apart from the outlined slogan button below it. */
 .spiral-open    #btn-toolkit { background: var(--brown)     !important; border-color: var(--brown)     !important; color: var(--white) !important; }
