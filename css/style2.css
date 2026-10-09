@@ -153,6 +153,16 @@ html, body {
   align-self: flex-start;   /* pins to top of header — same 1rem from top as brand */
 }
 
+/* The stream is off air: hide "tune in to the stream". The same button still
+   shows while a product panel is open, where it carries the slogan and closes
+   the panel. */
+#btn-dunes { display: none; }
+.spiral-open #btn-dunes,
+.shell-open #btn-dunes,
+.o2-open #btn-dunes,
+.sargassum-open #btn-dunes,
+.acid-open #btn-dunes { display: inline-block; }
+
 .btn {
   font-family: 'CeleScript', cursive;
   font-size: var(--fs-ui);
