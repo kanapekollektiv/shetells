@@ -155,8 +155,15 @@ html, body {
 
 /* The stream is off air: hide "tune in to the stream". The same button still
    shows while a product panel is open, where it carries the slogan and closes
-   the panel. */
-#btn-dunes { display: none; }
+   the panel. It is taken out of the row and hangs just below it, so appearing
+   never pushes the other buttons around. */
+.nav-buttons { position: relative; }
+#btn-dunes {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+}
 .spiral-open #btn-dunes,
 .shell-open #btn-dunes,
 .o2-open #btn-dunes,
@@ -626,6 +633,8 @@ html, body {
     align-self: flex-start;
     margin-top: 0.5rem;
   }
+
+  #btn-dunes   { right: auto; left: 0; }
 
   .btn         { font-size: var(--fs-ui-sm); }
   .btn-circle  { width: 2rem; height: 2rem; font-size: 0.85rem; }
