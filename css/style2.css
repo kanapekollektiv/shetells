@@ -145,6 +145,20 @@ html, body {
 /* currentColor flips automatically with brand-sub colour transitions — no filter needed */
 .spiral-open .brand-sub { color: var(--white); }
 
+/* While a product panel is open, the nav's outline buttons stay in place in
+   the panel's colour: the slogan button closes the panel, and the toolkit
+   stays reachable. The corner buttons repeated the slogan on top of the
+   toolkit's slot and left a hole in the row, so they are not shown. */
+#shell-corner-btn,
+#o2-corner-btn,
+#sargassum-corner-btn,
+#acid-corner-btn { display: none !important; }
+
+.shell-open     .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--green)    !important; color: var(--white) !important; }
+.o2-open        .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--yellow)   !important; color: var(--white) !important; }
+.sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
+.acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
+
 /* ── Nav buttons ── */
 .nav-buttons {
   display: flex;
@@ -714,7 +728,7 @@ html, body {
   /* ── Spiral click panel ── */
   #spiral-panel {
     left: 1rem !important;
-    top: 35% !important;
+    top: 14rem !important;  /* just below the nav and its slogan button, clear of the drawings */
     width: calc(100vw - 2rem);
     transform: none !important;
   }
@@ -761,7 +775,7 @@ html, body {
   /* ── Shell Cream mobile ── */
   #shell-panel {
     left: 1rem !important;
-    top: 35% !important;
+    top: 14rem !important;  /* just below the nav and its slogan button, clear of the drawings */
     width: calc(100vw - 2rem);
     transform: none !important;
   }
@@ -772,22 +786,8 @@ html, body {
     top: 80% !important;
     transform: none !important;
   }
-  /* Corner buttons hidden on mobile — btn-outline in nav handles close */
-  #shell-corner-btn,
-  #o2-corner-btn,
-  #sargassum-corner-btn,
-  #acid-corner-btn {
-    display: none !important;
-  }
-
   /* O2 background: rotate 90° + scale to fill portrait screen */
   .o2-open .page-bg { transform: rotate(-90deg) scale(2.3); transform-origin: center; }
-
-  /* Show btn-outline on mobile when a section is open, styled with its colour */
-  .shell-open     .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--green)    !important; color: var(--white) !important; }
-  .o2-open        .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--yellow)   !important; color: var(--white) !important; }
-  .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
-  .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
 
   /* All disclaimers: hidden on mobile — replaced by "i" button */
   .page-disclaimer { display: none !important; }
@@ -1205,7 +1205,7 @@ html, body {
 /* ── Mobile overrides for new panels ── */
 @media (max-width: 768px) {
   #o2-panel, #sargassum-panel {
-    left: 1rem !important; top: 35% !important;
+    left: 1rem !important; top: 14rem !important;  /* just below the nav and its slogan button, clear of the drawings */
     width: calc(100vw - 2rem); transform: none !important;
   }
   /* ── O2 CTA — lower for legibility ── */
@@ -1332,7 +1332,7 @@ html, body {
 /* Mobile overrides */
 @media (max-width: 768px) {
   #acid-panel {
-    left: 1rem !important; top: 35% !important;
+    left: 1rem !important; top: 14rem !important;  /* just below the nav and its slogan button, clear of the drawings */
     width: calc(100vw - 2rem); transform: none !important;
   }
   /* ── Acid CTA — lower for legibility ── */
