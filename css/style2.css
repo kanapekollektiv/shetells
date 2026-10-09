@@ -159,6 +159,19 @@ html, body {
 .sargassum-open .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--sargassum)!important; color: var(--white) !important; }
 .acid-open      .btn-outline { opacity: 1 !important; pointer-events: auto !important; border-color: var(--pink)     !important; color: var(--white) !important; }
 
+/* The toolkit goes solid in the panel's colour, like the memories button, so
+   it reads apart from the outlined slogan button below it. */
+.spiral-open    #btn-toolkit { background: var(--brown)     !important; border-color: var(--brown)     !important; color: var(--white) !important; }
+.shell-open     #btn-toolkit { background: var(--green)     !important; border-color: var(--green)     !important; color: var(--white) !important; }
+.o2-open        #btn-toolkit { background: var(--yellow)    !important; border-color: var(--yellow)    !important; color: var(--black) !important; }
+.sargassum-open #btn-toolkit { background: var(--sargassum) !important; border-color: var(--sargassum) !important; color: var(--white) !important; }
+.acid-open      #btn-toolkit { background: var(--pink)      !important; border-color: var(--pink)      !important; color: var(--white) !important; }
+.spiral-open    #btn-toolkit:hover { background: #7a3620 !important; border-color: #7a3620 !important; }
+.shell-open     #btn-toolkit:hover { background: #004d22 !important; border-color: #004d22 !important; }
+.o2-open        #btn-toolkit:hover { background: #d4cc00 !important; border-color: #d4cc00 !important; }
+.sargassum-open #btn-toolkit:hover { background: #4aaa18 !important; border-color: #4aaa18 !important; }
+.acid-open      #btn-toolkit:hover { background: #a8327e !important; border-color: #a8327e !important; }
+
 /* ── Nav buttons ── */
 .nav-buttons {
   display: flex;
