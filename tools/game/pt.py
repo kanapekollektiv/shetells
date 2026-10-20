@@ -42,7 +42,7 @@ CARD_PT = {
    q='O que construirias para os peixes vizinhos?',
    src='<a href="https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/" target="_blank" rel="noopener">Florestas de laminárias</a> &middot; <a href="https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing" target="_blank" rel="noopener">as algas do sargaço como habitat</a>',
    example='A <em>Sargassum City</em> vende apartamentos nas algas, para quem gostar do bairro.',
-   cond=('O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até a areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar')),
+   cond=('O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até à areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar.')),
  'deluxe-o2': dict(
    hint1='Quanto custaria o Deluxe O&#8322; em 2040?',
    hint2='Como trarias as bolhas de volta?',
