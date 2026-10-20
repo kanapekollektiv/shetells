@@ -597,8 +597,8 @@ const CONTENT = {
       {
         title: { en: `Shell Cream`, pt: `Shell Cream` },
         text: {
-          en: `As the ocean takes up more carbon it slowly turns more acidic. That is bad news for every animal that builds a shell: the more acidic the water, the harder it is to make one. Shell Cream is sold as skincare for exactly that. Outlast the acid era.`,
-          pt: `À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O *Shell Cream* é vendido como cosmético para isso mesmo. Sobrevive à era ácida.`,
+          en: `As the ocean takes up more carbon it slowly turns more acidic. That is bad news for every animal that builds a shell: the more acidic the water, the harder it is to make one.`,
+          pt: `À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma.`,
         },
         sources: [
           {
