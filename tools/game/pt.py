@@ -118,7 +118,7 @@ UI_PT = {
  'noRec':'ainda não há gravação', 'sending':'a enviar...',
  'errServer':'algo correu mal. tenta outra vez.', 'errNet':'não foi possível chegar à transmissão.',
  'noMic':'acesso ao microfone negado. verifica as definições do navegador.',
- 'mlNote':'* Tradução automática. Em revisão.',
+ 'mlNote':'',  # reviewed by Rebeca Letras, Oct 2026
 }
 
 UI_EN = {
