@@ -10,7 +10,7 @@ CARD_PT = {
    caps='O oceano não está preocupado com o que tens dentro de ti.',
    tag='Mas nós estamos.',
    q='Então do que precisa Esposende?',
-   src='Acidificação do oceano &middot; construir uma concha',
+   src='<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/" target="_blank" rel="noopener">Acidificação do oceano</a> &middot; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/" target="_blank" rel="noopener">construir uma concha</a>',
    example='O <em>Shell Cream</em> é feito a partir de ácido, para quem encontra dificuldade em manter o seu formato.',
    cond=('À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma.')),
  'acid-tabs': dict(
@@ -20,7 +20,7 @@ CARD_PT = {
    caps='Mantém o teu ácido sob controlo. Agora com sabor a sulfureto de dimetilo!',
    tag='O oceano nunca mais te deixará.',
    q='O que venderias a um mar que está a acidificar?',
-   src='Calor e ácido em conjunto &#183; um problema que ainda está para vir',
+   src='<a href="https://doi.org/10.1098/rsta.2011.0003" target="_blank" rel="noopener">Calor e ácido em conjunto</a> &middot; <a href="https://essd.copernicus.org/articles/12/2647/2020/" target="_blank" rel="noopener">um problema que ainda está para vir</a>',
    example='Os <em>Acid Tabs</em> engarrafam o mar azedo, para quem o quer sob controlo.',
    cond=('O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o ácido retém, e um quarto do próprio carbono, o que também torna a água mais ácida. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir.')),
  'sexy-dunes': dict(
@@ -30,7 +30,7 @@ CARD_PT = {
    caps='A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.',
    tag='Nós tratamos de ti.',
    q='O que faria as pessoas deixarem as dunas em paz?',
-   src='Dunas &#183; lixo &#183; microplásticos',
+   src='<a href="https://www.mdpi.com/2071-1050/16/20/8891" target="_blank" rel="noopener">Dunas</a> &middot; <a href="https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2" target="_blank" rel="noopener">lixo</a> &middot; <a href="https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2" target="_blank" rel="noopener">microplásticos</a>',
    example='O <em>Sexy Dunes</em> vende a duna como objeto de desejo, para que ninguém lhes atire lixo.',
    cond=('As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. O plástico deixado na areia desfaz-se em microplástico na água.')),
  'sargassum-city': dict(
@@ -40,7 +40,7 @@ CARD_PT = {
    caps='Leva-me até à <em>Sargassum City</em>. Onde a erva é verde e os peixes são bonitos.',
    tag='Garante já a tua melhor localização.',
    q='O que construirias para os peixes vizinhos?',
-   src='Florestas de laminárias &#183; as algas do sargaço como habitat',
+   src='<a href="https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/" target="_blank" rel="noopener">Florestas de laminárias</a> &middot; <a href="https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing" target="_blank" rel="noopener">as algas do sargaço como habitat</a>',
    example='A <em>Sargassum City</em> vende apartamentos nas algas, para quem gostar do bairro.',
    cond=('O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até a areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar')),
  'deluxe-o2': dict(
@@ -50,7 +50,7 @@ CARD_PT = {
    caps='Estás farta do teu oxigénio terrestre de sempre, vindo daquelas árvores verdes feias?',
    tag='Respira melhor, querida!',
    q='O que tornaria o oceano mais fresco?',
-   src='As algas produzem oxigénio &#183; mares mais quentes &#183; menos oxigénio',
+   src='<a href="https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing" target="_blank" rel="noopener">As algas produzem oxigénio</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">mares mais quentes</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">menos oxigénio</a>',
    example='O <em>Deluxe O2</em> engarrafa o oxigénio que a alga produz, para quem está farto do ar comum.',
    cond=('As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás.')),
 }

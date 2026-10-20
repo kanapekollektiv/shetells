@@ -650,8 +650,8 @@ const CONTENT = {
       {
 title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         text: {
-          en: `Dunes hold the coast together, standing between the sea and the land, and they carry everything we leave on them. In Esposende the dunes belong to the Parque Natural do Litoral Norte, and the sargaço the sea leaves on the beach helps them grow, catching the windblown sand where new dunes begin. Plastic left on the sand breaks down into microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.`,
-          pt: `As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. Em Esposende, as dunas fazem parte do Parque Natural do Litoral Norte, e o sargaço que o mar deixa na praia ajuda-as a crescer, segurando a areia levada pelo vento onde nascem novas dunas. O plástico deixado na areia desfaz-se em microplástico na água. O *Sexy Dunes* vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.`,
+          en: `Dunes hold the coast together, standing between the sea and the land, and they carry everything we leave on them. In Esposende the dunes are part of the Parque Natural do Litoral Norte, protected to hold back what is destroying the coast. By 2043, the shoreline here is expected to retreat 28 metres on average. Plastic left on the sand breaks down into microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.`,
+          pt: `As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. Em Esposende, as dunas fazem parte do Parque Natural do Litoral Norte, protegido para travar o que está a destruir a costa. Até 2043, prevê-se que a linha de costa recue, em média, 28 metros. O plástico deixado na areia desfaz-se em microplástico na água. O *Sexy Dunes* vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.`,
         },
         sources: [
           {
@@ -660,6 +660,14 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
               en: `The shoreline at Ofir, Esposende, 2010 to 2023`,
               pt: `A linha de costa em Ofir, Esposende, de 2010 a 2023`,
             },
+          },
+          {
+            href: 'https://pcgt.dgterritorio.gov.pt/sites/default/files/PNLN_Despacho_1.pdf',
+            label: { en: `Parque Natural do Litoral Norte, why it is protected (Despacho n.º 4270/2017)`, pt: `Parque Natural do Litoral Norte, porque é protegido (Despacho n.º 4270/2017)` },
+          },
+          {
+            href: 'https://observador.pt/2023/06/21/linha-da-costa-no-concelho-de-esposende-vai-recuar-28-metros-ate-2043/',
+            label: { en: `The coast at Esposende to retreat 28 metres by 2043 (CLICTOUR, University of Minho)`, pt: `A costa de Esposende vai recuar 28 metros até 2043 (CLICTOUR, Universidade do Minho)` },
           },
           {
             href: 'https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2',
@@ -708,7 +716,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
           },
           {
             href: 'https://doi.org/10.1071/MF14318',
-            label: { en: `Kelp beds along the Portuguese coast, most common at Viana do Castelo`, pt: `Florestas de laminárias na costa portuguesa, mais comuns em Viana do Castelo` },
+            label: { en: `Kelp beds along the Portuguese coast`, pt: `Florestas de laminárias na costa portuguesa` },
           },
         ],
       },

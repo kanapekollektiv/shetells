@@ -384,7 +384,7 @@ page = f'''<title>The Sixth Product</title>
   function flipOn(el){{
     var handled = 0;
     function toggle(ev){{
-      if (ev.target.closest('.lane, .hotline')) return; // real buttons keep their own job
+      if (ev.target.closest('.lane, .hotline, a')) return; // real buttons and links keep their own job
       if (ev.type === 'click' && Date.now() - handled < 500) return;
       if (ev.type === 'pointerup') handled = Date.now();
       el.classList.toggle('flipped');
