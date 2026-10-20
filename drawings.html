@@ -27,6 +27,9 @@
              display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
     .c-btn-circle { width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.5px solid var(--black); background: transparent; color: var(--black); }
     .c-btn-circle:hover { background: var(--black); color: var(--white); }
+    .c-btn-outline { background: transparent; color: var(--black); padding: 0.55rem 1.4rem; border-radius: 2rem; border: 1.5px solid var(--black); }
+    .c-btn-outline:hover, .c-btn-outline.playing { background: var(--black); color: var(--white); }
+    .site-header nav { display: flex; gap: 0.6rem; align-items: center; }
 
     /* ── Intro ── */
     .intro { max-width: 1200px; margin: 1.5rem auto 1.8rem; padding: 0 1.5rem; }
@@ -102,7 +105,11 @@
       sea shells
     </span>
   </a>
-  <nav><button class="c-btn c-btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button></nav>
+  <nav>
+    <button class="c-btn c-btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
+    <button class="c-btn c-btn-outline" id="btnStream" aria-label="Play the eternal stream">&#9654;</button>
+  </nav>
+  <audio id="streamAudio" src="https://shell.kokott.art/ambient.mp3" preload="none"></audio>
 </header>
 
 <section class="intro">
@@ -286,6 +293,13 @@
     $('lead').textContent = L(TXT.lead);
     buildGrid(); render();
   }
+  // The eternal stream, same as the play button in the living archive
+  const streamAudio = $('streamAudio'), btnStream = $('btnStream');
+  btnStream.addEventListener('click', () => {
+    if (streamAudio.paused) { streamAudio.play().catch(() => {}); btnStream.innerHTML = '&#9646;&#9646;'; btnStream.classList.add('playing'); }
+    else { streamAudio.pause(); btnStream.innerHTML = '&#9654;'; btnStream.classList.remove('playing'); }
+  });
+
   document.addEventListener('langchange', applyText);
   document.addEventListener('DOMContentLoaded', applyText);
 </script>

@@ -2945,18 +2945,42 @@
     streamPlaying = false;
   }
 
+  function startStream() {
+    stopAudioDecks();
+    btnStream.innerHTML = '&#9646;&#9646;';
+    btnStream.classList.add('playing');
+    streamPlaying = true;
+    return streamAudio.play();
+  }
+
   btnStream.addEventListener('click', () => {
-    if (!streamPlaying) stopAudioDecks();
+    armed = false;   // the visitor chose; no more starting it for them
     if (streamPlaying) {
       streamAudio.pause();
       btnStream.innerHTML = '&#9654;';
       btnStream.classList.remove('playing');
+      streamPlaying = false;
     } else {
-      streamAudio.play();
-      btnStream.innerHTML = '&#9646;&#9646;';
-      btnStream.classList.add('playing');
+      startStream();
     }
-    streamPlaying = !streamPlaying;
+  });
+
+  // The stream plays on arrival. Browsers only allow sound after a first
+  // touch, click or key press, so if the first try is refused it starts on
+  // that first gesture anywhere on the page (except the play button itself,
+  // and a card's own audio player, which keep their own job).
+  let armed = true;
+  function onFirstGesture(e) {
+    if (!armed) return;
+    if (e.target.closest && e.target.closest('#btnStream, audio, .adeck, [class*="adeck"]')) return;
+    armed = false;
+    if (!streamPlaying) startStream().catch(() => {});
+  }
+  startStream().then(() => { armed = false; }).catch(() => {
+    btnStream.innerHTML = '&#9654;';
+    btnStream.classList.remove('playing');
+    streamPlaying = false;
+    ['pointerdown', 'pointerup', 'click', 'keydown', 'touchend'].forEach(t => document.addEventListener(t, onFirstGesture, { capture: true, once: false }));
   });
   </script>
 
