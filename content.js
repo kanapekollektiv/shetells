@@ -698,8 +698,8 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       {
         title: { en: `Sargassum City`, pt: `Sargassum City` },
         text: {
-          en: `Sargaço is a mix of seaweeds, kelps like Laminaria and Saccorhiza among them, pulled loose by the sea and brought ashore. Before it reached the sand, it was a forest. Off the north of Portugal, at the southern edge of where some of these kelps can live, marine forests sway in the cool water. They shelter, feed and cradle countless marine lives. Sargassum City offers that neighbourhood as prime real estate, though the weed was already a city, with its own residents, long before anyone thought to sell it.`,
-          pt: `O sargaço é uma mistura de algas, entre elas laminárias como a Laminaria e a Saccorhiza, que o mar arranca e traz para a costa. Antes de chegar à areia, era uma floresta no mar. Ao largo do norte de Portugal, no limite sul onde algumas destas algas conseguem viver, as florestas marinhas ondulam na água fria. Abrigam, alimentam e embalam inúmeras vidas marinhas. A *Sargassum City* oferece esse bairro como localização privilegiada, mas a alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em comercializá-la.`,
+          en: `Sargaço is a mix of seaweeds, kelps among them, brought ashore by the sea. Before it reached the sand, it was a forest: off the north of Portugal, at the southern edge of where some kelps can live, marine forests shelter, feed and cradle countless marine lives. The weed was already a city, with its own residents, long before anyone thought to sell it.`,
+          pt: `O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até à areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar.`,
         },
         sources: [
           {
