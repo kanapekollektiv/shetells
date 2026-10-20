@@ -681,8 +681,8 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       {
         title: { en: `Deluxe O2`, pt: `Deluxe O2` },
         text: {
-          en: `The seaweeds off this coast, kelp among them, make oxygen as they grow, and draw down carbon as they do. The sea is warming, and warm water holds less oxygen, the way a drink left in the sun goes flat. Deluxe O2 bottles that oxygen to help you breathe better. More bubbles!`,
-          pt: `As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás. O *Deluxe O2* engarrafa esse oxigénio para te ajudar a respirar melhor. Mais bolhas!`,
+          en: `The seaweeds off this coast, kelp among them, make oxygen as they grow, and draw down carbon as they do. The sea is warming, and warm water holds less oxygen, the way a drink left in the sun goes flat.`,
+          pt: `As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás.`,
         },
         sources: [
           {
