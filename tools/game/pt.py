@@ -40,7 +40,7 @@ CARD_PT = {
    caps='Leva-me até à <em>Sargassum City</em>. Onde a erva é verde e os peixes são bonitos.',
    tag='Garante já a tua melhor localização.',
    q='O que construirias para os peixes vizinhos?',
-   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">Florestas de laminárias</a> &middot; <a href="https://www.unep.org/resources/report/blue-securing-sustainable-future-kelp-forests" target="_blank" rel="noopener">as algas do sargaço como habitat</a>',
+   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">Florestas de laminárias</a> &middot; <a href="https://wedocs.unep.org/items/41e38d3f-e98d-45bf-8475-0defbfbc8d9e" target="_blank" rel="noopener">as algas do sargaço como habitat</a>',
    example='A <em>Sargassum City</em> vende apartamentos nas algas, para quem gostar do bairro.',
    cond=('O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até à areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar.')),
  'deluxe-o2': dict(

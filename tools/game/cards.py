@@ -36,7 +36,7 @@ CARDS = [
    caps='Take me down to Sargassum City. Where the grass is green and the fish are pretty.',
    tag='Get your prime location now.',
    cond=("Sarga&#231;o is a mix of seaweeds, kelps among them, brought ashore by the sea. Before it reached the sand, it was a forest: off the north of Portugal, at the southern edge of where some kelps can live, marine forests shelter, feed and cradle countless marine lives. The weed was already a city, with its own residents, long before anyone thought to sell it."),
-   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">Kelp forests</a> &middot; <a href="https://www.unep.org/resources/report/blue-securing-sustainable-future-kelp-forests" target="_blank" rel="noopener">the seaweed in sarga&#231;o as habitat</a>',
+   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">Kelp forests</a> &middot; <a href="https://wedocs.unep.org/items/41e38d3f-e98d-45bf-8475-0defbfbc8d9e" target="_blank" rel="noopener">the seaweed in sarga&#231;o as habitat</a>',
    q='What would you build for the fish next door?'),
 
  dict(hint1='What would Deluxe O&#8322; cost in 2040?', hint2='How would you bring the bubbles back?', example='Deluxe O2 bottles the oxygen the seaweed makes, for people bored of ordinary air.', key='deluxe-o2', name='deluxe o&#8322;', colour='#0046FF', svg='O2', native='#ccbb00', audio='05', hlang='en',

@@ -707,7 +707,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
             label: { en: `Franco et al. 2025. Blue carbon in the kelp forests of northern Portugal`, pt: `Franco et al. 2025. Carbono azul nas florestas de laminárias do norte de Portugal` },
           },
           {
-            href: 'https://www.unep.org/resources/report/blue-securing-sustainable-future-kelp-forests',
+            href: 'https://wedocs.unep.org/items/41e38d3f-e98d-45bf-8475-0defbfbc8d9e',
             label: { en: `UNEP 2023. Into the Blue: kelp forests as habitat`, pt: `UNEP 2023. Into the Blue: as florestas de laminárias como habitat` },
           },
           {
