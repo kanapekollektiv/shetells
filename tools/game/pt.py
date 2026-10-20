@@ -22,7 +22,7 @@ CARD_PT = {
    q='O que venderias a um mar que está a acidificar?',
    src='<a href="https://doi.org/10.1098/rsta.2011.0003" target="_blank" rel="noopener">Calor e ácido em conjunto</a> &middot; <a href="https://essd.copernicus.org/articles/12/2647/2020/" target="_blank" rel="noopener">um problema que ainda está para vir</a>',
    example='Os <em>Acid Tabs</em> engarrafam o mar azedo, para quem o quer sob controlo.',
-   cond=('O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o ácido retém, e um quarto do próprio carbono, o que também torna a água mais ácida. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir.')),
+   cond=('O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o carbono retém, e um quarto do próprio carbono, o que também torna a água mais ácida. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir.')),
  'sexy-dunes': dict(
    hint1='Como seriam as Sexy Dunes em 2040?',
    hint2='O que faria as pessoas deixarem de largar coisas na areia?',
