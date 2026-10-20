@@ -58,7 +58,8 @@
 .cond-label{font-family:var(--hand);font-size:2.9cqw;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow)}
 .btop{display:flex;flex-direction:column;gap:2.8cqw}
 .cond{font-size:3.9cqw;line-height:1.48;color:#fff}
-.src a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
+.src a{color:inherit;font-size:1.3em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
+.src a::after{content:"\00a0\2197";text-decoration:none;display:inline-block}
 .src{font-family:var(--hand);font-size:2.6cqw;letter-spacing:.05em;line-height:1.4;opacity:.85;
   border-top:1px solid rgba(255,255,255,.34);padding-top:1.9cqw}
 .brief{display:flex;flex-direction:column;gap:2.6cqw}
