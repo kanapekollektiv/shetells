@@ -195,6 +195,10 @@
   .lang-toggle:hover { background: var(--accent); color: var(--paper); }
   /* language blocks: lang.js sets <html lang>, the page shows the matching block */
   html[lang="pt-PT"] .l-en, html:not([lang="pt-PT"]) .l-pt { display: none !important; }
+  .uses { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; max-width: 900px; }
+  .uses li { padding-block: 14px; border-top: 1px solid var(--rule); font-size: 16px; min-width: 0; }
+  .uses .t { display: block; font-family: var(--label); text-transform: uppercase; letter-spacing: .08em; font-size: 13.5px; margin-bottom: 4px; }
+  @media (max-width: 820px) { .uses { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body class="tk-body">
@@ -468,42 +472,15 @@
 
   <!-- IN CLASS -->
   <section class="s" id="en-class">
-    <div class="label">teaching</div>
-    <h2>In class</h2>
-    <div class="col">
-      <p>The kit is a tool for speculative storytelling. A drawing that answers when touched invites children to imagine who is speaking and why. It is also a direct way to show how a computer works: an input, a rule, an output.</p>
-    </div>
-    <div class="acts">
-      <div class="act">
-        <h3>A creature that speaks</h3>
-        <p>Each child draws a sea creature from the local coast. They record one sentence in its voice, about what it remembers or what it fears. Touching the creature plays its voice and shows its picture.</p>
-        <span class="meta">Playtron · patch · 60–90 min</span>
-      </div>
-      <div class="act">
-        <h3>Messages from 2040</h3>
-        <p>Groups imagine the beach twenty years from now and write a short message from that future. Each message becomes the text in the patch. Classmates touch a shell to read it.</p>
-        <span class="meta">Playtron or TouchMe · patch · 45 min</span>
-      </div>
-      <div class="act">
-        <h3>A map that listens</h3>
-        <p>Draw a large map of the river, dunes and sea. Lay copper on places that matter to the class and give each place a sound: a field recording, a memory told by a grandparent.</p>
-        <span class="meta">Playtron · browser or patch · 2 sessions</span>
-      </div>
-    </div>
-
-    <div class="lesson">
-      <div>
-        <h3>How a computer works, at the simplest level</h3>
-        <p>Ask the class to hold hands in a chain, with the two children at the ends each touching one side of the TouchMe. The sound plays only when the chain is complete. Let one pair let go and it stops. This is a circuit.</p>
-        <p>From there, the same idea scales up. A computer is made of billions of tiny switches that are either open or closed. The sensor turns your touch into a number, the software follows a rule about that number, and the screen and speaker show the result.</p>
-      </div>
-      <dl class="terms">
-        <div><dt>Circuit</dt><dd>A closed loop that current can travel around. Your body can be part of it.</dd></div>
-        <div><dt>Conductor</dt><dd>A material that lets current through, like copper, water and skin.</dd></div>
-        <div><dt>Input → process → output</dt><dd>Touch is the input. The patch is the process. Image and sound are the output.</dd></div>
-        <div><dt>Signal</dt><dd>The number the sensor sends. On the Playtron it is close to on or off. On the TouchMe it changes with how much you touch.</dd></div>
-      </dl>
-    </div>
+    <div class="label">in class</div>
+    <h2>Example uses</h2>
+    <ul class="uses">
+      <li><span class="t">Speculative storytelling</span>A drawing, shell or object that tells its story when someone touches it.</li>
+      <li><span class="t">How a circuit works</span>The body closes the loop. Touch is the input, image and sound are the output.</li>
+      <li><span class="t">Interactive maps</span>A map of a place where each spot plays a recording or shows a picture.</li>
+      <li><span class="t">Natural materials</span>Shells, seaweed, water and fruit become instruments.</li>
+      <li><span class="t">Touch between people</span>With the TouchMe, two people make sound by touching hands.</li>
+    </ul>
 
     <div class="strip">
       <figure><img src="img/teachers/clips-and-shells.jpg" alt="Coloured alligator clip cables, two large shells and a smooth grey stone on a white table." loading="lazy"><figcaption>Clips, shells and a stone</figcaption></figure>
@@ -794,42 +771,15 @@
 
   <!-- NA AULA -->
   <section class="s" id="pt-class">
-    <div class="label">ensinar</div>
-    <h2>Na aula</h2>
-    <div class="col">
-      <p>O kit é uma ferramenta para contar histórias especulativas. Um desenho que responde quando lhe tocam convida as crianças a imaginar quem está a falar e porquê. É também uma forma direta de mostrar como funciona um computador: uma entrada, uma regra, uma saída.</p>
-    </div>
-    <div class="acts">
-      <div class="act">
-        <h3>Uma criatura que fala</h3>
-        <p>Cada criança desenha uma criatura marinha da costa local. Grava uma frase com a voz dessa criatura, sobre aquilo de que se lembra ou aquilo que teme. Quando alguém toca na criatura, ouve-se a sua voz e aparece a sua imagem.</p>
-        <span class="meta">Playtron · patch · 60–90 min</span>
-      </div>
-      <div class="act">
-        <h3>Mensagens de 2040</h3>
-        <p>Em grupos, imagina-se a praia daqui a vinte anos e escreve-se uma mensagem curta vinda desse futuro. Cada mensagem torna-se o texto do patch. Os colegas tocam numa concha para a ler.</p>
-        <span class="meta">Playtron ou TouchMe · patch · 45 min</span>
-      </div>
-      <div class="act">
-        <h3>Um mapa que escuta</h3>
-        <p>Desenhem um mapa grande do rio, das dunas e do mar. Colem cobre nos lugares que importam à turma e deem a cada lugar um som: uma gravação de campo, uma memória contada por uma avó.</p>
-        <span class="meta">Playtron · navegador ou patch · 2 sessões</span>
-      </div>
-    </div>
-
-    <div class="lesson">
-      <div>
-        <h3>Como funciona um computador, no nível mais simples</h3>
-        <p>Pede à turma que dê as mãos em cadeia, com as duas crianças das pontas a tocar cada uma num lado do TouchMe. O som só toca quando a cadeia está completa. Se um par largar as mãos, o som para. Isto é um circuito.</p>
-        <p>A partir daqui, a mesma ideia cresce. Um computador é feito de milhares de milhões de pequenos interruptores, cada um aberto ou fechado. O sensor transforma o teu toque num número, o software segue uma regra sobre esse número, e o ecrã e a coluna mostram o resultado.</p>
-      </div>
-      <dl class="terms">
-        <div><dt>Circuito</dt><dd>Um caminho fechado por onde a corrente pode circular. O teu corpo pode fazer parte dele.</dd></div>
-        <div><dt>Condutor</dt><dd>Um material que deixa passar a corrente, como o cobre, a água e a pele.</dd></div>
-        <div><dt>Entrada → processo → saída</dt><dd>O toque é a entrada. O patch é o processo. A imagem e o som são a saída.</dd></div>
-        <div><dt>Sinal</dt><dd>O número que o sensor envia. No Playtron é quase só ligado ou desligado. No TouchMe muda conforme a intensidade do toque.</dd></div>
-      </dl>
-    </div>
+    <div class="label">na aula</div>
+    <h2>Exemplos de uso</h2>
+    <ul class="uses">
+      <li><span class="t">Contar histórias especulativas</span>Um desenho, uma concha ou um objeto que conta a sua história quando alguém lhe toca.</li>
+      <li><span class="t">Como funciona um circuito</span>O corpo fecha o circuito. O toque é a entrada, a imagem e o som são a saída.</li>
+      <li><span class="t">Mapas interativos</span>Um mapa de um lugar onde cada ponto toca uma gravação ou mostra uma imagem.</li>
+      <li><span class="t">Materiais naturais</span>Conchas, algas, água e fruta tornam-se instrumentos.</li>
+      <li><span class="t">Toque entre pessoas</span>Com o TouchMe, duas pessoas fazem som ao tocar nas mãos uma da outra.</li>
+    </ul>
 
     <div class="strip">
       <figure><img src="img/teachers/clips-and-shells.jpg" alt="Cabos coloridos com pinças crocodilo, duas conchas grandes e uma pedra cinzenta e lisa numa mesa branca." loading="lazy"><figcaption>Pinças, conchas e uma pedra</figcaption></figure>
