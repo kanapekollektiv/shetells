@@ -686,8 +686,8 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         },
         sources: [
           {
-            href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing',
-            label: { en: `Blue carbon reading`, pt: `Leitura sobre carbono azul` },
+            href: 'https://doi.org/10.1038/s41598-025-09361-9',
+            label: { en: `Franco et al. 2025. Blue carbon in the kelp forests of northern Portugal`, pt: `Franco et al. 2025. Carbono azul nas florestas de laminárias do norte de Portugal` },
           },
           {
             href: 'https://doi.org/10.1126/science.aam7240',
@@ -703,12 +703,12 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         },
         sources: [
           {
-            href: 'https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing',
-            label: { en: `Blue carbon reading`, pt: `Leitura sobre carbono azul` },
+            href: 'https://doi.org/10.1038/s41598-025-09361-9',
+            label: { en: `Franco et al. 2025. Blue carbon in the kelp forests of northern Portugal`, pt: `Franco et al. 2025. Carbono azul nas florestas de laminárias do norte de Portugal` },
           },
           {
-            href: 'https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing',
-            label: { en: `Sargassum as habitat`, pt: `O sargaço como habitat` },
+            href: 'https://www.unep.org/resources/report/blue-securing-sustainable-future-kelp-forests',
+            label: { en: `UNEP 2023. Into the Blue: kelp forests as habitat`, pt: `UNEP 2023. Into the Blue: as florestas de laminárias como habitat` },
           },
           {
             href: 'https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/',

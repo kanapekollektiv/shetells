@@ -40,7 +40,7 @@ CARD_PT = {
    caps='Leva-me até à <em>Sargassum City</em>. Onde a erva é verde e os peixes são bonitos.',
    tag='Garante já a tua melhor localização.',
    q='O que construirias para os peixes vizinhos?',
-   src='<a href="https://www.ciimar.up.pt/marine-forests-in-northern-portugal-allies-in-the-fight-against-climate-change/" target="_blank" rel="noopener">Florestas de laminárias</a> &middot; <a href="https://drive.google.com/file/d/1FPEiOMNkUFbWOyPrSDOZuRZYLGdleDMR/view?usp=sharing" target="_blank" rel="noopener">as algas do sargaço como habitat</a>',
+   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">Florestas de laminárias</a> &middot; <a href="https://www.unep.org/resources/report/blue-securing-sustainable-future-kelp-forests" target="_blank" rel="noopener">as algas do sargaço como habitat</a>',
    example='A <em>Sargassum City</em> vende apartamentos nas algas, para quem gostar do bairro.',
    cond=('O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até à areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar.')),
  'deluxe-o2': dict(
@@ -50,7 +50,7 @@ CARD_PT = {
    caps='Estás farta do teu oxigénio terrestre de sempre, vindo daquelas árvores verdes feias?',
    tag='Respira melhor, querida!',
    q='O que tornaria o oceano mais fresco?',
-   src='<a href="https://drive.google.com/file/d/1KQ087h4OV0cWnASFKR7XHcTsc7oLzIRj/view?usp=sharing" target="_blank" rel="noopener">As algas produzem oxigénio</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">mares mais quentes</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">menos oxigénio</a>',
+   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">As algas produzem oxigénio</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">mares mais quentes</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">menos oxigénio</a>',
    example='O <em>Deluxe O2</em> engarrafa o oxigénio que a alga produz, para quem está farto do ar comum.',
    cond=('As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás.')),
 }
