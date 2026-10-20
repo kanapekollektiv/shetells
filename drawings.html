@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your drawings — She Tells, Sea Shells</title>
+  <!-- Made for the school workshops; not linked from the site and kept out of search. -->
+  <meta name="robots" content="noindex" />
+  <script src="lang.js?v=16"></script>
+  <style>
+    @font-face { font-family: 'NaNTresorM'; src: url('Fonts/NaNTresor/NaNTresorM-ExtraLight.ttf') format('truetype'); font-weight: 200; }
+    @font-face { font-family: 'NaNTresorM'; src: url('Fonts/NaNTresor/NaNTresorM-Regular.ttf') format('truetype'); font-weight: 400; }
+    @font-face { font-family: 'Celescript'; src: url('Fonts/Celescript.ttf') format('truetype'); }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #111111; --white: #ffffff; --brown: #5B2915; --lav: #F1F1FB; }
+    body { background: var(--white); color: var(--black); font-family: 'NaNTresorM', system-ui, sans-serif; min-height: 100vh; }
+
+    /* ── Header, as on the other pages ── */
+    .site-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 0.9rem 1.5rem 0.7rem; }
+    .brand { display: flex; align-items: flex-end; gap: 1.2rem; text-decoration: none; color: var(--black); }
+    .brand-title { font-weight: 200; font-size: clamp(52px, 7.5vw, 108px); line-height: 1; letter-spacing: -0.02em; }
+    .brand-sub { font-family: 'Celescript', cursive; font-size: clamp(13px, 1.6vw, 22px); letter-spacing: 0.12em;
+                 text-transform: uppercase; display: flex; align-items: center; gap: 0.5em; white-space: nowrap; }
+    .brand-line { height: clamp(8px, 1vw, 12px); width: clamp(40px, 4vw, 60px); flex-shrink: 0; }
+    .c-btn { font-family: 'Celescript', cursive; font-size: clamp(12px, 1.2vw, 16px); cursor: pointer; letter-spacing: 0.04em;
+             display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+    .c-btn-circle { width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.5px solid var(--black); background: transparent; color: var(--black); }
+    .c-btn-circle:hover { background: var(--black); color: var(--white); }
+
+    /* ── Intro ── */
+    .intro { max-width: 1200px; margin: 1.5rem auto 1.8rem; padding: 0 1.5rem; }
+    .intro h1 { font-weight: 200; font-size: clamp(34px, 4.5vw, 60px); line-height: 1.05; }
+    .intro p { font-family: 'Celescript', cursive; letter-spacing: 0.08em; text-transform: uppercase; font-size: clamp(13px, 1.4vw, 17px);
+               margin-top: 0.8rem; color: var(--brown); }
+
+    /* ── Grid ── */
+    .grid { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 5rem; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+    .tile { position: relative; aspect-ratio: 3 / 4; border: none; padding: 0; cursor: pointer; background: var(--lav);
+            overflow: hidden; border-radius: 6px; transition: transform 0.15s; }
+    .tile:hover, .tile:focus-visible { transform: translateY(-3px); outline: 2px solid var(--black); outline-offset: 2px; }
+    .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tile .num { position: absolute; left: 8px; top: 8px; font-family: 'Celescript', cursive; font-size: 14px;
+                 background: var(--white); border-radius: 1rem; padding: 0.15rem 0.55rem; letter-spacing: 0.05em; }
+    .tile .star { position: absolute; right: 8px; top: 8px; font-family: 'Celescript', cursive; font-size: 11px;
+                  background: var(--brown); color: var(--white); border-radius: 1rem; padding: 0.2rem 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ── Drawing + cue ── */
+    .overlay { position: fixed; inset: 0; background: rgba(241,241,251,0.97); display: none; z-index: 20; }
+    .overlay.open { display: flex; }
+    .panel { margin: auto; width: min(1200px, 100%); height: min(760px, 100%); display: grid;
+             grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 2rem; padding: 3.2rem 2rem 2rem; position: relative; }
+    .panel .art { display: flex; align-items: center; justify-content: center; min-height: 0; }
+    .panel .art img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 6px 30px rgba(17,17,17,0.12); background: var(--white); }
+    .cue { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; }
+    .cue .label { font-family: 'Celescript', cursive; text-transform: uppercase; letter-spacing: 0.12em; font-size: 15px; color: var(--brown); }
+    .cue .prompt { font-weight: 200; font-size: clamp(30px, 3.6vw, 52px); line-height: 1.08; margin: 0.6rem 0 1.4rem; }
+    .cue ol { list-style: none; counter-reset: q; display: grid; gap: 0.9rem; }
+    .cue li { counter-increment: q; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.3; display: flex; gap: 0.7rem; }
+    .cue li::before { content: counter(q); font-family: 'Celescript', cursive; flex: 0 0 1.9rem; height: 1.9rem; border-radius: 50%;
+                      border: 1.5px solid var(--black); display: inline-flex; align-items: center; justify-content: center; font-size: 15px; margin-top: 0.1rem; }
+    .story { margin-top: 1.5rem; background: var(--white); border-radius: 8px; padding: 1rem 1.2rem; }
+    .story .label { font-size: 13px; }
+    .story h3 { font-weight: 400; font-size: 20px; margin: 0.3rem 0 0.4rem; }
+    .story p { font-size: 16px; line-height: 1.5; }
+    .actions { margin-top: auto; padding-top: 1.4rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .pill { font-family: 'Celescript', cursive; letter-spacing: 0.06em; text-transform: uppercase; font-size: 14px; cursor: pointer;
+            border: 1.5px solid var(--black); background: transparent; color: var(--black); border-radius: 2rem; padding: 0.6rem 1.2rem; }
+    .pill:hover { background: var(--black); color: var(--white); }
+    .pill.solid { background: var(--black); color: var(--white); }
+    .close { position: absolute; top: 0.9rem; right: 1.2rem; }
+    .num-big { position: absolute; top: 1.1rem; left: 2rem; font-family: 'Celescript', cursive; letter-spacing: 0.1em; font-size: 15px; }
+
+    @media (max-width: 800px) {
+      .panel { grid-template-columns: 1fr; grid-template-rows: 42vh auto; height: 100%; overflow-y: auto; padding-top: 3rem; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-title">she tells</span>
+    <span class="brand-sub">
+      <svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"
+          d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/>
+      </svg>
+      sea shells
+    </span>
+  </a>
+  <nav><button class="c-btn c-btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button></nav>
+</header>
+
+<section class="intro">
+  <h1 id="title"></h1>
+  <p id="lead"></p>
+</section>
+
+<main class="grid" id="grid"></main>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="prompt">
+  <div class="panel">
+    <span class="num-big" id="numBig"></span>
+    <button class="c-btn c-btn-circle close" id="close" aria-label="Close">✕</button>
+    <div class="art"><img id="big" alt="" /></div>
+    <div class="cue">
+      <span class="label" id="cueLabel"></span>
+      <p class="prompt" id="prompt"></p>
+      <ol id="questions"></ol>
+      <div class="story" id="story" hidden>
+        <span class="label" id="storyLabel"></span>
+        <h3 id="storyTitle"></h3>
+        <p id="storyText"></p>
+      </div>
+      <div class="actions">
+        <button class="pill solid" id="another"></button>
+        <button class="pill" id="prev" aria-label="Previous drawing">←</button>
+        <button class="pill" id="next" aria-label="Next drawing">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Every word on this page, in both languages. pt-PT, speaking to the group as vocês.
+  const TXT = {
+    title:      { en: 'Your drawings', pt: 'Os vossos desenhos' },
+    lead:       { en: 'Pick a drawing. It will help you start your story.', pt: 'Escolham um desenho. Ele ajuda-vos a começar a história.' },
+    cueLabel:   { en: 'Your story starts here', pt: 'A vossa história começa aqui' },
+    prompt:     { en: 'In 2040, Esposende will need…', pt: 'Em 2040, Esposende vai precisar de…' },
+    another:    { en: 'another cue', pt: 'outra pista' },
+    storyLabel: { en: 'This drawing already became a story', pt: 'Este desenho já se tornou uma história' },
+    hasStory:   { en: 'story', pt: 'história' },
+    number:     { en: 'drawing', pt: 'desenho' },
+  };
+  const CUES = [
+    { en: 'Who lives in this drawing? Give them a name.', pt: 'Quem vive neste desenho? Deem-lhe um nome.' },
+    { en: 'What is changing in the water here?', pt: 'O que está a mudar na água aqui?' },
+    { en: 'It is 2040. What does this place need?', pt: 'Estamos em 2040. Do que precisa este lugar?' },
+    { en: 'Invent a product that would help. What is it called?', pt: 'Inventem um produto que ajudaria. Como se chama?' },
+    { en: 'Who would buy it: a fish, a dune, a shell?', pt: 'Quem o compraria: um peixe, uma duna, uma concha?' },
+    { en: 'What sound does this drawing make?', pt: 'Que som faz este desenho?' },
+    { en: 'Tell it from the animal’s point of view.', pt: 'Contem a partir do ponto de vista do animal.' },
+    { en: 'What would make this place happy?', pt: 'O que faria este lugar feliz?' },
+    { en: 'What do you see first? Start there.', pt: 'O que veem primeiro? Comecem por aí.' },
+    { en: 'How does the sea feel today in this drawing?', pt: 'Como se sente o mar hoje neste desenho?' },
+  ];
+  // The four drawings that became stories in the living archive (content.js, drawings-stories)
+  const STORIES = {
+    2:  { t: { en: 'The lamps of the bay', pt: 'As lanternas da baía' },
+          s: { en: 'In this future the jellyfish are the lamps of the bay. When the water warms they arrive in their thousands, and instead of closing the beach, Esposende goes down to watch them.',
+               pt: 'Neste futuro as alforrecas são as lanternas da baía. Quando a água aquece chegam aos milhares e, em vez de fecharem a praia, as pessoas de Esposende descem para as ver.' } },
+    13: { t: { en: 'The day the shoals came back', pt: 'O dia em que os cardumes voltaram' },
+          s: { en: 'In this future the fish come back. Not all at once and not everywhere, but enough that a child can stand on the sand with a line and wait, and something silver arrives.',
+               pt: 'Neste futuro os peixes voltam. Não todos de uma vez nem em todo o lado, mas o suficiente para uma criança poder ficar na areia com uma linha e esperar que chegue alguma coisa prateada.' } },
+    14: { t: { en: 'The net that lets go', pt: 'A rede que se solta' },
+          s: { en: 'In this future the nets are made of something the sea can eat. When one is lost it softens, and then it is gone, and the whale swims through without noticing anything at all.',
+               pt: 'Neste futuro as redes são feitas de algo que o mar consegue comer. Quando uma se perde, amolece e depois desaparece, e a baleia atravessa o sítio sem dar por nada.' } },
+    30: { t: { en: 'The snail who grew legs', pt: 'O caracol que ganhou pernas' },
+          s: { en: 'In this future the snail grows legs, because the cool water moved north and the snail wanted to follow. The whole house comes along, spiral and all.',
+               pt: 'Neste futuro o caracol ganha pernas, porque a água fresca foi para norte e o caracol quis segui-la. A casa inteira vai com ele, espiral e tudo.' } },
+  };
+  const COUNT = 37;
+  const src = n => 'living-archive-images/drawings/drawing-' + String(n).padStart(2, '0') + '.jpg';
+  const lang = () => (typeof currentLang !== 'undefined' && currentLang === 'pt') ? 'pt' : 'en';
+  const L = v => v[lang()];
+  const $ = id => document.getElementById(id);
+
+  let cur = null, shift = 0;
+
+  function buildGrid() {
+    const grid = $('grid'); grid.innerHTML = '';
+    for (let n = 1; n <= COUNT; n++) {
+      const b = document.createElement('button');
+      b.className = 'tile';
+      b.setAttribute('aria-label', L(TXT.number) + ' ' + n);
+      b.innerHTML = `<img src="${src(n)}" alt="" loading="lazy"><span class="num">${n}</span>` +
+                    (STORIES[n] ? `<span class="star">${L(TXT.hasStory)}</span>` : '');
+      b.addEventListener('click', () => open(n));
+      grid.appendChild(b);
+    }
+  }
+
+  // Three cues per drawing, different for neighbouring drawings; "another cue" moves along the list
+  function cuesFor(n) {
+    const out = [];
+    for (let i = 0; out.length < 3; i++) {
+      const c = CUES[(n * 3 + shift * 3 + i) % CUES.length];
+      if (!out.includes(c)) out.push(c);
+    }
+    return out;
+  }
+
+  function render() {
+    if (cur == null) return;
+    $('big').src = src(cur);
+    $('big').alt = L(TXT.number) + ' ' + cur;
+    $('numBig').textContent = L(TXT.number) + ' ' + cur + ' / ' + COUNT;
+    $('cueLabel').textContent = L(TXT.cueLabel);
+    $('prompt').textContent = L(TXT.prompt);
+    $('questions').innerHTML = cuesFor(cur).map(c => `<li>${L(c)}</li>`).join('');
+    $('another').textContent = L(TXT.another);
+    const st = STORIES[cur];
+    $('story').hidden = !st;
+    if (st) { $('storyLabel').textContent = L(TXT.storyLabel); $('storyTitle').textContent = L(st.t); $('storyText').textContent = L(st.s); }
+  }
+
+  function open(n) { cur = n; shift = 0; render(); $('overlay').classList.add('open'); $('close').focus(); }
+  function close() { $('overlay').classList.remove('open'); cur = null; }
+  function step(d) { cur = ((cur - 1 + d + COUNT) % COUNT) + 1; shift = 0; render(); }
+
+  $('close').addEventListener('click', close);
+  $('another').addEventListener('click', () => { shift++; render(); });
+  $('prev').addEventListener('click', () => step(-1));
+  $('next').addEventListener('click', () => step(1));
+  document.addEventListener('keydown', e => {
+    if (cur == null) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+
+  function applyText() {
+    $('title').textContent = L(TXT.title);
+    $('lead').textContent = L(TXT.lead);
+    buildGrid(); render();
+  }
+  document.addEventListener('langchange', applyText);
+  document.addEventListener('DOMContentLoaded', applyText);
+</script>
+</body>
+</html>
