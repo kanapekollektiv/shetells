@@ -45,22 +45,22 @@ const CONTENT = {
   'hypersea-intro': {
     txt: {
       en: `We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…`,
-      pt: `Temos vindo a utilizar o conceito «Hypersea», da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como pontos de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido conjuntivo que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas e o nosso percurso até ao Hypersea`,
+      pt: `Temos vindo a utilizar o conceito Hypersea, da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como ponto de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido de conectividade que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas com este tópico e o nosso percurso até Hypersea.`,
     },
     full: {
       en: `We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…`,
-      pt: `Temos vindo a utilizar o conceito «Hypersea», da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como pontos de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido conjuntivo que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas e o nosso percurso até ao Hypersea`,
+      pt: `Temos vindo a utilizar o conceito Hypersea, da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como ponto de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido de conectividade que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas com este tópico e o nosso percurso até Hypersea.`,
     },
   },
 
   'hypersea-glass': {
     txt: {
       en: `We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum.`,
-      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto do Hypersea, um ponto de memória. A areia já é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto do Hypersea: a matéria do mar muda de estado, tornando-se um recipiente capaz de conter gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço.`,
+      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto de Hypersea, um ponto de memória. A areia é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto de Hypersea: a matéria do mar muda de estado, tornando-se num recipiente capaz de conter as gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço.`,
     },
     full: {
       en: `We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.`,
-      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto do Hypersea, um ponto de memória. A areia já é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto do Hypersea: a matéria do mar muda de estado, tornando-se um recipiente capaz de conter gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço. A escultura torna-se uma massa de água sob outra forma, um lugar onde o oceano é recordado em vez de extraído.`,
+      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto de Hypersea, um ponto de memória. A areia é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto de Hypersea: a matéria do mar muda de estado, tornando-se num recipiente capaz de conter as gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço. A escultura torna-se uma massa de água sob outra forma, um lugar onde o oceano é recordado em vez de extraído.`,
     },
   },
 
@@ -127,7 +127,7 @@ const CONTENT = {
       en: `Esposende has an entanglement with sargassum that goes years and years back.
 
       When we set out for the research project, we asked how an old tradition reflects on the future. Futures of creating speculative ways of creating…`,
-      pt: `Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.
+      pt: `Esposende tem uma ligação com as algas e com o sargaço que remonta a muitos e muitos anos.
 
       Quando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas…`,
     },
@@ -139,13 +139,13 @@ const CONTENT = {
       As Sargaceiros gleaned sargassum, today most interfaces glean data; we often think of this data as residing in an invisible cloud but forget the physical infrastructure it carries. As part of a speculative ritual, our project gleans memories of what has been and what could be for the futures of waters in Esposende.
 
       The rising temperatures heavily affect the Esposende coast, as they do in a global network of water bodies. The changing water will also affect the kelp forests along the town's coast. We ask how we could speculate futures of tradition, how the kelp, once the heart of the livelihood of Esposende, could take its shape in communal futures.`,
-      pt: `Esposende tem uma ligação com as algas sargaço que remonta a muitos e muitos anos.
+      pt: `Esposende tem uma ligação com as algas e com o sargaço que remonta a muitos e muitos anos.
 
-      Quando nos lançámos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas especulativas de criar rituais, como um ato de cuidado, um ato de observação, um ato de escuta, um ato de recordar a ecologia aquática com a qual coabitamos.
+      Quando nos lançamos neste projeto de investigação, questionámo-nos sobre como uma tradição antiga se reflete no futuro. Futuros que envolvem formas especulativas de criação de rituais, como um ato de cuidado, um ato de observação, um ato de escuta, um ato de recordar a ecologia aquática com a qual coabitamos.
 
-      Tal como os Sargaceiros recolhiam sargaço, hoje em dia a maioria das interfaces recolhe dados; muitas vezes pensamos que esses dados residem numa nuvem invisível, mas esquecemo-nos da infraestrutura física que os suporta. Como parte de um ritual especulativo, o nosso projeto recolhe memórias do que foi e do que poderá ser para o futuro das águas em Esposende.
+      Tal como os Sargaceiros recolhiam sargaço, hoje em dia, a maioria das interfaces recolhe dados; muitas vezes pensamos que esses dados residem numa nuvem invisível, mas esquecemo-nos da infraestrutura física que os suporta. Como parte de um ritual especulativo, o nosso projeto recolhe memórias do que foi e do que poderá ser para o futuro das águas em Esposende.
 
-      O aumento das temperaturas afeta fortemente a costa de Esposende, tal como acontece numa rede global de massas de água. As alterações nas águas afetarão também as florestas de algas ao longo da costa da cidade. Questionamo-nos sobre como poderíamos especular sobre os futuros da tradição; como é que as algas, outrora o cerne do sustento de Esposende, poderiam assumir a sua forma em futuros comunitários.`,
+      O aumento da temperatura afeta fortemente a costa de Esposende, tal como acontece numa rede global de massas de água. As alterações nas águas afetarão também as florestas de algas ao longo da costa da cidade. Questionamo-nos sobre como poderíamos especular sobre os futuros da tradição; como é que as algas, outrora o cerne do sustento de Esposende, poderiam assumir a sua forma em futuros comunitários.`,
     },
   },
 
@@ -218,11 +218,11 @@ const CONTENT = {
       Offshore, the same coast holds something the sargaceiras and the sargaceiros had no word for. The kelp forests of northern Portugal, largely Laminaria hyperborea and Saccorhiza polyschides, are estimated to store some 16.5 gigagrams of carbon across roughly 5,100 hectares, and to export around a third of the carbon captured each year by all of the country's marine plant habitats. Researchers at CIIMAR and MARE have also recorded a tropicalisation of Portuguese waters that puts those forests, and everything living in them, at risk.
 
       So the question the tradition leaves open is not whether sargaço will be gathered, but what gathering will come to mean.`,
-      pt: `Durante séculos o sargaço foi recolhido nos areais da Apúlia, em Esposende, pelos sargaceiros e pelas sargaceiras, que mantinham um pé no mar e outro na terra. Entravam na água com uma graveta e uma rede comprida, arrastavam a alga para a praia e deixavam-na secar ao sol durante três dias, antes de ser levada, juntamente com o pilado, para os campos de masseira: courelas cavadas em direção ao lençol freático e alimentadas pelo que a maré ia entregando. Por decisão régia, o sargaço estava isento de qualquer imposto, o que ajuda a explicar a força que a prática ganhou aqui.
+      pt: `Durante séculos o sargaço foi recolhido nos areais da Apúlia, em Esposende, pelos sargaceiros e pelas sargaceiras, que mantinham um pé no mar e outro na terra. Entravam na água com uma graveta e uma rede comprida, arrastavam a alga para a praia e deixavam-na secar ao sol durante três dias, antes de ser levada, juntamente com o pilado, para os campos de masseira: courelas cavadas em direção ao lençol freático e alimentadas pelo que a maré ia entregando. Por decisão régia, o sargaço estava isento de qualquer imposto, o que ajuda a explicar a força que a prática ganhou na região.
 
       A apanha foi diminuindo à medida que chegou o adubo químico e os campos de masseira foram cedendo. O que restou deslocou-se em vez de desaparecer: hoje o sargaço é recolhido sobretudo para as indústrias farmacêutica, cosmética e alimentar, e o Museu do Sargaço, na Apúlia, guarda as alfaias, os barcos e o vestuário dessa economia mais antiga.
 
-      Ao largo, a mesma costa guarda algo para que as sargaceiras e os sargaceiros não tinham palavra. As florestas de kelp do norte de Portugal, sobretudo Laminaria hyperborea e Saccorhiza polyschides, armazenam cerca de 16,5 gigagramas de carbono em aproximadamente 5100 hectares e exportam perto de um terço do carbono captado anualmente por todos os habitats de plantas marinhas do país. Investigadores do CIIMAR e do MARE registaram também uma tropicalização das águas portuguesas que coloca em risco essas florestas e tudo o que nelas vive.
+      Ao largo, a mesma costa guarda algo para que as sargaceiras e os sargaceiros não sabiam. As florestas de algas do norte de Portugal, sobretudo Laminaria hyperborea e Saccorhiza polyschides, armazenam cerca de 16,5 gigagramas de carbono em aproximadamente 5100 hectares e exportam perto de um terço do carbono captado anualmente por todos os habitats de plantas marinhas do país. Investigadores do CIIMAR e do MARE registaram também uma tropicalização das águas portuguesas que coloca em risco essas florestas e tudo o que nelas vive.
 
       A questão que a tradição deixa em aberto não é, portanto, se o sargaço continuará a ser recolhido, mas o que passará a significar recolhê-lo.`,
     },
@@ -294,7 +294,7 @@ const CONTENT = {
       Everyone we spoke to had a version of it. A grandmother who gathered, a field that used to be a masseira, a beach that used to be full of carts.`,
       pt: `A tradição ainda está próxima daqui. Na Apúlia o sargaço era recolhido pelos sargaceiros e pelas sargaceiras, seco na areia durante três dias e levado para os campos de masseira como fertilizante. Por decisão régia não pagava imposto. Hoje segue sobretudo para a farmácia, a cosmética e a alimentação.
 
-      Todas as pessoas com quem falámos tinham uma versão disto. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.`,
+      Todas as pessoas com quem falámos tinham uma versão diferente desta história. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.`,
     },
     full: {
       en: `The tradition is still close here. In Apúlia the sargaço was gathered by the sargaceiros and the sargaceiras, dried on the sand for three days, and carried onto the masseira fields as fertiliser. By royal decision it carried no tax. Today it goes mostly to pharmacy, cosmetics and food.
@@ -302,7 +302,7 @@ const CONTENT = {
       Everyone we spoke to had a version of it. A grandmother who gathered, a field that used to be a masseira, a beach that used to be full of carts.`,
       pt: `A tradição ainda está próxima daqui. Na Apúlia o sargaço era recolhido pelos sargaceiros e pelas sargaceiras, seco na areia durante três dias e levado para os campos de masseira como fertilizante. Por decisão régia não pagava imposto. Hoje segue sobretudo para a farmácia, a cosmética e a alimentação.
 
-      Todas as pessoas com quem falámos tinham uma versão disto. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.`,
+      Todas as pessoas com quem falámos tinham uma versão diferente desta história. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.`,
     },
     sources: [
       {
@@ -325,11 +325,11 @@ const CONTENT = {
       Their work runs across environmental education, nature based sports and projects, from biodiversity and citizen science to coastal conservation. We have been working out of their space, and much of what we gleaned came through them.
 
       An interview and more of this story are coming soon.`,
-      pt: `A Rio Neiva é a associação que nos acolhe em Esposende. Foi fundada a 17 de novembro de 1989, tem sede em Antas e trabalha pela defesa do ambiente e pela conservação do vale do rio Neiva.
+      pt: `Rio Neiva é a associação que nos acolhe em Esposende. Foi fundada a 17 de novembro de 1989, tem sede em Antas e trabalha pela defesa do ambiente e pela conservação do vale do rio Neiva.
 
-      O seu trabalho passa pela educação ambiental, pelos desportos de natureza e por projetos, da biodiversidade e da ciência cidadã à conservação costeira. Temos trabalhado a partir do seu espaço, e muito do que recolhemos chegou através deles.
+      O seu trabalho passa pela educação ambiental, pelos desportos de natureza e por projetos, de biodiversidade, da ciência cidadã à conservação costeira. A equipa de She Tells, Sea Shells tem trabalhado a partir da sua sede, e muito do que temos vindo a recolher chegou-nos através deles.
 
-      Uma entrevista e mais desta história chegam em breve.`,
+      Uma entrevista e mais sobre história chegará em breve.`,
     },
     full: {
       en: `Rio Neiva is the association hosting us in Esposende. It was founded on 17 November 1989, is based in Antas, and works for the defence of the environment and the conservation of the Neiva river valley.
@@ -337,11 +337,11 @@ const CONTENT = {
       Their work runs across environmental education, nature based sports and projects, from biodiversity and citizen science to coastal conservation. We have been working out of their space, and much of what we gleaned came through them.
 
       An interview and more of this story are coming soon.`,
-      pt: `A Rio Neiva é a associação que nos acolhe em Esposende. Foi fundada a 17 de novembro de 1989, tem sede em Antas e trabalha pela defesa do ambiente e pela conservação do vale do rio Neiva.
+      pt: `Rio Neiva é a associação que nos acolhe em Esposende. Foi fundada a 17 de novembro de 1989, tem sede em Antas e trabalha pela defesa do ambiente e pela conservação do vale do rio Neiva.
 
-      O seu trabalho passa pela educação ambiental, pelos desportos de natureza e por projetos, da biodiversidade e da ciência cidadã à conservação costeira. Temos trabalhado a partir do seu espaço, e muito do que recolhemos chegou através deles.
+      O seu trabalho passa pela educação ambiental, pelos desportos de natureza e por projetos, de biodiversidade, da ciência cidadã à conservação costeira. A equipa de She Tells, Sea Shells tem trabalhado a partir da sua sede, e muito do que temos vindo a recolher chegou-nos através deles.
 
-      Uma entrevista e mais desta história chegam em breve.`,
+      Uma entrevista e mais sobre história chegará em breve.`,
     },
     sources: [
       {
@@ -366,9 +366,9 @@ const CONTENT = {
       en: `The water flows through the river into the ocean.... with so many sounds and colours...
       It whispers in the summer and it sings and roars in the winter
       It incorporates the fragrances and smells of everything and everybody that goes by....`,
-      pt: `A água corre pelo rio até ao oceano.... com tantos sons e tantas cores...
-      Sussurra no verão e canta e ruge no inverno
-      Incorpora as fragrâncias e os cheiros de tudo e de todos os que passam....`,
+      pt: `A água corre pelo rio até ao oceano... com tantos sons e tantas cores..
+      Sussurra no verão, canta e ruge no inverno
+      Incorpora as fragrâncias e os cheiros de tudo e de todos os que passam...`,
     },
     img: 'living-archive-images/local/gleaned-note.jpg',
     caption: { en: `Written at a workshop`, pt: `Escrito numa oficina` },
@@ -386,7 +386,7 @@ const CONTENT = {
       People drew white foamy plains and hard rock, dunes and a group of friends, an ear and a list, collect tinny, sand, record the wind. Somebody wrote an equation instead.`,
       pt: `Nas oficinas de lançamento no Museu do Sargaço distribuímos postais. O oceano recolhe histórias há mais tempo do que nós. Desenha aqui a tua memória de água.
 
-      As pessoas desenharam planícies de espuma branca e rocha dura, dunas e um grupo de amigas, uma orelha e uma lista, apanhar latas, areia, gravar o vento. Alguém escreveu antes uma equação.`,
+      As pessoas desenharam planícies de espuma branca, rocha dura, dunas, um grupo de amigas, uma orelha e uma lista, apanhar latas, areia, gravar o vento. Alguém escreveu uma equação.`,
     },
     img: 'living-archive-images/local/postcards.jpg',
     caption: { en: `Postcards at the Sargassum Museum`, pt: `Postais no Museu do Sargaço` },
@@ -447,7 +447,7 @@ const CONTENT = {
 
       É uma lampreia, e move-se entre o rio e o oceano. Nasce em água doce, desce como larva, cresce no mar e volta a subir o rio para desovar e morrer. Faz isto há mais tempo do que existem peixes com maxilares.
 
-      Aqui também é jantar. A lampreia é uma época e uma iguaria no norte, esperada todos os anos.`,
+      Aqui também é jantar. A lampreia é de época e uma iguaria no norte de Portugal, esperada todos os anos.`,
     },
     img: 'living-archive-images/local/lamprey.jpg',
     caption: { en: `At the lamprey tanks`, pt: `Nos tanques das lampreias` },
@@ -504,7 +504,7 @@ const CONTENT = {
 
       São especulativos e são concretos. Todos partem de algo que encontrámos em Esposende: uma concha que não conseguimos achar, uma floresta de algas sob água mais quente, uma duna a aguentar-se sob o lixo, o oxigénio que as algas produzem.
 
-      Esta é a linha de produtos especulativos. Podem ouvi-la, e por vezes ouvir os anúncios, na nossa transmissão eterna.`,
+      Esta é a linha de produtos especulativos. Podem ouvi-la, e ouvir os seus anúncios, na nossa transmissão eterna.`,
     },
     // The five radio spots for the product line. Same recordings the card game
     // dials when you tap the phone on a card front. There is one take each, in
@@ -598,7 +598,7 @@ const CONTENT = {
         title: { en: `Shell Cream`, pt: `Shell Cream` },
         text: {
           en: `As the ocean takes up more carbon it slowly turns more acidic. That is bad news for every animal that builds a shell: the more acidic the water, the harder it is to make one. Shell Cream is sold as skincare for exactly that. Outlast the acid era.`,
-          pt: `À medida que o oceano absorve mais carbono, vai ficando mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O Shell Cream é vendido como cosmética para isso mesmo. Sobrevive à era ácida.`,
+          pt: `À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O Shell Cream é vendido como cosmética para isso mesmo. Sobrevive à era ácida.`,
         },
         sources: [
           {
@@ -651,7 +651,7 @@ const CONTENT = {
 title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         text: {
           en: `Dunes hold the coast together, standing between the sea and the land, and they carry everything we leave on them. Plastic left on the sand breaks down into microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.`,
-          pt: `As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. O plástico deixado na areia desfaz-se em microplástico na água. O Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de receber lixo.`,
+          pt: `As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. O plástico deixado na areia desfaz-se em microplástico na água. O Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.`,
         },
         sources: [
           {
@@ -674,7 +674,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         title: { en: `Deluxe O2`, pt: `Deluxe O2` },
         text: {
           en: `The seaweeds off this coast, kelp among them, make oxygen as they grow, and draw down carbon as they do. The sea is warming, and warm water holds less oxygen, the way a drink left in the sun goes flat. Deluxe O2 bottles that oxygen and sells it back. Blue oxygen, our own term, next to the blue carbon everyone already trades in.`,
-          pt: `As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás. O Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.`,
+          pt: `As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás. O Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.`,
         },
         sources: [
           {
@@ -733,7 +733,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       We are speculating on the issues that reach them first.`,
       pt: `Os anúncios não são dirigidos a nós. São para corpos de água e espécies não humanas, os que já vivem com aquilo que os produtos fingem resolver.
 
-      Estamos a especular sobre as questões que chegam primeiro a eles.`,
+      Estamos a especular sobre os problemas que podem influenciar estas criaturas em primeiro lugar.`,
     },
     full: {
       en: `The ads are not addressed to us. They are for non human water bodies and species, the ones already living with what the products pretend to solve.
@@ -741,7 +741,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       We are speculating on the issues that reach them first.`,
       pt: `Os anúncios não são dirigidos a nós. São para corpos de água e espécies não humanas, os que já vivem com aquilo que os produtos fingem resolver.
 
-      Estamos a especular sobre as questões que chegam primeiro a eles.`,
+      Estamos a especular sobre os problemas que podem influenciar estas criaturas em primeiro lugar.`,
     },
   },
 
@@ -751,7 +751,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       en: `Our research included work on the future of sargassum: in what ways could it be utilised? We looked at at-home recipes for creating bioplastics with sargassum.
 
       We imagine that bioplastic could be used to create shells where there may be none left. As part of our toolkit, we share some prints for creating moulds into which one can pour the bioplastic sargassum to create a shell shape for their DIY shellphone.`,
-      pt: `A nossa investigação incluiu trabalho sobre o futuro do sargaço: de que formas poderia ser utilizado? Procurámos receitas caseiras para criar bioplásticos com sargaço.
+      pt: `A nossa investigação incluiu trabalhar sobre o futuro do sargaço: de que formas poderia ser utilizado? Procurámos receitas caseiras para criar bioplásticos com sargaço.
 
       Imaginamos que o bioplástico possa servir para criar conchas onde talvez já não haja nenhuma. Como parte do nosso kit de ferramentas, partilhamos alguns moldes para imprimir, nos quais se pode verter o bioplástico de sargaço para dar a forma de concha ao seu shellphone caseiro.`,
     },
@@ -776,7 +776,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
           50 g starch
           60 ml vinegar
           15 g salt`,
-          pt: `Misturar os ingredientes e juntar o sargaço: inteiro, cortado em pedaços pequenos, ou seco e moído em pó. Pequenos pedaços da planta suspensos no material são o que fica melhor. Pode juntar-se cor. Verter num molde, contando com o encolhimento durante a secagem.
+          pt: `Misturar os ingredientes e depois juntar o sargaço: inteiro, cortado em pedaços pequenos, ou seco e moído em pó. Pequenos pedaços da planta suspensos no material são o que fica melhor. Pode juntar-se cor. Verter num molde, contando com o encolhimento durante a secagem.
 
           50 g de glicerina
           400 ml de água
@@ -823,9 +823,9 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       en: `A series of workshops we have held as part of community engagement, aiming to create impact with DIY technologies, creating and giving agency on tech for listening to local water stories and speculative futures
 
       The aim is to remember being part of an ecology, to imagine futures and pasts together, and to understand and critically engage with how tech plays a part in these ecosystems by learning DIY tools and shelphone`,
-      pt: `Uma série de oficinas que realizámos como parte do trabalho com a comunidade, procurando criar impacto com tecnologias DIY, criando e dando autonomia sobre a tecnologia para escutar histórias de água locais e futuros especulativos
+      pt: `Uma série de oficinas que realizámos como parte do trabalho que fizemos com a comunidade, com intenção de criar impacto com tecnologias DIY, dando autonomia tecnológica à população para a usar para escutar histórias locais sobre a água e criarem futuros especulativos.
 
-      O objetivo é recordar que fazemos parte de uma ecologia, imaginar futuros e passados em conjunto, e compreender e questionar criticamente o papel que a tecnologia tem nestes ecossistemas, aprendendo ferramentas DIY e o shelphone`,
+      O objetivo é recordar que fazemos parte de uma ecologia, imaginar futuros e passados em conjunto, e compreender e questionar criticamente o papel que a tecnologia tem nestes ecossistemas, aprendendo ferramentas DIY e a usar o shelphone.`,
     },
   },
 
@@ -1049,15 +1049,15 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
       Os alunos seguiram as propostas do Hypersea, que usámos como método para fazer os desenhos. Cada um desenhou uma memória de água que carrega, pensada a partir da ideia do Hypersea.
 
-      Depois os desenhos ganharam vida através de um protótipo caseiro do shellphone. Quando se segurava uma concha, o desenho a que pertencia emergia. Alguns podem ser ouvidos na transmissão eterna.
+      Depois os desenhos ganharam vida através de um protótipo caseiro do shellphone. Quando se segurava uma concha, o desenho a que pertencia emergia. Alguns destes exemplos podem ser ouvidos na nossa transmissão eterna.
 
-      Tal como o sargaço era outrora recolhido nesta costa, recolhemos memórias em conjunto, para recordar a nossa ligação ao ecossistema de que fazemos parte.
+      Tal como o sargaço era outrora recolhido nesta costa, recolhemos memórias em conjunto, para recordar a nossa ligação ao ecossistema do qual fazemos parte.
 
-      Estas oficinas são também uma forma de construir um método: trabalhar com crianças sobre tecnologia que podem abrir, ligar e alterar, para que o futuro se leia como algo que fazem e não como algo que chega. A ansiedade climática é fácil de entregar a uma criança e difícil de retomar. O objetivo é transformá-la em agência, dando-lhes ferramentas que possam segurar e futuros que lhes cabe escrever.
+      Estas oficinas são também uma forma de construir um método: trabalhar com crianças sobre um tipo de tecnologia que podem abrir, ligar e alterar, para que o futuro se leia como algo que fazem e não como algo que chega. A ansiedade climática é fácil introduzir numa criança e difícil de retirar. O objetivo é transformá-la em agência, dando-lhes ferramentas que possam utilizar e futuros que lhes cabe escrever.
 
-      Com este trabalho, queremos recordar a nossa ligação ao oceano e fomentar a consciência e o pertencimento cultural dentro dos ecossistemas de que fazemos parte.
+      Com este trabalho, queremos recordar a nossa ligação ao oceano e fomentar a consciência e o pertencimento cultural dentro dos ecossistemas dos quais fazemos parte.
 
-      O ritual é simples. Desenhar, gravar, carregar. São os mesmos gestos que uma plataforma usa para extrair de nós, e aqui são virados do avesso e postos ao serviço do cuidado ecológico, da história especulativa e da esperança.`,
+      O ritual é simples. Desenhar, gravar e carregar. São os mesmos gestos que uma plataforma usa para extrair de nós, e aqui são virados ao contrário e postos ao serviço do cuidado ecológico, da história especulativa e da esperança.`,
     },
     note: {
       en: `Written from the group's notes and edited with ML.`,
@@ -1118,7 +1118,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       en: `Four of the drawings were read as beginnings. Each one names something that is already happening off this coast, and each was written on into a future where it turns out well. They are speculative, and they are hopeful on purpose.
 
       We will return for the final workshops and speculate these futures together with the children. What they make will go into this living archive, and into the eternal stream, where anyone can listen through a DIY shellphone.`,
-      pt: `Quatro dos desenhos foram lidos como princípios. Cada um nomeia algo que já está a acontecer ao largo desta costa, e cada um foi continuado até um futuro onde as coisas correm bem. São especulativos, e são esperançosos de propósito.
+      pt: `Quatro dos desenhos foram lidos como princípios. Cada um nomeia algo que já está a acontecer ao longo desta costa, e cada um foi continuado até um futuro onde as coisas correm bem. São especulativos, e são esperançosos de propósito.
 
       Vamos regressar para as oficinas finais e especular estes futuros em conjunto com as crianças. O que fizerem entrará neste arquivo vivo e na transmissão eterna, onde qualquer pessoa poderá escutar através de um shellphone caseiro.`,
     },
@@ -1151,9 +1151,9 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
           en: `In this future the jellyfish are the lamps of the bay. When the water warms they arrive in their thousands, and instead of closing the beach, Esposende goes down to watch them.
 
           Children learn to read them. How many, how deep, how early they came. The jellyfish become the first thing the town asks when it wants to know how the sea is doing, and the answer is always given in light.`,
-          pt: `Neste futuro as alforrecas são as lanternas da baía. Quando a água aquece chegam aos milhares e, em vez de fecharem a praia, Esposende desce para as ver.
+          pt: `Neste futuro as alforrecas são as lanternas da baía. Quando a água aquece chegam aos milhares e, em vez de fecharem a praia, as pessoas de Esposende descem para as ver.
 
-          As crianças aprendem a lê-las. Quantas, a que profundidade, quão cedo chegaram. As alforrecas passam a ser a primeira coisa que a vila pergunta quando quer saber como está o mar, e a resposta vem sempre em luz.`,
+          As crianças aprendem a lê-las. Quantas, a que profundidade, quão cedo chegaram. As alforrecas passam a ser a primeira coisa que a vila pergunta quando quer saber como está o mar, e a resposta é sempre dada em luz.`,
         },
         sources: [
           {
@@ -1168,7 +1168,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
           en: `In this future the fish come back. Not all at once and not everywhere, but enough that a child can stand on the sand with a line and wait, and something silver arrives.
 
           The grown ups say it happened because people stopped taking everything. The children say it happened because somebody finally remembered to ask the fish to return. Both are written down, and nobody has decided which one is the real reason.`,
-          pt: `Neste futuro os peixes voltam. Não todos de uma vez nem em todo o lado, mas o suficiente para uma criança poder ficar na areia com uma linha e esperar, e chegar alguma coisa prateada.
+          pt: `Neste futuro os peixes voltam. Não todos de uma vez nem em todo o lado, mas o suficiente para uma criança poder ficar na areia com uma linha e esperar que cheguealguma coisa prateada.
 
           Os adultos dizem que aconteceu porque as pessoas deixaram de levar tudo. As crianças dizem que aconteceu porque alguém finalmente se lembrou de pedir aos peixes que voltassem. As duas versões ficam escritas, e ninguém decidiu qual é a verdadeira.`,
         },
@@ -1204,7 +1204,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
           When it arrives, the others are already there, resting in the shade of a tree that was not there before. Nobody is in a hurry. They have all afternoon, and the water is exactly the right temperature.`,
           pt: `Neste futuro o caracol ganha pernas, porque a água fresca foi para norte e o caracol quis segui-la. A casa inteira vai com ele, espiral e tudo.
 
-          Quando chega, os outros já lá estão, a descansar à sombra de uma árvore que antes não existia. Ninguém tem pressa. Têm a tarde toda, e a água está exatamente à temperatura certa.`,
+          Quando chega, os outros já lá estão, a descansar à sombra de uma árvore que antes não existia. Ninguém tem pressa. Têm a tarde toda, e a água está exatamente na temperatura certa.`,
         },
         sources: [
           {
@@ -1234,7 +1234,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       Sargaço was gleaned on this coast in season, by hand, according to what the water gave that day. The stream gathers the same way. It takes what the day gives and works with that, which makes it a ritual as much as an algorithm.`,
       pt: `A transmissão eterna é a parte do trabalho que não para. Toca as gravações de campo, as vozes das performers, os anúncios e as histórias, e decide o que tocar escutando Esposende.
 
-      Um sistema pequeno lê o tempo e a água da própria vila. O vento a dez metros, a ondulação, a maré, a pressão a descer antes de uma tempestade. Nada disto é um modelo geral do mar. Os números são os números de Esposende, recolhidos na sua própria costa, e são eles que escolhem que voz surge a seguir.
+      Um pequeno sistema faz a leitura do clima e da água da própria vila. O vento a dez metros, a ondulação, a maré, a pressão que desce antes de uma tempestade. Nada disto é um modelo geral do mar. Os números são os números de Esposende, recolhidos na sua própria costa, e são esses dados que escolhem que voz é que surge a seguir.
 
       Esta escolha é deliberada. A transmissão funciona com um punhado de leituras locais e não com uma grande plataforma, para se manter pequena o suficiente para ser explicada, barata o suficiente para continuar a correr, e honesta sobre a proveniência do seu material.
 
@@ -1274,9 +1274,9 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       The stream's selection is based on the weather conditions, which are tagged with categories like sunny, cloudy, stormy, or normy. Live weather readings from Esposende determine which tags are accurate at any moment, and the stream plays clips that match these conditions.
 
       When you upload your stories and include your voice recording reflecting its content, the eternal stream will choose which clip to play based on Esposende's current weather data.`,
-      pt: `Como carregas as tuas histórias, e como é que a transmissão eterna escolhe o excerto certo?
+      pt: `Como carregas as tuas histórias, e como é que a transmissão eterna escolhe o excerto certo a reproduzir?
 
-      A seleção da transmissão baseia-se nas condições meteorológicas, que estão etiquetadas com categorias como ensolarado, nublado, tempestuoso ou normy. As leituras meteorológicas ao vivo de Esposende determinam que etiquetas são verdadeiras a cada momento, e a transmissão toca os excertos que correspondem a essas condições.
+      A seleção da transmissão baseia-se nas condições meteorológicas, que estão etiquetadas com categorias como ensolarado, nublado, tempestuoso ou normy. As leituras meteorológicas ao vivo de Esposende determinam que etiquetas são verdadeiras a cada momento, e a transmissão toca os excertos que correspondem a essas condições climatéricas.
 
       Quando carregas as tuas histórias e incluis a tua gravação de voz a refletir o seu conteúdo, a transmissão eterna escolherá que excerto tocar com base nos dados meteorológicos atuais de Esposende.`,
     },
@@ -1320,7 +1320,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
       Podes arranjar a tua própria concha. Se não encontrares nenhuma, vê a nossa receita de bioplástico e constrói uma concha tu mesma!
 
-      Aprende sobre as tecnologias caseiras, como aceder a uma transmissão online, e sobre as histórias locais e os pertences ecológicos de Esposende. Os ficheiros de impressão 3D da concha serão publicados com o kit.
+      Aprende sobre tecnologias caseiras, como aceder a uma transmissão online, e sobre as histórias locais e os pertences ecológicos de Esposende. Os ficheiros de impressão 3D da concha serão publicados com o kit.
 
       Joga um jogo, grava a tua voz, junta-te à transmissão eterna, escuta em qualquer lugar, e faz parte de uma comunidade que escuta quando a NATUREZA CHAMA.
 
@@ -1380,7 +1380,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       en: `The DIY Shellphone toolkit offers a custom PCB board and do-it-yourself technology.
 
       Here are some sketches of our boards, and you can find all the instructions on how to build one yourself on the GitHub page, all open-sourced!`,
-      pt: `O kit do DIY Shellphone traz uma placa PCB feita à medida e tecnologia para fazeres tu mesmo.
+      pt: `O kit do DIY Shellphone traz uma placa PCB feita à medida e material para fazeres tu mesmo.
 
       Aqui ficam alguns esboços das nossas placas, e podes encontrar todas as instruções para construíres a tua na página do GitHub, tudo em código aberto!`,
     },
@@ -1463,7 +1463,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
   'exhibition-wall-text': {
     txt: {
-      en: `she tells,sea shells
+      en: `she tells, sea shells
       Mixed media installation
       Glass, organic material, multi-channel audio, video
 
@@ -1477,17 +1477,17 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
       Take one of the flyers or postcards, upload and share your memories of water; we don't want to be the only ones talking, honey!
       – Stay salty.`,
-      pt: `she tells,sea shells
+      pt: `she tells, sea shells
       Instalação de técnica mista
       Vidro, matéria orgânica, áudio multicanal, vídeo
 
-      A instalação nasce do gesto familiar de encostar uma concha ao ouvido, à escuta do oceano, um gesto que se torna um portal para o hypersea, uma ecologia especulativa que se estende para lá do próprio oceano. Quem visita é convidado a reconsiderar a sua relação com a água, a recordar a liquidez parcial do seu próprio corpo e a sentir o tecido conjuntivo que a água forma entre os ecossistemas. A obra interroga as formas como a natureza é mediada, observada e, por fim, transformada em mercadoria através de aparelhos tecnológicos e de estruturas do capitalismo tardio, traduzindo o orgânico em objetos de aquisição. Dentro desta ficção especulativa, a entidade «she tells - sea shells» funciona ao mesmo tempo como organização e como arquivo, uma estrutura com as suas próprias lógicas de revelação e de segredo.
+      A instalação nasce do gesto familiar de encostar uma concha ao ouvido, à escuta do oceano, um gesto que se torna um portal para o hypersea, uma ecologia especulativa que se estende para lá do próprio oceano. Convidamos quem a visita a reconsiderar a sua relação com a água, a recordar a liquidez parcial do seu próprio corpo e a sentir o tecido conjuntivo que a água forma entre os ecossistemas. A obra interroga as formas como a natureza é mediada, observada e, por fim, transformada em mercadoria através de aparelhos tecnológicos e de estruturas do capitalismo tardio, traduzindo o orgânico em objetos de aquisição. Dentro desta ficção especulativa, a entidade she tells - sea shells funciona ao mesmo tempo como organização e como arquivo, uma estrutura com as suas próprias lógicas de revelação e de segredo.
 
       A instalação acolhe quem visita dentro de um showroom construído, um espaço de limiar para o lançamento especulativo dos artefactos da she tells. No seu centro, Mother Memory Atmosphere 01, uma escultura de vidro soprado, está configurada para escutar e absorver; transmite sons ambientes e miméticos. Com gravações de campo e imitação humana entrelaçadas, produz uma paisagem sonora que oscila entre o natural e o representado. Uma componente de vídeo acompanha o som ambiente e funciona como marcador visual, amplificando os gestos de imitação. Memory Atmosphere 1.5, uma escultura companheira, está ligada ao sistema de áudio de dois canais: um canal encena a linha de apoio da She Tells, uma fila de espera recursiva que aponta para a ligação mas se resolve em ausência; o outro transmite narrativas, vindas das relações de Esposende com o sargaço e com o hypersea especulativo.
 
-      Uma linha de produtos imaginários articula-se dentro da instalação: shell cream, acid tabs, sexy dunes, deluxe o₂, cada um pensado para destinatários não humanos e outros corpos de água. Estes artefactos funcionam como gestos satíricos e como intervenções, trazendo à superfície os paradoxos e as urgências das crises ambientais contemporâneas, seguidas através do sargaço e da região de Esposende, o aumento das temperaturas, a multiplicação dos resíduos e a acidificação dos oceanos.
+      Uma linha de produtos imaginários articula-se dentro da instalação: shell cream, acid tabs, sexy dunes, deluxe o₂, cada um pensado para destinatários não humanos e para outros corpos de água. Estes artefactos funcionam como gestos satíricos e como intervenções, trazendo à superfície os paradoxos e as urgências das crises ambientais contemporâneas, seguidas através do sargaço e da região de Esposende, o aumento das temperaturas, a multiplicação dos resíduos e a acidificação dos oceanos.
 
-      Quem participa é convidado a carregar as suas próprias memórias de água na «transmissão eterna» distribuída, um arquivo digital que faz circular estes fragmentos. Nas próximas fases do trabalho, estas memórias poderão ser ouvidas através de shell phones caseiros de código aberto e de uma transmissão de áudio online, estendendo a infraestrutura da obra para lá da instalação, até às redes distribuídas de quem contribui.
+      Quem participa é convidado a colocar as suas próprias memórias de água na transmissão eterna distribuída, um arquivo digital que faz circular estes fragmentos. Nas próximas fases do trabalho, estas memórias poderão ser ouvidas através de shell phones caseiros de código aberto e de uma transmissão de áudio online, estendendo a infraestrutura da obra para lá da instalação, até às redes distribuídas de quem contribui.
 
       Pega num dos folhetos ou postais, carrega e partilha as tuas memórias de água; não queremos ser as únicas a falar, querida!
       – Stay salty.`,
@@ -1528,9 +1528,9 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
       Incluímos as condições meteorológicas na gravação, que usamos também na versão ao vivo, como as marés, o vento e outros dados ecológicos que estamos a recolher em Esposende.
 
-      A peça final incluirá a eletrónica para que a concha possa ser levada ao ouvido, com a escultura de vidro como suporte, a guardar o oceano lá dentro, o Hypersea. Já temos uma concha impressa em 3D para juntar a ela.
+      A peça final incluirá a eletrónica para que a concha possa ser levada ao ouvido, para a qual já temos uma impressão em 3D, com a escultura de vidro como suporte, a guardar o oceano lá dentro, o Hypersea.
 
-      A transmissão leva anúncios divertidos baseados na situação ecológica de Esposende para corpos de água não humanos e os seus futuros, histórias de água de Esposende, reflexões e especulações científicas sobre o futuro, as histórias das crianças e especulações para o futuro de Esposende, a par dos sentimentos da água, das marés, dos ventos, do tempo e de outros dados ecológicos que estamos a recolher em Esposende.`,
+      A transmissão carrega anúncios divertidos baseados na atual situação ecológica de Esposende e dos seus corpos não humanos e os seus futuros, nas histórias locais sobre a água, em reflexões e especulações científicas sobre o futuro, nas histórias das crianças e nas especulações sobre o futuro da cidade, ao lado dos sentimentos da água, das marés, dos ventos, do clima e de outros dados ecológicos que estamos a recolher de Esposende.`,
     },
   },
 
