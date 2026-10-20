@@ -52,7 +52,18 @@
     .panel { margin: auto; width: min(1200px, 100%); height: min(760px, 100%); display: grid;
              grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 2rem; padding: 3.2rem 2rem 2rem; position: relative; }
     .panel .art { display: flex; align-items: center; justify-content: center; min-height: 0; }
-    .panel .art img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 6px 30px rgba(17,17,17,0.12); background: var(--white); }
+    .panel .art { position: relative; padding-bottom: 3.4rem; }
+    .panel .art img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 6px 30px rgba(17,17,17,0.12);
+                      background: var(--white); transition: transform 0.25s ease; }
+    .art-tools { position: absolute; left: 50%; bottom: 0.4rem; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 2; }
+    .art-tools .pill { background: var(--white); white-space: nowrap; }
+    .art-tools .pill:hover { background: var(--black); color: var(--white); }
+    /* Full screen: the drawing alone, on white */
+    .art:fullscreen, .art.zoom { background: var(--white); padding: 2rem 2rem 5rem; }
+    .art:fullscreen img, .art.zoom img { box-shadow: none; }
+    .art:fullscreen .art-tools, .art.zoom .art-tools { bottom: 1.5rem; }
+    /* When the browser refuses real full screen (iPad, iPhone), fill the window instead */
+    .art.zoom { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; }
     .cue { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; }
     .cue .label { font-family: 'Celescript', cursive; text-transform: uppercase; letter-spacing: 0.12em; font-size: 15px; color: var(--brown); }
     .cue .prompt { font-weight: 200; font-size: clamp(30px, 3.6vw, 52px); line-height: 1.08; margin: 0.6rem 0 1.4rem; }
@@ -105,7 +116,13 @@
   <div class="panel">
     <span class="num-big" id="numBig"></span>
     <button class="c-btn c-btn-circle close" id="close" aria-label="Close">✕</button>
-    <div class="art"><img id="big" alt="" /></div>
+    <div class="art" id="art">
+      <img id="big" alt="" />
+      <div class="art-tools">
+        <button class="pill" id="rotate"></button>
+        <button class="pill" id="full"></button>
+      </div>
+    </div>
     <div class="cue">
       <span class="label" id="cueLabel"></span>
       <p class="prompt" id="prompt"></p>
@@ -135,6 +152,9 @@
     storyLabel: { en: 'This drawing already became a story', pt: 'Este desenho já se tornou uma história' },
     hasStory:   { en: 'story', pt: 'história' },
     number:     { en: 'drawing', pt: 'desenho' },
+    rotate:     { en: '↻ rotate', pt: '↻ rodar' },
+    full:       { en: '⛶ full screen', pt: '⛶ ecrã inteiro' },
+    exitFull:   { en: '✕ exit full screen', pt: '✕ sair do ecrã inteiro' },
   };
   const CUES = [
     { en: 'Who lives in this drawing? Give them a name.', pt: 'Quem vive neste desenho? Deem-lhe um nome.' },
@@ -170,6 +190,7 @@
   const $ = id => document.getElementById(id);
 
   let cur = null, shift = 0;
+  const turns = {};   // quarter turns per drawing, kept while the page is open
 
   function buildGrid() {
     const grid = $('grid'); grid.innerHTML = '';
@@ -203,22 +224,59 @@
     $('prompt').textContent = L(TXT.prompt);
     $('questions').innerHTML = cuesFor(cur).map(c => `<li>${L(c)}</li>`).join('');
     $('another').textContent = L(TXT.another);
+    $('rotate').textContent = L(TXT.rotate);
+    $('full').textContent = L(isFull() ? TXT.exitFull : TXT.full);
+    fitRotation();
     const st = STORIES[cur];
     $('story').hidden = !st;
     if (st) { $('storyLabel').textContent = L(TXT.storyLabel); $('storyTitle').textContent = L(st.t); $('storyText').textContent = L(st.s); }
   }
 
   function open(n) { cur = n; shift = 0; render(); $('overlay').classList.add('open'); $('close').focus(); }
-  function close() { $('overlay').classList.remove('open'); cur = null; }
+  function close() { wantFull = false; if (document.fullscreenElement) document.exitFullscreen(); $('art').classList.remove('zoom'); $('overlay').classList.remove('open'); cur = null; }
   function step(d) { cur = ((cur - 1 + d + COUNT) % COUNT) + 1; shift = 0; render(); }
 
+  // A quarter-turned image swaps its width and height, so its limits swap too
+  function fitRotation() {
+    if (cur == null) return;
+    const q = ((turns[cur] || 0) % 4 + 4) % 4, img = $('big'), box = $('art');
+    img.style.transform = 'rotate(' + q * 90 + 'deg)';
+    const cs = getComputedStyle(box);   // the room inside the box, without the space kept for the buttons
+    const h = box.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    const w = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    if (q % 2) { img.style.maxWidth = h + 'px'; img.style.maxHeight = w + 'px'; }
+    else { img.style.maxWidth = ''; img.style.maxHeight = ''; }
+  }
+  function rotate() { turns[cur] = (turns[cur] || 0) + 1; fitRotation(); }
+  const isFull = () => !!document.fullscreenElement || $('art').classList.contains('zoom');
+  let wantFull = false;   // a late refusal must not reopen full screen after it was closed
+  function zoom(on) { $('art').classList.toggle('zoom', on); setTimeout(render, 50); }
+  const fallback = () => { if (wantFull && !document.fullscreenElement) zoom(true); };
+  function toggleFull() {
+    const art = $('art');
+    if (isFull()) { wantFull = false; if (document.fullscreenElement) document.exitFullscreen(); return zoom(false); }
+    wantFull = true;
+    const req = art.requestFullscreen || art.webkitRequestFullscreen;
+    if (!req) return zoom(true);
+    try { const p = req.call(art); if (p && p.catch) p.catch(fallback); }
+    catch (e) { return zoom(true); }
+    // Some embedded browsers neither enter full screen nor refuse; fill the window then
+    setTimeout(fallback, 500);
+  }
+  $('rotate').addEventListener('click', rotate);
+  $('full').addEventListener('click', toggleFull);
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && !$('art').classList.contains('zoom')) wantFull = false; setTimeout(render, 50); });
+  window.addEventListener('resize', fitRotation);
   $('close').addEventListener('click', close);
   $('another').addEventListener('click', () => { shift++; render(); });
   $('prev').addEventListener('click', () => step(-1));
   $('next').addEventListener('click', () => step(1));
   document.addEventListener('keydown', e => {
     if (cur == null) return;
-    if (e.key === 'Escape') close();
+    if (e.key === 'Escape' && $('art').classList.contains('zoom')) { wantFull = false; zoom(false); return; }
+    if (e.key === 'Escape' && !document.fullscreenElement) close();
+    if (e.key === 'r' || e.key === 'R') rotate();
+    if (e.key === 'f' || e.key === 'F') toggleFull();
     if (e.key === 'ArrowLeft') step(-1);
     if (e.key === 'ArrowRight') step(1);
   });
