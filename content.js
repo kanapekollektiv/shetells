@@ -222,7 +222,7 @@ const CONTENT = {
 
       A apanha foi diminuindo à medida que chegou o adubo químico e os campos de masseira foram cedendo. O que restou deslocou-se em vez de desaparecer: hoje o sargaço é recolhido sobretudo para as indústrias farmacêutica, cosmética e alimentar, e o Museu do Sargaço, na Apúlia, guarda as alfaias, os barcos e o vestuário dessa economia mais antiga.
 
-      Ao largo, a mesma costa guarda algo para que as sargaceiras e os sargaceiros não sabiam. As florestas de algas do norte de Portugal, sobretudo Laminaria hyperborea e Saccorhiza polyschides, armazenam cerca de 16,5 gigagramas de carbono em aproximadamente 5100 hectares e exportam perto de um terço do carbono captado anualmente por todos os habitats de plantas marinhas do país. Investigadores do CIIMAR e do MARE registaram também uma tropicalização das águas portuguesas que coloca em risco essas florestas e tudo o que nelas vive.
+      Ao largo, a mesma costa guarda algo que as sargaceiras e os sargaceiros não tinham forma de medir, nem palavras para nomear. As florestas de algas do norte de Portugal, sobretudo Laminaria hyperborea e Saccorhiza polyschides, armazenam cerca de 16,5 gigagramas de carbono em aproximadamente 5100 hectares e exportam perto de um terço do carbono captado anualmente por todos os habitats de plantas marinhas do país. Investigadores do CIIMAR e do MARE registaram também uma tropicalização das águas portuguesas que coloca em risco essas florestas e tudo o que nelas vive.
 
       A questão que a tradição deixa em aberto não é, portanto, se o sargaço continuará a ser recolhido, mas o que passará a significar recolhê-lo.`,
     },
@@ -598,7 +598,7 @@ const CONTENT = {
         title: { en: `Shell Cream`, pt: `Shell Cream` },
         text: {
           en: `As the ocean takes up more carbon it slowly turns more acidic. That is bad news for every animal that builds a shell: the more acidic the water, the harder it is to make one. Shell Cream is sold as skincare for exactly that. Outlast the acid era.`,
-          pt: `À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O Shell Cream é vendido como cosmética para isso mesmo. Sobrevive à era ácida.`,
+          pt: `À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O Shell Cream é vendido como cosmético para isso mesmo. Sobrevive à era ácida.`,
         },
         sources: [
           {
@@ -614,7 +614,7 @@ const CONTENT = {
         title: { en: `Acid Tabs`, pt: `Acid Tabs` },
         text: {
           en: `Heat and acid come from the same carbon. The sea soaks up most of the extra heat our carbon traps, and about a quarter of the carbon itself, which turns it more acidic. Just north of here, off Galicia, records from the Iberian upwelling show the pH falling year after year, fastest near the coast. Our research shows that on this coast, acidification is more a problem still to come, and that warming is slower here too: in summer, cold deep water rises along the shore and keeps it cool, making it a refuge, for now, for seaweeds that cannot live further south. So we packaged the acid as a supplement.`,
-          pt: `O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor a mais que o nosso carbono retém, e cerca de um quarto do próprio carbono, o que o torna mais ácido. Um pouco a norte daqui, na Galiza, os registos do afloramento ibérico mostram o pH a descer ano após ano, mais depressa junto à costa. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir, e que o aquecimento também é mais lento aqui: no verão, a água fria e profunda sobe junto à costa e mantém-na fresca, fazendo dela um refúgio, por agora, para algas que não conseguem viver mais a sul. Por isso embalámos o ácido como suplemento.`,
+          pt: `O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o nosso carbono retém, e cerca de um quarto do próprio carbono, o que também o torna mais ácido. Um pouco a norte daqui, na Galiza, os registos do afloramento ibérico mostram o pH a descer ano após ano, mais depressa junto à costa. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir, e que o aquecimento também é mais lento aqui: no verão, a água fria e profunda sobe junto à costa e mantém-na fresca, fazendo dela um refúgio, por agora, para algas que não conseguem viver mais a sul. Por isso, embalámos o ácido como suplemento.`,
         },
         sources: [
           {
@@ -691,7 +691,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         title: { en: `Sargassum City`, pt: `Sargassum City` },
         text: {
           en: `Sargaço is a mix of seaweeds, kelps like Laminaria and Saccorhiza among them, pulled loose by the sea and brought ashore. Before it reached the sand, it was a forest. Off the north of Portugal, at the southern edge of where some of these kelps can live, marine forests sway in the cool water, most of all just north of here, around Viana do Castelo. They shelter, feed and cradle countless marine lives. Sargassum City offers that neighbourhood as prime real estate, though the weed was already a city, with its own residents, long before anyone thought to sell it.`,
-          pt: `O sargaço é uma mistura de algas, entre elas laminárias como a Laminaria e a Saccorhiza, que o mar arranca e traz para a costa. Antes de chegar à areia, era uma floresta. Ao largo do norte de Portugal, no limite sul onde algumas destas algas conseguem viver, as florestas marinhas ondulam na água fria, sobretudo um pouco a norte daqui, perto de Viana do Castelo. Abrigam, alimentam e embalam inúmeras vidas marinhas. A Sargassum City oferece esse bairro como localização privilegiada, mas a alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em vendê-la.`,
+          pt: `O sargaço é uma mistura de algas, entre elas laminárias como a Laminaria e a Saccorhiza, que o mar arranca e traz para a costa. Antes de chegar à areia, era uma floresta no mar. Ao largo do norte de Portugal, no limite sul onde algumas destas algas conseguem viver, as florestas marinhas ondulam na água fria, sobretudo um pouco a norte daqui, perto de Viana do Castelo. Abrigam, alimentam e embalam inúmeras vidas marinhas. A Sargassum City oferece esse bairro como localização privilegiada, mas a alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em comercializá-la.`,
         },
         sources: [
           {
