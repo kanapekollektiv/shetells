@@ -45,22 +45,22 @@ const CONTENT = {
   'hypersea-intro': {
     txt: {
       en: `We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…`,
-      pt: `Temos vindo a utilizar o conceito Hypersea, da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como ponto de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido de conectividade que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas com este tópico e o nosso percurso até Hypersea.`,
+      pt: `Temos vindo a utilizar o conceito *Hypersea*, da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como ponto de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido de conectividade que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas com este tópico e o nosso percurso até *Hypersea*.`,
     },
     full: {
       en: `We have been using the Hypersea concept by Mark A. S. McMenamin (Author), Dianna L. Schulte McMenamin as prompts to remember and reimagine. Inviting participants to reconsider their entanglement with water, to recall the partial liquidity of their own bodies, and to sense the connective tissue that water forms across ecosystems. Here you can fin some related reading and our path to the Hypersea…`,
-      pt: `Temos vindo a utilizar o conceito Hypersea, da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como ponto de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido de conectividade que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas com este tópico e o nosso percurso até Hypersea.`,
+      pt: `Temos vindo a utilizar o conceito *Hypersea*, da autoria de Mark A. S. McMenamin (autor) e Dianna L. Schulte McMenamin, como ponto de partida para recordar e reimaginar. Convidamos os participantes a reconsiderar a sua relação com a água, a recordar a liquidez parcial dos seus próprios corpos e a sentir o tecido de conectividade que a água forma entre os ecossistemas. Aqui podem encontrar algumas leituras relacionadas com este tópico e o nosso percurso até *Hypersea*.`,
     },
   },
 
   'hypersea-glass': {
     txt: {
       en: `We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum.`,
-      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto de Hypersea, um ponto de memória. A areia é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto de Hypersea: a matéria do mar muda de estado, tornando-se num recipiente capaz de conter as gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço.`,
+      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto de *Hypersea*, um ponto de memória. A areia é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto de *Hypersea*: a matéria do mar muda de estado, tornando-se num recipiente capaz de conter as gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço.`,
     },
     full: {
       en: `We created the glass sculptures working with the materiality of sand as an object of the Hypersea, a point of remembering. Sand is already sea, ground shell and rock and marine sediment gathered by the water, and in melting it into glass we make one more Hypersea gesture: sea-matter changing state, becoming a vessel that can hold field recordings from the Esposende coastline and the stories entangled with sargassum. The sculpture becomes a body of water in another form, a place where the ocean is remembered rather than extracted.`,
-      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto de Hypersea, um ponto de memória. A areia é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto de Hypersea: a matéria do mar muda de estado, tornando-se num recipiente capaz de conter as gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço. A escultura torna-se uma massa de água sob outra forma, um lugar onde o oceano é recordado em vez de extraído.`,
+      pt: `Criámos as esculturas de vidro trabalhando com a materialidade da areia como um objeto de *Hypersea*, um ponto de memória. A areia é mar, conchas trituradas, rocha e sedimentos marinhos reunidos pela água; e, ao fundi-la em vidro, fazemos mais um gesto de *Hypersea*: a matéria do mar muda de estado, tornando-se num recipiente capaz de conter as gravações de campo da costa de Esposende e as histórias entrelaçadas com as algas sargaço. A escultura torna-se uma massa de água sob outra forma, um lugar onde o oceano é recordado em vez de extraído.`,
     },
   },
 
@@ -513,7 +513,7 @@ const CONTENT = {
       title: { en: `The adverts`, pt: `Os anúncios` },
       note: {
         en: `One spot per product, as broadcast by She Tells Entity. Skip between them, or let the line play through.`,
-        pt: `Um anúncio por produto, tal como transmitido pela She Tells Entity. Salta entre eles, ou deixa a gama tocar até ao fim.`,
+        pt: `Um anúncio por produto, tal como transmitido pela *She Tells Entity*. Salta entre eles, ou deixa a gama tocar até ao fim.`,
       },
       tracks: [
         { src: 'audio/hotline/shell-cream.m4a',    label: `Shell Cream`,    lang: 'en' },
@@ -598,7 +598,7 @@ const CONTENT = {
         title: { en: `Shell Cream`, pt: `Shell Cream` },
         text: {
           en: `As the ocean takes up more carbon it slowly turns more acidic. That is bad news for every animal that builds a shell: the more acidic the water, the harder it is to make one. Shell Cream is sold as skincare for exactly that. Outlast the acid era.`,
-          pt: `À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O Shell Cream é vendido como cosmético para isso mesmo. Sobrevive à era ácida.`,
+          pt: `À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma. O *Shell Cream* é vendido como cosmético para isso mesmo. Sobrevive à era ácida.`,
         },
         sources: [
           {
@@ -613,8 +613,8 @@ const CONTENT = {
       {
         title: { en: `Acid Tabs`, pt: `Acid Tabs` },
         text: {
-          en: `Heat and acid come from the same carbon. The sea soaks up most of the extra heat our carbon traps, and about a quarter of the carbon itself, which turns it more acidic. Just north of here, off Galicia, records from the Iberian upwelling show the pH falling year after year, fastest near the coast. Our research shows that on this coast, acidification is more a problem still to come, and that warming is slower here too: in summer, cold deep water rises along the shore and keeps it cool, making it a refuge, for now, for seaweeds that cannot live further south. So we packaged the acid as a supplement.`,
-          pt: `O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o nosso carbono retém, e cerca de um quarto do próprio carbono, o que também o torna mais ácido. Um pouco a norte daqui, na Galiza, os registos do afloramento ibérico mostram o pH a descer ano após ano, mais depressa junto à costa. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir, e que o aquecimento também é mais lento aqui: no verão, a água fria e profunda sobe junto à costa e mantém-na fresca, fazendo dela um refúgio, por agora, para algas que não conseguem viver mais a sul. Por isso, embalámos o ácido como suplemento.`,
+          en: `Heat and acid come from the same carbon. The sea soaks up most of the extra heat our carbon traps, and about a quarter of the carbon itself, which turns it more acidic. Just north of here, off Galicia, records from the Iberian upwelling show the pH falling year after year, fastest near the coast. Our research shows that on this coast, acidification is more a problem still to come, and that warming is slower here too: in summer, cold deep water rises along the shore and keeps it cool, making it a refuge, for now, for seaweeds that cannot live further south. So we made Acid Tabs, to keep the ocean's tummy calm, just in case.`,
+          pt: `O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o nosso carbono retém, e cerca de um quarto do próprio carbono, o que também o torna mais ácido. Um pouco a norte daqui, na Galiza, os registos do afloramento ibérico mostram o pH a descer ano após ano, mais depressa junto à costa. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir, e que o aquecimento também é mais lento aqui: no verão, a água fria e profunda sobe junto à costa e mantém-na fresca, fazendo dela um refúgio, por agora, para algas que não conseguem viver mais a sul. Por isso criámos as *Acid Tabs*, para acalmar a barriguinha do oceano, só por precaução.`,
         },
         sources: [
           {
@@ -650,8 +650,8 @@ const CONTENT = {
       {
 title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
         text: {
-          en: `Dunes hold the coast together, standing between the sea and the land, and they carry everything we leave on them. Plastic left on the sand breaks down into microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.`,
-          pt: `As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. O plástico deixado na areia desfaz-se em microplástico na água. O Sexy Dunes vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.`,
+          en: `Dunes hold the coast together, standing between the sea and the land, and they carry everything we leave on them. In Esposende the dunes belong to the Parque Natural do Litoral Norte, and the sargaço the sea leaves on the beach helps them grow, catching the windblown sand where new dunes begin. Plastic left on the sand breaks down into microplastic in the water. Sexy Dunes sells the dune as an object of desire. Research shows that dunes which look sexy have a 25% less chance of getting littered.`,
+          pt: `As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. Em Esposende, as dunas fazem parte do Parque Natural do Litoral Norte, e o sargaço que o mar deixa na praia ajuda-as a crescer, segurando a areia levada pelo vento onde nascem novas dunas. O plástico deixado na areia desfaz-se em microplástico na água. O *Sexy Dunes* vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.`,
         },
         sources: [
           {
@@ -673,8 +673,8 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       {
         title: { en: `Deluxe O2`, pt: `Deluxe O2` },
         text: {
-          en: `The seaweeds off this coast, kelp among them, make oxygen as they grow, and draw down carbon as they do. The sea is warming, and warm water holds less oxygen, the way a drink left in the sun goes flat. Deluxe O2 bottles that oxygen and sells it back. Blue oxygen, our own term, next to the blue carbon everyone already trades in.`,
-          pt: `As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás. O Deluxe O2 engarrafa esse oxigénio e revende-o. Oxigénio azul, um termo nosso, ao lado do carbono azul que já toda a gente transaciona.`,
+          en: `The seaweeds off this coast, kelp among them, make oxygen as they grow, and draw down carbon as they do. The sea is warming, and warm water holds less oxygen, the way a drink left in the sun goes flat. Deluxe O2 bottles that oxygen to help you breathe better. More bubbles!`,
+          pt: `As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás. O *Deluxe O2* engarrafa esse oxigénio para te ajudar a respirar melhor. Mais bolhas!`,
         },
         sources: [
           {
@@ -690,8 +690,8 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       {
         title: { en: `Sargassum City`, pt: `Sargassum City` },
         text: {
-          en: `Sargaço is a mix of seaweeds, kelps like Laminaria and Saccorhiza among them, pulled loose by the sea and brought ashore. Before it reached the sand, it was a forest. Off the north of Portugal, at the southern edge of where some of these kelps can live, marine forests sway in the cool water, most of all just north of here, around Viana do Castelo. They shelter, feed and cradle countless marine lives. Sargassum City offers that neighbourhood as prime real estate, though the weed was already a city, with its own residents, long before anyone thought to sell it.`,
-          pt: `O sargaço é uma mistura de algas, entre elas laminárias como a Laminaria e a Saccorhiza, que o mar arranca e traz para a costa. Antes de chegar à areia, era uma floresta no mar. Ao largo do norte de Portugal, no limite sul onde algumas destas algas conseguem viver, as florestas marinhas ondulam na água fria, sobretudo um pouco a norte daqui, perto de Viana do Castelo. Abrigam, alimentam e embalam inúmeras vidas marinhas. A Sargassum City oferece esse bairro como localização privilegiada, mas a alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em comercializá-la.`,
+          en: `Sargaço is a mix of seaweeds, kelps like Laminaria and Saccorhiza among them, pulled loose by the sea and brought ashore. Before it reached the sand, it was a forest. Off the north of Portugal, at the southern edge of where some of these kelps can live, marine forests sway in the cool water. They shelter, feed and cradle countless marine lives. Sargassum City offers that neighbourhood as prime real estate, though the weed was already a city, with its own residents, long before anyone thought to sell it.`,
+          pt: `O sargaço é uma mistura de algas, entre elas laminárias como a Laminaria e a Saccorhiza, que o mar arranca e traz para a costa. Antes de chegar à areia, era uma floresta no mar. Ao largo do norte de Portugal, no limite sul onde algumas destas algas conseguem viver, as florestas marinhas ondulam na água fria. Abrigam, alimentam e embalam inúmeras vidas marinhas. A *Sargassum City* oferece esse bairro como localização privilegiada, mas a alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em comercializá-la.`,
         },
         sources: [
           {
@@ -1047,7 +1047,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
       The ritual is simple. Draw, record, upload. Those are the motions a platform uses to extract from you, and here they are turned around and put to ecological care, to speculative story, and to hope.`,
       pt: `Estes desenhos foram feitos durante uma oficina na escola local, orientada em conjunto com o Rui Santos, professor em Esposende. Foi graças a ele que conseguimos trabalhar com os seus alunos.
 
-      Os alunos seguiram as propostas do Hypersea, que usámos como método para fazer os desenhos. Cada um desenhou uma memória de água que carrega, pensada a partir da ideia do Hypersea.
+      Os alunos seguiram as propostas do *Hypersea*, que usámos como método para fazer os desenhos. Cada um desenhou uma memória de água que carrega, pensada a partir da ideia do *Hypersea*.
 
       Depois os desenhos ganharam vida através de um protótipo caseiro do shellphone. Quando se segurava uma concha, o desenho a que pertencia emergia. Alguns destes exemplos podem ser ouvidos na nossa transmissão eterna.
 
@@ -1485,7 +1485,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
       A instalação acolhe quem visita dentro de um showroom construído, um espaço de limiar para o lançamento especulativo dos artefactos da she tells. No seu centro, Mother Memory Atmosphere 01, uma escultura de vidro soprado, está configurada para escutar e absorver; transmite sons ambientes e miméticos. Com gravações de campo e imitação humana entrelaçadas, produz uma paisagem sonora que oscila entre o natural e o representado. Uma componente de vídeo acompanha o som ambiente e funciona como marcador visual, amplificando os gestos de imitação. Memory Atmosphere 1.5, uma escultura companheira, está ligada ao sistema de áudio de dois canais: um canal encena a linha de apoio da She Tells, uma fila de espera recursiva que aponta para a ligação mas se resolve em ausência; o outro transmite narrativas, vindas das relações de Esposende com o sargaço e com o hypersea especulativo.
 
-      Uma linha de produtos imaginários articula-se dentro da instalação: shell cream, acid tabs, sexy dunes, deluxe o₂, cada um pensado para destinatários não humanos e para outros corpos de água. Estes artefactos funcionam como gestos satíricos e como intervenções, trazendo à superfície os paradoxos e as urgências das crises ambientais contemporâneas, seguidas através do sargaço e da região de Esposende, o aumento das temperaturas, a multiplicação dos resíduos e a acidificação dos oceanos.
+      Uma linha de produtos imaginários articula-se dentro da instalação: *shell cream*, *acid tabs*, *sexy dunes*, deluxe o₂, cada um pensado para destinatários não humanos e para outros corpos de água. Estes artefactos funcionam como gestos satíricos e como intervenções, trazendo à superfície os paradoxos e as urgências das crises ambientais contemporâneas, seguidas através do sargaço e da região de Esposende, o aumento das temperaturas, a multiplicação dos resíduos e a acidificação dos oceanos.
 
       Quem participa é convidado a colocar as suas próprias memórias de água na transmissão eterna distribuída, um arquivo digital que faz circular estes fragmentos. Nas próximas fases do trabalho, estas memórias poderão ser ouvidas através de shell phones caseiros de código aberto e de uma transmissão de áudio online, estendendo a infraestrutura da obra para lá da instalação, até às redes distribuídas de quem contribui.
 
@@ -1520,7 +1520,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
       A escultura com a concha orgânica contém áudio de gravações de campo sobrepostas às vozes das performers, criando o ambiente e a construção do mundo da entidade She Tells.
 
-      A segunda escultura contém dois fluxos de áudio: um com histórias do sargaço em Esposende, reflexões sobre o seu futuro e o Hypersea, um conceito central nas oficinas para a recuperação de memórias; o outro com anúncios de produtos especulativos baseados nos problemas ecológicos locais de Esposende (quatro produtos ligados ao sargaço e um às dunas), recolhidos em conversas durante a residência com cientistas locais e ao longo do processo de investigação. Estes aparecem também nos folhetos, incentivando quem visita a partilhar memórias (incluindo uma transcrição do áudio), enquanto as secções gravadas pelas performers e as peças sonoras criadas para o projeto tocam em auscultadores, com os cabos a sair da escultura. Ao lado, temos postais onde as pessoas podem desenhar as suas memórias, com um código QR para as carregar no site e juntar a sua voz à transmissão.
+      A segunda escultura contém dois fluxos de áudio: um com histórias do sargaço em Esposende, reflexões sobre o seu futuro e o *Hypersea*, um conceito central nas oficinas para a recuperação de memórias; o outro com anúncios de produtos especulativos baseados nos problemas ecológicos locais de Esposende (quatro produtos ligados ao sargaço e um às dunas), recolhidos em conversas durante a residência com cientistas locais e ao longo do processo de investigação. Estes aparecem também nos folhetos, incentivando quem visita a partilhar memórias (incluindo uma transcrição do áudio), enquanto as secções gravadas pelas performers e as peças sonoras criadas para o projeto tocam em auscultadores, com os cabos a sair da escultura. Ao lado, temos postais onde as pessoas podem desenhar as suas memórias, com um código QR para as carregar no site e juntar a sua voz à transmissão.
 
       Ambos os fluxos de áudio convidam quem visita a enviar as suas memórias e histórias para a transmissão, para que possam passar a fazer parte da obra e ser ouvidas através dos shellphones caseiros.
 
@@ -1528,7 +1528,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
 
       Incluímos as condições meteorológicas na gravação, que usamos também na versão ao vivo, como as marés, o vento e outros dados ecológicos que estamos a recolher em Esposende.
 
-      A peça final incluirá a eletrónica para que a concha possa ser levada ao ouvido, para a qual já temos uma impressão em 3D, com a escultura de vidro como suporte, a guardar o oceano lá dentro, o Hypersea.
+      A peça final incluirá a eletrónica para que a concha possa ser levada ao ouvido, para a qual já temos uma impressão em 3D, com a escultura de vidro como suporte, a guardar o oceano lá dentro, o *Hypersea*.
 
       A transmissão carrega anúncios divertidos baseados na atual situação ecológica de Esposende e dos seus corpos não humanos e os seus futuros, nas histórias locais sobre a água, em reflexões e especulações científicas sobre o futuro, nas histórias das crianças e nas especulações sobre o futuro da cidade, ao lado dos sentimentos da água, das marés, dos ventos, do clima e de outros dados ecológicos que estamos a recolher de Esposende.`,
     },

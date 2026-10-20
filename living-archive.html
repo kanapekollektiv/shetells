@@ -1479,14 +1479,12 @@
       }
       const pre = document.createElement('p');
       pre.className = 'card-text-preview';
-      const preText = document.createTextNode('');
-      pre.appendChild(preText);
       // The hint is a sibling, not inline: the preview is cut off, and
       // anything inside it would be clipped along with the overflowing text.
       const hint = document.createElement('span');
       hint.className = 'card-text-hint';
       onLang(() => {
-        preText.nodeValue = L(content.txt);
+        setRich(pre, L(content.txt));
         hint.textContent = t('archive.readmore');
       });
       // Copy that already fits has nothing to open, and the Portuguese often
@@ -2180,6 +2178,16 @@
     return wrap;
   }
 
+  // Archive text is plain text. A name wrapped in asterisks, *Shell Cream*,
+  // is shown in italics: the Portuguese marks English names this way.
+  function setRich(el, str) {
+    el.textContent = '';
+    String(str || '').split(/\*([^*\n]+)\*/).forEach((part, i) => {
+      if (i % 2) { const em = document.createElement('em'); em.textContent = part; el.appendChild(em); }
+      else if (part) el.appendChild(document.createTextNode(part));
+    });
+  }
+
   function openTextPopup(txt, catKey, title) {
     openPanelKey = null;
     const cat = CAT_MAP[catKey];
@@ -2199,7 +2207,7 @@
     }
     const div = document.createElement('div');
     div.style.cssText = 'padding:1.5rem 1.6rem 2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;white-space:pre-line;';
-    div.textContent = L(txt);
+    setRich(div, L(txt));
     body.appendChild(div);
     overlay.classList.add('active');
     body.scrollTop = 0;
@@ -2270,7 +2278,7 @@
       h.textContent = L(en.title);
       entryBox.appendChild(h);
       const p = document.createElement('p');
-      p.textContent = L(en.text);
+      setRich(p, L(en.text));
       entryBox.appendChild(p);
       (en.sources || []).forEach(sr => {
         const a = document.createElement('a');
@@ -2296,7 +2304,7 @@
     if (perFrame && L(content.full)) {
       const intro = document.createElement('div');
       intro.className = 'gal-intro';
-      intro.textContent = L(content.full);
+      setRich(intro, L(content.full));
       body.appendChild(intro);
     }
     if (content.gallery.length < 2) {
@@ -2314,7 +2322,7 @@
     if (!perFrame && L(content.full)) {
       const intro = document.createElement('div');
       intro.className = 'gal-intro';
-      intro.textContent = L(content.full);
+      setRich(intro, L(content.full));
       body.appendChild(intro);
     }
     if (content.audio) {
@@ -2328,7 +2336,7 @@
       h.textContent = L(en.title);
       sec.appendChild(h);
       const t = document.createElement('p');
-      t.textContent = L(en.text);
+      setRich(t, L(en.text));
       sec.appendChild(t);
       (en.sources || []).forEach(sr => {
         const a = document.createElement('a');
@@ -2403,7 +2411,7 @@
       if (L(content.full)) {
         const story = document.createElement('div');
         story.style.cssText = 'padding:0 1.2rem 1.2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;white-space:pre-line;';
-        story.textContent = L(content.full);
+        setRich(story, L(content.full));
         body.appendChild(story);
       }
       if (L(content.note)) {
@@ -2673,16 +2681,16 @@
     const first = document.createElement('p');
     first.className = cls;
     if (paras.length <= 2) {
-      first.textContent = text;
+      setRich(first, text);
       box.appendChild(first);
       return box;
     }
-    first.textContent = paras[0];
+    setRich(first, paras[0]);
     const fold = document.createElement('div');
     fold.className = 'm-fold';
     const rest = document.createElement('p');
     rest.className = cls;
-    rest.textContent = paras.slice(1).join('\n\n');
+    setRich(rest, paras.slice(1).join('\n\n'));
     fold.appendChild(rest);
     const btn = document.createElement('button');
     btn.className = 'm-readmore';

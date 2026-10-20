@@ -11,7 +11,7 @@ CARD_PT = {
    tag='Mas nós estamos.',
    q='Então do que precisa Esposende?',
    src='Acidificação do oceano &middot; construir uma concha',
-   example='O Shell Cream é feito a partir de ácido, para quem encontra dificuldade em manter o seu formato.',
+   example='O <em>Shell Cream</em> é feito a partir de ácido, para quem encontra dificuldade em manter o seu formato.',
    cond=('À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma.')),
  'acid-tabs': dict(
    hint1='Que outras pastilhas vai a água de Esposende precisar para combater o ácido?',
@@ -21,7 +21,7 @@ CARD_PT = {
    tag='O oceano nunca mais te deixará.',
    q='O que venderias a um mar que está a acidificar?',
    src='Calor e ácido em conjunto &#183; um problema que ainda está para vir',
-   example='Os Acid Tabs engarrafam o mar azedo, para quem o quer sob controlo.',
+   example='Os <em>Acid Tabs</em> engarrafam o mar azedo, para quem o quer sob controlo.',
    cond=('O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o ácido retém, e um quarto do próprio carbono, o que também torna a água mais ácida. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir.')),
  'sexy-dunes': dict(
    hint1='Como seriam as Sexy Dunes em 2040?',
@@ -31,17 +31,17 @@ CARD_PT = {
    tag='Nós tratamos de ti.',
    q='O que faria as pessoas deixarem as dunas em paz?',
    src='Dunas &#183; lixo &#183; microplásticos',
-   example='O Sexy Dunes vende a duna como objeto de desejo, para que ninguém lhes atire lixo.',
+   example='O <em>Sexy Dunes</em> vende a duna como objeto de desejo, para que ninguém lhes atire lixo.',
    cond=('As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. O plástico deixado na areia desfaz-se em microplástico na água.')),
  'sargassum-city': dict(
-   hint1='Se a Sargassum City fosse construída, quem viveria lá?',
+   hint1='Se a <em>Sargassum City</em> fosse construída, quem viveria lá?',
    hint2='O que é que o sargaço nos venderia de volta, se pudesse?',
    pill='@a grande vida do mar',
-   caps='Leva-me até à Sargassum City. Onde a erva é verde e os peixes são bonitos.',
+   caps='Leva-me até à <em>Sargassum City</em>. Onde a erva é verde e os peixes são bonitos.',
    tag='Garante já a tua melhor localização.',
    q='O que construirias para os peixes vizinhos?',
    src='Florestas de laminárias &#183; as algas do sargaço como habitat',
-   example='A Sargassum City vende apartamentos nas algas, para quem gostar do bairro.',
+   example='A <em>Sargassum City</em> vende apartamentos nas algas, para quem gostar do bairro.',
    cond=('O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até a areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar')),
  'deluxe-o2': dict(
    hint1='Quanto custaria o Deluxe O&#8322; em 2040?',
@@ -51,7 +51,7 @@ CARD_PT = {
    tag='Respira melhor, querida!',
    q='O que tornaria o oceano mais fresco?',
    src='As algas produzem oxigénio &#183; mares mais quentes &#183; menos oxigénio',
-   example='O Deluxe O2 engarrafa o oxigénio que a alga produz, para quem está farto do ar comum.',
+   example='O <em>Deluxe O2</em> engarrafa o oxigénio que a alga produz, para quem está farto do ar comum.',
    cond=('As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás.')),
 }
 
@@ -67,7 +67,7 @@ UI_PT = {
  'openerQ':'Começamos?', 'openerCta':'dá-me uma carta',
  'openerDeal':'mostra-me como', 'openerDealSub':'quatro passos, depois uma carta',
  'howTitle':'como se joga',
- 'howLead':'Cinco produtos de 2040, feitos pela She Tells Entity para outros corpos oceânicos. Cada produto é uma piada relacionada com algo que está mesmo a acontecer na água de Esposende.',
+ 'howLead':'Cinco produtos de 2040, feitos pela <em>She Tells Entity</em> para outros corpos oceânicos. Cada produto é uma piada relacionada com algo que está mesmo a acontecer na água de Esposende.',
  'how1':'<b>1 &middot; tira.</b> Escolhe uma carta. A frente é um anúncio. Liga para a linha de apoio para ouvires o discurso de venda.',
  'how2':'<b>2 &middot; vira.</b> Toca na carta. O verso conta o que se passa mesmo na água daqui.',
  'how3':'<b>3 &middot; responde.</b> <em>Recorda</em> uma memória de água tua, ou <em>inventa</em> o sexto produto acabando esta frase: <em>Em 2040, Esposende vai precisar de&#8230;</em> Depois grava a tua voz.',
