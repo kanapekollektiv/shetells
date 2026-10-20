@@ -10,7 +10,7 @@ CARD_PT = {
    caps='O oceano não está preocupado com o que tens dentro de ti.',
    tag='Mas nós estamos.',
    q='Então do que precisa Esposende?',
-   src='<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/" target="_blank" rel="noopener">Acidificação do oceano</a> &middot; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/" target="_blank" rel="noopener">construir uma concha</a>',
+   src='<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4753494/" target="_blank" rel="noopener">A acidificação dificulta a construção de conchas</a>',
    example='O <em>Shell Cream</em> é feito a partir de ácido, para quem encontra dificuldade em manter o seu formato.',
    cond=('À medida que o oceano absorve mais carbono, vai ficando cada vez mais ácido. Isso é uma má notícia para todos os animais que constroem conchas: quanto mais ácida a água, mais difícil é fazer uma.')),
  'acid-tabs': dict(
@@ -20,9 +20,9 @@ CARD_PT = {
    caps='Mantém o teu ácido sob controlo. Agora com sabor a sulfureto de dimetilo!',
    tag='O oceano nunca mais te deixará.',
    q='O que venderias a um mar que está a acidificar?',
-   src='<a href="https://doi.org/10.1098/rsta.2011.0003" target="_blank" rel="noopener">Calor e ácido em conjunto</a> &middot; <a href="https://essd.copernicus.org/articles/12/2647/2020/" target="_blank" rel="noopener">um problema que ainda está para vir</a>',
+   src='<a href="https://doi.org/10.1098/rsta.2011.0003" target="_blank" rel="noopener">Calor e ácido em conjunto</a> &middot; <a href="https://essd.copernicus.org/articles/12/2647/2020/" target="_blank" rel="noopener">O pH a descer na Galiza</a> &middot; <a href="https://doi.org/10.3389/fmars.2019.00104" target="_blank" rel="noopener">O afloramento mantém esta costa fresca</a> &middot; <a href="https://doi.org/10.1007/s10531-019-01716-9" target="_blank" rel="noopener">Um refúgio para as algas</a>',
    example='Os <em>Acid Tabs</em> engarrafam o mar azedo, para quem o quer sob controlo.',
-   cond=('O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o carbono retém, e um quarto do próprio carbono, o que também torna a água mais ácida. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir.')),
+   cond=('O calor e o ácido vêm do mesmo carbono. O mar absorve a maior parte do calor extra que o nosso carbono retém, e cerca de um quarto do próprio carbono, o que também o torna mais ácido. Um pouco a norte daqui, na Galiza, os registos do afloramento ibérico mostram o pH a descer ano após ano, mais depressa junto à costa. A nossa investigação mostra que, nesta costa, a acidificação é mais um problema que ainda está para vir, e que o aquecimento também é mais lento aqui: no verão, a água fria e profunda sobe junto à costa e mantém-na fresca, fazendo dela um refúgio, por agora, para algas que não conseguem viver mais a sul. Por isso criámos as <em>Acid Tabs</em>, para acalmar a barriguinha do oceano, só por precaução.')),
  'sexy-dunes': dict(
    hint1='Como seriam as Sexy Dunes em 2040?',
    hint2='O que faria as pessoas deixarem de largar coisas na areia?',
@@ -30,9 +30,9 @@ CARD_PT = {
    caps='A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.',
    tag='Nós tratamos de ti.',
    q='O que faria as pessoas deixarem as dunas em paz?',
-   src='<a href="https://www.mdpi.com/2071-1050/16/20/8891" target="_blank" rel="noopener">Dunas</a> &middot; <a href="https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2" target="_blank" rel="noopener">lixo</a> &middot; <a href="https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2" target="_blank" rel="noopener">microplásticos</a>',
+   src='<a href="https://www.mdpi.com/2071-1050/16/20/8891" target="_blank" rel="noopener">As dunas seguram a costa</a> &middot; <a href="https://pcgt.dgterritorio.gov.pt/sites/default/files/PNLN_Despacho_1.pdf" target="_blank" rel="noopener">Parque Natural do Litoral Norte</a> &middot; <a href="https://observador.pt/2023/06/21/linha-da-costa-no-concelho-de-esposende-vai-recuar-28-metros-ate-2043/" target="_blank" rel="noopener">A costa recua até 2043</a> &middot; <a href="https://link.springer.com/chapter/10.1007/978-3-031-08626-7_2" target="_blank" rel="noopener">O plástico torna-se microplástico</a>',
    example='O <em>Sexy Dunes</em> vende a duna como objeto de desejo, para que ninguém lhes atire lixo.',
-   cond=('As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. O plástico deixado na areia desfaz-se em microplástico na água.')),
+   cond=('As dunas seguram a costa, entre o mar e a terra, e carregam tudo o que lá deixamos. Em Esposende, as dunas fazem parte do Parque Natural do Litoral Norte, protegido para travar o que está a destruir a costa. Até 2043, prevê-se que a linha de costa recue, em média, 28 metros. O plástico deixado na areia desfaz-se em microplástico na água. O <em>Sexy Dunes</em> vende a duna como objeto de desejo. A investigação mostra que dunas com ar sexy têm menos 25% de probabilidade de que lhes atirem lixo.')),
  'sargassum-city': dict(
    hint1='Se a <em>Sargassum City</em> fosse construída, quem viveria lá?',
    hint2='O que é que o sargaço nos venderia de volta, se pudesse?',
@@ -40,7 +40,7 @@ CARD_PT = {
    caps='Leva-me até à <em>Sargassum City</em>. Onde a erva é verde e os peixes são bonitos.',
    tag='Garante já a tua melhor localização.',
    q='O que construirias para os peixes vizinhos?',
-   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">Florestas de laminárias</a> &middot; <a href="https://wedocs.unep.org/items/41e38d3f-e98d-45bf-8475-0defbfbc8d9e" target="_blank" rel="noopener">as algas do sargaço como habitat</a>',
+   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">Florestas de laminárias no norte de Portugal</a> &middot; <a href="https://wedocs.unep.org/items/41e38d3f-e98d-45bf-8475-0defbfbc8d9e" target="_blank" rel="noopener">As florestas de laminárias como habitat</a>',
    example='A <em>Sargassum City</em> vende apartamentos nas algas, para quem gostar do bairro.',
    cond=('O sargaço é uma mistura de algas, entre elas as laminárias, trazida pelo mar para a costa. Antes de viajar até à areia, era uma floresta no mar: ao largo do norte de Portugal, no limite sul onde algumas laminárias conseguem viver, as florestas marinhas abrigam, alimentam e embalam inúmeras vidas marinhas. A alga já era uma cidade, com os seus próprios habitantes, muito antes de alguém pensar em as comercializar.')),
  'deluxe-o2': dict(
@@ -50,7 +50,7 @@ CARD_PT = {
    caps='Estás farta do teu oxigénio terrestre de sempre, vindo daquelas árvores verdes feias?',
    tag='Respira melhor, querida!',
    q='O que tornaria o oceano mais fresco?',
-   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">As algas produzem oxigénio</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">mares mais quentes</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">menos oxigénio</a>',
+   src='<a href="https://doi.org/10.1038/s41598-025-09361-9" target="_blank" rel="noopener">As algas produzem oxigénio</a> &middot; <a href="https://doi.org/10.1126/science.aam7240" target="_blank" rel="noopener">A água quente retém menos oxigénio</a>',
    example='O <em>Deluxe O2</em> engarrafa o oxigénio que a alga produz, para quem está farto do ar comum.',
    cond=('As algas desta costa, entre elas as laminárias, produzem oxigénio enquanto crescem e retiram carbono da água ao mesmo tempo. O mar está a aquecer, e a água quente retém menos oxigénio, tal como uma bebida deixada ao sol perde o gás.')),
 }

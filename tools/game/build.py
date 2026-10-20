@@ -98,7 +98,7 @@ def card_html(c, lang='en'):
     <div class="body">
       <div class="btop">
         <p class="cond-label" data-i18n="condLabel">what is actually happening</p>
-        <p class="cond">{c['cond']}</p>
+        <p class="cond{' long' if len(re.sub(r'<[^>]+>', '', c['cond'])) > 420 else ''}">{c['cond']}</p>
         <p class="src">{c['src']}</p>
       </div>
       <div class="brief">
