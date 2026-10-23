@@ -1644,6 +1644,44 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
     ],
   },
 
+  // The finished kit as it is sent out: box, card, board and shell. Same
+  // photographs as Mario's guide (toolkit/build/images/kit-*), resized here.
+  'toolkit-kit': {
+    title: { en: `The kit`, pt: `O kit` },
+    gallery: [
+      {
+        src: 'living-archive-images/toolkit/kit-board-in-box.jpg',
+        alt: { en: `The shell phone board lying in green paper seaweed inside the box`, pt: `A placa do shellphone sobre algas de papel verdes dentro da caixa` },
+        caption: { en: `The board in its box`, pt: `A placa na sua caixa` },
+      },
+      {
+        src: 'living-archive-images/toolkit/kit-box-and-card.jpg',
+        alt: { en: `The DIY Shell Phone Toolkit card in its box of green paper seaweed`, pt: `O cartão do kit DIY Shell Phone na caixa com algas de papel verdes` },
+        caption: { en: `The toolkit card`, pt: `O cartão do kit` },
+      },
+      {
+        src: 'living-archive-images/toolkit/kit-assembled-with-shell.jpg',
+        alt: { en: `The toolkit card, a large spiked shell wired to the board, and a blank postcard`, pt: `O cartão do kit, uma grande concha ligada à placa e um postal em branco` },
+        caption: { en: `Board, shell and card`, pt: `Placa, concha e cartão` },
+      },
+      {
+        src: 'living-archive-images/toolkit/kit-board-and-shell.jpg',
+        alt: { en: `The shell phone board with its two lights, next to the shell`, pt: `A placa do shellphone com as duas luzes, ao lado da concha` },
+        caption: { en: `The board and the shell`, pt: `A placa e a concha` },
+      },
+      {
+        src: 'living-archive-images/toolkit/kit-back-stay-salty.jpg',
+        alt: { en: `The back of the board, printed with stay salty, on top of the Raspberry Pi`, pt: `O verso da placa, com stay salty impresso, sobre o Raspberry Pi` },
+        caption: { en: `Stay salty, on the back`, pt: `Stay salty, no verso` },
+      },
+      {
+        src: 'living-archive-images/toolkit/kit-card-and-postcard.jpg',
+        alt: { en: `The toolkit card and the postcard for drawing a water memory`, pt: `O cartão do kit e o postal para desenhar uma memória de água` },
+        caption: { en: `Card and postcard`, pt: `Cartão e postal` },
+      },
+    ],
+  },
+
   'toolkit-to-future': {
     goTo: 'future',
     label: { en: `The bioplastic recipe →`, pt: `A receita de bioplástico →` },

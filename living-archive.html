@@ -7,7 +7,7 @@
   <meta name="description" content="A living map of water memories and stories from Esposende, gathered by Sea Shells, She Tells: an S+T+ARTS Aqua Motion residency by Helin Ulas, Rita Eperjesi and Mario Guzman." />
   <link rel="canonical" href="https://shetells.stream/living-archive.html" />
   <script src="lang.js?v=27"></script>
-  <script src="content.js?v=47"></script>
+  <script src="content.js?v=48"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -1097,7 +1097,7 @@
     drawings:   [1800, 2053],
     data:       [2720, 1871],
     workshop:   [1800, 1258],
-    toolkit:    [3565, 1237],
+    toolkit:    [3565, 1365],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -1200,6 +1200,7 @@
     [['toolkit'],               3780, 1300, 300, 215, 'toolkit-pcb'],
     [['toolkit', 'exhibition'], 3440,  960, 300, 215, 'toolkit-prototype'],
     [['toolkit', 'workshop'],   3440, 1212, 300, 215, 'toolkit-workshop'],
+    [['toolkit'],               3780, 1556, 300, 215, 'toolkit-kit', { mapTitle: true }],
 
     // ── DATA & THE ETERNAL STREAM
     [['data', 'exhibition'],    2340, 1648, 360, 210, 'data-stream'],
@@ -1828,7 +1829,7 @@
     // enough to show every card at once, so the interview cards are never
     // left below the edge of the screen.
     const MIN_READ = 1.25, MAX_ZOOM = 1.8;
-    const FIT_WHOLE = new Set(['future', 'sargassum', 'local']);
+    const FIT_WHOLE = new Set(['future', 'sargassum', 'local', 'toolkit']);
     const fit = Math.min(
       usableW / (bounds.w + PAD * 2),
       vh      / (bounds.h + PAD * 2),
