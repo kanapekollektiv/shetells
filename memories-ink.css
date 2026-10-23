@@ -1,0 +1,331 @@
+/* memories.css in black instead of blue, for the recorder and its thank you page.
+   The other pages that load memories.css keep the blue. */
+/* ════════════════════════════════════════════
+   MEMORIES — quiz page styles
+════════════════════════════════════════════ */
+
+/* ── Base: white background ── */
+body {
+  background: #ffffff;
+  background-image: none;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.bg { display: none; }
+
+.mem-bg {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 0;
+}
+
+/* ── Outer page layout ── */
+.mem-page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem 1rem 3rem;   /* matches landing page header padding */
+}
+
+/* ── Top bar — mirrors .header on landing page ── */
+.mem-topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+  gap: 1rem;
+}
+
+/* ── Consistent site header ── */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.site-title {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 400;
+  font-size: clamp(24pt, 4vw, 42pt);
+  color: #111111;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.site-subtitle {
+  font-family: 'Celescript', cursive;
+  font-size: clamp(10pt, 1.2vw, 14pt);
+  color: #111111;
+  margin-top: 6px;
+  padding-bottom: 4px;
+  border-bottom: 3px solid #111111;
+  display: inline-flex;
+  align-self: flex-start;
+}
+
+.mem-step {
+  font-family: 'Celescript', cursive;
+  font-size: var(--fs-ui, clamp(11px, 1.2vw, 16px));
+  color: #111111;
+  border: 1.5px solid #111111;
+  border-radius: 2rem;
+  padding: 0.3rem 0.9rem;
+  white-space: nowrap;
+}
+
+/* ── Progress bar ── */
+.mem-progress-wrap {
+  width: 100%;
+  height: 3px;
+  background: rgba(17, 17, 17, 0.12);
+  border-radius: 999px;
+  margin-bottom: 56px;
+  flex-shrink: 0;
+}
+
+.mem-progress-bar {
+  height: 100%;
+  background: #111111;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+/* ── Content area ── */
+.mem-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Screens ── */
+.mem-screen {
+  display: none;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeIn 0.5s ease;
+}
+
+.mem-screen.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Question text ── */
+.mem-question {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 200;
+  font-size: 20px;
+  color: #111111;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  max-width: 800px;
+  white-space: pre-line;
+}
+
+/* ── Transition screen text — fades between two messages ── */
+.mem-transition {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 400;
+  font-size: clamp(16pt, 2.5vw, 28pt);
+  color: #111111;
+  line-height: 1.6;
+  max-width: 800px;
+  transition: opacity 0.5s ease;
+}
+
+/* ── Screen 5 cycling prompt ── */
+.mem-cycle {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 200;
+  font-size: 20px;
+  color: #111111;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  max-width: 800px;
+  min-height: 1.6em;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+/* ── Answer buttons ── */
+.mem-answers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.mem-btn {
+  font-family: 'Celescript', cursive;
+  font-size: 13pt;
+  color: #111111;
+  background: transparent;
+  border: 1.5px solid #111111;
+  border-radius: 999px;
+  padding: 12px 28px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+}
+
+.mem-btn:hover  { background: #111111; color: #ffffff; }
+.mem-btn:active { transform: scale(0.97); }
+
+/* Record button — filled black, slightly larger */
+.mem-btn-record {
+  font-size: 15pt;
+  padding: 16px 36px;
+  margin-top: 8px;
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.mem-btn-record:hover { background: #333333; color: #ffffff; }
+
+/* ── Final page: voice upload ── */
+.mem-upload-area {
+  border-radius: 24px;
+  overflow: hidden;
+  max-width: 560px;
+  background: #111111;
+}
+
+.mem-upload-inner {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.mem-upload-label {
+  font-family: 'Celescript', cursive;
+  font-size: 16pt;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.mem-upload-slot {
+  width: 100%;
+  min-height: 60px;
+  border: 2px dashed rgba(255,255,255,0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mem-upload-slot p {
+  font-family: 'Celescript', cursive;
+  font-size: 12pt;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ════════════════════════════════════════════
+   BUBBLES
+════════════════════════════════════════════ */
+.bubble-word {
+  position: fixed;
+  bottom: -60px;
+  font-family: 'Celescript', cursive;
+  color: #F5DE0A;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  font-size: var(--size);
+  animation: bubbleRise var(--duration) ease-in forwards;
+}
+
+@keyframes bubbleRise {
+  0%   { transform: translateY(0)      translateX(0);             opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translateY(-45vh)  translateX(var(--wobble)); opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-105vh) translateX(0);             opacity: 0; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .mem-page           { padding: 1rem 1rem 2rem; }
+  .mem-topbar         { margin-bottom: 1.5rem; flex-wrap: wrap; align-items: flex-start; gap: 0.5rem; }
+  /* Step+toggle sit on their own row below the brand, left-aligned */
+  .mem-topbar > div   { width: 100%; display: flex; align-items: center; gap: 0.5rem; }
+
+  /* Brand proportions match landing page on mobile */
+  .brand-title        { white-space: nowrap; }
+  .brand-line         { width: 28px !important; height: auto !important; }
+  .mem-progress-wrap  { margin-bottom: 36px; }
+  /* ── Mobile type: CeleScript = 12pt, NaNTresor = 14pt ── */
+  .mem-question,
+  .mem-transition,
+  .mem-cycle          { font-size: 14pt; }           /* NaNTresor */
+  .mem-privacy-note   { font-size: 14pt; }           /* NaNTresor — was collapsing to 9px */
+  .mem-btn            { font-size: 12pt; padding: 10px 20px; white-space: normal; text-align: center; }  /* CeleScript */
+  .mem-btn-record     { font-size: 12pt; padding: 12px 24px; background: #111111; color: #ffffff; }
+  .mem-step           { font-size: 12pt; }           /* CeleScript */
+  .brand-sub          { font-size: 12pt !important; } /* CeleScript */
+  .mem-answers        { gap: 10px; }
+  .site-title         { font-size: 22pt; }
+}
+
+/* ════════════════════════════════════════════
+   TEAM PAGE
+════════════════════════════════════════════ */
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 640px;
+}
+
+.team-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1.5px solid rgba(17, 17, 17, 0.15);
+}
+
+.team-row:first-child {
+  border-top: 1.5px solid rgba(17, 17, 17, 0.15);
+}
+
+.team-role {
+  font-family: 'Celescript', cursive;
+  font-size: 12pt;
+  color: #111111;
+  opacity: 0.6;
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.team-names {
+  font-family: 'NaNTresorM', serif;
+  font-weight: 400;
+  font-size: 16pt;
+  color: #111111;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .team-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .team-role  { min-width: unset; font-size: 10pt; }
+  .team-names { font-size: 14pt; }
+}

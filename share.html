@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add your voice — Sea Shells, She Tells</title>
+  <meta name="description" content="Share a water memory, or a speculative future for Esposende: record your voice, play the game, or listen to the eternal stream." />
+  <link rel="canonical" href="https://shetells.stream/share.html" />
+  <script src="lang.js?v=26"></script>
+  <style>
+    /* Where "Send your memories" lands. Editorial layout, everything on one
+       left edge with the brand: a label bar, a headline with a highlighter
+       mark, then colour panels that touch, like a palette sheet. Two equal
+       ways to take part (record, play), listening as a quieter strip below.
+       Colours from the living archive: Local Stories, Speculative Futures,
+       Sargassum; the highlighter is Workshops lime. */
+    @font-face { font-family: 'CeleScript'; src: url('Fonts/Celescript.ttf') format('truetype'); }
+    @font-face { font-family: 'NaNTresor'; src: url('Fonts/NaNTresor/NaNTresorM-ExtraLight.ttf') format('truetype'); font-weight: 200; }
+    @font-face { font-family: 'NaNTresor'; src: url('Fonts/NaNTresor/NaNTresorM-Regular.ttf') format('truetype'); font-weight: 400; }
+    @font-face { font-family: 'NaNTresor'; src: url('Fonts/NaNTresor/NaNTresorM-Bold.ttf') format('truetype'); font-weight: 700; }
+
+    :root {
+      --record: #9861FF; --game: #FF5E33; --listen: #00652E; --mark: #CCDE07;
+      --ink: #111111; --paper: #FFFDF8; --edge: 1.4rem; --pad: clamp(1.4rem, 2.6vw, 2.4rem);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink); }
+    body { font-family: 'NaNTresor', system-ui, sans-serif; }
+
+    .top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+      padding: 1rem var(--edge) 0;
+    }
+    .brand { display: flex; align-items: flex-end; gap: 0.9rem; text-decoration: none; color: var(--ink); }
+    .brand-title { font-weight: 200; font-size: clamp(44px, 6vw, 88px); line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
+    .brand-sub {
+      font-family: 'CeleScript', cursive; font-size: clamp(12px, 1.3vw, 18px);
+      letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 0.5em; padding-bottom: 0.35em;
+    }
+    .brand-line { width: clamp(36px, 3.4vw, 54px); height: auto; }
+    .lang {
+      font-family: 'CeleScript', cursive; font-size: 13px;
+      width: 2.6rem; height: 2.6rem; border-radius: 50%; flex-shrink: 0;
+      border: 1.5px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer;
+    }
+    .lang:hover { background: var(--ink); color: #fff; }
+
+    /* label bar, as on a guidelines sheet */
+    .meta {
+      margin: 1.6rem var(--edge) 0; padding: 0.55rem 0;
+      border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+      display: flex; justify-content: space-between; gap: 1rem;
+      font-family: 'CeleScript', cursive; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    .intro {
+      /* same two columns as the panels, so the intro line starts where the
+         Play the game text does */
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 0;
+      align-items: end; padding: clamp(1.6rem, 4vw, 3.2rem) var(--edge) clamp(1.4rem, 3vw, 2.4rem);
+    }
+    h1 { font-weight: 700; font-size: clamp(36px, 5vw, 72px); line-height: 1; letter-spacing: -0.02em; margin: 0; }
+    /* hand-drawn underline: the brand's own stroke (the line in the logo),
+       drawn in lime and stretched under the words */
+    .scrawl { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2055.87%205.06%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%23CCDE07%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%223.2%22%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M.91%2C3.32c3.46.66%2C15.77%2C1.65%2C22.92.28%2C4.78-.91%2C15.54-2.85%2C19.76-2.83%2C3.81.02%2C8.93%2C0%2C11.38.86%22/%3E%3C/svg%3E") no-repeat left bottom / 100% 0.4em; }
+    h1 mark {
+      background: none; color: inherit;
+      text-decoration: underline; text-decoration-color: var(--mark);
+      text-decoration-thickness: 0.16em; text-underline-offset: 0.1em; text-decoration-skip-ink: none;
+    }
+    .lede { padding-left: var(--pad); font-weight: 200; font-size: clamp(16px, 1.5vw, 20px); line-height: 1.5; margin: 0; max-width: 30rem; }
+
+    .tag {
+      display: inline-block; align-self: flex-start;
+      background: var(--mark); color: var(--ink);
+      font-family: 'CeleScript', cursive; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.3rem 0.55rem;
+    }
+
+    /* panels touch; square corners */
+    .ways { display: grid; grid-template-columns: 1fr 1fr; margin: 0 var(--edge); }
+    .way {
+      display: flex; flex-direction: column; gap: 1rem; min-height: 20rem;
+      padding: var(--pad);
+      color: #ffffff; text-decoration: none;
+      transition: filter 0.15s ease;
+    }
+    .way:hover { filter: brightness(1.05); }
+    .way.record { background: var(--record); }
+    .way.game   { background: var(--game); }
+    .way h2 { font-weight: 700; font-size: clamp(30px, 3.4vw, 50px); line-height: 1; letter-spacing: -0.02em; margin: 0.2rem 0 0; }
+    .way p { font-weight: 400; font-size: 17px; line-height: 1.5; margin: 0; flex: 1; max-width: 28rem; }
+    .pill {
+      align-self: flex-start;
+      font-family: 'CeleScript', cursive; font-size: 15px; letter-spacing: 0.06em;
+      background: #ffffff; color: var(--ink); border-radius: 999px; padding: 0.85rem 1.6rem;
+      white-space: nowrap;
+    }
+
+    .listen {
+      margin: 0 var(--edge); padding: 1.1rem clamp(1.4rem, 2.6vw, 2.4rem);
+      background: var(--listen); color: #ffffff; text-decoration: none;
+      display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap;
+      transition: filter 0.15s ease;
+    }
+    .listen:hover { filter: brightness(1.12); }
+    .listen h2 { font-weight: 700; font-size: 22px; margin: 0; }
+    .listen p { font-weight: 400; font-size: 15px; line-height: 1.4; margin: 0; flex: 1; min-width: 14rem; }
+    .listen .pill { align-self: center; font-size: 13px; padding: 0.6rem 1.2rem; }
+
+    .foot {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;
+      margin: 0 var(--edge); padding: 1rem 0 2.5rem;
+    }
+    .note { font-weight: 400; font-size: 14px; margin: 0; }
+    .lede p { margin: 0; }
+    .lede .scribble {
+      font-family: 'CeleScript', cursive; font-weight: normal; font-size: 17px; letter-spacing: 0.04em;
+      display: inline; margin-left: 0.2em; white-space: nowrap;
+      padding-bottom: 0.3em;
+    }
+
+    @media (max-width: 820px) {
+      :root { --edge: 1rem; }
+      .brand { gap: 0.6rem; }
+      .brand-title { font-size: 42px; }
+      .lang { width: 2.2rem; height: 2.2rem; font-size: 12px; }
+      .meta { font-size: 10px; margin-top: 1rem; }
+      .meta span:last-child { text-align: right; }
+      .intro { grid-template-columns: 1fr; gap: 1rem; }
+      .lede { padding-left: 0; }
+      .ways { grid-template-columns: 1fr; }
+      .way { min-height: 0; }
+      .listen { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+      .listen .pill { align-self: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">
+      <span class="brand-title">she tells</span>
+      <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
+    </a>
+    <button class="lang lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
+  </header>
+
+  <div class="meta">
+    <span data-i18n="share.meta.left">add your voice</span>
+    <span data-i18n="share.meta.right">the eternal stream · Esposende</span>
+  </div>
+
+  <section class="intro">
+    <h1 data-i18n-html="share.titlehtml">add <mark>your voice</mark>!</h1>
+    <div class="lede">
+      <p><span data-i18n="share.lede">Share a water memory, or a speculative future for Esposende.</span> <span class="scribble scrawl" data-i18n="share.scribble">pick one, or both!</span></p>
+    </div>
+  </section>
+
+  <div class="ways">
+    <a class="way record" href="recorder.html">
+      <span class="tag" data-i18n="share.record.tag">record</span>
+      <h2 data-i18n="share.record.title">Send your voice</h2>
+      <p data-i18n="share.record.text">Record a water memory, or a speculative future, and send it to us directly.</p>
+      <span class="pill" data-i18n="share.record.btn">record your voice</span>
+    </a>
+    <a class="way game" href="game.html">
+      <span class="tag" data-i18n="share.game.tag">play</span>
+      <h2 data-i18n="share.game.title">Play the game</h2>
+      <p data-i18n="share.game.text">Not sure what to say? Draw a card from the products of 2040 and get ideas for your recording.</p>
+      <span class="pill" data-i18n="share.game.btn">play the game</span>
+    </a>
+  </div>
+
+  <a class="listen" href="stream.html">
+    <h2 data-i18n="share.listen.title">Listen to the stream</h2>
+    <p data-i18n="share.listen.text">Hear the memories and futures already flowing in the eternal stream.</p>
+    <span class="pill" data-i18n="share.listen.btn">listen to the stream</span>
+  </a>
+
+  <div class="foot">
+    <p class="note" data-i18n="share.note">Your voice will be public. It will never be used to train AI.</p>
+  </div>
+</body>
+</html>

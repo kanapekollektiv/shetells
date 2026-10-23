@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sea shells — record your memory</title>
   <link rel="stylesheet" href="styles.css?v=2" />
-  <link rel="stylesheet" href="memories.css?v=3" />
-  <script src="lang.js?v=18"></script>
+  <link rel="stylesheet" href="memories-ink.css?v=1" />
+  <script src="lang.js?v=26"></script>
   <style>
     /* ── ExtraLight weight for brand title ── */
     @font-face {
@@ -27,7 +27,7 @@
       font-weight: 200;
       font-size: clamp(52px, 7.5vw, 108px);
       line-height: 1;
-      color: #0046FF;
+      color: #111111;
       letter-spacing: -0.02em;
       text-box: trim-both cap alphabetic;
     }
@@ -35,7 +35,7 @@
     .brand-sub {
       font-family: 'Celescript', cursive;
       font-size: clamp(13px, 1.6vw, 22px);
-      color: #0046FF;
+      color: #111111;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -56,7 +56,7 @@
     .rec-status {
       font-family: 'Celescript', cursive;
       font-size: 13pt;
-      color: #0046FF;
+      color: #111111;
       min-height: 1.6em;
       display: flex;
       align-items: center;
@@ -67,7 +67,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(0, 70, 255, 0.25);
+      background: rgba(17, 17, 17, 0.25);
       flex-shrink: 0;
       transition: background 0.3s;
     }
@@ -77,7 +77,7 @@
       animation: pulse 1s ease-in-out infinite;
     }
 
-    .rec-dot.done { background: #0046FF; animation: none; }
+    .rec-dot.done { background: #111111; animation: none; }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; }
@@ -89,7 +89,7 @@
       font-family: 'NaNTresorM', serif;
       font-weight: 400;
       font-size: 36pt;
-      color: #0046FF;
+      color: #111111;
       letter-spacing: 0.04em;
       min-height: 1.2em;
     }
@@ -100,7 +100,7 @@
       max-width: 480px;
       height: 64px;
       border-radius: 12px;
-      background: rgba(0, 70, 255, 0.06);
+      background: rgba(17, 17, 17, 0.06);
       display: block;
     }
 
@@ -130,7 +130,7 @@
     .rec-progress-wrap {
       flex: 1;
       height: 3px;
-      background: rgba(0, 70, 255, 0.15);
+      background: rgba(17, 17, 17, 0.15);
       border-radius: 999px;
       cursor: pointer;
       position: relative;
@@ -138,7 +138,7 @@
 
     .rec-progress-bar {
       height: 100%;
-      background: #0046FF;
+      background: #111111;
       border-radius: 999px;
       width: 0%;
       transition: width 0.1s linear;
@@ -148,7 +148,7 @@
     .rec-time {
       font-family: 'Celescript', cursive;
       font-size: 11pt;
-      color: rgba(0, 70, 255, 0.6);
+      color: rgba(17, 17, 17, 0.6);
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -177,10 +177,20 @@
       max-width: 480px;
     }
 
+    .rec-notice {
+      font-family: 'NaNTresorM', serif;
+      font-size: 12pt; line-height: 1.55; color: #111111;
+      background: rgba(17, 17, 17, 0.05);
+      border: 1.5px solid #111111; border-radius: 14px;
+      padding: 14px 16px; max-width: 34rem;
+    }
+    .rec-notice strong { font-weight: 700; }
+    .rec-notice-mail { font-family: 'Celescript', cursive; white-space: nowrap; }
+
     .rec-feedback {
       font-family: 'Celescript', cursive;
       font-size: 13pt;
-      color: #0046FF;
+      color: #111111;
       min-height: 1.4em;
     }
 
@@ -189,15 +199,15 @@
       width: 100%;
       max-width: 480px;
       height: 2px;
-      background: rgba(0, 70, 255, 0.12);
+      background: rgba(17, 17, 17, 0.12);
       border-radius: 999px;
     }
 
     /* Selected tag highlight */
     .mem-btn.selected {
-      background: #0046FF;
+      background: #111111;
       color: #ffffff;
-      border-color: #0046FF;
+      border-color: #111111;
     }
 
     /* Control buttons — vertical stack */
@@ -220,7 +230,7 @@
       max-width: 480px;
       font-family: 'Celescript', cursive;
       font-size: 11pt;
-      color: rgba(0,70,255,0.4);
+      color: rgba(17, 17, 17,0.4);
       padding: 4px 0;
     }
 
@@ -228,7 +238,7 @@
       content: '';
       flex: 1;
       height: 1.5px;
-      background: rgba(0,70,255,0.18);
+      background: rgba(17, 17, 17,0.18);
       border-radius: 999px;
     }
 
@@ -236,9 +246,9 @@
     .rec-email-input {
       font-family: 'Celescript', cursive;
       font-size: 13pt;
-      color: #0046FF;
+      color: #111111;
       background: transparent;
-      border: 1.5px solid #0046FF;
+      border: 1.5px solid #111111;
       border-radius: 999px;
       padding: 12px 24px;
       max-width: 480px;
@@ -247,15 +257,15 @@
       transition: border-color 0.18s;
     }
 
-    .rec-email-input::placeholder { color: rgba(0, 70, 255, 0.4); }
-    .rec-email-input:focus { border-color: #0035cc; }
+    .rec-email-input::placeholder { color: rgba(17, 17, 17, 0.4); }
+    .rec-email-input:focus { border-color: #333333; }
 
     /* Re-record — small secondary action, natural width only */
     .mem-btn-rerecord {
       align-self: flex-start;
       font-size: 0.82em;
       opacity: 0.55;
-      border-color: rgba(0, 70, 255, 0.35);
+      border-color: rgba(17, 17, 17, 0.35);
       transition: opacity 0.2s ease;
     }
     .mem-btn-rerecord:hover { opacity: 1; }
@@ -278,7 +288,7 @@
           <span class="brand-sub"><svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>sea shells</span>
         </div>
       </a>
-      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language" style="font-family:'CeleScript',cursive;font-size:10pt;border:1.5px solid #0046FF;color:#0046FF;background:transparent;border-radius:50%;width:1.8rem;height:1.8rem;cursor:pointer;flex-shrink:0;line-height:1;">PT</button>
+      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language" style="font-family:'CeleScript',cursive;font-size:10pt;border:1.5px solid #111111;color:#111111;background:transparent;border-radius:50%;width:1.8rem;height:1.8rem;cursor:pointer;flex-shrink:0;line-height:1;">PT</button>
     </div>
 
     <div class="mem-content" style="gap: 32px;">
@@ -341,6 +351,9 @@
 
       <!-- Send section -->
       <div class="rec-send-section" id="sendSection">
+        <!-- Said once more right before sending, since the memories page that
+             used to say it first is no longer on the way here. -->
+        <div class="rec-notice" data-i18n-html="rec.notice"><strong>Your voice will be public.</strong> Only share what you're comfortable with.<br>We won't train any AI on it, or use it for anything beyond this artwork.<br>Changed your mind? Email us within two weeks: <span class="rec-notice-mail">kanape.kollektiv@gmail.com</span></div>
         <div class="mem-question" style="font-size: clamp(13pt, 1.8vw, 18pt);" data-i18n="rec.email.label">Leave your email</div>
         <input
           class="rec-email-input"
@@ -427,7 +440,7 @@
 
       analyser.getByteTimeDomainData(dataArray);
       waveCtx.clearRect(0, 0, W, H);
-      waveCtx.strokeStyle = '#0046FF';
+      waveCtx.strokeStyle = '#111111';
       waveCtx.lineWidth   = 2;
       waveCtx.beginPath();
 

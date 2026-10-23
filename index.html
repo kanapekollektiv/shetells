@@ -35,7 +35,7 @@
   }
   </script>
   <link rel="stylesheet" href="css/style2.css?v=45" />
-  <script src="lang.js?v=18"></script>
+  <script src="lang.js?v=26"></script>
 </head>
 <body>
 
@@ -57,7 +57,7 @@
     <nav class="nav-buttons">
       <button class="btn btn-circle" id="btn-info" aria-haspopup="dialog">?</button>
       <button class="btn btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
-      <a href="game.html" class="btn btn-filled" id="btn-memories" data-i18n="nav.memories">
+      <a href="share.html" class="btn btn-filled" id="btn-memories" data-i18n="nav.memories">
         Send your memories today!
       </a>
       <button class="btn btn-outline" id="btn-dunes">tune in to the stream</button>
@@ -420,7 +420,7 @@
 
   spiralCta.addEventListener('click', e => {
     e.stopPropagation();
-    window.location.href = 'game.html';
+    window.location.href = 'share.html';
   });
 
   // Click anywhere else closes whichever panel is open
@@ -490,7 +490,7 @@
 
   shellCta.addEventListener('click', e => {
     e.stopPropagation();
-    window.location.href = 'game.html';
+    window.location.href = 'share.html';
   });
 
   shellCornerBtn.addEventListener('click', e => {
@@ -549,7 +549,7 @@
   }
 
   o2Illus.addEventListener('click', e => { e.stopPropagation(); o2Open ? closeO2() : openO2(); });
-  o2Cta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'game.html'; });
+  o2Cta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'share.html'; });
   o2CornerBtn.addEventListener('click', e => { e.stopPropagation(); closeO2(); });
 
   /* ── Sargassum City (Asset 14) ── */
@@ -601,7 +601,7 @@
   }
 
   sargassumIllus.addEventListener('click', e => { e.stopPropagation(); sargassumOpen ? closeSargassum() : openSargassum(); });
-  sargassumCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'game.html'; });
+  sargassumCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'share.html'; });
   sargassumCornerBtn.addEventListener('click', e => { e.stopPropagation(); closeSargassum(); });
 
   /* ── Acid Tabs (Asset 11) ── */
@@ -654,7 +654,7 @@
   }
 
   acidIllus.addEventListener('click', e => { e.stopPropagation(); acidOpen ? closeAcid() : openAcid(); });
-  acidCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'game.html'; });
+  acidCta.addEventListener('click', e => { e.stopPropagation(); window.location.href = 'share.html'; });
   acidCornerBtn.addEventListener('click', e => { e.stopPropagation(); closeAcid(); });
 
   /* ── btnDunes: close active section, or navigate to stream.html ── */
