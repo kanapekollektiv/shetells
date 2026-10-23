@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assembly guide · DIY Shell Phone</title>
+  <meta name="description" content="Build your own Shellphone, a shell you can listen to. Part of She Tells, Sea Shells (Esposende, S+T+ARTS Aqua Motion).">
+  <!-- Built from https://github.com/marioguzzzman/dyi-shell.phone by tools/toolkit-sync/build.py. Edit Mario's repo, not this file. -->
+  <link rel="stylesheet" href="/toolkit/build/assets/css/shetells.css">
+</head>
+<body class="page-doc">
+  <header class="header">
+    <a class="brand" href="/toolkit/build/index.html">
+      <span class="brand-title">she tells</span>
+      <span class="brand-sub">
+        <svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>
+        diy shell phone
+      </span>
+    </a>
+    <nav class="nav-buttons">
+      <a class="btn btn-outline is-active" href="/toolkit/build/docs/assembly.html">assembly</a>
+      <a class="btn btn-outline" href="/toolkit/build/docs/wifi-setup.html">wi-fi setup</a>
+      <a class="btn btn-outline" href="/toolkit/build/hardware/bom.html">parts</a>
+      <a class="btn btn-filled" href="/diytoolkit.html">she tells ↗</a>
+    </nav>
+  </header>
+
+  <img class="doodle doodle-shell" src="/toolkit/build/assets/drawings/shell.svg" alt="" aria-hidden="true">
+
+  <main class="content">
+<h1 id="assembly-guide">Assembly guide</h1>
+<p>How to build a Shellphone from the kit, step by step. It takes about an hour,
+most of it soldering.</p>
+<p>When it's built, continue with <strong><a href="/toolkit/build/docs/wifi-setup.html">Wi-Fi setup</a></strong>.</p>
+<hr />
+<h2 id="whats-in-the-kit">What's in the kit</h2>
+<ul>
+<li>Raspberry Pi Zero W <strong>or</strong> Zero 2 W (both work), with its 40-pin header</li>
+<li>Pre-flashed microSD card (the software is already on it)</li>
+<li>Snail audio board (the blue PCB)</li>
+<li>2×20 female socket (for the Pi) and 1×7 female socket (for the amplifier)</li>
+<li>MAX98357A amplifier, with a 7-pin male header and a 2-pin screw terminal</li>
+<li>2 × 470 Ω resistors</li>
+<li>2 × 5 mm LEDs (the snail's antennas)</li>
+<li>Bone-conduction transducer, speaker cable with a white 2-pin plug</li>
+<li>5 V micro-USB power supply</li>
+</ul>
+<p><strong>You also need:</strong> a soldering iron and solder, side cutters, a small
+screwdriver, a hot glue gun, and a shell. Any shell works.</p>
+<p>The full parts list is in the <a href="/toolkit/build/hardware/bom.html">Bill of Materials</a>.</p>
+<h2 id="the-two-sides-of-the-board">The two sides of the board</h2>
+<p>The snail board has two sides, and it matters which part goes where:</p>
+<ul>
+<li><strong>Top</strong>: the snail drawing and the text <strong>SHETELLS.STREAM</strong>. Resistors and
+  LEDs go on this side.</li>
+<li><strong>Bottom</strong>: the text <strong>STAY SALTY!</strong>. The two sockets go on this side, and
+  the Raspberry Pi plugs in from here.</li>
+</ul>
+<p>Every part is pushed through from one side and <strong>soldered on the other side</strong>.</p>
+<hr />
+<h2 id="step-1-check-the-raspberry-pi">Step 1: Check the Raspberry Pi</h2>
+<p><img alt="Raspberry Pi Zero W with its pin header" src="/toolkit/build/images/01-raspberry-pi-zero-w.jpg" /></p>
+<p>The Pi needs its 40-pin header (the double row of pins). If your Pi came
+without one, solder the 2×20 <strong>male</strong> header onto it first, with the pins
+pointing up on the side with the chips.</p>
+<h2 id="step-2-solder-the-pi-socket">Step 2: Solder the Pi socket</h2>
+<p><img alt="Board (top) and the 2×20 female socket" src="/toolkit/build/images/02-board-and-pi-socket.jpg" /></p>
+<p><img alt="The socket placed on the bottom side" src="/toolkit/build/images/03-pi-socket-on-back.jpg" /></p>
+<ol>
+<li>Push the long <strong>2×20 female socket</strong> into its holes from the <strong>bottom</strong>
+   (STAY SALTY!) side. It goes on the outline labelled
+   <em>Raspberry Pi zero 2w</em>.</li>
+<li>Turn the board over and solder all 40 pins on the <strong>top</strong> side.</li>
+</ol>
+<blockquote>
+<p><strong>Tip:</strong> solder one pin at each end first, check that the socket sits flat
+and straight, then solder the rest.</p>
+</blockquote>
+<h2 id="step-3-solder-the-amplifier-socket">Step 3: Solder the amplifier socket</h2>
+<p><img alt="The 1×7 female socket for the amplifier" src="/toolkit/build/images/04-amp-socket.jpg" /></p>
+<p><img alt="Both sockets in place on the bottom side" src="/toolkit/build/images/05-both-sockets-placed.jpg" /></p>
+<ol>
+<li>Push the short <strong>1×7 female socket</strong> into the holes labelled <strong>MAX98357A</strong>,
+   also from the <strong>bottom</strong> side.</li>
+<li>Solder its 7 pins on the <strong>top</strong> side.</li>
+</ol>
+<p><img alt="Sockets soldered, seen from the top, with the two resistors" src="/toolkit/build/images/06-sockets-soldered-resistors.jpg" /></p>
+<h2 id="step-4-solder-the-resistors">Step 4: Solder the resistors</h2>
+<p><img alt="Resistors soldered on the top side" src="/toolkit/build/images/07-resistors-soldered.jpg" /></p>
+<ol>
+<li>Bend the legs of the two <strong>470 Ω resistors</strong> and push them into the two
+   rectangles on the <strong>top</strong> side (marked R1 and R2 on the bottom).
+   Resistors have no direction, so either way round is fine.</li>
+<li>Solder them on the bottom side and cut off the extra legs.</li>
+</ol>
+<h2 id="step-5-solder-the-leds-the-antennas">Step 5: Solder the LEDs (the antennas)</h2>
+<p><img alt="The two LEDs" src="/toolkit/build/images/08-leds.jpg" /></p>
+<p><img alt="LEDs soldered as the snail's antennas" src="/toolkit/build/images/09-leds-soldered.jpg" /></p>
+<p>LEDs <strong>only work one way round</strong>:</p>
+<ul>
+<li>The <strong>long leg (+)</strong> goes into the <strong>round</strong> hole.</li>
+<li>The <strong>short leg (−)</strong> goes into the <strong>square</strong> hole. The flat edge on the
+  LED's rim is on this side too.</li>
+</ul>
+<ol>
+<li>Push both LEDs into the two antenna positions at the snail's head, on the <strong>top</strong> side.</li>
+<li>Solder them on the bottom side and cut off the extra legs.</li>
+</ol>
+<p>The antennas are wired straight to the power, so they light up whenever the
+Shellphone is switched on.</p>
+<h2 id="step-6-prepare-the-amplifier">Step 6: Prepare the amplifier</h2>
+<p><img alt="MAX98357A amplifier and its 7-pin header" src="/toolkit/build/images/10-amp-and-header.jpg" /></p>
+<ol>
+<li>Push the <strong>short ends</strong> of the 7-pin male header into the amplifier's row of
+   holes (Vin, GND, SD, GAIN, DIN, BCLK, LRC), with the long pins pointing
+   <strong>down</strong>, away from the printed side. Solder all 7 pins.</li>
+<li><strong>Solder the 2-pin screw terminal</strong> into the two big holes marked
+   <strong>+</strong> and <strong>−</strong> on the amplifier, with the screw openings facing outwards.
+   <em>(No photo of this step; you can see the blue terminal in step 7.)</em></li>
+</ol>
+<h2 id="step-7-plug-in-the-amplifier-and-connect-the-transducer">Step 7: Plug in the amplifier and connect the transducer</h2>
+<p><img alt="Amplifier plugged into its socket" src="/toolkit/build/images/11-amp-plugged-in.jpg" /></p>
+<ol>
+<li>Plug the amplifier into its socket on the <strong>bottom</strong> side. Match the pin
+   names on the amplifier with the names printed next to the socket
+   (<strong>Vin GND … DIN BCLK LRC</strong>). If they don't line up, turn it round.</li>
+<li>Screw the two wires of the <strong>speaker cable</strong> into the screw terminal
+   (<strong>+</strong> and <strong>−</strong>).</li>
+<li>Connect the white plug of the cable to the <strong>transducer</strong>.</li>
+</ol>
+<p><img alt="The bone-conduction transducer" src="/toolkit/build/images/12-transducer.jpg" /></p>
+<p><img alt="Amplifier with the speaker cable, and the transducer" src="/toolkit/build/images/13-amp-cable-transducer.jpg" /></p>
+<p><img alt="Board with the transducer connected" src="/toolkit/build/images/14-board-with-transducer.jpg" /></p>
+<p><img alt="Close-up of the finished board" src="/toolkit/build/images/15-board-closeup.jpg" /></p>
+<h2 id="step-8-insert-the-sd-card-and-plug-in-the-pi">Step 8: Insert the SD card and plug in the Pi</h2>
+<p><img alt="Raspberry Pi and the pre-flashed SD card" src="/toolkit/build/images/16-pi-and-sd-card.jpg" /></p>
+<ol>
+<li><strong>Insert the pre-flashed SD card into the Raspberry Pi</strong>: the card slot is
+   at one end of the Pi, and the card goes in with its label facing up.</li>
+<li>Plug the Pi's pins into the <strong>2×20 socket</strong> on the <strong>bottom</strong> of the snail
+   board. The Pi's chips face the snail board. Check that <strong>all 40 pins</strong> go
+   into the socket and that it isn't shifted by one row.</li>
+</ol>
+<p><img alt="Pi plugged onto the board, seen from the bottom" src="/toolkit/build/images/17-pi-plugged-in.jpg" /></p>
+<p><img alt="The assembled electronics, seen from the top" src="/toolkit/build/images/18-assembled-front.jpg" /></p>
+<h2 id="step-9-glue-the-transducer-into-the-shell">Step 9: Glue the transducer into the shell</h2>
+<p><img alt="The electronics next to the shell, with the transducer inside it" src="/toolkit/build/images/19-with-shell.jpg" /></p>
+<p><img alt="The transducer glued inside the shell" src="/toolkit/build/images/21-transducer-in-shell.jpg" /></p>
+<p>The transducer doesn't make sound on its own: it makes <strong>the shell</strong> vibrate,
+and the shell becomes the speaker.</p>
+<ol>
+<li>Find a smooth, solid spot inside the shell, where the transducer can lie
+   flat with good contact.</li>
+<li><strong>Glue it in place with hot glue.</strong> Press the flat face of the transducer
+   against the shell while the glue sets, so it touches the shell directly.</li>
+<li>Lead the cable out of the shell's opening so it doesn't rattle.</li>
+</ol>
+<h2 id="step-10-power-it-on">Step 10: Power it on</h2>
+<p><img alt="Complete, with the USB power supply" src="/toolkit/build/images/20-complete-with-power.jpg" /></p>
+<ol>
+<li>Plug the 5 V power supply into the Pi's micro-USB port marked <strong>PWR IN</strong>:
+   the port at the corner of the Pi, not the one in the middle.</li>
+<li>The snail's antennas light up straight away.</li>
+<li><strong>Wait about 2 minutes.</strong> The Pi starts up, joins the Wi-Fi and starts
+   playing. Hold the shell to your ear.</li>
+</ol>
+<p>No sound after a few minutes? It probably isn't on a Wi-Fi it knows yet.
+Go to <strong><a href="/toolkit/build/docs/wifi-setup.html">Wi-Fi setup</a></strong>.</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antennas don't light up</td>
+<td>Power supply plugged into <strong>PWR IN</strong>? Board pushed fully onto the Pi? LEDs the right way round (long leg in the round hole)?</td>
+</tr>
+<tr>
+<td>Antennas light up, but no sound after 3 minutes</td>
+<td>Wi-Fi: see <a href="/toolkit/build/docs/wifi-setup.html">Wi-Fi setup</a>.</td>
+</tr>
+<tr>
+<td>Connected to Wi-Fi, but no sound</td>
+<td>Amplifier plugged in the right way round (pin names matching)? Speaker cable tight in the screw terminal? White plug pushed into the transducer?</td>
+</tr>
+<tr>
+<td>Sound is very quiet</td>
+<td>Is the transducer glued flat against the shell? Turn up the volume on the <a href="/toolkit/build/docs/wifi-setup.html#volume-and-control-page">control page</a>.</td>
+</tr>
+</tbody>
+</table>
+  </main>
+
+  <footer class="footer">
+    <img class="footer-spiral" src="/toolkit/build/assets/drawings/spiral.svg" alt="" aria-hidden="true">
+    <p class="footer-tag">— made in esposende, with the water.</p>
+    <p class="footer-links">
+      <a class="btn btn-outline" href="https://github.com/marioguzzzman/dyi-shell.phone">view on github</a>
+      <a class="btn btn-filled" href="/">she tells ↗</a>
+    </p>
+  </footer>
+</body>
+</html>

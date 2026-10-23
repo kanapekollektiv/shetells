@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DIY Shell Phone</title>
+  <meta name="description" content="Build your own Shellphone, a shell you can listen to. Part of She Tells, Sea Shells (Esposende, S+T+ARTS Aqua Motion).">
+  <!-- Built from https://github.com/marioguzzzman/dyi-shell.phone by tools/toolkit-sync/build.py. Edit Mario's repo, not this file. -->
+  <link rel="stylesheet" href="/toolkit/build/assets/css/shetells.css">
+</head>
+<body class="page-home">
+  <header class="header">
+    <a class="brand" href="/toolkit/build/index.html">
+      <span class="brand-title">she tells</span>
+      <span class="brand-sub">
+        <svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>
+        diy shell phone
+      </span>
+    </a>
+    <nav class="nav-buttons">
+      <a class="btn btn-outline" href="/toolkit/build/docs/assembly.html">assembly</a>
+      <a class="btn btn-outline" href="/toolkit/build/docs/wifi-setup.html">wi-fi setup</a>
+      <a class="btn btn-outline" href="/toolkit/build/hardware/bom.html">parts</a>
+      <a class="btn btn-filled" href="/diytoolkit.html">she tells ↗</a>
+    </nav>
+  </header>
+
+  <img class="doodle doodle-blimp" src="/toolkit/build/assets/drawings/blimp.svg" alt="" aria-hidden="true">
+  <img class="doodle doodle-seaweed" src="/toolkit/build/assets/drawings/seaweed.svg" alt="" aria-hidden="true">
+
+  <main class="content">
+<h1 id="-diy-shell-phone">🐚 DIY Shell Phone</h1>
+<p>This repository is the open-source reference for the <em>DIY Shell Phone</em>, so anyone can build their own, part of <strong><a href="https://shetells.stream/">She Tells, Sea Shells</a></strong>, an artistic research project, developing both an artwork, an installation of the Shetells artwork, and a toolkit. </p>
+<p>The project emerges from the simple, almost childlike gesture of holding a shell to the ear, hearing the ocean’s presence. This toolkit is conceived as a means for the waters of Esposende to exchange with their inhabitants, enabling acts of observation, remembrance, and speculation about the futures of water bodies. Through this, a playful voice is extended to the non-human presences and aquatic landscapes of the ecosystem.</p>
+<p><img alt="The Shellphone" src="/toolkit/build/images/hero_image_shellphone.png" /></p>
+<blockquote>
+<p><strong>Building a kit?</strong> Start with the <strong><a href="/toolkit/build/docs/assembly.html">Assembly guide</a></strong>, then the <strong><a href="/toolkit/build/docs/wifi-setup.html">Wi-Fi setup</a></strong>.</p>
+</blockquote>
+<hr />
+<h2 id="about-the-project">About the project</h2>
+<p><strong>English</strong> - The Shellphone is a shell you can listen to. Inside a shell sits a Raspberry Pi Zero W (or Zero 2 W) and a small custom audio board. When you hold the shell to your ear, it connects over WiFi to <a href="https://shetells.stream/">shetells.stream</a> and plays its live <strong><a href="https://shetells.stream/stream.html">stream</a></strong> - a flow of voices and memories that people have shared about water: the sea, rivers, drought, the things we are losing. It turns a familiar gesture - listening to a shell - into a way of listening to each other, and to the water. <em>(You can also explore the <a href="https://shetells.stream/living-archive.html">Living Archive</a> to see the memories and the process behind the piece.)</em></p>
+<p><strong>Português</strong> - O Shellphone é uma concha que se pode escutar. Dentro de uma concha estão uma Raspberry Pi Zero W (ou Zero 2 W) e uma pequena placa de áudio feita à medida. Ao aproximar a concha do ouvido, liga-se por WiFi a <a href="https://shetells.stream/">shetells.stream</a> e reproduz a sua <strong><a href="https://shetells.stream/stream.html">transmissão ao vivo</a></strong> — um fluxo de vozes e memórias que as pessoas partilharam sobre a água: o mar, os rios, a seca, aquilo que estamos a perder. Transforma um gesto familiar - ouvir uma concha - numa forma de nos ouvirmos uns aos outros, e de ouvir a água. <em>(Também podes explorar o <a href="https://shetells.stream/living-archive.html">Arquivo Vivo</a> para ver as memórias e o processo por detrás da peça.)</em></p>
+<hr />
+<h2 id="how-it-works">How it works</h2>
+<p>The Shellphone is three parts, hidden inside a shell:</p>
+<ol>
+<li><strong>Raspberry Pi Zero W or Zero 2 W</strong> - a tiny WiFi computer. It connects to the internet and plays the live <a href="https://shetells.stream/stream.html">stream</a> from <a href="https://shetells.stream/">shetells.stream</a>.</li>
+<li><strong>Custom audio board</strong> - a small PCB that plugs onto the Pi like a "HAT". It carries a <strong>MAX98357A I2S amplifier</strong> that turns the Pi's digital audio into a real signal, plus two LED "antennas" that light up whenever the Shellphone has power. The board is shaped like a snail.</li>
+<li><strong>Bone-conduction transducer</strong> (8 Ω, 1 W) - instead of a normal speaker, a small transducer that makes whatever it touches vibrate. Glued inside the shell, it turns <em>the shell itself</em> into the speaker, so the sound seems to rise out of the shell in your hand.</li>
+</ol>
+<p>Any shell works: a real seashell or the 3D-printable one in <a href="/toolkit/build/enclosure/index.html"><code>enclosure/</code></a>. Everything is powered over USB (5 V).</p>
+<p align="center">
+  <img src="/toolkit/build/images/PCB_front_image_shellphone.png" width="45%" alt="Audio board - front">
+  <img src="/toolkit/build/images/PCB_back_image_shellphone.png" width="45%" alt="Audio board - back">
+</p>
+
+<p>The audio board connects to the Pi's audio pins like this:</p>
+<table>
+<thead>
+<tr>
+<th>Amp signal</th>
+<th>Raspberry Pi pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio clock (BCLK)</td>
+<td>GPIO18 (pin 12)</td>
+</tr>
+<tr>
+<td>Word select (LRC)</td>
+<td>GPIO19 (pin 35)</td>
+</tr>
+<tr>
+<td>Audio data (DIN)</td>
+<td>GPIO21 (pin 40)</td>
+</tr>
+<tr>
+<td>Power (Vin)</td>
+<td>5V (pin 2)</td>
+</tr>
+<tr>
+<td>Ground (GND)</td>
+<td>GND (pin 6)</td>
+</tr>
+</tbody>
+</table>
+<p>The two LED antennas are wired from 5 V through a 470 Ω resistor each to GND, so they are always on when the board has power (they are not controlled by the Pi).</p>
+<p><em>(Full board design: <a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a>, a KiCad project.)</em></p>
+<hr />
+<h2 id="whats-in-this-repo">What's in this repo</h2>
+<table>
+<thead>
+<tr>
+<th>Folder / file</th>
+<th>What's inside</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/toolkit/build/docs/assembly.html"><code>docs/assembly.md</code></a></td>
+<td>Step-by-step assembly guide with photos</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="/toolkit/build/docs/wifi-setup.html"><code>docs/wifi-setup.md</code></a></td>
+<td>Connecting the Shellphone to Wi-Fi</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a></td>
+<td>KiCad design files for the audio board</td>
+<td>✅ Designed</td>
+</tr>
+<tr>
+<td><a href="/toolkit/build/hardware/bom.html"><code>hardware/bom.md</code></a></td>
+<td>Bill of Materials - the full parts list</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="/toolkit/build/enclosure/index.html"><code>enclosure/</code></a></td>
+<td>3D-printable shell (<code>.3mf</code>, <code>.obj</code>), optional</td>
+<td>✅ Included</td>
+</tr>
+<tr>
+<td><a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/images"><code>images/</code></a></td>
+<td>Build photos and board renders</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Software</strong></td>
+<td>Comes pre-installed on the kit's SD card</td>
+<td>🚧 Instructions for flashing your own card coming</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="build-your-own">Build your own</h2>
+<ol>
+<li><strong>Get the parts</strong> - see the <a href="/toolkit/build/hardware/bom.html">Bill of Materials</a>.</li>
+<li><strong>Make the audio board</strong> - open the KiCad project in <a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a>, export the Gerber files, and send them to any PCB fab (e.g. JLCPCB, PCBWay).</li>
+<li><strong>Find a shell</strong> - any shell works, or print the model in <a href="/toolkit/build/enclosure/index.html"><code>enclosure/</code></a>.</li>
+<li><strong>Assemble</strong> - follow the <strong><a href="/toolkit/build/docs/assembly.html">Assembly guide</a></strong>: solder the board, plug it onto the Pi, and hot-glue the bone-conduction transducer inside the shell.</li>
+<li><strong>Connect it to Wi-Fi</strong> - see <strong><a href="/toolkit/build/docs/wifi-setup.html">Wi-Fi setup</a></strong>.</li>
+</ol>
+<hr />
+<h2 id="software">Software</h2>
+<p>The kit comes with a <strong>pre-flashed SD card</strong>: the software that connects to Wi-Fi and plays the stream is already on it. 🚧 Instructions for making your own pre-flashed card are coming.</p>
+<hr />
+<h2 id="credits">Credits</h2>
+<p>Made by:</p>
+<ul>
+<li><strong>Helin Ulaş</strong> - <a href="https://helinulas.info/">helinulas.info</a></li>
+<li><strong>Rita Eperjesi</strong> - <a href="https://rita.cloud/">rita.cloud</a></li>
+<li><strong>Mario Guzman</strong> - <a href="https://www.mario-guzman.com/">mario-guzman.com</a></li>
+<li><strong>Christian Kokott</strong> - <a href="https://kokott.art/">kokott.art</a></li>
+</ul>
+<p>Project realised within the framework of the <a href="https://starts.eu/what-we-do/residences/startsaquamotion/">S+T+ARTS Aqua Motion artistic residency program</a>, an initiative co-funded by the European Commission and hosted by <a href="https://rioneiva.com/">Rio Neiva</a>, Esposende, Portugal.</p>
+<p>🌐 <a href="https://shetells.stream/">shetells.stream</a> · 🔊 <a href="https://shetells.stream/stream.html">Live stream</a> · 📚 <a href="https://shetells.stream/living-archive.html">Living Archive</a></p>
+<!-- 🚧 TODO: EU-funded acknowledgment line + logo. -->
+  </main>
+
+  <footer class="footer">
+    <img class="footer-spiral" src="/toolkit/build/assets/drawings/spiral.svg" alt="" aria-hidden="true">
+    <p class="footer-tag">— made in esposende, with the water.</p>
+    <p class="footer-links">
+      <a class="btn btn-outline" href="https://github.com/marioguzzzman/dyi-shell.phone">view on github</a>
+      <a class="btn btn-filled" href="/">she tells ↗</a>
+    </p>
+  </footer>
+</body>
+</html>

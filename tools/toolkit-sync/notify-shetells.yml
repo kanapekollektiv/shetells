@@ -1,0 +1,24 @@
+# For Mario's repo (marioguzzzman/dyi-shell.phone), at .github/workflows/notify-shetells.yml.
+# On every push to main it tells shetells.stream to copy the guide again, so the
+# site updates within a couple of minutes instead of at the daily check.
+#
+# Needs one secret in Mario's repo, SHETELLS_DISPATCH_TOKEN: a fine-grained token
+# from an account with access to kanapekollektiv/shetells, limited to that one
+# repository, with "Contents: Read and write" (GitHub requires this to send the event).
+name: Tell shetells.stream the guide changed
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send the update event
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${{ secrets.SHETELLS_DISPATCH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/kanapekollektiv/shetells/dispatches \
+            -d '{"event_type":"shellphone-updated"}'

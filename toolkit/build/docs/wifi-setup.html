@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wi-Fi setup · DIY Shell Phone</title>
+  <meta name="description" content="Build your own Shellphone, a shell you can listen to. Part of She Tells, Sea Shells (Esposende, S+T+ARTS Aqua Motion).">
+  <!-- Built from https://github.com/marioguzzzman/dyi-shell.phone by tools/toolkit-sync/build.py. Edit Mario's repo, not this file. -->
+  <link rel="stylesheet" href="/toolkit/build/assets/css/shetells.css">
+</head>
+<body class="page-doc">
+  <header class="header">
+    <a class="brand" href="/toolkit/build/index.html">
+      <span class="brand-title">she tells</span>
+      <span class="brand-sub">
+        <svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>
+        diy shell phone
+      </span>
+    </a>
+    <nav class="nav-buttons">
+      <a class="btn btn-outline" href="/toolkit/build/docs/assembly.html">assembly</a>
+      <a class="btn btn-outline is-active" href="/toolkit/build/docs/wifi-setup.html">wi-fi setup</a>
+      <a class="btn btn-outline" href="/toolkit/build/hardware/bom.html">parts</a>
+      <a class="btn btn-filled" href="/diytoolkit.html">she tells ↗</a>
+    </nav>
+  </header>
+
+  <img class="doodle doodle-shell" src="/toolkit/build/assets/drawings/shell.svg" alt="" aria-hidden="true">
+
+  <main class="content">
+<h1 id="wi-fi-setup">Wi-Fi setup</h1>
+<p>The Shellphone plays a live stream from the internet, so it needs Wi-Fi.
+This page explains how to connect it, and how to add a new Wi-Fi when you take
+your shell somewhere else.</p>
+<p>Build it first: see the <strong><a href="/toolkit/build/docs/assembly.html">Assembly guide</a></strong>.</p>
+<hr />
+<h2 id="your-shells-name">Your shell's name</h2>
+<p>Every Shellphone has its own name: <code>shell-phone-</code> plus a number, for example
+<code>shell-phone-3</code>. On this page, <strong>N stands for your shell's number</strong>. So if
+your shell is <code>shell-phone-3</code>, then <code>shell-phone-N-setup</code> means
+<code>shell-phone-3-setup</code>.</p>
+<p>Don't know the number? Switch the shell on somewhere without a known Wi-Fi.
+The setup network it creates (see below) shows the name in your phone's Wi-Fi
+list.</p>
+<h2 id="switching-it-on">Switching it on</h2>
+<p>Plug in the power supply. The antennas light up straight away, but the Pi needs
+<strong>about 2 minutes</strong> to start, join the Wi-Fi and start playing. Be patient
+before you decide something is wrong.</p>
+<p>If the shell finds a Wi-Fi it already knows, it connects and plays on its own.
+Nothing else to do.</p>
+<hr />
+<h2 id="adding-a-new-wi-fi-from-your-phone">Adding a new Wi-Fi from your phone</h2>
+<p>When the shell can't find any Wi-Fi it knows, it creates <strong>its own setup
+network</strong> so you can tell it about a new one. No laptop needed.</p>
+<ol>
+<li>Switch on the shell and wait about <strong>2–3 minutes</strong> (start-up, plus about
+   1 minute of looking for known networks).</li>
+<li>On your phone, open the Wi-Fi settings and connect to:
+   - <strong>Network:</strong> <code>shell-phone-N-setup</code>
+   - <strong>Password:</strong> <code>shellphone</code></li>
+<li>A setup page opens by itself. If it doesn't, open
+   <strong><a href="http://10.42.0.1/">http://10.42.0.1/</a></strong> in your phone's browser.</li>
+<li>Pick the Wi-Fi you want from the list (or type its name if it's missing),
+   enter its password, and save.</li>
+<li>The shell switches over to that Wi-Fi. This switches <strong>off</strong> the setup
+   network, so your phone gets disconnected and the page can't show a
+   "success" message. That's normal.</li>
+</ol>
+<p><strong>Did it work?</strong></p>
+<ul>
+<li><strong>Yes,</strong> if the shell starts playing after a minute or two.</li>
+<li><strong>No,</strong> if <code>shell-phone-N-setup</code> appears again after a couple of minutes.
+  The password was probably wrong. Connect again and retype it.</li>
+</ul>
+<p>The shell remembers the new Wi-Fi permanently, also after switching it off.</p>
+<blockquote>
+<p><strong>Why does <code>http://10.42.0.1/</code> stop working later?</strong>
+That address only exists <em>inside</em> the setup network. As soon as the shell is
+connected to a normal Wi-Fi, the setup network switches off, and
+<code>10.42.0.1</code> disappears with it. This is on purpose: the setup network is
+only a fallback for when the shell is lost. To get it back, take the shell
+somewhere without a known Wi-Fi (or switch that Wi-Fi off) and wait.</p>
+</blockquote>
+<h2 id="if-that-doesnt-work-use-your-phones-hotspot">If that doesn't work: use your phone's hotspot</h2>
+<p>Always try adding your own Wi-Fi first (above). If that doesn't work, for
+example because the venue only has 5 GHz or a login-page Wi-Fi, let the shell
+use your phone's internet instead. Every pre-flashed card already knows a
+Wi-Fi called <strong><code>shellphone-kit</code></strong>, so:</p>
+<ol>
+<li>In your phone's <strong>hotspot / tethering</strong> settings, set:
+   - <strong>Network name:</strong> <code>shellphone-kit</code>
+   - <strong>Password:</strong> <code>stay-salty</code>
+   - <strong>Band:</strong> 2.4 GHz, if your phone asks</li>
+<li>Turn the hotspot on, then switch on the shell. It connects by itself
+   (about 2 minutes).</li>
+</ol>
+<p>Once it's connected, the phone can also open the shell's Wi-Fi setup page
+(<code>http://shell-phone-N.local/</code>, or the address from the hotspot's list of
+connected devices, see <a href="#volume-and-control-page">below</a>) and add another
+Wi-Fi from there. Keep in mind that the stream uses your phone's mobile
+data while it plays.</p>
+<h2 id="alternative-edit-the-sd-card-before-you-travel">Alternative: edit the SD card before you travel</h2>
+<p>If you already know the Wi-Fi of the place you're going to:</p>
+<ol>
+<li>Switch off the shell and take out the SD card.</li>
+<li>Put the card into a computer. A drive called <strong><code>bootfs</code></strong> appears.</li>
+<li>Open the file <strong><code>shell.conf</code></strong> in a text editor (Notepad on Windows,
+   TextEdit on Mac).</li>
+<li>Add a block like this at the end, with the exact network name and password:</li>
+</ol>
+<p><code>ini
+   [wifi "Name Of The Wi-Fi"]
+   password = the-wifi-password</code></p>
+<p>The name must match exactly, including capital letters and spaces.
+5. Save, eject the card safely, and put it back into the shell.</p>
+<p>The shell reads this file every time it starts.</p>
+<hr />
+<h2 id="volume-and-control-page">Volume and control page</h2>
+<p>When the shell is connected, it has a small control page for <strong>volume, mute,
+which stream it plays, and switching it off safely</strong>. Your phone (or laptop)
+must be on <strong>the same Wi-Fi as the shell</strong>. Then open:</p>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control (volume, stream, power off)</td>
+<td><code>http://shell-phone-N.local:8080/</code></td>
+</tr>
+<tr>
+<td>Wi-Fi setup (add networks)</td>
+<td><code>http://shell-phone-N.local/</code></td>
+</tr>
+</tbody>
+</table>
+<p>The control page shows the shell's name at the top.</p>
+<p align="center">
+  <img src="/toolkit/build/images/22-control-page.png" width="300" alt="The Shellphone control page: volume slider, PLAY button, ROOM button, sound-filter menu, stream menu and POWER OFF">
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Volume slider</strong> (the big bar)</td>
+<td>Drag up or down. The number is the volume, from 0 to 100. The shell remembers it, also after a restart.</td>
+</tr>
+<tr>
+<td><strong>PLAY / STOP</strong></td>
+<td>Tap to mute or unmute. The stream keeps running in the background, so the sound comes back instantly.</td>
+</tr>
+<tr>
+<td><strong>ROOM</strong></td>
+<td>Switches the sound filter on (<strong>ROOM ON</strong>) or off.</td>
+</tr>
+<tr>
+<td><strong>Sound-filter menu</strong> (<code>small-speaker</code>)</td>
+<td>Chooses the filter that ROOM uses. For a transducer glued in a shell, try <strong><code>shell-resonator</code></strong>; <strong><code>flat</code></strong> means no filter. Listen and keep what sounds best.</td>
+</tr>
+<tr>
+<td><strong>STREAM</strong></td>
+<td>Chooses which stream the shell plays. The choice is saved on the SD card.</td>
+</tr>
+<tr>
+<td><strong>POWER OFF</strong></td>
+<td>Shuts the shell down safely, on the first tap. To switch it on again, unplug the power supply and plug it back in.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>If the <code>.local</code> address doesn't open:</strong></p>
+<ul>
+<li>This is common on <strong>Android</strong> phones, and on computers with a <strong>VPN</strong>
+  switched on (a VPN can hide the devices on your local network). Pause the
+  VPN, or use the shell's number address instead (next point).</li>
+<li>Find the shell's address in your <strong>hotspot's list of connected devices</strong>
+  (or the router's), where it shows up as <code>shell-phone-N</code>. Then open, for
+  example, <code>http://192.168.1.57:8080/</code> with that address.</li>
+</ul>
+<hr />
+<h2 id="good-to-know">Good to know</h2>
+<ul>
+<li><strong>2.4 GHz only.</strong> The shell can't see 5 GHz Wi-Fi networks. Most routers
+  offer both; if the venue only has 5 GHz, use your phone's hotspot.</li>
+<li><strong>The Wi-Fi needs a password.</strong> Open networks, and networks with a login
+  page in the browser (hotels, cafés, trains), don't work.</li>
+<li><strong>No university or company Wi-Fi</strong> that asks for a username <em>and</em> password
+  (like eduroam).</li>
+<li><strong>Passwords are stored in plain text</strong> on the SD card (<code>shell.conf</code>).
+  Anyone holding the card can read them.</li>
+<li><strong>Several shells in one place?</strong> Each one has its own setup network and its
+  own <code>shell.conf</code>, so add the Wi-Fi to each shell.</li>
+</ul>
+<h2 id="quick-troubleshooting">Quick troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No sound, and no <code>shell-phone-N-setup</code> network appears</td>
+<td>Wait the full 3 minutes after switching on. Check the power supply.</td>
+</tr>
+<tr>
+<td><code>shell-phone-N-setup</code> keeps coming back</td>
+<td>The shell can't join the Wi-Fi: wrong password, 5 GHz only, or a login-page network.</td>
+</tr>
+<tr>
+<td>Can't open <code>http://10.42.0.1/</code></td>
+<td>Your phone must be connected to <code>shell-phone-N-setup</code> first. If the shell is already playing, it's connected: use the <code>.local</code> address instead.</td>
+</tr>
+<tr>
+<td>Can't open <code>shell-phone-N.local</code></td>
+<td>Phone and shell on the same Wi-Fi? VPN off? Try the address from the hotspot's device list.</td>
+</tr>
+</tbody>
+</table>
+  </main>
+
+  <footer class="footer">
+    <img class="footer-spiral" src="/toolkit/build/assets/drawings/spiral.svg" alt="" aria-hidden="true">
+    <p class="footer-tag">— made in esposende, with the water.</p>
+    <p class="footer-links">
+      <a class="btn btn-outline" href="https://github.com/marioguzzzman/dyi-shell.phone">view on github</a>
+      <a class="btn btn-filled" href="/">she tells ↗</a>
+    </p>
+  </footer>
+</body>
+</html>

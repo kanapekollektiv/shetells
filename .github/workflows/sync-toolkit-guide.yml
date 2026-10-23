@@ -1,0 +1,70 @@
+# Copies Mario's DIY Shell Phone guide (github.com/marioguzzzman/dyi-shell.phone)
+# onto shetells.stream at /toolkit/build/.
+#
+# Runs three ways:
+#   - "Run workflow" on the Actions tab (sync now)
+#   - once a day, as a safety net
+#   - straight away when Mario pushes, if his repo sends the "shellphone-updated"
+#     event (tools/toolkit-sync/notify-shetells.yml, to copy into his repo)
+#
+# Nothing is committed when his guide has not changed.
+name: Sync DIY Shell Phone guide
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 5 * * *'   # every day at 05:17 UTC
+  repository_dispatch:
+    types: [shellphone-updated]
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: sync-toolkit-guide
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Mario's guide
+        uses: actions/checkout@v4
+        with:
+          repository: marioguzzzman/dyi-shell.phone
+          path: _mario
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build the pages
+        run: |
+          pip install --quiet markdown
+          python tools/toolkit-sync/build.py _mario toolkit/build
+
+      - name: Commit if the guide changed
+        id: commit
+        run: |
+          git config user.name  "shellphone-sync"
+          git config user.email "actions@users.noreply.github.com"
+          git add toolkit/build
+          if git diff --cached --quiet; then
+            echo "No changes in the guide."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            sha=$(git -C _mario rev-parse --short HEAD)
+            git commit -m "Sync the DIY Shell Phone guide from marioguzzzman/dyi-shell.phone@$sha"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # A push made by this workflow does not always start a Pages build on its own
+      - name: Rebuild the site
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request not accepted; the push will still publish."
