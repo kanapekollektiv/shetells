@@ -1097,7 +1097,7 @@
     drawings:   [1800, 2053],
     data:       [2720, 1871],
     workshop:   [1800, 1258],
-    toolkit:    [3565, 1365],
+    toolkit:    [3565, 1367],
   };
 
   /* ═══════════════════════════════════════════════════
@@ -1198,9 +1198,10 @@
     [['toolkit'],               3050, 1340, 250,  34, 'toolkit-page', { stackBelow: true, gap: 10 }],
     [['toolkit'],               3780,  960, 260, 300, 'toolkit-current'],
     [['toolkit'],               3780, 1300, 300, 215, 'toolkit-pcb'],
-    [['toolkit', 'exhibition'], 3440,  960, 300, 215, 'toolkit-prototype'],
-    [['toolkit', 'workshop'],   3440, 1212, 300, 215, 'toolkit-workshop'],
-    [['toolkit'],               3780, 1556, 300, 215, 'toolkit-kit', { mapTitle: true }],
+    [['toolkit'],               3440,  960, 300, 215, 'toolkit-kit', { mapTitle: true }],
+    [['toolkit', 'workshop'],   3440, 1256, 300, 215, 'toolkit-workshop'],
+    // the prototype closes the cluster, centred under it
+    [['toolkit', 'exhibition'], 3415, 1560, 300, 215, 'toolkit-prototype'],
 
     // ── DATA & THE ETERNAL STREAM
     [['data', 'exhibition'],    2340, 1648, 360, 210, 'data-stream'],
