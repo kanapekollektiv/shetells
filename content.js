@@ -1660,7 +1660,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
   },
 
   'toolkit-page': {
-    link: 'diytoolkit.html',
+    link: 'toolkit/build/',
     label: { en: `Visit the toolkit page →`, pt: `Visita a página do kit →` },
   },
 
