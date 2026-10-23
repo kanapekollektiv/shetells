@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Turn Mario's DIY Shell Phone guide (github.com/marioguzzzman/dyi-shell.phone)
+"""Turn Mario's DIY Shell Phone guide (github.com/marioguzzzman/diy-shell.phone)
 into pages on shetells.stream, under toolkit/build/.
 
-    python tools/toolkit-sync/build.py <clone of dyi-shell.phone> toolkit/build
+    python tools/toolkit-sync/build.py <clone of diy-shell.phone> toolkit/build
 
 Mario keeps writing markdown in his own repo. This script reproduces his
 GitHub Pages layout (_layouts/default.html) and stylesheet, keeps his folder
@@ -15,7 +15,7 @@ The output folder is rebuilt from scratch on every run; never edit it by hand.
 import os, re, sys, shutil, posixpath
 import markdown
 
-REPO = 'marioguzzzman/dyi-shell.phone'
+REPO = 'marioguzzzman/diy-shell.phone'
 BASE = '/toolkit/build/'   # where the guide lives on shetells.stream; links are absolute from here
 GH = 'https://github.com/' + REPO
 
@@ -30,7 +30,8 @@ PAGES = {
 }
 COPY_DIRS = ['images', 'assets']   # copied as they are
 
-NAV = [('docs/assembly.html', 'assembly', 'assembly'),
+NAV = [('index.html', 'diy guide', None),
+       ('docs/assembly.html', 'assembly', 'assembly'),
        ('docs/wifi-setup.html', 'wi-fi setup', 'wifi'),
        ('hardware/bom.html', 'parts', 'bom')]
 
@@ -66,7 +67,7 @@ def resolve(link, src_rel, src_root):
 def layout(title, body, out_rel, home):
     up = BASE
     nav = '\n'.join(
-        f'      <a class="btn btn-outline{" is-active" if key in out_rel else ""}" href="{up}{href}">{label}</a>'
+        f'      <a class="btn btn-outline{" is-active" if (key in out_rel if key else home) else ""}" href="{up}{href}">{label}</a>'
         for href, label, key in NAV)
     doodles = (f'  <img class="doodle doodle-blimp" src="{up}assets/drawings/blimp.svg" alt="" aria-hidden="true">\n'
                f'  <img class="doodle doodle-seaweed" src="{up}assets/drawings/seaweed.svg" alt="" aria-hidden="true">'
@@ -85,7 +86,7 @@ def layout(title, body, out_rel, home):
 </head>
 <body class="{"page-home" if home else "page-doc"}">
   <header class="header">
-    <a class="brand" href="{up}index.html">
+    <a class="brand" href="https://shetells.stream/">
       <span class="brand-title">she tells</span>
       <span class="brand-sub">
         <svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>
@@ -94,7 +95,7 @@ def layout(title, body, out_rel, home):
     </a>
     <nav class="nav-buttons">
 {nav}
-      <a class="btn btn-filled" href="https://shetells.stream/">she tells ↗</a>
+      <a class="btn btn-filled" href="{GH}">view on github ↗</a>
     </nav>
   </header>
 
@@ -104,14 +105,47 @@ def layout(title, body, out_rel, home):
 {body}
   </main>
 
+  <!-- Footer: the same "add your voice" card and funders block as shetells.stream/diytoolkit.html -->
   <footer class="footer">
-    <img class="footer-spiral" src="{up}assets/drawings/spiral.svg" alt="" aria-hidden="true">
-    <p class="footer-tag">— made in esposende, with the water.</p>
-    <p class="footer-links">
-      <a class="btn btn-outline" href="{GH}">view on github</a>
-      <a class="btn btn-filled" href="https://shetells.stream/">she tells ↗</a>
-    </p>
+    <section class="voice">
+      <h2>add your voice</h2>
+      <p>Share a water memory, or a speculative future for Esposende. Your voice joins the eternal stream.</p>
+      <div class="voice-btns">
+        <a class="voice-btn" href="https://shetells.stream/game.html">play the game</a>
+        <a class="voice-btn ghost" href="https://shetells.stream/stream.html">listen to the stream</a>
+        <a class="voice-btn ghost" href="https://shetells.stream/living-archive.html">explore the living archive</a>
+      </div>
+      <p class="small">Your voice will be public. It will never be used to train AI.</p>
+    </section>
+
+    <aside class="funders">
+      <div class="funders-label">funded by</div>
+      <div class="funders-row">
+        <img class="eu" src="{up}assets/img/logos/eu-cofunded.png" alt="Co-funded by the European Union">
+        <img class="sta" src="{up}assets/img/logos/starts-aquamotion.png" alt="S+T+ARTS Aqua Motion">
+      </div>
+      <p class="funders-note">The project is realised within the framework of the <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener">S+T+ARTS Aqua Motion</a> artistic residency program, an initiative co-funded by the European Commission and hosted by <a href="https://rioneiva.com/" target="_blank" rel="noopener">Rio Neiva</a>, Esposende, Portugal.</p>
+      <p class="funders-legal">S+T+ARTS AQUA MOTION is co-funded by the European Union under the S+T+ARTS &mdash; Science, Technology and Arts initiative of DG CNECT (GA no. LC-03568055). Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or DG CNECT. Neither the European Union nor the granting authority can be held responsible for them.</p>
+      <div class="funders-label">residency host</div>
+      <img class="rio" src="{up}assets/img/logos/rio-neiva.png" alt="Rio Neiva">
+    </aside>
   </footer>
+  <!-- Click a photo to see it large; click again or press Esc to close. -->
+  <div class="zoom" id="zoom" hidden><img alt=""></div>
+  <script>
+    (function () {{
+      var zoom = document.getElementById('zoom'), big = zoom.querySelector('img');
+      function close() {{ zoom.hidden = true; big.removeAttribute('src'); document.body.classList.remove('zoom-open'); }}
+      document.querySelectorAll('.content img').forEach(function (img) {{
+        img.addEventListener('click', function () {{
+          big.src = img.currentSrc || img.src; big.alt = img.alt;
+          zoom.hidden = false; document.body.classList.add('zoom-open');
+        }});
+      }});
+      zoom.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) {{ if (e.key === 'Escape' && !zoom.hidden) close(); }});
+    }})();
+  </script>
 </body>
 </html>
 '''

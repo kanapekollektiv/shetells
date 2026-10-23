@@ -10,7 +10,7 @@
 :root {
   --black: #111111;
   --white: #ffffff;
-  --brown: #5B2915;      /* shetells brand accent */
+  --blue:  #0046FF;      /* shetells toolkit page: "add your voice" card + funders */
   --line:  #e4e1dc;      /* hairlines in tables */
   --paper: #f6f4f0;      /* code / note backgrounds */
   --script: 'CeleScript', 'Comic Sans MS', cursive;
@@ -69,7 +69,7 @@ body {
 
 .nav-buttons { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.6rem; }
 
-/* ── Pill buttons ── */
+/* ── Pill buttons (hover colours as on shetells.stream) ── */
 .btn {
   display: inline-block;
   font-family: var(--script);
@@ -86,7 +86,7 @@ body {
 .btn-outline { color: var(--black); background: transparent; border: 1.5px solid var(--black); }
 .btn-outline:hover, .btn-outline.is-active { background: var(--black); color: var(--white); }
 .btn-filled { color: var(--white); background: var(--black); border: 1.5px solid var(--black); }
-.btn-filled:hover { background: var(--brown); border-color: var(--brown); }
+.btn-filled:hover { background: #333; border-color: #333; }
 
 /* ── Doodles: only in the empty margins of wide screens ── */
 .doodle { position: absolute; z-index: 0; pointer-events: none; user-select: none; }
@@ -126,9 +126,10 @@ p, ul, ol { margin: 0 0 1.1em; }
 li { margin: 0.25em 0; }
 strong { font-weight: 700; }
 
-a { color: var(--black); text-decoration: underline; text-decoration-color: var(--brown); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
-a:hover { color: var(--brown); }
-.content a.btn, .header a, .footer a.btn { text-decoration: none; }
+/* links: underlined in the text colour, like the shetells toolkit page */
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2.5px; }
+.content a.btn, .header a, .footer a.voice-btn { text-decoration: none; }
 
 /* wavy divider instead of a straight rule */
 hr {
@@ -142,13 +143,34 @@ hr + h2 { margin-top: 0.6em; }
 
 img { max-width: 100%; height: auto; }
 .content img { border-radius: 14px; display: block; margin: 1.2em auto; }
-.content p[align="center"] img { display: inline-block; margin: 0.5em 0.5%; }
+/* centred image rows (<p align="center"> in the Markdown): side by side, evenly spaced */
+.content p[align="center"] { display: flex; flex-wrap: wrap; justify-content: center; gap: 2%; margin: 1.2em 0; }
+.content p[align="center"] img { display: block; margin: 0; }
+/* rows of three photos (width="32%" in the Markdown): same shape, so the row lines up */
+.content p[align="center"] img[width="32%"] { width: 32%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* click a photo to see it large */
+.content img { cursor: zoom-in; }
+.zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vmin;
+  background: rgba(17, 17, 17, 0.88);
+  cursor: zoom-out;
+}
+.zoom[hidden] { display: none; }
+.zoom img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 14px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); }
+body.zoom-open { overflow: hidden; }
 
 /* notes / tips */
 blockquote {
   margin: 1.5em 0;
   padding: 0.9em 1.2em;
-  border-left: 2px solid var(--brown);
+  border-left: 2px solid var(--black);
   background: var(--paper);
   border-radius: 0 14px 14px 0;
 }
@@ -175,16 +197,62 @@ pre { background: var(--paper); padding: 1em 1.2em; border-radius: 14px; overflo
 pre code { background: none; padding: 0; }
 .highlight { background: none; }
 
-/* ── Footer ── */
+/* ── Footer: "add your voice" + funders, as on shetells.stream/diytoolkit.html ── */
 .footer {
   position: relative;
   z-index: 1;
-  text-align: center;
-  padding: 2rem 1rem 3rem;
+  max-width: 1100px;
+  margin: 2rem auto 0;
+  padding: 0 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 72px);
+  color: var(--blue);
 }
-.footer-spiral { width: 70px; margin: 0 auto 0.8rem; display: block; }
-.footer-tag { font-family: var(--script); text-transform: uppercase; letter-spacing: 0.12em; font-size: clamp(12px, 1.2vw, 15px); margin: 0 0 1.2rem; }
-.footer-links { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin: 0; }
+.voice {
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 14px;
+  padding: clamp(24px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.voice h2 {
+  color: var(--white);
+  font-weight: 200;
+  font-size: clamp(32px, 4.6vw, 56px);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.voice p { font-size: 17px; line-height: 1.5; margin: 0; max-width: 56ch; }
+.voice .small { font-size: 13px; opacity: 0.85; }
+.voice-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.voice-btn {
+  font-family: var(--script);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  color: var(--blue);
+  background: var(--white);
+  border: 1.5px solid var(--white);
+  border-radius: 999px;
+  padding: 12px 22px;
+  transition: opacity 0.2s;
+}
+.voice-btn.ghost { background: transparent; color: var(--white); }
+.voice-btn:hover { opacity: 0.75; }
+
+.funders { display: flex; flex-direction: column; gap: 18px; max-width: 520px; }
+.funders-label { font-family: var(--script); font-size: 12pt; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.6; }
+.funders-row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+.funders img { display: block; height: auto; max-width: 100%; }
+.funders .eu { width: 230px; }
+.funders .sta { width: 190px; }
+.funders .rio { width: 110px; }
+.funders-note { font-weight: 200; font-size: 15px; line-height: 1.55; margin: 0; }
+.funders-legal { font-weight: 200; font-size: 11.5px; line-height: 1.55; opacity: 0.62; max-width: 52ch; margin: 0; }
 
 /* ── Phones ── */
 @media (max-width: 768px) {
@@ -193,4 +261,5 @@ pre code { background: none; padding: 0; }
   .nav-buttons { justify-content: flex-start; width: 100%; }
   .brand { flex-wrap: wrap; }
   .btn { padding: 0.5rem 1.1rem; }
+  .content p[align="center"] img[width="32%"] { width: 100%; margin: 0.4em 0; }
 }

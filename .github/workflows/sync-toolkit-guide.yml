@@ -1,4 +1,4 @@
-# Copies Mario's DIY Shell Phone guide (github.com/marioguzzzman/dyi-shell.phone)
+# Copies Mario's DIY Shell Phone guide (github.com/marioguzzzman/diy-shell.phone)
 # onto shetells.stream at /toolkit/build/.
 #
 # Runs three ways:
@@ -34,7 +34,7 @@ jobs:
       - name: Fetch Mario's guide
         uses: actions/checkout@v5
         with:
-          repository: marioguzzzman/dyi-shell.phone
+          repository: marioguzzzman/diy-shell.phone
           path: _mario
 
       - uses: actions/setup-python@v6
@@ -57,7 +57,7 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             sha=$(git -C _mario rev-parse --short HEAD)
-            git commit -m "Sync the DIY Shell Phone guide from marioguzzzman/dyi-shell.phone@$sha"
+            git commit -m "Sync the DIY Shell Phone guide from marioguzzzman/diy-shell.phone@$sha"
             git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi

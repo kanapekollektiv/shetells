@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DIY Shell Phone</title>
   <meta name="description" content="Build your own Shellphone, a shell you can listen to. Part of She Tells, Sea Shells (Esposende, S+T+ARTS Aqua Motion).">
-  <!-- Built from https://github.com/marioguzzzman/dyi-shell.phone by tools/toolkit-sync/build.py. Edit Mario's repo, not this file. -->
+  <!-- Built from https://github.com/marioguzzzman/diy-shell.phone by tools/toolkit-sync/build.py. Edit Mario's repo, not this file. -->
   <link rel="stylesheet" href="/toolkit/build/assets/css/shetells.css">
 </head>
 <body class="page-home">
   <header class="header">
-    <a class="brand" href="/toolkit/build/index.html">
+    <a class="brand" href="https://shetells.stream/">
       <span class="brand-title">she tells</span>
       <span class="brand-sub">
         <svg class="brand-line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.87 5.06" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M.91,3.32c3.46.66,15.77,1.65,22.92.28,4.78-.91,15.54-2.85,19.76-2.83,3.81.02,8.93,0,11.38.86"/></svg>
@@ -18,10 +18,11 @@
       </span>
     </a>
     <nav class="nav-buttons">
+      <a class="btn btn-outline is-active" href="/toolkit/build/index.html">diy guide</a>
       <a class="btn btn-outline" href="/toolkit/build/docs/assembly.html">assembly</a>
       <a class="btn btn-outline" href="/toolkit/build/docs/wifi-setup.html">wi-fi setup</a>
       <a class="btn btn-outline" href="/toolkit/build/hardware/bom.html">parts</a>
-      <a class="btn btn-filled" href="https://shetells.stream/">she tells ↗</a>
+      <a class="btn btn-filled" href="https://github.com/marioguzzzman/diy-shell.phone">view on github ↗</a>
     </nav>
   </header>
 
@@ -30,9 +31,15 @@
 
   <main class="content">
 <h1 id="-diy-shell-phone">🐚 DIY Shell Phone</h1>
-<p>This repository is the open-source reference for the <em>DIY Shell Phone</em>, so anyone can build their own, part of <strong><a href="https://shetells.stream/">She Tells, Sea Shells</a></strong>, an artistic research project, developing both an artwork, an installation of the Shetells artwork, and a toolkit. </p>
-<p>The project emerges from the simple, almost childlike gesture of holding a shell to the ear, hearing the ocean’s presence. This toolkit is conceived as a means for the waters of Esposende to exchange with their inhabitants, enabling acts of observation, remembrance, and speculation about the futures of water bodies. Through this, a playful voice is extended to the non-human presences and aquatic landscapes of the ecosystem.</p>
+<p>This repository is the open-source reference for the <em>DIY Shell Phone</em>, so anyone can build their own.</p>
+<p>The DIY Shell Phone is the toolkit of <strong><a href="https://shetells.stream/">Sea Shells, She Tells</a></strong>, an artistic research project in Esposende. It begins with the simple, almost childlike gesture of holding a shell to the ear and hearing the ocean. Through field recordings, performed voices, local stories and speculative futures, we extend a playful voice to the waters of Esposende, and invite the people who live alongside them to answer.</p>
 <p><img alt="The Shellphone" src="/toolkit/build/images/hero_image_shellphone.png" /></p>
+<p align="center">
+  <img src="/toolkit/build/images/kit-assembled-with-shell.jpg" width="32%" alt="The assembled kit connected to a large shell, on the toolkit card">
+  <img src="/toolkit/build/images/kit-board-and-shell.jpg" width="32%" alt="The snail board on the Raspberry Pi, next to the shell">
+  <img src="/toolkit/build/images/kit-board-in-box.jpg" width="32%" alt="The snail board in its box of green paper">
+</p>
+
 <blockquote>
 <p><strong>Building a kit?</strong> Start with the <strong><a href="/toolkit/build/docs/assembly.html">Assembly guide</a></strong>, then the <strong><a href="/toolkit/build/docs/wifi-setup.html">Wi-Fi setup</a></strong>.</p>
 </blockquote>
@@ -86,7 +93,7 @@
 </tbody>
 </table>
 <p>The two LED antennas are wired from 5 V through a 470 Ω resistor each to GND, so they are always on when the board has power (they are not controlled by the Pi).</p>
-<p><em>(Full board design: <a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a>, a KiCad project.)</em></p>
+<p><em>(Full board design: <a href="https://github.com/marioguzzzman/diy-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a>, a KiCad project.)</em></p>
 <hr />
 <h2 id="whats-in-this-repo">What's in this repo</h2>
 <table>
@@ -109,7 +116,7 @@
 <td>✅</td>
 </tr>
 <tr>
-<td><a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a></td>
+<td><a href="https://github.com/marioguzzzman/diy-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a></td>
 <td>KiCad design files for the audio board</td>
 <td>✅ Designed</td>
 </tr>
@@ -124,7 +131,7 @@
 <td>✅ Included</td>
 </tr>
 <tr>
-<td><a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/images"><code>images/</code></a></td>
+<td><a href="https://github.com/marioguzzzman/diy-shell.phone/tree/main/images"><code>images/</code></a></td>
 <td>Build photos and board renders</td>
 <td>✅</td>
 </tr>
@@ -137,9 +144,15 @@
 </table>
 <hr />
 <h2 id="build-your-own">Build your own</h2>
+<p align="center">
+  <img src="/toolkit/build/images/kit-box-and-card.jpg" width="32%" alt="The kit in its box with the instruction card">
+  <img src="/toolkit/build/images/kit-card-and-postcard.jpg" width="32%" alt="The toolkit card, a postcard and the assembled kit">
+  <img src="/toolkit/build/images/kit-back-stay-salty.jpg" width="32%" alt="The back of the board, STAY SALTY, on the Raspberry Pi next to the shell">
+</p>
+
 <ol>
 <li><strong>Get the parts</strong> - see the <a href="/toolkit/build/hardware/bom.html">Bill of Materials</a>.</li>
-<li><strong>Make the audio board</strong> - open the KiCad project in <a href="https://github.com/marioguzzzman/dyi-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a>, export the Gerber files, and send them to any PCB fab (e.g. JLCPCB, PCBWay).</li>
+<li><strong>Make the audio board</strong> - open the KiCad project in <a href="https://github.com/marioguzzzman/diy-shell.phone/tree/main/hardware/pcb"><code>hardware/pcb/</code></a>, export the Gerber files, and send them to any PCB fab (e.g. JLCPCB, PCBWay).</li>
 <li><strong>Find a shell</strong> - any shell works, or print the model in <a href="/toolkit/build/enclosure/index.html"><code>enclosure/</code></a>.</li>
 <li><strong>Assemble</strong> - follow the <strong><a href="/toolkit/build/docs/assembly.html">Assembly guide</a></strong>: solder the board, plug it onto the Pi, and hot-glue the bone-conduction transducer inside the shell.</li>
 <li><strong>Connect it to Wi-Fi</strong> - see <strong><a href="/toolkit/build/docs/wifi-setup.html">Wi-Fi setup</a></strong>.</li>
@@ -156,18 +169,49 @@
 <li><strong>Mario Guzman</strong> - <a href="https://www.mario-guzman.com/">mario-guzman.com</a></li>
 <li><strong>Christian Kokott</strong> - <a href="https://kokott.art/">kokott.art</a></li>
 </ul>
-<p>Project realised within the framework of the <a href="https://starts.eu/what-we-do/residences/startsaquamotion/">S+T+ARTS Aqua Motion artistic residency program</a>, an initiative co-funded by the European Commission and hosted by <a href="https://rioneiva.com/">Rio Neiva</a>, Esposende, Portugal.</p>
-<p>🌐 <a href="https://shetells.stream/">shetells.stream</a> · 🔊 <a href="https://shetells.stream/stream.html">Live stream</a> · 📚 <a href="https://shetells.stream/living-archive.html">Living Archive</a></p>
-<!-- 🚧 TODO: EU-funded acknowledgment line + logo. -->
+<p>Co-funded by the European Union within the <a href="https://starts.eu/what-we-do/residences/startsaquamotion/">S+T+ARTS Aqua Motion</a> residency, hosted by <a href="https://rioneiva.com/">Rio Neiva</a>, Esposende.</p>
   </main>
 
+  <!-- Footer: the same "add your voice" card and funders block as shetells.stream/diytoolkit.html -->
   <footer class="footer">
-    <img class="footer-spiral" src="/toolkit/build/assets/drawings/spiral.svg" alt="" aria-hidden="true">
-    <p class="footer-tag">— made in esposende, with the water.</p>
-    <p class="footer-links">
-      <a class="btn btn-outline" href="https://github.com/marioguzzzman/dyi-shell.phone">view on github</a>
-      <a class="btn btn-filled" href="https://shetells.stream/">she tells ↗</a>
-    </p>
+    <section class="voice">
+      <h2>add your voice</h2>
+      <p>Share a water memory, or a speculative future for Esposende. Your voice joins the eternal stream.</p>
+      <div class="voice-btns">
+        <a class="voice-btn" href="https://shetells.stream/game.html">play the game</a>
+        <a class="voice-btn ghost" href="https://shetells.stream/stream.html">listen to the stream</a>
+        <a class="voice-btn ghost" href="https://shetells.stream/living-archive.html">explore the living archive</a>
+      </div>
+      <p class="small">Your voice will be public. It will never be used to train AI.</p>
+    </section>
+
+    <aside class="funders">
+      <div class="funders-label">funded by</div>
+      <div class="funders-row">
+        <img class="eu" src="/toolkit/build/assets/img/logos/eu-cofunded.png" alt="Co-funded by the European Union">
+        <img class="sta" src="/toolkit/build/assets/img/logos/starts-aquamotion.png" alt="S+T+ARTS Aqua Motion">
+      </div>
+      <p class="funders-note">The project is realised within the framework of the <a href="https://starts.eu/what-we-do/residences/startsaquamotion/" target="_blank" rel="noopener">S+T+ARTS Aqua Motion</a> artistic residency program, an initiative co-funded by the European Commission and hosted by <a href="https://rioneiva.com/" target="_blank" rel="noopener">Rio Neiva</a>, Esposende, Portugal.</p>
+      <p class="funders-legal">S+T+ARTS AQUA MOTION is co-funded by the European Union under the S+T+ARTS &mdash; Science, Technology and Arts initiative of DG CNECT (GA no. LC-03568055). Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or DG CNECT. Neither the European Union nor the granting authority can be held responsible for them.</p>
+      <div class="funders-label">residency host</div>
+      <img class="rio" src="/toolkit/build/assets/img/logos/rio-neiva.png" alt="Rio Neiva">
+    </aside>
   </footer>
+  <!-- Click a photo to see it large; click again or press Esc to close. -->
+  <div class="zoom" id="zoom" hidden><img alt=""></div>
+  <script>
+    (function () {
+      var zoom = document.getElementById('zoom'), big = zoom.querySelector('img');
+      function close() { zoom.hidden = true; big.removeAttribute('src'); document.body.classList.remove('zoom-open'); }
+      document.querySelectorAll('.content img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          big.src = img.currentSrc || img.src; big.alt = img.alt;
+          zoom.hidden = false; document.body.classList.add('zoom-open');
+        });
+      });
+      zoom.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !zoom.hidden) close(); });
+    })();
+  </script>
 </body>
 </html>

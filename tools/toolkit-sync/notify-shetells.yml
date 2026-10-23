@@ -1,4 +1,4 @@
-# For Mario's repo (marioguzzzman/dyi-shell.phone), at .github/workflows/notify-shetells.yml.
+# For Mario's repo (marioguzzzman/diy-shell.phone), at .github/workflows/notify-shetells.yml.
 # On every push to main it tells shetells.stream to copy the guide again, so the
 # site updates within a couple of minutes instead of at the daily check.
 #
