@@ -1503,7 +1503,7 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
   },
 
   'data-contribute': {
-    link: 'memories.html',
+    link: 'share.html',
     label: { en: `Send your stories today! →`, pt: `Envia as tuas histórias hoje! →` },
   },
 

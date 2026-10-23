@@ -6,8 +6,8 @@
   <title>The living archive — She Tells, Sea Shells</title>
   <meta name="description" content="A living map of water memories and stories from Esposende, gathered by Sea Shells, She Tells: an S+T+ARTS Aqua Motion residency by Helin Ulas, Rita Eperjesi and Mario Guzman." />
   <link rel="canonical" href="https://shetells.stream/living-archive.html" />
-  <script src="lang.js?v=26"></script>
-  <script src="content.js?v=46"></script>
+  <script src="lang.js?v=27"></script>
+  <script src="content.js?v=47"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -981,7 +981,7 @@
       <button class="c-btn c-btn-circle" id="btnInfo" aria-label="About">?</button>
       <button class="c-btn c-btn-circle lang-toggle" onclick="toggleLang()" aria-label="Switch language">PT</button>
       <button class="c-btn c-btn-outline" id="btnStream">&#9654;</button>
-      <a href="memories.html" class="c-btn c-btn-filled" data-i18n="archive.contribute">send your stories today</a>
+      <a href="share.html" class="c-btn c-btn-filled" data-i18n="archive.contribute">send your stories today</a>
     </nav>
   </header>
 
@@ -2754,7 +2754,7 @@
 
   const mCta = document.createElement('a');
   mCta.className = 'm-cta';
-  mCta.href = 'memories.html';
+  mCta.href = 'share.html';
   onLang(() => { mCta.textContent = t('archive.contribute'); });
   mList.parentNode.insertBefore(mCta, mNotes);
 
