@@ -1,21 +1,19 @@
 # Copies Mario's DIY Shell Phone guide (github.com/marioguzzzman/diy-shell.phone)
 # onto shetells.stream at /toolkit/build/.
 #
-# Runs three ways:
-#   - "Run workflow" on the Actions tab (sync now)
-#   - once a day, as a safety net
-#   - straight away when Mario pushes, if his repo sends the "shellphone-updated"
-#     event (tools/toolkit-sync/notify-shetells.yml, to copy into his repo)
+# Runs only by hand, for now: "Run workflow" on the Actions tab.
+# The daily run and the run on Mario's push are switched off; to bring them
+# back, add under `on:`
+#   schedule:
+#     - cron: '17 5 * * *'   # every day at 05:17 UTC
+#   repository_dispatch:
+#     types: [shellphone-updated]   # needs tools/toolkit-sync/notify-shetells.yml in his repo
 #
 # Nothing is committed when his guide has not changed.
 name: Sync DIY Shell Phone guide
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '17 5 * * *'   # every day at 05:17 UTC
-  repository_dispatch:
-    types: [shellphone-updated]
 
 permissions:
   contents: write
