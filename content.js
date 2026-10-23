@@ -208,6 +208,33 @@ const CONTENT = {
     credit: { en: `Sargasso Museum, Esposende`, pt: `Museu do Sargaço, Esposende` },
   },
 
+  'sargassum-interview-marina': {
+    title: { en: `Marina Dolbeth on sargassum`, pt: `Marina Dolbeth sobre o sargaço` },
+    listen: { en: `Listen to the interview`, pt: `Ouve a entrevista` },
+    txt: {
+      en: `From the interview with Marina Dolbeth, the parts about the algae themselves: what a marine forest is, the carbon it holds, the wrack on the beaches, and the old practice of gathering sargaço for the fields.
+
+      The whole interview sits in Speculative Futures & Products.`,
+      pt: `Da entrevista com Marina Dolbeth, as partes sobre as próprias algas: o que é uma floresta marinha, o carbono que guarda, as algas que dão à costa e a antiga prática de apanhar sargaço para os campos.
+
+      A entrevista completa está em Futuros Especulativos e Produtos.`,
+    },
+    audio: {
+      title: { en: `From the interview`, pt: `Da entrevista` },
+      note: {
+        en: `Recorded in English, September 2026. Four parts about the algae.`,
+        pt: `Gravada em inglês, em setembro de 2026. Quatro partes sobre as algas.`,
+      },
+      tracks: [
+        { src: 'audio/interviews/marina/03-marine-forests.m4a', label: { en: `What marine forests are`, pt: `O que são as florestas marinhas` }, lang: 'en' },
+        { src: 'audio/interviews/marina/04-blue-carbon.m4a', label: { en: `Blue carbon`, pt: `O carbono azul` }, lang: 'en' },
+        { src: 'audio/interviews/marina/08-algal-wrack.m4a', label: { en: `Algal wrack and invasive species`, pt: `Algas arrojadas e espécies invasoras` }, lang: 'en' },
+        { src: 'audio/interviews/marina/09-collecting-data.m4a', label: { en: `Collecting data, from sargaço to drop cams`, pt: `Recolher dados, do sargaço às câmaras submersas` }, lang: 'en' },
+      ],
+    },
+    note: 'ml',
+  },
+
   'sargassum-tidal-archive': {
     title: `Tidal Archive`,
     full: {
@@ -287,35 +314,57 @@ const CONTENT = {
     },
   },
 
-  'local-tradition': {
-    txt: {
-      en: `The tradition is still close here. In Apúlia the sargaço was gathered by the sargaceiros and the sargaceiras, dried on the sand for three days, and carried onto the masseira fields as fertiliser. By royal decision it carried no tax. Today it goes mostly to pharmacy, cosmetics and food.
-
-      Everyone we spoke to had a version of it. A grandmother who gathered, a field that used to be a masseira, a beach that used to be full of carts.`,
-      pt: `A tradição ainda está próxima daqui. Na Apúlia o sargaço era recolhido pelos sargaceiros e pelas sargaceiras, seco na areia durante três dias e levado para os campos de masseira como fertilizante. Por decisão régia não pagava imposto. Hoje segue sobretudo para a farmácia, a cosmética e a alimentação.
-
-      Todas as pessoas com quem falámos tinham uma versão diferente desta história. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.`,
-    },
-    full: {
-      en: `The tradition is still close here. In Apúlia the sargaço was gathered by the sargaceiros and the sargaceiras, dried on the sand for three days, and carried onto the masseira fields as fertiliser. By royal decision it carried no tax. Today it goes mostly to pharmacy, cosmetics and food.
-
-      Everyone we spoke to had a version of it. A grandmother who gathered, a field that used to be a masseira, a beach that used to be full of carts.`,
-      pt: `A tradição ainda está próxima daqui. Na Apúlia o sargaço era recolhido pelos sargaceiros e pelas sargaceiras, seco na areia durante três dias e levado para os campos de masseira como fertilizante. Por decisão régia não pagava imposto. Hoje segue sobretudo para a farmácia, a cosmética e a alimentação.
-
-      Todas as pessoas com quem falámos tinham uma versão diferente desta história. Uma avó que apanhava, um campo que já foi masseira, uma praia que já esteve cheia de carroças.`,
-    },
-    sources: [
-      {
-        href: 'https://www.visitesposende.com/en/fazer/monumentos/sargasso-museum',
-        label: { en: `Museu do Sargaço, Esposende`, pt: `Museu do Sargaço, Esposende` },
-      },
-    ],
-    note: `ml`,
-  },
-
   'local-to-sargassum': {
     label: { en: `The sargaço cluster →`, pt: `O grupo do sargaço →` },
     goTo: 'sargassum',
+  },
+
+  // Gata da Mata, a wild food project, interviewed 26 Aug 2026.
+  'local-interview-gata-da-mata': {
+    title: { en: `Gata da Mata, wild food`, pt: `Gata da Mata, comida selvagem` },
+    listen: { en: `Listen to the interview`, pt: `Ouve a entrevista` },
+    gallery: [
+      {
+        src: 'living-archive-images/sargassum/shetells-48.jpg',
+        caption: { en: `Sargaço at low tide`, pt: `Sargaço na maré baixa` },
+        alt: {
+          en: `Sargassum fronds draped over rock at low tide`,
+          pt: `Algas de sargaço sobre a rocha na maré baixa`,
+        },
+      },
+    ],
+    full: {
+      en: `Gata da Mata is a do it yourself wild food project on the northern Portuguese coast. Its founder came from Latvia, works as a musician, has lived in Portugal for fifteen years, and learned to pick seaweed without a teacher, with a camera and a lot of checking.
+
+      We talked about the sargaço pickers who never ate what they gathered, a seaweed lunch with folklore groups, seaweed plastic, and why a dying Baltic makes the future feel fragile.`,
+      pt: `A Gata da Mata é um projeto de comida selvagem, do faz tu mesmo, na costa norte de Portugal. Quem o fundou veio da Letónia, trabalha na música, vive em Portugal há quinze anos e aprendeu a apanhar algas sem professor, com uma câmara e muita verificação.
+
+      Falámos dos sargaceiros que nunca comiam o que apanhavam, de um almoço de algas com grupos folclóricos, de plástico de algas, e de como um Báltico a morrer torna o futuro frágil.`,
+    },
+    audio: {
+      title: { en: `The interview`, pt: `A entrevista` },
+      note: {
+        en: `Recorded in English, August 2026. Fourteen parts: skip between them, or let it play through.`,
+        pt: `Gravada em inglês, em agosto de 2026. Catorze partes: salta entre elas, ou deixa tocar até ao fim.`,
+      },
+      tracks: [
+        { src: 'audio/interviews/gata-da-mata/01-from-music-to-seaweed.m4a', label: { en: `From music to seaweed`, pt: `Da música às algas` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/02-learning-without-a-teacher.m4a', label: { en: `Learning seaweed without a teacher`, pt: `Aprender as algas sem professor` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/03-seaweed-recipes.m4a', label: { en: `Portuguese seaweed recipes`, pt: `Receitas portuguesas com algas` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/04-is-seaweed-coming-back.m4a', label: { en: `Is eating seaweed coming back`, pt: `Comer algas está a voltar` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/05-sargaco-picking-today.m4a', label: { en: `Sargaço picking today`, pt: `A apanha do sargaço hoje` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/06-tasting-the-ocean.m4a', label: { en: `Tasting the ocean at low tide`, pt: `Provar o oceano na maré baixa` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/07-first-memory.m4a', label: { en: `The first memory of picking seaweed`, pt: `A primeira memória de apanhar algas` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/08-best-season.m4a', label: { en: `The best season to pick seaweed`, pt: `A melhor estação para apanhar algas` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/09-the-future.m4a', label: { en: `The future and the dying Baltic`, pt: `O futuro e o Báltico a morrer` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/10-seaweed-plastic.m4a', label: { en: `The sixth product, seaweed plastic`, pt: `O sexto produto, plástico de algas` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/11-fritter-recipe.m4a', label: { en: `The seaweed fritter recipe`, pt: `A receita dos bolinhos de algas` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/12-why-it-matters.m4a', label: { en: `Why it matters`, pt: `Porque é que importa` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/13-art-music-food.m4a', label: { en: `Art, music and food as hope`, pt: `Arte, música e comida como esperança` }, lang: 'en' },
+        { src: 'audio/interviews/gata-da-mata/14-where-to-find.m4a', label: { en: `Where to find Gata da Mata`, pt: `Onde encontrar a Gata da Mata` }, lang: 'en' },
+      ],
+    },
+    note: 'ml',
   },
 
   'local-rio-neiva': {
@@ -342,6 +391,35 @@ const CONTENT = {
       O seu trabalho passa pela educação ambiental, pelos desportos de natureza e por projetos, de biodiversidade, da ciência cidadã à conservação costeira. A equipa de She Tells, Sea Shells tem trabalhado a partir da sua sede, e muito do que temos vindo a recolher chegou-nos através deles.
 
       Uma entrevista e mais sobre história chegará em breve.`,
+    },
+    // The interview with Rui Monteiro rides on this card: the pill on the map,
+    // the player under the text. Archive chapters as for the other interviews.
+    listen: { en: `Listen to the interview`, pt: `Ouve a entrevista` },
+    cover: {
+      src: 'living-archive-images/workshop/rioneiva-22.jpg',
+      alt: {
+        en: `Rui Monteiro at the Rio Neiva workshop, holding a shellphone board`,
+        pt: `Rui Monteiro na oficina da Rio Neiva, com uma placa do shellphone na mão`,
+      },
+    },
+    audio: {
+      title: { en: `The interview with Rui Monteiro`, pt: `A entrevista com Rui Monteiro` },
+      note: {
+        en: `Recorded in English, September 2026. Ten parts: skip between them, or let it play through.`,
+        pt: `Gravada em inglês, em setembro de 2026. Dez partes: salta entre elas, ou deixa tocar até ao fim.`,
+      },
+      tracks: [
+        { src: 'audio/interviews/rui/01-meet-rui.m4a', label: { en: `Meet Rui`, pt: `Apresentação` }, lang: 'en' },
+        { src: 'audio/interviews/rui/03-what-rio-neiva-is.m4a', label: { en: `What Rio Neiva is and why it was founded`, pt: `O que é a Rio Neiva e porque foi fundada` }, lang: 'en' },
+        { src: 'audio/interviews/rui/04-beach-cleanups-to-arts.m4a', label: { en: `From beach cleanups to arts, science and wellbeing`, pt: `Das limpezas de praia às artes, à ciência e ao bem estar` }, lang: 'en' },
+        { src: 'audio/interviews/rui/05-where-rio-neiva-is.m4a', label: { en: `Where Rio Neiva is`, pt: `Onde fica a Rio Neiva` }, lang: 'en' },
+        { src: 'audio/interviews/rui/06-near-future.m4a', label: { en: `The near future`, pt: `O futuro próximo` }, lang: 'en' },
+        { src: 'audio/interviews/rui/07-global-change-local-action.m4a', label: { en: `Global change, local action`, pt: `Mudança global, ação local` }, lang: 'en' },
+        { src: 'audio/interviews/rui/08-product-line-potion.m4a', label: { en: `The product line, a Neiva river potion`, pt: `A linha de produtos, uma poção do rio Neiva` }, lang: 'en' },
+        { src: 'audio/interviews/rui/09-what-the-river-would-say.m4a', label: { en: `What the river would say`, pt: `O que diria o rio` }, lang: 'en' },
+        { src: 'audio/interviews/rui/10-two-cakes.m4a', label: { en: `Bring two cakes instead of one`, pt: `Traz dois bolos em vez de um` }, lang: 'en' },
+        { src: 'audio/interviews/rui/11-nature-unites.m4a', label: { en: `Nature as something that unites people`, pt: `A natureza como algo que une as pessoas` }, lang: 'en' },
+      ],
     },
     sources: [
       {
@@ -480,16 +558,53 @@ const CONTENT = {
 
   /* ══ SPECULATIVE FUTURES & PRODUCTS ══ */
 
-  'future-interview-coming': {
-    title: { en: `Interview coming`, pt: `Entrevista a caminho` },
-    txt: {
-      en: `A scientific perspective on futures and speculations around Esposende. The interview is coming and will be loaded here.`,
-      pt: `Uma perspetiva científica sobre futuros e especulações em torno de Esposende. A entrevista está a caminho e será carregada aqui.`,
-    },
+  // Marina Dolbeth, marine biologist at CIIMAR, interviewed 29 Sep 2026.
+  // The clips are the stream edit: music in, her name, the answer, music out.
+  // The same recordings are tagged into Sargassum, where a shorter deck holds
+  // the parts about the algae themselves.
+  'future-interview-marina': {
+    title: { en: `Marina Dolbeth, marine forests`, pt: `Marina Dolbeth, florestas marinhas` },
+    listen: { en: `Listen to the interview`, pt: `Ouve a entrevista` },
+    gallery: [
+      {
+        src: 'living-archive-images/sargassum/IMG_5705.jpg',
+        caption: { en: `On the rocks at Esposende`, pt: `Nas rochas de Esposende` },
+        alt: {
+          en: `Bladderwrack covering the rocks along the Esposende shore`,
+          pt: `Bodelha a cobrir as rochas na costa de Esposende`,
+        },
+      },
+    ],
     full: {
-      en: `A scientific perspective on futures and speculations around Esposende. The interview is coming and will be loaded here.`,
-      pt: `Uma perspetiva científica sobre futuros e especulações em torno de Esposende. A entrevista está a caminho e será carregada aqui.`,
+      en: `A scientific perspective on futures and speculations around Esposende. Marina Dolbeth works as a marine biologist at CIIMAR, University of Porto, and studies the marine forests of the northern Portuguese coast.
+
+      We talked about kelp and sargassum, blue carbon, the upwelling that keeps the water cold, and what the ocean might need next. The sixth product Marina imagines is a wind maker for the cold water refuge.`,
+      pt: `Uma perspetiva científica sobre futuros e especulações em torno de Esposende. Marina Dolbeth trabalha em biologia marinha no CIIMAR, da Universidade do Porto, e estuda as florestas marinhas da costa norte de Portugal.
+
+      Falámos de laminárias e sargaço, de carbono azul, do afloramento costeiro que mantém a água fria e do que o oceano poderá precisar a seguir. O sexto produto imaginado por Marina Dolbeth é uma máquina de vento para o refúgio de água fria.`,
     },
+    audio: {
+      title: { en: `The interview`, pt: `A entrevista` },
+      note: {
+        en: `Recorded in English, September 2026. Twelve parts: skip between them, or let it play through.`,
+        pt: `Gravada em inglês, em setembro de 2026. Doze partes: salta entre elas, ou deixa tocar até ao fim.`,
+      },
+      tracks: [
+        { src: 'audio/interviews/marina/01-meet-marina.m4a', label: { en: `Meet Marina`, pt: `Apresentação` }, lang: 'en' },
+        { src: 'audio/interviews/marina/03-marine-forests.m4a', label: { en: `What marine forests are`, pt: `O que são as florestas marinhas` }, lang: 'en' },
+        { src: 'audio/interviews/marina/04-blue-carbon.m4a', label: { en: `Blue carbon`, pt: `O carbono azul` }, lang: 'en' },
+        { src: 'audio/interviews/marina/05-biomass.m4a', label: { en: `What biomass means`, pt: `O que é a biomassa` }, lang: 'en' },
+        { src: 'audio/interviews/marina/06-marine-and-land-forests.m4a', label: { en: `Marine and land forests, and the upwelling`, pt: `Florestas marinhas e terrestres, e o afloramento costeiro` }, lang: 'en' },
+        { src: 'audio/interviews/marina/07-acidification-and-shells.m4a', label: { en: `Ocean acidification and shells`, pt: `A acidificação do oceano e as conchas` }, lang: 'en' },
+        { src: 'audio/interviews/marina/08-algal-wrack.m4a', label: { en: `Algal wrack and invasive species`, pt: `Algas arrojadas e espécies invasoras` }, lang: 'en' },
+        { src: 'audio/interviews/marina/09-collecting-data.m4a', label: { en: `Collecting data, from sargaço to drop cams`, pt: `Recolher dados, do sargaço às câmaras submersas` }, lang: 'en' },
+        { src: 'audio/interviews/marina/10-future-of-research.m4a', label: { en: `The future of research`, pt: `O futuro da investigação` }, lang: 'en' },
+        { src: 'audio/interviews/marina/11-sixth-product-wind-maker.m4a', label: { en: `The sixth product, a wind maker`, pt: `O sexto produto, uma máquina de vento` }, lang: 'en' },
+        { src: 'audio/interviews/marina/12-hope.m4a', label: { en: `What gives hope`, pt: `O que dá esperança` }, lang: 'en' },
+        { src: 'audio/interviews/marina/13-imagination.m4a', label: { en: `Closing thought, imagination`, pt: `Pensamento final, a imaginação` }, lang: 'en' },
+      ],
+    },
+    note: 'ml',
   },
 
   'future-the-range': {
@@ -1036,6 +1151,88 @@ title: { en: `Sexy Dunes`, pt: `Sexy Dunes` },
   },
 
   /* ══ DRAWINGS ══ */
+
+  // Back at the school, playing the speculative card game with the class.
+  // The children's own stories get a player here once they are ready.
+  'drawings-school-game': {
+    title: { en: `Back at the school, future products`, pt: `De volta à escola, produtos futuros` },
+    listen: { en: `Listen to the stories`, pt: `Ouve as histórias` },
+    audio: {
+      title: { en: `The children's stories`, pt: `As histórias das crianças` },
+      note: {
+        en: `Recorded in Portuguese at the school, October 2026: water memories, and wishes for the future of Esposende.`,
+        pt: `Gravadas em português na escola, em outubro de 2026: memórias de água e desejos para o futuro de Esposende.`,
+      },
+      tracks: [
+        { src: 'audio/stories/school/01_applause-at-the-end.m4a', label: { en: `Applause at the end`, pt: `Aplausos no fim` }, lang: 'pt' },
+        { src: 'audio/stories/school/02_shells-and-conches-experience.m4a', label: { en: `Shells and conches`, pt: `Conchas e búzios` }, lang: 'pt' },
+        { src: 'audio/stories/school/04_plant-trees-fewer-illnesses.m4a', label: { en: `Plant trees, fewer illnesses`, pt: `Plantar árvores, menos doenças` }, lang: 'pt' },
+        { src: 'audio/stories/school/07_wasting-water.m4a', label: { en: `Wasting water`, pt: `Desperdiçar água` }, lang: 'pt' },
+        { src: 'audio/stories/school/08_old-lady-picks-up-beach-litter.m4a', label: { en: `Picking up litter on the beach`, pt: `Apanhar o lixo na praia` }, lang: 'pt' },
+        { src: 'audio/stories/school/09_care-for-the-dunes-2040.m4a', label: { en: `Care for the dunes in 2040`, pt: `Cuidar das dunas em 2040` }, lang: 'pt' },
+        { src: 'audio/stories/school/10_beach-litter-2040.m4a', label: { en: `Beach litter in 2040`, pt: `Lixo na praia em 2040` }, lang: 'pt' },
+        { src: 'audio/stories/school/11_more-trees-better-oxygen.m4a', label: { en: `More trees, better oxygen`, pt: `Mais árvores, melhor oxigénio` }, lang: 'pt' },
+        { src: 'audio/stories/school/12_sea-pollution-and-animals.m4a', label: { en: `Sea pollution and animals`, pt: `A poluição do mar e os animais` }, lang: 'pt' },
+        { src: 'audio/stories/school/13_oil-in-the-river.m4a', label: { en: `Oil in the river`, pt: `Óleo no rio` }, lang: 'pt' },
+        { src: 'audio/stories/school/14_pushed-into-the-pool.m4a', label: { en: `Pushed into the pool`, pt: `Um empurrão para a piscina` }, lang: 'pt' },
+        { src: 'audio/stories/school/15_the-sea-in-menorca.m4a', label: { en: `The sea in Menorca`, pt: `O mar em Menorca` }, lang: 'pt' },
+        { src: 'audio/stories/school/16_learning-to-swim-in-morocco.m4a', label: { en: `Learning to swim in Morocco`, pt: `Aprender a nadar em Marrocos` }, lang: 'pt' },
+        { src: 'audio/stories/school/17_respect-the-fish.m4a', label: { en: `Respect the fish`, pt: `Respeitar os peixes` }, lang: 'pt' },
+        { src: 'audio/stories/school/18_almost-drowned-in-the-pool.m4a', label: { en: `A scare in the pool`, pt: `Um susto na piscina` }, lang: 'pt' },
+        { src: 'audio/stories/school/19_protect-the-dunes.m4a', label: { en: `Protect the dunes`, pt: `Proteger as dunas` }, lang: 'pt' },
+        { src: 'audio/stories/school/21_hit-my-head-in-the-pool.m4a', label: { en: `Hitting my head in the pool`, pt: `Bater com a cabeça na piscina` }, lang: 'pt' },
+        { src: 'audio/stories/school/22_carried-away-by-a-wave.m4a', label: { en: `Carried away by a wave`, pt: `Uma onda que me levou` }, lang: 'pt' },
+        { src: 'audio/stories/school/24_protect-the-seaweed.m4a', label: { en: `Protect the sargaço`, pt: `Proteger o sargaço` }, lang: 'pt' },
+        { src: 'audio/stories/school/25_agree-about-the-seaweed.m4a', label: { en: `Agreeing about the sargaço`, pt: `De acordo sobre o sargaço` }, lang: 'pt' },
+        { src: 'audio/stories/school/26_microplastics-in-fish.m4a', label: { en: `Microplastics in fish`, pt: `Microplásticos nos peixes` }, lang: 'pt' },
+        { src: 'audio/stories/school/27_is-the-world-getting-better.m4a', label: { en: `Is the world getting better?`, pt: `O mundo está a melhorar?` }, lang: 'pt' },
+        { src: 'audio/stories/school/28_the-ozone-layer.m4a', label: { en: `The ozone layer`, pt: `A camada de ozono` }, lang: 'pt' },
+      ],
+    },
+    gallery: [
+      {
+        src: 'living-archive-images/drawings/school-game-1.jpg',
+        caption: { en: `Playing the speculative card game`, pt: `A jogar o jogo de cartas especulativo` },
+        alt: { en: `Children holding fans of speculative product cards around a library table`, pt: `Crianças com leques de cartas de produtos especulativos à volta de uma mesa da biblioteca` },
+      },
+      {
+        src: 'living-archive-images/drawings/school-game-2.jpg',
+        caption: { en: `Writing water memories on postcards`, pt: `A escrever memórias de água em postais` },
+        alt: { en: `Writing on postcards beside the shellphone and a box of paper seaweed`, pt: `A escrever em postais ao lado do shellphone e de uma caixa de algas de papel` },
+      },
+      {
+        src: 'living-archive-images/drawings/school-game-3.jpg',
+        caption: { en: `Recording a water memory into the shell`, pt: `A gravar uma memória de água na concha` },
+        alt: { en: `A hand holding a shell with a microphone, over a handwritten water memory postcard`, pt: `Uma mão a segurar uma concha com um microfone, sobre um postal com uma memória de água escrita à mão` },
+      },
+      {
+        src: 'living-archive-images/drawings/school-game-4.jpg',
+        caption: { en: `In the school library`, pt: `Na biblioteca da escola` },
+        alt: { en: `The project presented on a screen to a class in the school library`, pt: `O projeto apresentado num ecrã a uma turma na biblioteca da escola` },
+      },
+      {
+        src: 'living-archive-images/drawings/school-game-5.jpg',
+        caption: { en: `The shellphone at the school`, pt: `O shellphone na escola` },
+        alt: { en: `The shellphone board lit up, wired to a shell on the table`, pt: `A placa do shellphone acesa, ligada a uma concha sobre a mesa` },
+      },
+      {
+        src: 'living-archive-images/drawings/school-game-6.jpg',
+        caption: { en: `Product stickers`, pt: `Autocolantes dos produtos` },
+        alt: { en: `Shell Cream, Acid Tabs, Sexy Dunes and Deluxe O2 stickers on a jumper`, pt: `Autocolantes de Shell Cream, Acid Tabs, Sexy Dunes e Deluxe O2 numa camisola` },
+      },
+    ],
+    full: {
+      en: `We went back to the school and played the speculative card game with the children. With the product cards and the postcards they imagined future products for Esposende, wrote down their water memories, and recorded them into the shellphone.`,
+      pt: `Voltámos à escola e jogámos o jogo de cartas especulativo com as crianças. Com as cartas dos produtos e os postais, imaginaram produtos futuros para Esposende, escreveram as suas memórias de água e gravaram-nas no shellphone.`,
+    },
+    note: 'ml',
+  },
+
+  // The school the drawings were made with, alongside Rui Santos.
+  'drawings-school-link': {
+    link: 'https://acoliveira.pt/',
+    label: { en: `Agrupamento de Escolas António Correia de Oliveira →`, pt: `Agrupamento de Escolas António Correia de Oliveira →` },
+  },
 
   'drawings-intro': {
     title: { en: `Drawings`, pt: `Desenhos` },

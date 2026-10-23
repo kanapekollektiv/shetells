@@ -6,8 +6,8 @@
   <title>The living archive — She Tells, Sea Shells</title>
   <meta name="description" content="A living map of water memories and stories from Esposende, gathered by Sea Shells, She Tells: an S+T+ARTS Aqua Motion residency by Helin Ulas, Rita Eperjesi and Mario Guzman." />
   <link rel="canonical" href="https://shetells.stream/living-archive.html" />
-  <script src="lang.js?v=17"></script>
-  <script src="content.js?v=34"></script>
+  <script src="lang.js?v=18"></script>
+  <script src="content.js?v=45"></script>
   <style>
     @font-face {
       font-family: 'NaNTresorM';
@@ -148,7 +148,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 4400px;
-      height: 2600px;
+      height: 2700px;
       transform-origin: 0 0;
       will-change: transform;
       -webkit-font-smoothing: antialiased;
@@ -231,6 +231,26 @@
       letter-spacing: 0.04em; color: rgba(0,0,0,0.5); line-height: 1.35;
     }
 
+    /* Opt in with listen. A coloured pill sits on the top edge of a card
+       that holds recordings, in the colour of the cluster that owns it, so
+       the interviews read as something to play rather than to read. It
+       hangs over the edge, so it adds no height the packer has to know. */
+    .card-listen-pill {
+      position: absolute; top: -12px; left: 12px; z-index: 25;  /* above a hovered card, which rises to 20 */
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px 6px 11px; border-radius: 999px;
+      font-family: 'Celescript', cursive; font-size: 10px;
+      letter-spacing: 0.04em; line-height: 1; white-space: nowrap;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      pointer-events: none;
+    }
+    .card-listen-pill::before { content: '\25B6'; font-size: 7px; }
+
+    .card-text-cover {
+      width: 100%; height: 120px; object-fit: cover; display: block;
+      border-radius: 8px; margin-bottom: 4px;
+    }
+
     .card-cats-dots {
       display: flex;
       gap: 3px;
@@ -259,6 +279,16 @@
       box-shadow: 0 2px 14px rgba(0,0,0,0.07);
       z-index: 100;
     }
+
+    /* While a cluster is selected the legend folds down to its dots, so it
+       stops covering the cards on the left of the cluster. Hovering it opens
+       it again. flyToCluster reserves LEGEND_COMPACT_W for it in this state. */
+    .map-legend.compact { padding: 0.9rem 0.8rem; }
+    .map-legend.compact .legend-label,
+    .map-legend.compact .legend-hint { display: none; }
+    .map-legend.compact:hover { padding: 1.1rem 1.3rem; }
+    .map-legend.compact:hover .legend-label { display: inline; }
+    .map-legend.compact:hover .legend-hint { display: block; }
 
     .legend-item {
       display: flex;
@@ -957,7 +987,7 @@
 
   <div class="map-viewport" id="viewport">
     <div class="canvas-inner" id="canvasInner">
-      <svg id="linesSvg" width="4400" height="2600"
+      <svg id="linesSvg" width="4400" height="2700"
            style="position:absolute;top:0;left:0;pointer-events:none;shape-rendering:geometricPrecision;" aria-hidden="true">
       </svg>
     </div>
@@ -1050,7 +1080,7 @@
     { key: 'local',       label: { en: 'Local Stories',       pt: 'Histórias Locais' },      color: '#9861FF' },
     { key: 'future',      label: { en: 'Speculative Futures & Products', pt: 'Futuros Especulativos e Produtos' }, color: '#FF5E33' },
     { key: 'workshop',    label: { en: 'Workshops',           pt: 'Oficinas' },              color: '#CCDE07' },
-    { key: 'drawings',    label: { en: 'Drawings',            pt: 'Desenhos' },              color: '#92CEF8' },
+    { key: 'drawings',    label: { en: 'Community Engagement', pt: 'Envolvimento da Comunidade' }, color: '#92CEF8' },
     { key: 'data',        label: { en: 'Data & the Eternal Stream', pt: 'Dados e a Transmissão Eterna' }, color: '#32BE3A' },
     { key: 'toolkit',     label: { en: 'DIY Shellphone Toolkit', pt: 'Kit do Shellphone Caseiro' }, color: '#CB561D' },
     { key: 'exhibition',  label: { en: 'Artwork & Exhibition', pt: 'Obra e Exposição' },     color: '#5B2915' },
@@ -1061,10 +1091,10 @@
   const CENTERS = {
     hypersea:   [ 510,  504],
     sargassum:  [1485,  599],
-    local:      [2430,  438],
-    future:     [3425,  575],
+    local:      [2430,  475],
+    future:     [3485,  581],
     exhibition: [ 705, 1788],
-    drawings:   [1800, 2024],
+    drawings:   [1800, 2053],
     data:       [2720, 1871],
     workshop:   [1800, 1258],
     toolkit:    [3565, 1237],
@@ -1143,9 +1173,8 @@
     // ── LOCAL STORIES
     // ── LOCAL STORIES — text column
     [['local'], 2100,  180, 300,  70, 'local-intro'],
-    [['local'], 2100,  262, 300, 150, 'local-tradition', { stackBelow: true, gap: 14 }],
     [['local', 'sargassum'], 2100, 424, 250, 34, 'local-to-sargassum', { stackBelow: true, gap: 12 }],
-    [['local'], 2100,  470, 300, 180, 'local-rio-neiva', { stackBelow: true, gap: 16 }],
+    [['local'], 2100,  470, 300, 300, 'local-rio-neiva', { stackBelow: true, gap: 16 }],
     [['local', 'future'], 2100, 662, 290, 34, 'local-to-future', { stackBelow: true, gap: 12 }],
 
     // ── LOCAL STORIES — the gleaned material
@@ -1186,7 +1215,7 @@
     // ── CROSS: Workshop × Drawings
 
     // ── SPECULATIVE FUTURES
-    [['future'], 3580, 600, 300, 120, 'future-interview-coming'],
+    [['future', 'sargassum'], 3350, 330, 300, 190, 'future-interview-marina', { mapTitle: true }],
 
     // ── CROSS: Drawings × Speculative Futures
 
@@ -1197,6 +1226,7 @@
     [['sargassum'], 1080,  238, 300, 260, 'sargassum-intro'],
     [['sargassum'], 1080, 868, 454,  34, 'sargassum-article-link', { stackBelow: true, gap: 18 }],
     [['sargassum', 'future'], 1080, 912, 280, 34, 'sargassum-to-future', { stackBelow: true, gap: 10 }],
+    [['sargassum', 'future'], 1080, 800, 300, 200, 'sargassum-interview-marina', { stackBelow: true, gap: 14 }],
     [['sargassum'], 1080, 960, 300,  48, 'sargassum-credits', { stackBelow: true, gap: 14 }],
 
     // ── SARGASSUM — images (the two museum photographs are credited above)
@@ -1206,10 +1236,12 @@
     [['sargassum', 'local'], 1744,  330, 118, 158, 'sargassum-museum-display'],
 
     // ── DRAWINGS
-    [['drawings', 'workshop'],  1470, 1728, 340, 210, 'drawings-intro'],
-    [['drawings', 'workshop'],  1850, 1968, 280, 200, 'drawings-process'],
-    [['drawings', 'future'],    1470, 1980, 340, 230, 'drawings-stories', { mapTitle: true }],
-    [['drawings', 'future'],    1470, 2286, 280,  34, 'drawings-to-future'],
+    [['drawings', 'workshop'],  1470, 1756, 340, 210, 'drawings-intro'],
+    [['drawings'],              1470, 1978, 340,  34, 'drawings-school-link', { stackBelow: true, gap: 12 }],
+    [['drawings', 'future'],    1470, 2038, 340, 230, 'drawings-stories', { mapTitle: true, stackBelow: true, gap: 16 }],
+    [['drawings', 'future'],    1470, 2344, 280,  34, 'drawings-to-future', { stackBelow: true, gap: 14 }],
+    [['drawings', 'future', 'workshop'], 1850, 1728, 280, 190, 'drawings-school-game', { mapTitle: true }],
+    [['drawings', 'workshop'],  1850, 1996, 280, 200, 'drawings-process'],
 
     // ── ARTWORK & EXHIBITION
     [['exhibition', 'workshop'],            400, 1328, 300, 215, 'exhibition-shellphone'],
@@ -1235,6 +1267,7 @@
     // Image credit: Biblioteca Municipal Manuel de Boaventura. If the file is
     // absent the card still opens; the <img> hides itself on error.
     [['sargassum', 'local'], 1580,  502, 166, 118, 'sargassum-tidal-archive'],
+    [['sargassum', 'local', 'future'], 1580, 660, 300, 190, 'local-interview-gata-da-mata', { mapTitle: true }],
 
     // ── TOOLKIT
 
@@ -1247,12 +1280,12 @@
     // documentation, and the writing sits underneath it in the same card.
     [['future', 'sargassum'], 2970, 320, 340, 240, 'future-the-range'],
 
-    [['future'], 3350, 560, 200, 132, 'future-the-flyers'],
+    [['future'], 3350, 582, 200, 132, 'future-the-flyers'],
     [['future'], 2970, 600, 300, 130, 'future-non-human-voices'],
 
     // ── CROSS: Non-Human × Sargassum
-    [['future', 'sargassum', 'toolkit'], 3350, 320, 300, 200, 'future-bioplastic-futures-at-home'],
-    [['future', 'drawings'], 3285, 710, 100, 120, 'future-drawings', { bare: true, mWidth: 170 }],
+    [['future', 'sargassum', 'toolkit'], 3700, 320, 300, 200, 'future-bioplastic-futures-at-home'],
+    [['future', 'drawings'], 3285, 722, 100, 120, 'future-drawings', { bare: true, mWidth: 170 }],
   ];
 
   /* ═══════════════════════════════════════════════════
@@ -1471,6 +1504,14 @@
       card.appendChild(span);
     } else if (content && content.txt) {
       card.className += ' card-text-box';
+      // An interview card can open with a photograph of the person.
+      if (content.cover) {
+        const cv = document.createElement('img');
+        cv.className = 'card-text-cover';
+        cv.src = content.cover.src;
+        onLang(() => { cv.alt = L(content.cover.alt) || ''; });
+        card.appendChild(cv);
+      }
       if (L(title)) {
         const h = document.createElement('p');
         h.className = 'card-text-title';
@@ -1541,6 +1582,16 @@
     });
 
     wrap.appendChild(card);
+    if (content && content.listen) {
+      const lp = document.createElement('span');
+      lp.className = 'card-listen-pill';
+      lp.style.background = CAT_MAP[cats[0]].color;
+      // the same light clusters LIGHT_TEXT_CATS names, which is declared
+      // further down and not yet available while the cards are built
+      lp.style.color = ['hypersea', 'workshop', 'drawings'].includes(cats[0]) ? '#1a1200' : '#ffffff';
+      onLang(() => { lp.textContent = L(content.listen); });
+      wrap.appendChild(lp);
+    }
     if (content && content.mapTitle && L(title)) {
       const mt = document.createElement('span');
       mt.className = 'card-maptitle';
@@ -1581,7 +1632,7 @@
       } else if (content && content.vid) {
         openMediaPopup({ vid: content.vid, title }, cats[0]);
       } else if (content && content.txt) {
-        openTextPopup(content.full || content.txt, cats[0], title);
+        openTextPopup(content.full || content.txt, cats[0], title, content, cats);
       } else if (!content || (!content.credits)) {
         openPanel(cats[0]);
       }
@@ -1708,6 +1759,7 @@
   legendEl.appendChild(legendHint);
 
   function applyFilter(key) {
+    legendEl.classList.toggle('compact', key !== null);
     document.querySelectorAll('.legend-item').forEach(el => {
       el.classList.toggle('dimmed', key !== null && el.dataset.cat !== key);
     });
@@ -1754,24 +1806,35 @@
     flyTimer = setTimeout(() => { canvasInner.style.transition = ''; }, 800);
   }
 
+  const LEGEND_COMPACT_W = 70;
   function flyToCluster(key) {
     const bounds = clusterBounds(key);
     if (!bounds) return;
     const vw = viewport.clientWidth, vh = viewport.clientHeight;
-    const legendW = document.getElementById('mapLegend')?.offsetWidth || 220;
+    // Measured from its folded state, not its width right now: the click
+    // that brought us here leaves the pointer over the legend, which holds
+    // it open until the pointer moves away.
+    const legendEl2 = document.getElementById('mapLegend');
+    const legendW = legendEl2?.classList.contains('compact')
+      ? LEGEND_COMPACT_W
+      : (legendEl2?.offsetWidth || 220);
     const usableW = vw - legendW;
     const PAD = 60;
     // Fit the cluster if it is small, but never drop below MIN_READ: at the
     // old fit-everything scale a cluster the size of Hypersea landed around
     // 0.8x and the card text and photos were too small to read. Anything
     // taller than the viewport can be reached by dragging.
+    // Clusters in FIT_WHOLE are the exception: they open zoomed out far
+    // enough to show every card at once, so the interview cards are never
+    // left below the edge of the screen.
     const MIN_READ = 1.25, MAX_ZOOM = 1.8;
+    const FIT_WHOLE = new Set(['future', 'sargassum', 'local']);
     const fit = Math.min(
       usableW / (bounds.w + PAD * 2),
       vh      / (bounds.h + PAD * 2),
       MAX_ZOOM
     );
-    const targetScale = Math.max(fit, MIN_READ);
+    const targetScale = FIT_WHOLE.has(key) ? fit : Math.max(fit, MIN_READ);
     // Center within the usable area (right of legend)
     const centerX = legendW + usableW / 2;
     // A cluster taller than the viewport should start at its top — its header
@@ -2188,16 +2251,24 @@
     });
   }
 
-  function openTextPopup(txt, catKey, title) {
+  // A text card may also carry an audio deck (the interviews). When it does,
+  // it names every cluster it belongs to, the way a gallery does, and shows
+  // its note under the player.
+  function openTextPopup(txt, catKey, title, content, cats) {
     openPanelKey = null;
     const cat = CAT_MAP[catKey];
     const overlay = document.getElementById('cardOverlay');
     const chip    = document.getElementById('dpChip');
     const body    = document.getElementById('dpBody');
     const darkText = LIGHT_TEXT_CATS.has(catKey);
-    chip.textContent = L(cat.label);
-    chip.style.background = cat.color;
-    chip.style.color = darkText ? '#1a1200' : '#ffffff';
+    if (content && content.audio && cats && cats.length > 1) {
+      setChips(cats);
+    } else {
+      chip.className = 'dp-chip';
+      chip.textContent = L(cat.label);
+      chip.style.background = cat.color;
+      chip.style.color = darkText ? '#1a1200' : '#ffffff';
+    }
     body.innerHTML = '';
     if (L(title)) {
       const h = document.createElement('p');
@@ -2205,10 +2276,41 @@
       h.textContent = L(title);
       body.appendChild(h);
     }
+    if (content && content.cover) {
+      const cv = document.createElement('img');
+      cv.src = content.cover.src;
+      cv.alt = L(content.cover.alt) || '';
+      cv.style.cssText = 'display:block;width:calc(100% - 3.2rem);margin:1rem 1.6rem 0;border-radius:10px;';
+      body.appendChild(cv);
+    }
     const div = document.createElement('div');
     div.style.cssText = 'padding:1.5rem 1.6rem 2rem;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.78;color:#333;white-space:pre-line;';
     setRich(div, L(txt));
     body.appendChild(div);
+    if (content && content.audio) {
+      const deck = buildAudioDeck(content.audio, 'adeck');
+      if (deck) body.appendChild(deck);
+      if (content.sources && content.sources.length) {
+        const box = document.createElement('div');
+        box.className = 'gal-entry';
+        const h = document.createElement('h3');
+        h.textContent = t('archive.sources');
+        box.appendChild(h);
+        content.sources.forEach(sr => {
+          const a = document.createElement('a');
+          a.href = sr.href; a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = '↗ ' + L(sr.label);
+          box.appendChild(a);
+        });
+        body.appendChild(box);
+      }
+      if (L(content.note)) {
+        const nt = document.createElement('p');
+        nt.className = 'dp-mt-notice';
+        nt.textContent = L(content.note);
+        body.appendChild(nt);
+      }
+    }
     overlay.classList.add('active');
     body.scrollTop = 0;
   }
@@ -2724,7 +2826,25 @@
         mNotesBody.appendChild(h); rendered++;
       }
       if (content && content.txt) {
+        if (content.cover) {
+          const cv = document.createElement('img');
+          cv.src = content.cover.src;
+          cv.alt = L(content.cover.alt) || '';
+          cv.loading = 'lazy';
+          cv.style.cssText = 'display:block;width:100%;border-radius:10px;margin:0 0 0.8rem;';
+          mNotesBody.appendChild(cv);
+        }
         mNotesBody.appendChild(mobileBlock(content.full || content.txt, 'm-text')); rendered++;
+        if (content.audio) {
+          const deck = buildAudioDeck(content.audio, 'adeck');
+          if (deck) mNotesBody.appendChild(deck);
+          if (L(content.note)) {
+            const nt = document.createElement('p');
+            nt.className = 'm-caption';
+            nt.textContent = L(content.note);
+            mNotesBody.appendChild(nt);
+          }
+        }
       } else if (content && content.gallery) {
         const wrap = document.createElement('div');
         wrap.className = 'm-gal';
