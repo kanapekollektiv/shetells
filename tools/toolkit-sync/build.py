@@ -94,7 +94,7 @@ def layout(title, body, out_rel, home):
     </a>
     <nav class="nav-buttons">
 {nav}
-      <a class="btn btn-filled" href="/diytoolkit.html">she tells ↗</a>
+      <a class="btn btn-filled" href="https://shetells.stream/">she tells ↗</a>
     </nav>
   </header>
 
@@ -109,7 +109,7 @@ def layout(title, body, out_rel, home):
     <p class="footer-tag">— made in esposende, with the water.</p>
     <p class="footer-links">
       <a class="btn btn-outline" href="{GH}">view on github</a>
-      <a class="btn btn-filled" href="/">she tells ↗</a>
+      <a class="btn btn-filled" href="https://shetells.stream/">she tells ↗</a>
     </p>
   </footer>
 </body>
